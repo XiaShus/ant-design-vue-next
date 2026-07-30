@@ -23,6 +23,7 @@ const TransButton = defineComponent({
     onClick: Function,
     disabled: { type: Boolean, default: undefined },
     autofocus: { type: Boolean, default: undefined },
+    tabIndex: { type: Number, default: undefined },
   },
   setup(props, { slots, emit, attrs, expose }) {
     const domRef = shallowRef();
@@ -64,7 +65,7 @@ const TransButton = defineComponent({
       blur,
     });
     return () => {
-      const { noStyle, disabled, ...restProps } = props;
+      const { noStyle, disabled, tabIndex, ...restProps } = props;
 
       let mergedStyle: CSSProperties = {};
 
@@ -80,7 +81,7 @@ const TransButton = defineComponent({
       return (
         <div
           role="button"
-          tabindex={0}
+          tabindex={tabIndex ?? 0}
           ref={domRef}
           {...restProps}
           {...attrs}

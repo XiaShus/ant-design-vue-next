@@ -4,6 +4,12 @@
 
 ---
 
+## 4.54.0
+
+`2026-07-31`
+
+- 🌟 Typography `copyable.format` / `copyable.tabIndex` and `editable.tabIndex` (antd ≥ 4.21 / 5.17)
+
 ## 4.53.0
 
 `2026-07-31`

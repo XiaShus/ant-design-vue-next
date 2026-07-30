@@ -8,6 +8,12 @@
 
 ---
 
+## 4.54.0
+
+`2026-07-31`
+
+- 🌟 Typography 支持 `copyable.format` / `copyable.tabIndex` 与 `editable.tabIndex`（对齐 antd ≥ 4.21 / 5.17）
+
 ## 4.53.0
 
 `2026-07-31`

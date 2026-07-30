@@ -25,7 +25,7 @@
 | General | Button | ✅ | ✅ | [button](../../components/button) | 🔄 `autoInsertSpace` ✅ 4.46.0；🔄 `iconPlacement` ✅ 4.47.0；🔄 `color` / `variant` ✅ 4.49.0 |
 | General | FloatButton | ✅ 5.0 | ✅ | [float-button](../../components/float-button) | 🔄 Group `placement` / `closeIcon`、`htmlType` ✅ 4.51.0 |
 | General | Icon | ✅ | ✅（`@ant-design/icons-vue`） | — | 图标包独立 |
-| General | Typography | ✅ | ✅ | [typography](../../components/typography) | — |
+| General | Typography | ✅ | ✅ | [typography](../../components/typography) | 🔄 `copyable.format` / `tabIndex`、`editable.tabIndex` ✅ 4.54.0 |
 
 ## Layout
 
@@ -180,9 +180,11 @@
 49. ~~FloatButton.Group `placement` / `closeIcon` + `htmlType`~~ — ✅ `4.51.0`
 50. ~~Image preview `toolbarRender`~~ — ✅ `4.52.0`
 51. ~~Cascader `autoClearSearchValue`~~ — ✅ `4.53.0`
-52. Table `virtual` 按需拆版（多日）
-53. ColorPicker 渐变 `mode`
-54. Segmented `vertical`（需 MotionThumb 竖向）
+52. ~~Typography `copyable.format` / `tabIndex`~~ — ✅ `4.54.0`
+53. Table `virtual` 按需拆版（多日）
+54. ColorPicker 渐变 `mode`
+55. Segmented `vertical`（需 MotionThumb 竖向）
+56. Progress `steps` object `{ count, gap }`
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -192,4 +194,4 @@
 
 ---
 
-_上次更新：`4.53.0` Cascader.autoClearSearchValue。每发一版请同步改本表。_
+_上次更新：`4.54.0` Typography.copyable.format/tabIndex。每发一版请同步改本表。_

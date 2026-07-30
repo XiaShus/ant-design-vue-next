@@ -85,14 +85,18 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*LT2jR41Uj2EAAA
     text: string,
     onCopy: function(event),
     tooltip: false,
+    format: 'text/plain' | 'text/html',
+    tabIndex: number,
   }
 ```
 
-| 参数    | 说明                 | 类型     | 默认值 | 版本 |
-| ------- | -------------------- | -------- | ------ | ---- |
-| text    | 拷贝到剪切板里的文本 | string   | -      |      |
-| tooltip | 是否展示提示文本     | boolean  | true   |      |
-| onCopy  | 拷贝成功的回调函数   | function | -      |      |
+| 参数     | 说明                      | 类型                            | 默认值 | 版本   |
+| -------- | ------------------------- | ------------------------------- | ------ | ------ |
+| text     | 拷贝到剪切板里的文本      | string                          | -      |        |
+| tooltip  | 是否展示提示文本          | boolean                         | true   |        |
+| onCopy   | 拷贝成功的回调函数        | function                        | -      |        |
+| format   | 剪切板写入的 Mime Type    | `'text/plain'` \| `'text/html'` | -      | 4.54.0 |
+| tabIndex | 自定义复制按钮的 tabIndex | number                          | 0      | 4.54.0 |
 
 ### editable
 
@@ -107,6 +111,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*LT2jR41Uj2EAAA
     onCancel: function,
     onEnd: function,
     triggerType: ('icon' | 'text')[],
+    tabIndex: number,
   }
 ```
 
@@ -115,6 +120,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*LT2jR41Uj2EAAA
 | autoSize | 自动 resize 文本域 | boolean \| { minRows: number, maxRows: number } | - |  |
 | editing | 控制是否是编辑中状态 | boolean | false |  |
 | maxlength | 编辑中文本域最大长度 | number | - |  |
+| tabIndex | 自定义编辑按钮的 tabIndex | number | 0 | 4.54.0 |
 | tooltip | 是否展示提示文本 | boolean | true |  |
 | triggerType | 编辑模式触发器类型，图标、文本或者两者都设置（不设置图标作为触发器时它会隐藏） | Array&lt;`icon`\|`text`> | \[`icon`] |  |
 | onCancel | 按 ESC 退出编辑状态时触发 | function | - |  |

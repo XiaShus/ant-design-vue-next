@@ -42,6 +42,10 @@ export interface CopyConfig {
   text?: string;
   onCopy?: (event?: MouseEvent) => void;
   tooltip?: boolean;
+  /** Clipboard MIME type (antd ≥ 4.21) */
+  format?: 'text/plain' | 'text/html';
+  /** tabIndex of the copy button (antd ≥ 5.17) */
+  tabIndex?: number;
 }
 
 export interface EditConfig {
@@ -54,6 +58,8 @@ export interface EditConfig {
   maxlength?: number;
   autoSize?: boolean | AutoSizeType;
   triggerType?: ('icon' | 'text')[];
+  /** tabIndex of the edit button (antd ≥ 5.17) */
+  tabIndex?: number;
 }
 
 export interface EllipsisConfig {
@@ -249,7 +255,7 @@ const Base = defineComponent({
         copyConfig.text = getChildrenText();
       }
 
-      copy(copyConfig.text || '');
+      copy(copyConfig.text || '', copyConfig.format ? { format: copyConfig.format } : undefined);
 
       state.copied = true;
       nextTick(() => {
@@ -411,7 +417,7 @@ const Base = defineComponent({
     function renderEdit() {
       if (!props.editable) return;
 
-      const { tooltip, triggerType = ['icon'] } = props.editable as EditConfig;
+      const { tooltip, triggerType = ['icon'], tabIndex } = props.editable as EditConfig;
       const icon = slots.editableIcon ? slots.editableIcon() : <EditOutlined role="button" />;
       const title = slots.editableTooltip ? slots.editableTooltip() : state.editStr;
       const ariaLabel = typeof title === 'string' ? title : '';
@@ -423,6 +429,7 @@ const Base = defineComponent({
             class={`${prefixCls.value}-edit`}
             onClick={onEditClick}
             aria-label={ariaLabel}
+            tabIndex={tabIndex}
           >
             {icon}
           </TransButton>
@@ -433,7 +440,7 @@ const Base = defineComponent({
     function renderCopy() {
       if (!props.copyable) return;
 
-      const { tooltip } = props.copyable as CopyConfig;
+      const { tooltip, tabIndex } = props.copyable as CopyConfig;
       const defaultTitle = state.copied ? state.copiedStr : state.copyStr;
       const title = slots.copyableTooltip
         ? slots.copyableTooltip({ copied: state.copied })
@@ -453,6 +460,7 @@ const Base = defineComponent({
             ]}
             onClick={onCopyClick}
             aria-label={ariaLabel}
+            tabIndex={tabIndex}
           >
             {icon}
           </TransButton>

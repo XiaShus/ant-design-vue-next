@@ -84,14 +84,18 @@ Basic text writing, including headings, body text, lists, and more.
     text: string,
     onCopy: function(event),
     tooltip: false,
+    format: 'text/plain' | 'text/html',
+    tabIndex: number,
   }
 ```
 
-| Property | Description             | Type     | Default | Version |
-| -------- | ----------------------- | -------- | ------- | ------- |
-| text     | The text to copy        | string   | -       |         |
-| tooltip  | Whether to show tooltip | boolean  | true    |         |
-| onCopy   | Called when copied text | function | -       |         |
+| Property | Description                     | Type                            | Default | Version |
+| -------- | ------------------------------- | ------------------------------- | ------- | ------- |
+| text     | The text to copy                | string                          | -       |         |
+| tooltip  | Whether to show tooltip         | boolean                         | true    |         |
+| onCopy   | Called when copied text         | function                        | -       |         |
+| format   | Clipboard Mime Type             | `'text/plain'` \| `'text/html'` | -       | 4.54.0  |
+| tabIndex | Set tabIndex of the copy button | number                          | 0       | 4.54.0  |
 
 ### editable
 
@@ -106,6 +110,7 @@ Basic text writing, including headings, body text, lists, and more.
     onCancel: function,
     onEnd: function,
     triggerType: ('icon' | 'text')[],
+    tabIndex: number,
   }
 ```
 
@@ -116,6 +121,7 @@ Basic text writing, including headings, body text, lists, and more.
 | maxlength | `maxlength` attribute of textarea | number | - |  |
 | tooltip | Whether to show tooltip | boolean | true |  |
 | triggerType | Edit mode trigger - icon, text or both (not specifying icon as trigger hides it) | Array&lt;`icon`\|`text`> | \[`icon`] |  |
+| tabIndex | Set tabIndex of the edit button | number | 0 | 4.54.0 |
 | onCancel | Called when type ESC to exit editable state | function | - |  |
 | onChange | Called when input at textarea | function(event) | - |  |
 | onEnd | Called when type ENTER to exit editable state | function | - |  |

@@ -70,6 +70,9 @@ Provide additional interactive capacity of editable and copyable.
   <a-typography-paragraph :copyable="{ tooltip: false }">
     Hide Copy tooltips.
   </a-typography-paragraph>
+  <a-typography-paragraph :copyable="{ text: '<b>HTML</b> content', format: 'text/html' }">
+    Copy as HTML (format).
+  </a-typography-paragraph>
 </template>
 <script lang="ts" setup>
 import { ref, watch } from 'vue';
