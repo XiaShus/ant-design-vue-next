@@ -4,6 +4,12 @@
 
 ---
 
+## 4.20.0
+
+`2026-07-31`
+
+- 🌟 Select / TreeSelect support `maxCount` (antd ≥ 5.13 / TreeSelect ≥ 5.23)
+
 ## 4.19.0
 
 `2026-07-30`

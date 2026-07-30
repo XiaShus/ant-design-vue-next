@@ -30,6 +30,7 @@ Tree selection control.
 | labelInValue | whether to embed label in value, turn the format of value from `string` to `{value: string, label: VNode, halfChecked: string[]}` | boolean | false |  |  |
 | listHeight | Config popup height | number | 256 |  |  |
 | loadData | Load data asynchronously. | function(node) | - |  |  |
+| maxCount | Max number of items that can be selected. Only works when `multiple` is true. Ineffective when (`showCheckedStrategy = 'SHOW_ALL'` and `treeCheckStrictly` is off) or `showCheckedStrategy = 'SHOW_PARENT'` | number | - | 4.20.0 |
 | maxTagCount | Max tag count to show | number | - |  |  |
 | maxTagPlaceholder | Placeholder for not showing tags | slot/function(omittedValues) | - |  |  |
 | multiple | Support multiple or not, will be `true` when enable `treeCheckable`. | boolean | false |  |  |

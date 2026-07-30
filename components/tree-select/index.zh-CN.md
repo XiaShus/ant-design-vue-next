@@ -31,6 +31,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*Y5pcQLplFu4AAA
 | labelInValue | 是否把每个选项的 label 包装到 value 中，会把 value 类型从 `string` 变为 `{value: string, label: VNode, halfChecked(treeCheckStrictly 时有效): string[] }` 的格式 | boolean | false |  |  |
 | listHeight | 设置弹窗滚动高度 | number | 256 |  |  |
 | loadData | 异步加载数据 | function(node) | - |  |  |
+| maxCount | 最多可选中条目数，仅在多选时生效。当（`showCheckedStrategy = 'SHOW_ALL'` 且未开启 `treeCheckStrictly`）或 `showCheckedStrategy = 'SHOW_PARENT'` 时不生效 | number | - | 4.20.0 |
 | maxTagCount | 最多显示多少个 tag | number | - |  |  |
 | maxTagPlaceholder | 隐藏 tag 时显示的内容 | slot/function(omittedValues) | - |  |  |
 | multiple | 支持多选（当设置 treeCheckable 时自动变为 true） | boolean | false |  |  |

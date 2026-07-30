@@ -151,6 +151,8 @@ export function treeSelectProps<
     treeCheckable: { type: Boolean, default: undefined },
     treeCheckStrictly: { type: Boolean, default: undefined },
     labelInValue: { type: Boolean, default: undefined },
+    /** Max selectable items (multiple). Ineffective for some showCheckedStrategy modes. */
+    maxCount: Number,
 
     // >>> Data
     treeData: { type: Array as PropType<OptionType[]> },
@@ -416,12 +418,37 @@ export default defineComponent({
 
     const [cachedDisplayValues] = useCache(displayValues);
 
+    // ========================== MaxCount ==========================
+    const mergedMaxCount = computed(() => {
+      if (
+        mergedMultiple.value &&
+        (props.showCheckedStrategy === 'SHOW_CHILD' ||
+          props.treeCheckStrictly ||
+          !props.treeCheckable)
+      ) {
+        return props.maxCount;
+      }
+      return null;
+    });
+
     // =========================== Change ===========================
     const triggerChange = (
       newRawValues: RawValueType[],
       extra: { triggerValue?: RawValueType; selected?: boolean },
       source: SelectSource,
     ) => {
+      const formattedKeyList = formatStrategyValues(
+        newRawValues,
+        props.showCheckedStrategy,
+        keyEntities.value,
+        mergedFieldNames.value,
+      );
+
+      // Not allow pass with `maxCount`
+      if (mergedMaxCount.value != null && formattedKeyList.length > mergedMaxCount.value) {
+        return;
+      }
+
       const labeledValues = convert2LabelValues(newRawValues);
       setInternalValue(labeledValues);
 
@@ -434,12 +461,6 @@ export default defineComponent({
       if (props.onChange) {
         let eventValues: RawValueType[] = newRawValues;
         if (treeConduction.value) {
-          const formattedKeyList = formatStrategyValues(
-            newRawValues,
-            props.showCheckedStrategy,
-            keyEntities.value,
-            mergedFieldNames.value,
-          );
           eventValues = formattedKeyList.map(key => {
             const entity = valueEntities.value.get(key);
             return entity ? entity.node[mergedFieldNames.value.value] : key;
@@ -651,6 +672,16 @@ export default defineComponent({
         customSlots,
       } as unknown as LegacyContextProps),
     );
+    const leftMaxCount = computed(() =>
+      props.maxCount === undefined ? null : props.maxCount - cachedDisplayValues.value.length,
+    );
+    const leafCountOnly = computed(
+      () =>
+        props.showCheckedStrategy === 'SHOW_CHILD' &&
+        !props.treeCheckStrictly &&
+        !!props.treeCheckable,
+    );
+
     useProvideSelectContext(
       toReactive({
         virtual,
@@ -661,6 +692,9 @@ export default defineComponent({
         onSelect: onOptionSelect,
         dropdownMatchSelectWidth,
         treeExpandAction,
+        leftMaxCount,
+        leafCountOnly,
+        valueEntities,
       } as unknown as TreeSelectContextProps),
     );
     const selectRef = ref<BaseSelectRef>();

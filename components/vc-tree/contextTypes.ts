@@ -111,6 +111,25 @@ export const useInjectTreeContext = () => {
     computed(() => ({} as TreeContextProps)),
   );
 };
+
+/** Internal usage for TreeSelect maxCount. Do not use in product. */
+export interface UnstableContextProps {
+  nodeDisabled?: (node: any) => boolean;
+}
+
+const UnstableContextKey: InjectionKey<ComputedRef<UnstableContextProps>> =
+  Symbol('UnstableContextKey');
+
+export const useProvideUnstableContext = (props: ComputedRef<UnstableContextProps>) => {
+  provide(UnstableContextKey, props);
+};
+
+export const useInjectUnstableContext = () => {
+  return inject(
+    UnstableContextKey,
+    computed(() => ({} as UnstableContextProps)),
+  );
+};
 type KeysStateKeyType = {
   expandedKeysSet: ComputedRef<Set<Key>>;
   selectedKeysSet: ComputedRef<Set<Key>>;

@@ -1,4 +1,4 @@
-import { useInjectKeysState, useInjectTreeContext } from './contextTypes';
+import { useInjectKeysState, useInjectTreeContext, useInjectUnstableContext } from './contextTypes';
 import Indent from './Indent';
 import { convertNodePropsToEventData, getTreeNodeProps } from './utils/treeUtil';
 import type { CSSProperties } from 'vue';
@@ -39,6 +39,7 @@ export default defineComponent({
 
     const dragNodeHighlight = shallowRef(false);
     const context = useInjectTreeContext();
+    const unstableContext = useInjectUnstableContext();
     const {
       expandedKeysSet,
       selectedKeysSet,
@@ -104,10 +105,11 @@ export default defineComponent({
     });
 
     const isDisabled = computed(() => {
-      const { disabled } = props;
+      const { disabled, data } = props;
       const { disabled: treeDisabled } = context.value;
+      const { nodeDisabled } = unstableContext.value;
 
-      return !!(treeDisabled || disabled);
+      return !!(treeDisabled || disabled || nodeDisabled?.(data));
     });
 
     const isCheckable = computed(() => {

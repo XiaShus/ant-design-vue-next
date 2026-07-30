@@ -151,6 +151,8 @@ export function selectProps<
     labelInValue: { type: Boolean, default: undefined },
     value: PropTypes.any,
     defaultValue: PropTypes.any,
+    /** Max selectable items in multiple/tags mode (antd ≥ 5.13). */
+    maxCount: Number,
     onChange: Function as PropType<(value: ValueType, option: OptionType | OptionType[]) => void>,
     children: Array as PropType<VueNode[]>,
   };
@@ -469,6 +471,15 @@ export default defineComponent({
       const mergedSelect = multiple.value ? info.selected : true;
 
       if (mergedSelect) {
+        // Respect maxCount in multiple/tags mode
+        if (
+          multiple.value &&
+          typeof props.maxCount === 'number' &&
+          props.maxCount >= 0 &&
+          mergedValues.value.length >= props.maxCount
+        ) {
+          return;
+        }
         cloneValues = multiple.value ? [...mergedValues.value, val] : [val];
       } else {
         cloneValues = mergedValues.value.filter(v => v.value !== val);
@@ -509,6 +520,14 @@ export default defineComponent({
         const formatted = (searchText || '').trim();
         // prevent empty tags from appearing when you click the Enter button
         if (formatted) {
+          if (
+            typeof props.maxCount === 'number' &&
+            props.maxCount >= 0 &&
+            rawValues.value.size >= props.maxCount
+          ) {
+            setSearchValue('');
+            return;
+          }
           const newRawValues = Array.from(new Set<RawValueType>([...rawValues.value, formatted]));
           triggerChange(newRawValues);
           triggerSelect(formatted, true);
@@ -539,10 +558,15 @@ export default defineComponent({
           .filter(val => val !== undefined);
       }
 
-      const newRawValues = Array.from(new Set<RawValueType>([...rawValues.value, ...patchValues]));
+      let newRawValues = Array.from(new Set<RawValueType>([...rawValues.value, ...patchValues]));
+      if (typeof props.maxCount === 'number' && props.maxCount >= 0) {
+        newRawValues = newRawValues.slice(0, props.maxCount);
+      }
       triggerChange(newRawValues);
       newRawValues.forEach(newRawValue => {
-        triggerSelect(newRawValue, true);
+        if (!rawValues.value.has(newRawValue)) {
+          triggerSelect(newRawValue, true);
+        }
       });
     };
     const realVirtual = computed(
@@ -562,6 +586,7 @@ export default defineComponent({
         listHeight: toRef(props, 'listHeight'),
         listItemHeight: toRef(props, 'listItemHeight'),
         childrenAsData,
+        maxCount: toRef(props, 'maxCount'),
       } as unknown as SelectContextProps),
     );
 

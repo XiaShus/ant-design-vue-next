@@ -47,6 +47,7 @@ Select component to select value from options.
 | labelInValue | whether to embed label in value, turn the format of value from `string` to `{key: string, label: vNodes, originLabel: any}`, originLabel (3.1) maintains the original type. If the node is constructed through a-select-option children, the value is a function (the default slot of a-select-option) | boolean | false |  |
 | listHeight | Config popup height | number | 256 |  |
 | loading | indicate loading state | boolean | false |  |
+| maxCount | Max number of items that can be selected. Only works when `mode` is `multiple` or `tags` | number | - | 4.20.0 |
 | maxTagCount | Max tag count to show | number | - |  |
 | maxTagPlaceholder | Placeholder for not showing tags | slot \| function(omittedValues) | - |  |
 | maxTagTextLength | Max text length to show | number | - |  |

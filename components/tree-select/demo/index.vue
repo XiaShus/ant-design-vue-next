@@ -2,6 +2,7 @@
   <demo-sort>
     <basic />
     <multiple />
+    <maxCountVue />
     <!-- <tree-data /> -->
     <checkable />
     <suffix />
@@ -18,6 +19,7 @@
 <script lang="ts">
 import Basic from './basic.vue';
 import Multiple from './multiple.vue';
+import maxCountVue from './max-count.vue';
 // import TreeData from './treeData.vue';
 import Checkable from './checkable.vue';
 import Suffix from './suffix.vue';
@@ -41,6 +43,7 @@ export default defineComponent({
     statusVue,
     Basic,
     Multiple,
+    maxCountVue,
     // TreeData,
     Checkable,
     Suffix,

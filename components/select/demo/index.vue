@@ -7,6 +7,7 @@
     <AutomaticTokenization />
     <LabelInValue />
     <Multiple />
+    <MaxCount />
     <Coordinate />
     <Optgroup />
     <SearchBox />
@@ -29,6 +30,7 @@ import Tags from './tags.vue';
 import AutomaticTokenization from './automatic-tokenization.vue';
 import LabelInValue from './label-in-value.vue';
 import Multiple from './multiple.vue';
+import MaxCount from './max-count.vue';
 import Coordinate from './coordinate.vue';
 import Optgroup from './optgroup.vue';
 import SearchBox from './search-box.vue';
@@ -59,6 +61,7 @@ export default defineComponent({
     AutomaticTokenization,
     LabelInValue,
     Multiple,
+    MaxCount,
     Coordinate,
     Optgroup,
     SearchBox,

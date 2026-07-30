@@ -8,6 +8,12 @@
 
 ---
 
+## 4.20.0
+
+`2026-07-31`
+
+- 🌟 Select / TreeSelect 支持 `maxCount`（对齐 antd ≥ 5.13 / TreeSelect ≥ 5.23）
+
 ## 4.19.0
 
 `2026-07-30`

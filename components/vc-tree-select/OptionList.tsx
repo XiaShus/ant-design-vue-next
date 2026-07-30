@@ -1,4 +1,4 @@
-import type { TreeDataNode, Key } from './interface';
+import type { TreeDataNode, Key, DataNode } from './interface';
 import type { RefOptionListProps } from '../vc-select/OptionList';
 import type { ScrollTo } from '../vc-virtual-list/List';
 import { computed, defineComponent, nextTick, ref, shallowRef, toRaw, watch } from 'vue';
@@ -7,6 +7,7 @@ import type { EventDataNode } from '../tree';
 import KeyCode from '../_util/KeyCode';
 import Tree from '../vc-tree/Tree';
 import type { TreeProps } from '../vc-tree/props';
+import { useProvideUnstableContext } from '../vc-tree/contextTypes';
 import { getAllKeys, isCheckDisabled } from './utils/valueUtil';
 import { useBaseProps } from '../vc-select';
 import useInjectLegacySelectContext from './LegacyContext';
@@ -129,6 +130,61 @@ export default defineComponent({
       }
     };
 
+    // ========================= Disabled =========================
+    const disabledCache = ref(new Map<Key, boolean>());
+    watch(
+      () => context.leftMaxCount,
+      () => {
+        disabledCache.value = new Map();
+      },
+    );
+
+    const getDisabledWithCache = (node: DataNode) => {
+      const value = node[context.fieldNames.value];
+      if (!disabledCache.value.has(value)) {
+        const entity = context.valueEntities?.get(value);
+        const isLeaf = (entity?.children || []).length === 0;
+
+        if (!isLeaf && entity) {
+          const checkableChildren = entity.children.filter(
+            childTreeNode =>
+              !childTreeNode.node.disabled &&
+              !childTreeNode.node.disableCheckbox &&
+              !legacyContext.checkedKeys.includes(childTreeNode.node[context.fieldNames.value]),
+          );
+          disabledCache.value.set(value, checkableChildren.length > (context.leftMaxCount || 0));
+        } else {
+          disabledCache.value.set(value, false);
+        }
+      }
+      return disabledCache.value.get(value);
+    };
+
+    const nodeDisabled = (node: DataNode) => {
+      const nodeValue = node[context.fieldNames.value];
+
+      if (legacyContext.checkedKeys.includes(nodeValue)) {
+        return false;
+      }
+
+      const leftMaxCount = context.leftMaxCount;
+      if (leftMaxCount === null || leftMaxCount === undefined) {
+        return false;
+      }
+
+      if (leftMaxCount <= 0) {
+        return true;
+      }
+
+      if (context.leafCountOnly && leftMaxCount) {
+        return getDisabledWithCache(node);
+      }
+
+      return false;
+    };
+
+    useProvideUnstableContext(computed(() => ({ nodeDisabled })));
+
     // ========================= Keyboard =========================
     const activeKey = ref<Key>(null);
     const activeEntity = computed(() => legacyContext.keyEntities[activeKey.value]);
@@ -152,8 +208,9 @@ export default defineComponent({
           // >>> Select item
           case KeyCode.ENTER: {
             if (activeEntity.value) {
-              const { selectable, value } = activeEntity.value.node || {};
-              if (selectable !== false) {
+              const { selectable, value, disabled } = activeEntity.value.node || {};
+              const isNodeDisabled = nodeDisabled(activeEntity.value.node);
+              if (selectable !== false && !disabled && !isNodeDisabled) {
                 onInternalSelect(null, {
                   node: { key: activeKey.value },
                   selected: !legacyContext.checkedKeys.includes(value),

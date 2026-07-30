@@ -61,6 +61,14 @@ const OptionList = defineComponent({
       }
     };
 
+    const overMaxCount = computed(
+      () =>
+        baseProps.multiple &&
+        typeof props.maxCount === 'number' &&
+        props.maxCount >= 0 &&
+        props.rawValues.size >= props.maxCount,
+    );
+
     // ========================== Active ==========================
     const getEnabledActiveIndex = (index: number, offset = 1) => {
       const len = memoFlattenOptions.value.length;
@@ -69,7 +77,7 @@ const OptionList = defineComponent({
         const current = (index + i * offset + len) % len;
 
         const { group, data } = memoFlattenOptions.value[current];
-        if (!group && !data.disabled) {
+        if (!group && !data.disabled && (props.rawValues.has(data.value) || !overMaxCount.value)) {
           return current;
         }
       }
@@ -204,7 +212,11 @@ const OptionList = defineComponent({
           // value
           const item = memoFlattenOptions.value[state.activeIndex];
           if (item && !item.data.disabled) {
-            onSelectValue(item.value);
+            if (!overMaxCount.value || props.rawValues.has(item.value)) {
+              onSelectValue(item.value);
+            } else {
+              onSelectValue(undefined);
+            }
           } else {
             onSelectValue(undefined);
           }
@@ -312,6 +324,7 @@ const OptionList = defineComponent({
                 const passedProps = omit(otherProps, omitFieldNameList);
                 // Option
                 const selected = isSelected(value);
+                const mergedDisabled = disabled || (!selected && overMaxCount.value);
 
                 const optionPrefixCls = `${itemPrefixCls.value}-option`;
                 const optionClassName = classNames(
@@ -321,8 +334,8 @@ const OptionList = defineComponent({
                   className,
                   {
                     [`${optionPrefixCls}-grouped`]: groupOption,
-                    [`${optionPrefixCls}-active`]: activeIndex === itemIndex && !disabled,
-                    [`${optionPrefixCls}-disabled`]: disabled,
+                    [`${optionPrefixCls}-active`]: activeIndex === itemIndex && !mergedDisabled,
+                    [`${optionPrefixCls}-disabled`]: mergedDisabled,
                     [`${optionPrefixCls}-selected`]: selected,
                   },
                 );
@@ -351,13 +364,13 @@ const OptionList = defineComponent({
                       if (otherProps.onMousemove) {
                         otherProps.onMousemove(e);
                       }
-                      if (activeIndex === itemIndex || disabled) {
+                      if (activeIndex === itemIndex || mergedDisabled) {
                         return;
                       }
                       setActive(itemIndex);
                     }}
                     onClick={e => {
-                      if (!disabled) {
+                      if (!mergedDisabled) {
                         onSelectValue(value);
                       }
                       if (otherProps.onClick) {

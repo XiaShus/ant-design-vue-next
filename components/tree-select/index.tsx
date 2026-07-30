@@ -194,6 +194,16 @@ const TreeSelect = defineComponent({
     );
 
     const isMultiple = computed(() => !!(props.treeCheckable || props.multiple));
+    const mergedMaxCount = computed(() => {
+      if (
+        props.maxCount &&
+        ((props.showCheckedStrategy === 'SHOW_ALL' && !props.treeCheckStrictly) ||
+          props.showCheckedStrategy === 'SHOW_PARENT')
+      ) {
+        return undefined;
+      }
+      return props.maxCount;
+    });
     const mergedShowArrow = computed(() =>
       props.showArrow !== undefined ? props.showArrow : props.loading || !isMultiple.value,
     );
@@ -348,6 +358,7 @@ const TreeSelect = defineComponent({
               treeCheckable: () => <span class={`${prefixCls.value}-tree-checkbox-inner`} />,
             }}
             maxTagPlaceholder={props.maxTagPlaceholder || slots.maxTagPlaceholder}
+            maxCount={mergedMaxCount.value}
             placement={placement.value}
             showArrow={hasFeedback || showArrow}
             placeholder={placeholder}

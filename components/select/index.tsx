@@ -114,18 +114,19 @@ const Select = defineComponent({
     };
 
     const mode = computed(() => {
-      const { mode } = props;
+      const { mode: m } = props;
 
-      if ((mode as any) === 'combobox') {
+      if ((m as any) === 'combobox') {
         return undefined;
       }
 
-      if (mode === SECRET_COMBOBOX_MODE_DO_NOT_USE) {
+      if (m === SECRET_COMBOBOX_MODE_DO_NOT_USE) {
         return 'combobox';
       }
 
-      return mode;
+      return m;
     });
+    const isMultiple = computed(() => mode.value === 'multiple' || mode.value === 'tags');
 
     // ====================== Warning ======================
     if (process.env.NODE_ENV !== 'production') {
@@ -133,6 +134,11 @@ const Select = defineComponent({
         !props.dropdownClassName,
         'Select',
         '`dropdownClassName` is deprecated. Please use `popupClassName` instead.',
+      );
+      devWarning(
+        props.maxCount === undefined || isMultiple.value,
+        'Select',
+        '`maxCount` only works with mode `multiple` or `tags`',
       );
     }
     const {
@@ -201,7 +207,6 @@ const Select = defineComponent({
       focus,
       scrollTo,
     });
-    const isMultiple = computed(() => mode.value === 'multiple' || mode.value === 'tags');
     const mergedShowArrow = computed(() =>
       props.showArrow !== undefined
         ? props.showArrow
@@ -301,6 +306,7 @@ const Select = defineComponent({
           tagRender={props.tagRender || slots.tagRender}
           optionLabelRender={slots.optionLabel}
           maxTagPlaceholder={props.maxTagPlaceholder || slots.maxTagPlaceholder}
+          maxCount={isMultiple.value ? props.maxCount : undefined}
           showArrow={hasFeedback || showArrow}
           disabled={mergedDisabled.value}
         ></RcSelect>,
