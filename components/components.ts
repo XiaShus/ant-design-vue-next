@@ -250,7 +250,7 @@ export { default as Tag, CheckableTag } from './tag';
 export type { TimePickerProps, TimeRangePickerProps } from './time-picker';
 export { default as TimePicker, TimeRangePicker } from './time-picker';
 
-export type { TimelineProps, TimelineItemProps } from './timeline';
+export type { TimelineProps, TimelineItemProps, TimelineItemType } from './timeline';
 export { default as Timeline, TimelineItem } from './timeline';
 
 export type { TooltipProps } from './tooltip';

@@ -1,6 +1,7 @@
 <template>
   <demo-sort>
     <basic />
+    <items />
     <color />
     <pending />
     <custom />
@@ -10,6 +11,7 @@
 </template>
 <script lang="ts">
 import Basic from './basic.vue';
+import Items from './items.vue';
 import Color from './color.vue';
 import Pending from './pending.vue';
 import Custom from './custom.vue';
@@ -23,6 +25,7 @@ export default defineComponent({
   US,
   components: {
     Basic,
+    Items,
     Color,
     Pending,
     Custom,

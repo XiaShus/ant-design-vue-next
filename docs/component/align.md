@@ -94,7 +94,7 @@
 | Data Display | Statistic | ✅ | ✅ | [statistic](../../components/statistic) | 🔄 `Statistic.Timer` ✅ 4.31.0 |
 | Data Display | Table | ✅ | ✅ | [table](../../components/table) | 🔄 Column `hidden` ✅ 4.13.0；🔄 `scrollTo` / `nativeElement` ✅ 4.17.0；🔄 `rowHoverable` ✅ 4.19.0；⏭ `virtual` |
 | Data Display | Tag | ✅ | ✅ | [tag](../../components/tag) | — |
-| Data Display | Timeline | ✅ | ✅ | [timeline](../../components/timeline) | — |
+| Data Display | Timeline | ✅ | ✅ | [timeline](../../components/timeline) | 🔄 `items` ✅ 4.33.0 |
 | Data Display | Tooltip | ✅ | ✅ | [tooltip](../../components/tooltip) | 🔄 `destroyOnHidden` ✅ 4.14.0（Popover / Popconfirm 同） |
 | Data Display | Tour | ✅ 5.0 | ✅ | [tour](../../components/tour) | — |
 | Data Display | Tree | ✅ | ✅ | [tree](../../components/tree) | — |
@@ -159,8 +159,9 @@
 28. ~~Collapse `size`~~ — ✅ `4.30.0`
 29. ~~Statistic.Timer~~ — ✅ `4.31.0`
 30. ~~Descriptions `items`~~ — ✅ `4.32.0`
-31. Table `virtual` 按需拆版（多日）
-32. ColorPicker 渐变 `mode`
+31. ~~Timeline `items`~~ — ✅ `4.33.0`
+32. Table `virtual` 按需拆版（多日）
+33. ColorPicker 渐变 `mode`
 
 ## 阶段 B（仅规划，不急实现）
 

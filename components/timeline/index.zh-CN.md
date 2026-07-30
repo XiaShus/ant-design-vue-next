@@ -29,12 +29,26 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*yIl9S4hAIBcAAA
 
 时间轴。
 
-| 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| mode | 通过设置 `mode` 可以改变时间轴和内容的相对位置 | `left` \| `alternate` \| `right` |  |
-| pending | 指定最后一个幽灵节点是否存在或内容 | boolean\|string\|slot | false |
-| pendingDot | 当最后一个幽灵节点存在時，指定其时间图点 | string\|slot | `<LoadingOutlined />` |
-| reverse | 节点排序 | boolean | false |
+| 参数 | 说明 | 类型 | 默认值 | 版本 |
+| --- | --- | --- | --- | --- |
+| items | 时间轴节点配置 | [TimelineItemType](#timelineitemtype)[] | - | 4.33.0 |
+| mode | 通过设置 `mode` 可以改变时间轴和内容的相对位置 | `left` \| `alternate` \| `right` |  |  |
+| pending | 指定最后一个幽灵节点是否存在或内容 | boolean\|string\|slot | false |  |
+| pendingDot | 当最后一个幽灵节点存在時，指定其时间图点 | string\|slot | `<LoadingOutlined />` |  |
+| reverse | 节点排序 | boolean | false |  |
+
+#### TimelineItemType
+
+```ts
+type TimelineItemType = {
+  key?: string | number;
+  color?: string;
+  dot?: VueNode;
+  label?: VueNode;
+  children?: VueNode;
+  position?: 'left' | 'right';
+};
+```
 
 ### Timeline.Item
 

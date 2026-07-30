@@ -1,4 +1,4 @@
-import type { ExtractPropTypes } from 'vue';
+import type { ExtractPropTypes, VNode } from 'vue';
 import { cloneVNode, defineComponent } from 'vue';
 import classNames from '../_util/classNames';
 import PropTypes from '../_util/vue-types';
@@ -7,12 +7,22 @@ import initDefaultProps from '../_util/props-util/initDefaultProps';
 import TimelineItem from './TimelineItem';
 import LoadingOutlined from '@ant-design/icons-vue/LoadingOutlined';
 
-import { tuple, booleanType } from '../_util/type';
+import { tuple, booleanType, arrayType } from '../_util/type';
+import type { CustomSlotsType, VueNode } from '../_util/type';
 import useConfigInject from '../config-provider/hooks/useConfigInject';
 
 // CSSINJS
 import useStyle from './style';
-import type { CustomSlotsType } from '../_util/type';
+
+/** Item config for `items` prop (antd ≥ 5.2). */
+export type TimelineItemType = {
+  key?: string | number;
+  color?: string;
+  dot?: VueNode;
+  label?: VueNode;
+  children?: VueNode;
+  position?: 'left' | 'right' | '';
+};
 
 export const timelineProps = () => ({
   prefixCls: String,
@@ -21,6 +31,8 @@ export const timelineProps = () => ({
   pendingDot: PropTypes.any,
   reverse: booleanType(),
   mode: PropTypes.oneOf(tuple('left', 'alternate', 'right', '')),
+  /** Timeline items config (antd ≥ 5.2). */
+  items: arrayType<TimelineItemType[]>(),
 });
 
 export type TimelineProps = Partial<ExtractPropTypes<ReturnType<typeof timelineProps>>>;
@@ -44,7 +56,7 @@ export default defineComponent({
     // style
     const [wrapSSR, hashId] = useStyle(prefixCls);
 
-    const getPositionCls = (ele, idx: number) => {
+    const getPositionCls = (ele: VNode, idx: number) => {
       const eleProps = ele.props || {};
       if (props.mode === 'alternate') {
         if (eleProps.position === 'right') return `${prefixCls.value}-item-right`;
@@ -65,7 +77,20 @@ export default defineComponent({
         mode,
       } = props;
       const pendingNode = typeof pending === 'boolean' ? null : pending;
-      const children = filterEmpty(slots.default?.());
+
+      const children: VNode[] = props.items?.length
+        ? (props.items.map(item => (
+            <TimelineItem
+              key={item.key}
+              color={item.color}
+              dot={item.dot}
+              label={item.label}
+              position={item.position}
+            >
+              {item.children}
+            </TimelineItem>
+          )) as VNode[])
+        : (filterEmpty(slots.default?.()) as VNode[]);
 
       const pendingItem = pending ? (
         <TimelineItem pending={!!pending} dot={pendingDot || <LoadingOutlined />}>
@@ -74,14 +99,14 @@ export default defineComponent({
       ) : null;
 
       if (pendingItem) {
-        children.push(pendingItem);
+        children.push(pendingItem as VNode);
       }
 
-      const timeLineItems = reverse ? children.reverse() : children;
+      const timeLineItems = reverse ? [...children].reverse() : children;
 
       const itemsCount = timeLineItems.length;
       const lastCls = `${prefixCls.value}-item-last`;
-      const items = timeLineItems.map((ele, idx) => {
+      const renderedItems = timeLineItems.map((ele, idx) => {
         const pendingClass = idx === itemsCount - 2 ? lastCls : '';
         const readyClass = idx === itemsCount - 1 ? lastCls : '';
         return cloneVNode(ele, {
@@ -91,9 +116,10 @@ export default defineComponent({
           ]),
         });
       });
-      const hasLabelItem = timeLineItems.some(
-        item => !!(item.props?.label || item.children?.label),
-      );
+      const hasLabelItem = timeLineItems.some(item => {
+        const slotChildren = item.children as Record<string, any> | null;
+        return !!(item.props?.label || slotChildren?.label);
+      });
       const classString = classNames(
         prefixCls.value,
         {
@@ -108,7 +134,7 @@ export default defineComponent({
       );
       return wrapSSR(
         <ul {...attrs} class={classString}>
-          {items}
+          {renderedItems}
         </ul>,
       );
     };
