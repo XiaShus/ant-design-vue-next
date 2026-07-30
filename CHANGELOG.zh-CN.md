@@ -8,6 +8,12 @@
 
 ---
 
+## 4.31.0
+
+`2026-07-31`
+
+- 🌟 Statistic.Timer 支持 countdown / countup（对齐 antd ≥ 5.25）
+
 ## 4.30.0
 
 `2026-07-31`

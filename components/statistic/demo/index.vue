@@ -5,6 +5,7 @@
     <card />
     <countdown />
     <countdown-slot />
+    <timer />
   </demo-sort>
 </template>
 <script lang="ts">
@@ -13,6 +14,7 @@ import Unit from './unit.vue';
 import Card from './card.vue';
 import Countdown from './countdown.vue';
 import CountdownSlot from './countdown-slot.vue';
+import Timer from './timer.vue';
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
 import { defineComponent } from 'vue';
@@ -25,6 +27,7 @@ export default defineComponent({
     Card,
     Countdown,
     CountdownSlot,
+    Timer,
   },
   setup() {
     return {};

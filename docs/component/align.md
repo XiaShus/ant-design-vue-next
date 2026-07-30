@@ -91,7 +91,7 @@
 | Data Display | Popover | ✅ | ✅ | [popover](../../components/popover) | — |
 | Data Display | QRCode | ✅ 5.1 | ✅ | [qrcode](../../components/qrcode) | 🔄 `statusRender` / object `iconSize` ✅ 4.26.0 |
 | Data Display | Segmented | ✅ | ✅ | [segmented](../../components/segmented) | — |
-| Data Display | Statistic | ✅ | ✅ | [statistic](../../components/statistic) | — |
+| Data Display | Statistic | ✅ | ✅ | [statistic](../../components/statistic) | 🔄 `Statistic.Timer` ✅ 4.31.0 |
 | Data Display | Table | ✅ | ✅ | [table](../../components/table) | 🔄 Column `hidden` ✅ 4.13.0；🔄 `scrollTo` / `nativeElement` ✅ 4.17.0；🔄 `rowHoverable` ✅ 4.19.0；⏭ `virtual` |
 | Data Display | Tag | ✅ | ✅ | [tag](../../components/tag) | — |
 | Data Display | Timeline | ✅ | ✅ | [timeline](../../components/timeline) | — |
@@ -157,8 +157,9 @@
 26. ~~Avatar.Group `max`~~ — ✅ `4.28.0`
 27. ~~Card `variant`~~ — ✅ `4.29.0`
 28. ~~Collapse `size`~~ — ✅ `4.30.0`
-29. Table `virtual` 按需拆版（多日）
-30. ColorPicker 渐变 `mode`
+29. ~~Statistic.Timer~~ — ✅ `4.31.0`
+30. Table `virtual` 按需拆版（多日）
+31. ColorPicker 渐变 `mode`
 
 ## 阶段 B（仅规划，不急实现）
 
