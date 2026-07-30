@@ -19,16 +19,26 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*-U3XQqYN7VsAAA
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
 | action | 自定义操作项 | slot | - | 4.0.0 |
-| afterClose | 关闭动画结束后触发的回调函数 | () => void | - |  |
+| afterClose | 关闭动画结束后触发的回调函数。使用对象形式时优先配置 `closable.afterClose` | () => void | - |  |
 | banner | 是否用作顶部公告 | boolean | false |  |
-| closable | 默认不显示关闭按钮 | boolean | 无 |  |
-| closeIcon | 自定义关闭 Icon | slot | `<CloseOutlined />` | 3.0 |
+| closable | 是否显示关闭按钮 | boolean \| [AlertClosableType](#alertclosabletype) | - | object: 4.27.0 |
+| closeIcon | 自定义关闭 Icon。使用对象形式时优先配置 `closable.closeIcon` | slot | `<CloseOutlined />` | 3.0 |
 | closeText | 自定义关闭按钮 | string\|slot | 无 |  |
 | description | 警告提示的辅助性文字介绍 | string\|slot | 无 |  |
 | icon | 自定义图标，`showIcon` 为 `true` 时有效 | vnode\|slot | - |  |
 | message | 警告提示内容 | string\|slot | 无 |  |
 | showIcon | 是否显示辅助图标 | boolean | false,`banner` 模式下默认值为 true |  |
 | type | 指定警告提示的样式，有四种选择 `success`、`info`、`warning`、`error` | string | `info`,`banner` 模式下默认值为 `warning` |  |
+
+#### AlertClosableType
+
+```ts
+type AlertClosableType = {
+  closeIcon?: VNodeChild;
+  onClose?: (e: MouseEvent) => void;
+  afterClose?: () => void;
+};
+```
 
 ### 事件
 

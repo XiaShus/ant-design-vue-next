@@ -4,6 +4,12 @@
 
 ---
 
+## 4.27.0
+
+`2026-07-31`
+
+- 🌟 Alert supports object-form `closable` (`closeIcon` / `onClose` / `afterClose`) (antd ≥ 5.15)
+
 ## 4.26.0
 
 `2026-07-31`

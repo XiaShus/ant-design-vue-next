@@ -7,7 +7,7 @@ export { default as Anchor, AnchorLink } from './anchor';
 export type { AutoCompleteProps } from './auto-complete';
 export { default as AutoComplete, AutoCompleteOptGroup, AutoCompleteOption } from './auto-complete';
 
-export type { AlertProps } from './alert';
+export type { AlertProps, AlertClosableType, AlertClosable } from './alert';
 export { default as Alert } from './alert';
 
 export type { AvatarProps } from './avatar';

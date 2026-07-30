@@ -103,7 +103,7 @@
 
 | 分组 | 组件 | React `antd` | Vue Next | 文档链接 | 缺口备注 |
 | --- | --- | --- | --- | --- | --- |
-| Feedback | Alert | ✅ | ✅ | [alert](../../components/alert) | — |
+| Feedback | Alert | ✅ | ✅ | [alert](../../components/alert) | 🔄 object `closable` ✅ 4.27.0 |
 | Feedback | Drawer | ✅ | ✅ | [drawer](../../components/drawer) | 🔄 `destroyOnHidden` ✅ 4.11.0 |
 | Feedback | Message | ✅ | ✅ | [message](../../components/message) | — |
 | Feedback | Modal | ✅ | ✅ | [modal](../../components/modal) | 🔄 `destroyOnHidden` ✅ 4.11.0；🔄 `afterOpenChange` ✅ 4.22.0 |
@@ -152,8 +152,10 @@
 21. ~~TimePicker `changeOnScroll`~~ — ✅ `4.23.0`
 22. ~~Spin `fullscreen`~~ — ✅ `4.24.0`
 23. ~~Divider `variant` / `size`~~ — ✅ `4.25.0`
-24. Table `virtual` 按需拆版（多日）
-25. ColorPicker 渐变 `mode`
+24. ~~QRCode `statusRender` / object `iconSize`~~ — ✅ `4.26.0`
+25. ~~Alert object `closable`~~ — ✅ `4.27.0`
+26. Table `virtual` 按需拆版（多日）
+27. ColorPicker 渐变 `mode`
 
 ## 阶段 B（仅规划，不急实现）
 

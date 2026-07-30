@@ -18,16 +18,26 @@ Alert component for feedback.
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
 | action | The action of Alert | slot | - | 4.0.0 |
-| afterClose | Called when close animation is finished | () => void | - |  |
+| afterClose | Called when close animation is finished. Prefer `closable.afterClose` when using object form | () => void | - |  |
 | banner | Whether to show as banner | boolean | false |  |
-| closable | Whether Alert can be closed | boolean |  |  |
-| closeIcon | Custom close icon | slot | `<CloseOutlined />` | 3.0 |
+| closable | Whether Alert can be closed | boolean \| [AlertClosableType](#alertclosabletype) | - | object: 4.27.0 |
+| closeIcon | Custom close icon. Prefer `closable.closeIcon` when using object form | slot | `<CloseOutlined />` | 3.0 |
 | closeText | Close text to show | string\|slot | - |  |
 | description | Additional content of Alert | string\|slot | - |  |
 | icon | Custom icon, effective when `showIcon` is `true` | vnode \| slot | - |  |
 | message | Content of Alert | string\|slot | - |  |
 | showIcon | Whether to show icon | boolean | false,in `banner` mode default is true |  |
 | type | Type of Alert styles, options: `success`, `info`, `warning`, `error` | string | `info`,in `banner` mode default is `warning` |  |
+
+#### AlertClosableType
+
+```ts
+type AlertClosableType = {
+  closeIcon?: VNodeChild;
+  onClose?: (e: MouseEvent) => void;
+  afterClose?: () => void;
+};
+```
 
 ### events
 

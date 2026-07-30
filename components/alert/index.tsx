@@ -13,7 +13,7 @@ import classNames from '../_util/classNames';
 import PropTypes from '../_util/vue-types';
 import { getTransitionProps } from '../_util/transition';
 import { isValidElement } from '../_util/props-util';
-import { tuple, withInstall } from '../_util/type';
+import { anyType, tuple, withInstall } from '../_util/type';
 import { cloneElement } from '../_util/vnode';
 import type { NodeMouseEventHandler } from '../vc-tree/contextTypes';
 import useConfigInject from '../config-provider/hooks/useConfigInject';
@@ -37,13 +37,22 @@ const AlertTypes = tuple('success', 'info', 'warning', 'error');
 
 export type AlertType = (typeof AlertTypes)[number];
 
+/** Closable config object (antd ≥ 5.15). */
+export type AlertClosableType = {
+  closeIcon?: any;
+  onClose?: (e: MouseEvent) => void;
+  afterClose?: () => void;
+};
+
+export type AlertClosable = boolean | AlertClosableType;
+
 export const alertProps = () => ({
   /**
    * Type of Alert styles, options: `success`, `info`, `warning`, `error`
    */
   type: PropTypes.oneOf(AlertTypes),
-  /** Whether Alert can be closed */
-  closable: { type: Boolean, default: undefined },
+  /** Whether Alert can be closed. Object form since 4.27.0 (antd ≥ 5.15). */
+  closable: anyType<AlertClosable>(),
   /** Close text to show */
   closeText: PropTypes.any,
   /** Content of Alert */
@@ -62,6 +71,10 @@ export const alertProps = () => ({
 });
 
 export type AlertProps = Partial<ExtractPropTypes<ReturnType<typeof alertProps>>>;
+
+function isClosableObject(closable: AlertClosable | undefined): closable is AlertClosableType {
+  return !!closable && typeof closable === 'object';
+}
 
 const Alert = defineComponent({
   compatConfig: { MODE: 3 },
@@ -86,12 +99,18 @@ const Alert = defineComponent({
       dom.style.height = `${dom.offsetHeight}px`;
 
       closing.value = true;
+      if (isClosableObject(props.closable)) {
+        props.closable.onClose?.(e);
+      }
       emit('close', e);
     };
 
     const animationEnd = () => {
       closing.value = false;
       closed.value = true;
+      if (isClosableObject(props.closable)) {
+        props.closable.afterClose?.();
+      }
       props.afterClose?.();
     };
     const mergedType = computed(() => {
@@ -105,9 +124,12 @@ const Alert = defineComponent({
     expose({ animationEnd });
     const motionStyle = shallowRef<CSSProperties>({});
     return () => {
-      const { banner, closeIcon: customCloseIcon = slots.closeIcon?.() } = props;
+      const { banner } = props;
+      const closableConfig = isClosableObject(props.closable) ? props.closable : null;
 
-      let { closable, showIcon } = props;
+      const customCloseIcon = closableConfig?.closeIcon ?? props.closeIcon ?? slots.closeIcon?.();
+
+      let showIcon = props.showIcon;
 
       const closeText = props.closeText ?? slots.closeText?.();
       const description = props.description ?? slots.description?.();
@@ -120,10 +142,22 @@ const Alert = defineComponent({
 
       const IconType = (description ? iconMapOutlined : iconMapFilled)[mergedType.value] || null;
 
+      // Resolve whether closable (antd ≥ 5.15 object form)
+      let closable: boolean;
+      if (closableConfig) {
+        closable = true;
+      } else if (typeof props.closable === 'boolean') {
+        closable = props.closable;
+      } else if (closeText) {
+        closable = true;
+      } else {
+        closable = false;
+      }
       // closeable when closeText is assigned
       if (closeText) {
         closable = true;
       }
+
       const prefixClsValue = prefixCls.value;
       const alertCls = classNames(prefixClsValue, {
         [`${prefixClsValue}-${mergedType.value}`]: true,

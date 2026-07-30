@@ -8,6 +8,12 @@
 
 ---
 
+## 4.27.0
+
+`2026-07-31`
+
+- 🌟 Alert 支持对象形式 `closable`（`closeIcon` / `onClose` / `afterClose`）（对齐 antd ≥ 5.15）
+
 ## 4.26.0
 
 `2026-07-31`

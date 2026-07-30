@@ -3,6 +3,7 @@
     <basic />
     <four-style />
     <closable />
+    <closable-object />
     <description />
     <icon />
     <close-text />
@@ -16,6 +17,7 @@
 import Banner from './banner.vue';
 import Basic from './basic.vue';
 import Closable from './closable.vue';
+import ClosableObject from './closable-object.vue';
 import CloseText from './close-text.vue';
 import Description from './description.vue';
 import Icon from './icon.vue';
@@ -33,6 +35,7 @@ export default defineComponent({
     Basic,
     Banner,
     Closable,
+    ClosableObject,
     CloseText,
     Description,
     Icon,
