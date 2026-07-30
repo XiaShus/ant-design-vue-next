@@ -20,7 +20,8 @@ When there are more than a few options to choose from, you can wrap them in a `D
 | --- | --- | --- | --- | --- |
 | align | this value will be merged into placement's config, please refer to the settings [dom-align](https://github.com/yiminghe/dom-align) | Object | - |  |
 | arrow | Whether the dropdown arrow should be open | boolean \| { pointAtCenter: boolean } | false | 3.3.0 |
-| destroyPopupOnHide | Whether destroy dropdown when hidden | boolean | false |  |
+| destroyPopupOnHide | Whether destroy dropdown when hidden; prefer `destroyOnHidden` | boolean | false |  |
+| destroyOnHidden | Whether destroy dropdown when hidden (antd ≥ 5.25) | boolean | false | 4.14.0 |
 | disabled | whether the dropdown menu is disabled | boolean | - |  |
 | getPopupContainer | to set the container of the dropdown menu. The default is to create a `div` element in `body`, you can reset it to the scrolling area and make a relative reposition. [example](https://codepen.io/afc163/pen/zEjNOy?editors=0010) | Function(triggerNode) | `() => document.body` |  |
 | overlay(v-slot) | the dropdown menu | [Menu](/components/menu) | - |  |

@@ -31,7 +31,8 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*gwrhTozoTC4AAA
 | arrow | 修改箭头的显示状态以及修改箭头是否指向目标元素中心 | boolean \| { pointAtCenter: boolean} | `true` | 4.2.0 |
 | autoAdjustOverflow | 气泡被遮挡时自动调整位置 | boolean | `true` |  |
 | color | 背景颜色 | string | - |  |
-| destroyTooltipOnHide | 隐藏后是否销毁 tooltip | boolean | false |  |
+| destroyTooltipOnHide | 隐藏后是否销毁 tooltip（请优先使用 `destroyOnHidden`） | boolean | false |  |
+| destroyOnHidden | 隐藏后是否销毁 tooltip（对齐 antd ≥ 5.25） | boolean | false | 4.14.0 |
 | getPopupContainer | 浮层渲染父节点，默认渲染到 body 上 | (triggerNode: HTMLElement) => HTMLElement | () => document.body |  |
 | mouseEnterDelay | 鼠标移入后延时多少才显示 Tooltip，单位：秒 | number | 0.1 |  |
 | mouseLeaveDelay | 鼠标移出后延时多少才隐藏 Tooltip，单位：秒 | number | 0.1 |  |

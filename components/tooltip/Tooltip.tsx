@@ -284,9 +284,14 @@ export default defineComponent({
         ...overlayInnerStyle,
       };
       const arrowContentStyle = colorInfo.value.arrowStyle;
+      const {
+        destroyOnHidden: _destroyOnHidden,
+        destroyTooltipOnHide: _destroyTooltipOnHide,
+        ...restTooltipProps
+      } = props as TooltipProps;
       const vcTooltipProps = {
         ...attrs,
-        ...(props as TooltipProps),
+        ...restTooltipProps,
         prefixCls: prefixCls.value,
         arrow: !!props.arrow,
         getPopupContainer: getPopupContainer?.value,
@@ -296,6 +301,7 @@ export default defineComponent({
         overlayClassName: customOverlayClassName,
         overlayStyle: { ...arrowContentStyle, ...overlayStyle },
         overlayInnerStyle: formattedOverlayInnerStyle,
+        destroyTooltipOnHide: props.destroyOnHidden ?? props.destroyTooltipOnHide,
         onVisibleChange: handleVisibleChange,
         onPopupAlign,
         transitionName: getTransitionName(

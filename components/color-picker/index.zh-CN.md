@@ -36,6 +36,7 @@ tag: New
 | arrow | 箭头 | `boolean \| { pointAtCenter?: boolean }` | true | 4.3.0 |
 | showText | 显示颜色文本 | `boolean \| (color) => any` | false | 4.3.0 |
 | size | 触发器尺寸 | `large \| middle \| small` | - | 4.3.0 |
+| destroyOnHidden | 关闭后是否销毁弹层（对齐 antd ≥ 5.25；兼容 `destroyTooltipOnHide`） | boolean | false | 4.14.0 |
 | getPopupContainer | 弹层渲染容器 | `(node) => HTMLElement` | - | 4.3.0 |
 
 ### 事件

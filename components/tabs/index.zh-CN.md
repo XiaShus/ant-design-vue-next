@@ -28,7 +28,8 @@ Ant Design 依次提供了三级选项卡，分别用于不同的场景。
 | activeKey(v-model) | 当前激活 tab 面板的 key | string | - |  |  |
 | animated | 是否使用动画切换 Tabs，在 tabPosition=`"top"` \| `"bottom"` 时有效 | boolean \| {inkBar:boolean, tabPane:boolean} | true, 当 type="card" 时为 false |  |
 | centered | 标签居中展示 | boolean | false | 3.0 |  |
-| destroyInactiveTabPane | 被隐藏时是否销毁 DOM 结构 | boolean | false |  |  |
+| destroyInactiveTabPane | 被隐藏时是否销毁 DOM 结构（请优先使用 `destroyOnHidden`） | boolean | false |  |  |
+| destroyOnHidden | 被隐藏时是否销毁 DOM 结构（对齐 antd ≥ 5.25） | boolean | false | 4.14.0 |  |
 | hideAdd | 是否隐藏加号图标，在 `type="editable-card"` 时有效 | boolean | false |  |  |
 | size | 大小，提供 `large` `middle` 和 `small` 三种大小 | string | `middle` |  |  |
 | tabBarGutter | tabs 之间的间隙 | number | - |  |  |

@@ -8,6 +8,12 @@
 
 ---
 
+## 4.14.0
+
+`2026-07-30`
+
+- 🌟 Tabs / Collapse / Tooltip / Popover / Dropdown / ColorPicker 支持统一 `destroyOnHidden`（对齐 antd ≥ 5.25），旧名仍可用
+
 ## 4.13.0
 
 `2026-07-30`

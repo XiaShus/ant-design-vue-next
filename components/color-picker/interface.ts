@@ -43,7 +43,9 @@ export function colorPickerProps() {
     size: { type: String as PropType<SizeType> },
     rootClassName: String,
     getPopupContainer: { type: Function as PropType<(node: HTMLElement) => HTMLElement> },
+    /** @deprecated Please use `destroyOnHidden` instead (antd ≥ 5.25). */
     destroyTooltipOnHide: { type: Boolean, default: false },
+    destroyOnHidden: { type: Boolean, default: undefined },
   };
 }
 

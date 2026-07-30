@@ -58,7 +58,10 @@ const dropdownProps = () => ({
   mouseLeaveDelay: Number,
   openClassName: String,
   minOverlayWidthMatchTrigger: booleanType(),
+  /** @deprecated Please use `destroyOnHidden` instead (antd ≥ 5.25). */
   destroyPopupOnHide: booleanType(),
+  /** Destroy overlay DOM when hidden (antd ≥ 5.25). */
+  destroyOnHidden: booleanType(),
   /** @deprecated Please use `onOpenChange` instead */
   onVisibleChange: {
     type: Function as PropType<(val: boolean) => void>,

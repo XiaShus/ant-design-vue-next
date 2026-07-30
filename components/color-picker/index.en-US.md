@@ -35,6 +35,7 @@ Used when the user needs to make a customized color selection.
 | arrow | Arrow | `boolean \| { pointAtCenter?: boolean }` | true | 4.3.0 |
 | showText | Show color text | `boolean \| (color) => any` | false | 4.3.0 |
 | size | Trigger size | `large \| middle \| small` | - | 4.3.0 |
+| destroyOnHidden | Destroy popup on hide (antd ≥ 5.25; alias of `destroyTooltipOnHide`) | boolean | false | 4.14.0 |
 | getPopupContainer | Popup container | `(node) => HTMLElement` | - | 4.3.0 |
 
 ### Events

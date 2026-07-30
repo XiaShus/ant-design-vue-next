@@ -22,7 +22,10 @@ const collapseProps = () => ({
   activeKey: someType<ActiveKeyType>([Array, Number, String]),
   defaultActiveKey: someType<ActiveKeyType>([Array, Number, String]),
   accordion: booleanType(),
+  /** @deprecated Please use `destroyOnHidden` instead (antd ≥ 5.25). */
   destroyInactivePanel: booleanType(),
+  /** Destroy inactive panel DOM when hidden (antd ≥ 5.25). */
+  destroyOnHidden: booleanType(),
   bordered: booleanType(),
   expandIcon: functionType<(panelProps: PanelProps) => any>(),
   openAnimation: PropTypes.object,
@@ -40,7 +43,9 @@ const collapsePanelProps = () => ({
   headerClass: String,
   showArrow: booleanType(),
   isActive: booleanType(),
+  /** @deprecated Please use `destroyOnHidden` instead (antd ≥ 5.25). */
   destroyInactivePanel: booleanType(),
+  destroyOnHidden: booleanType(),
   /** @deprecated Use `collapsible="disabled"` instead */
   disabled: booleanType(),
   accordion: booleanType(),

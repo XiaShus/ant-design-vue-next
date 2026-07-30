@@ -50,6 +50,7 @@ export default defineComponent({
         isActive,
         showArrow,
         destroyInactivePanel,
+        destroyOnHidden,
         accordion,
         forceRender,
         openAnimation,
@@ -57,6 +58,7 @@ export default defineComponent({
         extra = slots.extra?.(),
         collapsible,
       } = props;
+      const mergedDestroyInactivePanel = destroyOnHidden ?? destroyInactivePanel;
       const disabled = collapsible === 'disabled';
       const prefixClsValue = prefixCls.value;
       const headerCls = classNames(`${prefixClsValue}-header`, {
@@ -113,7 +115,7 @@ export default defineComponent({
             {extra && <div class={`${prefixClsValue}-extra`}>{extra}</div>}
           </div>
           <Transition {...transitionProps}>
-            {!destroyInactivePanel || isActive ? panelContent : null}
+            {!mergedDestroyInactivePanel || isActive ? panelContent : null}
           </Transition>
         </div>
       );

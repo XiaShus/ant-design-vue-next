@@ -45,11 +45,11 @@
 | --- | --- | --- | --- | --- | --- |
 | Navigation | Anchor | ✅ | ✅ | [anchor](../../components/anchor) | — |
 | Navigation | Breadcrumb | ✅ | ✅ | [breadcrumb](../../components/breadcrumb) | — |
-| Navigation | Dropdown | ✅ | ✅ | [dropdown](../../components/dropdown) | — |
+| Navigation | Dropdown | ✅ | ✅ | [dropdown](../../components/dropdown) | 🔄 `destroyOnHidden` ✅ 4.14.0 |
 | Navigation | Menu | ✅ | ✅ | [menu](../../components/menu) | — |
 | Navigation | Pagination | ✅ | ✅ | [pagination](../../components/pagination) | — |
 | Navigation | Steps | ✅ | ✅ | [steps](../../components/steps) | — |
-| Navigation | Tabs | ✅ | ✅ | [tabs](../../components/tabs) | — |
+| Navigation | Tabs | ✅ | ✅ | [tabs](../../components/tabs) | 🔄 `destroyOnHidden` ✅ 4.14.0 |
 
 ## Data Entry
 
@@ -58,7 +58,7 @@
 | Data Entry | AutoComplete | ✅ | ✅ | [auto-complete](../../components/auto-complete) | 🔄 `variant` ✅ 4.12.0（经 Select） |
 | Data Entry | Cascader | ✅ | ✅ | [cascader](../../components/cascader) | 🔄 `variant` ✅ 4.10.0 |
 | Data Entry | Checkbox | ✅ | ✅ | [checkbox](../../components/checkbox) | — |
-| Data Entry | ColorPicker | ✅ 5.5 | 🔄 ✅ 4.3.0 | [color-picker](../../components/color-picker) | 单色/预设/清除/格式；⏭ 渐变 mode、panelRender |
+| Data Entry | ColorPicker | ✅ 5.5 | 🔄 ✅ 4.3.0 | [color-picker](../../components/color-picker) | 单色/预设/清除/格式；🔄 `destroyOnHidden` ✅ 4.14.0；⏭ 渐变 mode、panelRender |
 | Data Entry | DatePicker | ✅ | ✅ | [date-picker](../../components/date-picker) | 🔄 `variant` ✅ 4.9.0；⚠️ 其他晚期 props 按需补 |
 | Data Entry | Form | ✅ | ✅ | [form](../../components/form) | 🔄 `variant` ✅ 4.10.0；⚠️ 其他高频缺口逐项对齐 |
 | Data Entry | Input | ✅ | ✅ | [input](../../components/input) | 🔄 `Input.OTP` ✅ 4.5.0；`variant` ✅ 4.8.0（⏭ underlined） |
@@ -83,7 +83,7 @@
 | Data Display | Calendar | ✅ | ✅ | [calendar](../../components/calendar) | — |
 | Data Display | Card | ✅ | ✅ | [card](../../components/card) | — |
 | Data Display | Carousel | ✅ | ✅ | [carousel](../../components/carousel) | — |
-| Data Display | Collapse | ✅ | ✅ | [collapse](../../components/collapse) | — |
+| Data Display | Collapse | ✅ | ✅ | [collapse](../../components/collapse) | 🔄 `destroyOnHidden` ✅ 4.14.0 |
 | Data Display | Descriptions | ✅ | ✅ | [descriptions](../../components/descriptions) | — |
 | Data Display | Empty | ✅ | ✅ | [empty](../../components/empty) | — |
 | Data Display | Image | ✅ | ✅ | [image](../../components/image) | — |
@@ -95,7 +95,7 @@
 | Data Display | Table | ✅ | ✅ | [table](../../components/table) | 🔄 Column `hidden` ✅ 4.13.0；⚠️ 其他高频缺口逐项对齐 |
 | Data Display | Tag | ✅ | ✅ | [tag](../../components/tag) | — |
 | Data Display | Timeline | ✅ | ✅ | [timeline](../../components/timeline) | — |
-| Data Display | Tooltip | ✅ | ✅ | [tooltip](../../components/tooltip) | — |
+| Data Display | Tooltip | ✅ | ✅ | [tooltip](../../components/tooltip) | 🔄 `destroyOnHidden` ✅ 4.14.0（Popover / Popconfirm 同） |
 | Data Display | Tour | ✅ 5.0 | ✅ | [tour](../../components/tour) | — |
 | Data Display | Tree | ✅ | ✅ | [tree](../../components/tree) | — |
 
@@ -140,8 +140,9 @@
 9. ~~Modal / Drawer `destroyOnHidden`~~ — ✅ `4.11.0`
 10. ~~Mentions / AutoComplete `variant`~~ — ✅ `4.12.0`
 11. ~~Table Column `hidden`~~ — ✅ `4.13.0`
-12. Table 其他高频 API（如 `virtual` / `scrollTo`）按需拆版
-13. ColorPicker 渐变 `mode` / `panelRender`；Splitter collapsible / lazy 补齐
+12. ~~Tabs / Collapse / Tooltip / Dropdown `destroyOnHidden`~~ — ✅ `4.14.0`
+13. Table 其他高频 API（如 `virtual` / `scrollTo`）按需拆版
+14. ColorPicker 渐变 `mode` / `panelRender`；Splitter collapsible / lazy 补齐
 
 ## 阶段 B（仅规划，不急实现）
 

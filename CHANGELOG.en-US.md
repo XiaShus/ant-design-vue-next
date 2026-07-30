@@ -4,6 +4,12 @@
 
 ---
 
+## 4.14.0
+
+`2026-07-30`
+
+- 🌟 Tabs / Collapse / Tooltip / Popover / Dropdown / ColorPicker support unified `destroyOnHidden` (antd ≥ 5.25); legacy names remain
+
 ## 4.13.0
 
 `2026-07-30`

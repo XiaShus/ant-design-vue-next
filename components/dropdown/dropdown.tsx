@@ -202,8 +202,9 @@ const Dropdown = defineComponent({
           trigger: triggerActions,
           onVisibleChange: handleVisibleChange,
           placement: placement.value,
+          destroyPopupOnHide: props.destroyOnHidden ?? props.destroyPopupOnHide,
         },
-        ['overlay', 'onUpdate:visible'],
+        ['overlay', 'onUpdate:visible', 'destroyOnHidden'],
       );
       return wrapSSR(
         <RcDropdown {...dropdownProps} v-slots={{ overlay: renderOverlay }}>

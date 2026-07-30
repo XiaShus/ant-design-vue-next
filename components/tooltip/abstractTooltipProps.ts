@@ -45,7 +45,10 @@ export default () => ({
     type: [Boolean, Object] as PropType<boolean | AdjustOverflow>,
     default: undefined as boolean | AdjustOverflow,
   },
+  /** @deprecated Please use `destroyOnHidden` instead (antd ≥ 5.25). */
   destroyTooltipOnHide: { type: Boolean, default: undefined },
+  /** Destroy overlay DOM when hidden (antd ≥ 5.25). */
+  destroyOnHidden: { type: Boolean, default: undefined },
   align: objectType<AlignType>(),
   builtinPlacements: objectType<BuildInPlacements>(),
   children: Array,

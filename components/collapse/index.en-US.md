@@ -23,7 +23,8 @@ A content area which can be collapsed and expanded.
 | activeKey(v-model) | Key of the active panel | string\[] \| string <br> number\[] \| number | No default value. In [accordion mode](#components-collapse-demo-accordion), it's the key of the first panel. |  |
 | bordered | Toggles rendering of the border around the collapse block | boolean | `true` |  |
 | collapsible | Specify whether the panels of children be collapsible or the trigger area of collapsible | `header` \| `icon` \| `disabled` | - | 4.0 |
-| destroyInactivePanel | Destroy Inactive Panel | boolean | `false` |  |
+| destroyInactivePanel | Destroy Inactive Panel; prefer `destroyOnHidden` | boolean | `false` |  |
+| destroyOnHidden | Destroy Inactive Panel (antd ≥ 5.25) | boolean | `false` | 4.14.0 |
 | expandIcon | allow to customize collapse icon | Function(props):VNode \| v-slot:expandIcon="props" |  |  |
 | expandIconPosition | Set expand icon position | `start` \| `end` | - | 4.0 |
 | ghost | Make the collapse borderless and its background transparent | boolean | false | 3.0 |

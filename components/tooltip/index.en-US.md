@@ -30,7 +30,8 @@ The following APIs are shared by Tooltip, Popconfirm, Popover.
 | arrow | Change arrow's visible state and change whether the arrow is pointed at the center of target. | boolean \| { pointAtCenter: boolean} | `true` | 4.2.0 |
 | autoAdjustOverflow | Whether to adjust popup placement automatically when popup is off screen | boolean | `true` |  |
 | color | The background color | string | - |  |
-| destroyTooltipOnHide | Whether to destroy tooltip on hide | boolean | false |  |
+| destroyTooltipOnHide | Whether to destroy tooltip on hide; prefer `destroyOnHidden` | boolean | false |  |
+| destroyOnHidden | Whether to destroy tooltip on hide (antd ≥ 5.25) | boolean | false | 4.14.0 |
 | getPopupContainer | The DOM container of the tip, the default behavior is to create a `div` element in `body`. | (triggerNode: HTMLElement) => HTMLElement | () => document.body |  |
 | mouseEnterDelay | Delay in seconds, before tooltip is shown on mouse enter | number | 0.1 |  |
 | mouseLeaveDelay | Delay in seconds, before tooltip is hidden on mouse leave | number | 0.1 |  |

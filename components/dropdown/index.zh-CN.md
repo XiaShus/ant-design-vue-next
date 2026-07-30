@@ -24,7 +24,8 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*5qm4S4Zgh2QAAA
 | --- | --- | --- | --- | --- |
 | align | 该值将合并到 placement 的配置中，设置参考 [dom-align](https://github.com/yiminghe/dom-align) | Object | - |  |
 | arrow | 下拉框箭头是否显示 | boolean \| { pointAtCenter: boolean } | false | 3.3.0 |
-| destroyPopupOnHide | 关闭后是否销毁 Dropdown | boolean | false | 3.0 |
+| destroyPopupOnHide | 关闭后是否销毁 Dropdown（请优先使用 `destroyOnHidden`） | boolean | false | 3.0 |
+| destroyOnHidden | 关闭后是否销毁 Dropdown（对齐 antd ≥ 5.25） | boolean | false | 4.14.0 |
 | disabled | 菜单是否禁用 | boolean | - |  |
 | getPopupContainer | 菜单渲染父节点。默认渲染到 body 上，如果你遇到菜单滚动定位问题，试试修改为滚动的区域，并相对其定位。 | Function(triggerNode) | `() => document.body` |  |
 | overlay(v-slot) | 菜单 | [Menu](/components/menu-cn) | - |  |
