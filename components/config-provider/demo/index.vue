@@ -5,6 +5,7 @@
     <Direction />
     <Theme />
     <UseConfig />
+    <HolderRender />
   </demo-sort>
 </template>
 
@@ -14,6 +15,7 @@ import Size from './size.vue';
 import Direction from './direction.vue';
 import Theme from './theme.vue';
 import UseConfig from './use-config.vue';
+import HolderRender from './holder-render.vue';
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
 import { defineComponent } from 'vue';
@@ -26,6 +28,7 @@ export default defineComponent({
     Theme,
     Direction,
     UseConfig,
+    HolderRender,
   },
 });
 </script>

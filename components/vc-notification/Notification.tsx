@@ -15,6 +15,7 @@ import {
 import type { NoticeProps } from './Notice';
 import Notice from './Notice';
 import ConfigProvider, { globalConfigForApi } from '../config-provider';
+import { wrapWithHolderRender } from '../config-provider/holderStore';
 import classNames from '../_util/classNames';
 
 let seed = 0;
@@ -256,7 +257,7 @@ Notification.newInstance = function newNotificationInstance(properties, callback
         const transitionName = hasTransitionName
           ? customTransitionName
           : `${prefixCls.value}-${customTransitionName}`;
-        return (
+        const node = (
           <ConfigProvider {...global} prefixCls={rootPrefixCls}>
             <Notification
               ref={notiRef}
@@ -267,6 +268,7 @@ Notification.newInstance = function newNotificationInstance(properties, callback
             />
           </ConfigProvider>
         );
+        return wrapWithHolderRender(node) as any;
       };
     },
   });

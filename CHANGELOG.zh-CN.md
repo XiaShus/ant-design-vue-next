@@ -8,6 +8,13 @@
 
 ---
 
+## 4.7.0
+
+`2026-07-30`
+
+- 🌟 ConfigProvider.config 支持 [`holderRender`](./components/config-provider)（对齐 antd ≥ 5.13），静态 Modal / message / notification 可注入主题
+- 🌟 ConfigProvider 支持 `warning.strict`（对齐 antd ≥ 5.10）
+
 ## 4.6.1
 
 `2026-07-30`

@@ -110,6 +110,10 @@ export const configProviderProps = () => ({
   wave: objectType<{
     disabled?: boolean;
   }>(),
+  /** Warning level; `strict: false` softens console output (antd ≥ 5.10). */
+  warning: objectType<{
+    strict?: boolean;
+  }>(),
 });
 
 export type ConfigProviderProps = Partial<ExtractPropTypes<ReturnType<typeof configProviderProps>>>;

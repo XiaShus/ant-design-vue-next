@@ -4,6 +4,13 @@
 
 ---
 
+## 4.7.0
+
+`2026-07-30`
+
+- 🌟 ConfigProvider.config supports [`holderRender`](./components/config-provider) (antd ≥ 5.13) for static Modal / message / notification theming
+- 🌟 ConfigProvider supports `warning.strict` (antd ≥ 5.10)
+
 ## 4.6.1
 
 `2026-07-30`

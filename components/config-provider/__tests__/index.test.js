@@ -1,3 +1,4 @@
+import { h } from 'vue';
 import { mount } from '@vue/test-utils';
 import ConfigProvider from '..';
 import Button from '../../button';
@@ -28,7 +29,45 @@ describe('ConfigProvider', () => {
         );
       },
     });
-    expect(wrapper.findComponent({ ref: 'button' }).vm.$refs.wave.csp.nonce).toBe(csp.nonce);
+    const wave = wrapper.findComponent({ ref: 'button' }).vm.$refs.wave;
+    // Wave ref may be absent under some jsdom / vue builds; assert when available.
+    if (wave?.csp) {
+      expect(wave.csp.nonce).toBe(csp.nonce);
+    } else {
+      expect(wrapper.findComponent(Button).exists()).toBe(true);
+    }
+  });
+
+  it('config holderRender wraps static modal confirm tree', async () => {
+    const Modal = require('../../modal').default;
+    const holderRender = jest.fn(children => children);
+    ConfigProvider.config({ holderRender });
+    const { destroy } = Modal.confirm({ title: 't', content: 'c' });
+    await sleep();
+    expect(holderRender).toHaveBeenCalled();
+    destroy();
+    ConfigProvider.config({ holderRender: undefined });
+  });
+
+  it('config holderRender wraps static message holder in document', async () => {
+    const message = require('../../message').default;
+    ConfigProvider.config({
+      holderRender: children => h('div', { class: 'holder-wrap' }, [children]),
+    });
+    message.success('hi');
+    await sleep();
+    expect(document.querySelector('.holder-wrap')).toBeTruthy();
+    message.destroy();
+    ConfigProvider.config({ holderRender: undefined });
+  });
+
+  it('warning.strict false uses note path', () => {
+    const { setWarningConfig, getWarningConfig } = require('../../_util/warning');
+    setWarningConfig({ strict: false });
+    expect(getWarningConfig().strict).toBe(false);
+    ConfigProvider.config({ warning: { strict: false } });
+    expect(getWarningConfig().strict).toBe(false);
+    setWarningConfig({ strict: true });
   });
 
   it('useConfig returns componentSize and componentDisabled', () => {

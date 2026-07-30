@@ -69,7 +69,7 @@ Some components use dynamic style to support wave effect. You can config `csp` p
 
 ### ConfigProvider.config() `3.0.0+`
 
-Setting `Modal`、`Message`、`Notification` rootPrefixCls.
+Setting global prefix / theme injection for static `Modal` / `Message` / `Notification`.
 
 ```jsx
 ConfigProvider.config({
@@ -84,6 +84,18 @@ or
 const prefixCls = ref('ant');
 ConfigProvider.config({
   prefixCls,
+});
+```
+
+#### holderRender `4.7.0+` (antd ≥ 5.13)
+
+Wrap static `Modal.confirm` / `message` / `notification` trees (often with a themed ConfigProvider). Does not affect hooks / `App.useApp()`.
+
+```jsx
+ConfigProvider.config({
+  holderRender: children => (
+    <ConfigProvider theme={{ token: { colorPrimary: '#00b96b' } }}>{children}</ConfigProvider>
+  ),
 });
 ```
 
@@ -130,3 +142,5 @@ When you config `getPopupContainer` to parentNode globally, Modal will throw err
 #### Why can't ConfigProvider props (like `prefixCls` and `theme`) affect VueNode inside `message.info`, `notification.open`, `Modal.confirm`?
 
 antd will dynamic create Vue instance by `Vue.render` when call message methods. Whose context is different with origin code located context.
+
+From `4.7.0`, use `ConfigProvider.config({ holderRender })` to wrap those static trees, or prefer hooks / `App.useApp()`.

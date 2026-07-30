@@ -28,6 +28,10 @@ import { useProviderDisabled } from './DisabledContext';
 import { createTheme } from '../_util/cssinjs';
 import { DesignTokenProvider } from '../theme/internal';
 import { useConfig } from './hooks/useConfig';
+import type { HolderRenderType } from './holderStore';
+import { getHolderRender, setHolderRender } from './holderStore';
+import type { WarningConfig } from '../_util/warning';
+import { setWarningConfig } from '../_util/warning';
 
 export type {
   ConfigProviderProps,
@@ -37,6 +41,7 @@ export type {
   CSPConfig,
   DirectionType,
 } from './context';
+export type { HolderRenderType } from './holderStore';
 export const defaultPrefixCls = 'ant';
 export { defaultIconPrefixCls };
 function getGlobalPrefixCls() {
@@ -88,16 +93,27 @@ type GlobalConfigProviderProps = {
   prefixCls?: MaybeRef<ConfigProviderProps['prefixCls']>;
   iconPrefixCls?: MaybeRef<ConfigProviderProps['iconPrefixCls']>;
   getPopupContainer?: ConfigProviderProps['getPopupContainer'];
+  /** Wrap static Modal / Message / Notification trees (antd ≥ 5.13). */
+  holderRender?: HolderRenderType;
+  /** Warning level (antd ≥ 5.10). */
+  warning?: WarningConfig;
 };
 
 let stopWatchEffect: WatchStopHandle;
 const setGlobalConfig = (params: GlobalConfigProviderProps & { theme?: Theme }) => {
+  const { holderRender: _omitHolder, warning: warningCfg, ...rest } = params;
+  if ('holderRender' in params) {
+    setHolderRender(params.holderRender);
+  }
+  if ('warning' in params) {
+    setWarningConfig(warningCfg || {});
+  }
   if (stopWatchEffect) {
     stopWatchEffect();
   }
   stopWatchEffect = watchEffect(() => {
-    Object.assign(globalConfigBySet, reactive(params));
-    Object.assign(globalConfigForApi, reactive(params));
+    Object.assign(globalConfigBySet, reactive(rest));
+    Object.assign(globalConfigForApi, reactive(rest));
   });
   if (params.theme) {
     registerTheme(getGlobalPrefixCls(), params.theme);
@@ -118,6 +134,9 @@ export const globalConfig = () => ({
 
     // Fallback to default prefixCls
     return getGlobalPrefixCls();
+  },
+  get holderRender() {
+    return getHolderRender();
   },
 });
 
@@ -204,6 +223,11 @@ const ConfigProvider = defineComponent({
     const componentSize = computed(() => props.componentSize);
     const componentDisabled = computed(() => props.componentDisabled);
     const wave = computed(() => props.wave ?? parentContext.wave?.value);
+    watchEffect(() => {
+      if (props.warning) {
+        setWarningConfig(props.warning);
+      }
+    });
     const configProvider: ConfigProviderInnerProps = {
       csp,
       autoInsertSpaceInButton,

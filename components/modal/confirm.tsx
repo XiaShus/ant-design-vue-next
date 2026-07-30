@@ -2,6 +2,7 @@ import { createVNode, render as vueRender } from 'vue';
 import ConfirmDialog from './ConfirmDialog';
 import type { ModalFuncProps } from './Modal';
 import ConfigProvider, { globalConfigForApi } from '../config-provider';
+import { wrapWithHolderRender } from '../config-provider/holderStore';
 import omit from '../_util/omit';
 import { triggerVNodeUpdate } from '../_util/vnode';
 
@@ -80,7 +81,7 @@ const confirm = (config: ModalFuncProps) => {
     const prefixCls = p.prefixCls || `${rootPrefixCls}-modal`;
     const iconPrefixCls = global.iconPrefixCls;
     const runtimeLocale = getConfirmLocale();
-    return (
+    const node = (
       <ConfigProvider {...(global as any)} prefixCls={rootPrefixCls}>
         <ConfirmDialog
           {...p}
@@ -92,6 +93,7 @@ const confirm = (config: ModalFuncProps) => {
         ></ConfirmDialog>
       </ConfigProvider>
     );
+    return wrapWithHolderRender(node) as any;
   };
   function render(props: ModalFuncProps) {
     const vm = createVNode(Wrapper, { ...props });

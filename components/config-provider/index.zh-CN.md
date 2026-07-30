@@ -70,7 +70,7 @@ ConfigProvider 使用 Vue 的 [provide / inject](https://vuejs.org/v2/api/#provi
 
 ### ConfigProvider.config() `3.0.0+`
 
-设置 `Modal`、`Message`、`Notification` rootPrefixCls。
+设置 `Modal`、`Message`、`Notification` 的全局前缀 / 主题注入等。
 
 ```jsx
 ConfigProvider.config({
@@ -85,6 +85,18 @@ or
 const prefixCls = ref('ant');
 ConfigProvider.config({
   prefixCls,
+});
+```
+
+#### holderRender `4.7.0+`（对齐 antd ≥ 5.13）
+
+为静态 `Modal.confirm` / `message` / `notification` 注入外层渲染（常用于带 `theme` 的 ConfigProvider）。不影响 hooks / `App.useApp()`。
+
+```jsx
+ConfigProvider.config({
+  holderRender: children => (
+    <ConfigProvider theme={{ token: { colorPrimary: '#00b96b' } }}>{children}</ConfigProvider>
+  ),
 });
 ```
 
@@ -131,3 +143,5 @@ const { componentSize, componentDisabled } = ConfigProvider.useConfig();
 #### 为什么 message.info、notification.open 或 Modal.confirm 等方法内的 VueNode 无法继承 ConfigProvider 的属性？比如 `prefixCls` 和 `theme`。
 
 静态方法是使用 Vue.render 重新渲染一个 Vue 根节点上，和主应用的 Vue 节点是脱离的。
+
+自 `4.7.0` 起可用 `ConfigProvider.config({ holderRender })` 包裹这些静态树，或优先使用 hooks / `App.useApp()`。
