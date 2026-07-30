@@ -132,6 +132,23 @@ describe('ConfigProvider', () => {
     expect(wrapper.find('.ant-select-filled').exists()).toBe(true);
   });
 
+  it('variant propagates to Mentions and AutoComplete', () => {
+    const Mentions = require('../../mentions').default;
+    const AutoComplete = require('../../auto-complete').default;
+    const wrapper = mount({
+      render() {
+        return (
+          <ConfigProvider variant="filled">
+            <Mentions options={[{ value: 'afc163', label: 'afc163' }]} />
+            <AutoComplete options={[{ value: 'a', label: 'A' }]} />
+          </ConfigProvider>
+        );
+      },
+    });
+    expect(wrapper.find('.ant-mentions-filled').exists()).toBe(true);
+    expect(wrapper.find('.ant-select-filled').exists()).toBe(true);
+  });
+
   it('useConfig returns componentSize and componentDisabled', () => {
     let size;
     let disabled;

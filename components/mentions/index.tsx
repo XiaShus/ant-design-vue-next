@@ -14,10 +14,12 @@ import type { InputStatus } from '../_util/statusUtils';
 import { getStatusClassNames, getMergedStatus } from '../_util/statusUtils';
 import useStyle from './style';
 import { useProvideOverride } from '../menu/src/OverrideContext';
+import useVariant from '../config-provider/hooks/useVariant';
 import warning from '../_util/warning';
 import Spin from '../spin';
 import devWarning from '../vc-util/devWarning';
 import type { CustomSlotsType } from '../_util/type';
+import { booleanType, stringType } from '../_util/type';
 
 interface MentionsConfig {
   prefix?: string | string[];
@@ -95,6 +97,9 @@ export const mentionsProps = () => ({
   defaultValue: String,
   id: String,
   status: String as PropType<InputStatus>,
+  bordered: booleanType(true),
+  /** Prefer over `bordered` (antd ≥ 5.13). */
+  variant: stringType<'outlined' | 'borderless' | 'filled'>(),
 });
 
 export type MentionsProps = Partial<ExtractPropTypes<ReturnType<typeof mentionsProps>>>;
@@ -120,6 +125,7 @@ const Mentions = defineComponent({
     }
     const { prefixCls, renderEmpty, direction } = useConfigInject('mentions', props);
     const [wrapSSR, hashId] = useStyle(prefixCls);
+    const variant = useVariant(props);
     const focused = shallowRef(false);
     const vcMentions = shallowRef(null);
     const value = shallowRef(props.value ?? props.defaultValue ?? '');
@@ -210,13 +216,22 @@ const Mentions = defineComponent({
       } = props;
       const { hasFeedback, feedbackIcon } = formItemInputContext;
       const { class: className, ...otherAttrs } = attrs;
-      const otherProps = omit(restProps, ['defaultValue', 'onUpdate:value', 'prefixCls']);
+      const otherProps = omit(restProps, [
+        'defaultValue',
+        'onUpdate:value',
+        'prefixCls',
+        'bordered',
+        'variant',
+      ]);
+      const mergedVariant = variant.value;
 
       const mergedClassName = classNames(
         {
           [`${prefixCls.value}-disabled`]: disabled,
           [`${prefixCls.value}-focused`]: focused.value,
           [`${prefixCls.value}-rtl`]: direction.value === 'rtl',
+          [`${prefixCls.value}-borderless`]: mergedVariant === 'borderless',
+          [`${prefixCls.value}-filled`]: mergedVariant === 'filled',
         },
         getStatusClassNames(prefixCls.value, mergedStatus.value),
         !hasFeedback && className,
@@ -267,6 +282,10 @@ const Mentions = defineComponent({
                 mergedStatus.value,
                 hasFeedback,
               ),
+              {
+                [`${prefixCls.value}-affix-wrapper-borderless`]: mergedVariant === 'borderless',
+                [`${prefixCls.value}-affix-wrapper-filled`]: mergedVariant === 'filled',
+              },
               className,
               hashId.value,
             )}

@@ -8,6 +8,12 @@
 
 ---
 
+## 4.12.0
+
+`2026-07-30`
+
+- 🌟 Mentions 支持 `variant`；AutoComplete 经 Select 继承 `variant` / ConfigProvider.variant
+
 ## 4.11.0
 
 `2026-07-30`

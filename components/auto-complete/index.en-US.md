@@ -30,7 +30,8 @@ The differences with Select are:
 | allowClear | Show clear button, effective in multiple mode only. | boolean | false |  |
 | autofocus | get focus when component mounted | boolean | false |  |
 | backfill | backfill selected item the input when using keyboard | boolean | false |  |
-| bordered | Whether has border style | boolean | true | 4.0 |
+| bordered | Whether has border style; prefer `variant` | boolean | true | 4.0 |
+| variant | Variants via Select (antd ≥ 5.13) | `outlined` \| `filled` \| `borderless` | `outlined` | 4.12.0 |
 | clearIcon | Use slot custom clear icon | slot | `<CloseCircleFilled />` | 4.0 |
 | default (for customize input element) | customize input element | slot | `<Input />` |  |
 | defaultActiveFirstOption | Whether active first option by default | boolean | true |  |

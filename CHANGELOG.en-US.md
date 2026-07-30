@@ -4,6 +4,12 @@
 
 ---
 
+## 4.12.0
+
+`2026-07-30`
+
+- 🌟 Mentions supports `variant`; AutoComplete inherits `variant` / ConfigProvider.variant via Select
+
 ## 4.11.0
 
 `2026-07-30`
