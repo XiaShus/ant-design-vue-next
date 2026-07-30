@@ -5,12 +5,13 @@ import useConfigInject from '../config-provider/hooks/useConfigInject';
 import { initDefaultProps } from '../_util/props-util';
 import classNames from '../_util/classNames';
 import { withInstall } from '../_util/type';
+import type { CustomSlotsType } from '../_util/type';
 import useStyle from './style';
 import { AggregationColor } from './color';
 import { colorPickerProps } from './interface';
 import type { ColorFormatType } from './interface';
 import { generateColor, getColorAlpha } from './util';
-import ColorPickerPanel from './ColorPickerPanel';
+import ColorPickerPanel, { Picker, Presets } from './ColorPickerPanel';
 import ColorBlock from './components/ColorBlock';
 
 const ColorPicker = defineComponent({
@@ -26,6 +27,10 @@ const ColorPicker = defineComponent({
     defaultFormat: 'hex',
     destroyTooltipOnHide: false,
   }),
+  slots: Object as CustomSlotsType<{
+    default?: any;
+    panelRender?: any;
+  }>,
   emits: [
     'update:value',
     'update:open',
@@ -135,6 +140,47 @@ const ColorPicker = defineComponent({
       getValue: () => innerValue.value,
     });
 
+    // Stable bound components for panelRender (antd-compatible `<Picker />` / `<Presets />`).
+    const BoundPicker = defineComponent({
+      name: 'AColorPickerBoundPicker',
+      setup() {
+        return () => (
+          <Picker
+            prefixCls={prefixCls.value}
+            value={innerValue.value}
+            format={innerFormat.value}
+            disabledAlpha={props.disabledAlpha}
+            allowClear={props.allowClear}
+            disabled={mergedDisabled.value}
+            onChange={triggerChange}
+            onChangeComplete={onChangeComplete}
+            onFormatChange={onFormatChange}
+            onClear={onClear}
+          />
+        );
+      },
+    });
+    const BoundPresets = defineComponent({
+      name: 'AColorPickerBoundPresets',
+      setup() {
+        return () => (
+          <Presets
+            prefixCls={prefixCls.value}
+            presets={props.presets}
+            disabled={mergedDisabled.value}
+            onChange={triggerChange}
+            onChangeComplete={onChangeComplete}
+          />
+        );
+      },
+    });
+    const panelRenderExtra = {
+      components: {
+        Picker: BoundPicker,
+        Presets: BoundPresets,
+      },
+    };
+
     return () => {
       const pre = prefixCls.value;
       const color = innerValue.value;
@@ -186,6 +232,16 @@ const ColorPicker = defineComponent({
         />
       );
 
+      let renderedPanel: any = panel;
+      if (props.panelRender) {
+        renderedPanel = props.panelRender(panel, panelRenderExtra);
+      } else if (slots.panelRender) {
+        renderedPanel = slots.panelRender({
+          panel,
+          components: panelRenderExtra.components,
+        });
+      }
+
       return wrapSSR(
         <Popover
           open={!!open && !mergedDisabled.value}
@@ -198,7 +254,7 @@ const ColorPicker = defineComponent({
           destroyTooltipOnHide={props.destroyOnHidden ?? props.destroyTooltipOnHide}
           destroyOnHidden={props.destroyOnHidden ?? props.destroyTooltipOnHide}
           v-slots={{
-            content: () => panel,
+            content: () => renderedPanel,
             default: () => triggerNode,
           }}
         />,

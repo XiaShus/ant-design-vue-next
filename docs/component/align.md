@@ -58,7 +58,7 @@
 | Data Entry | AutoComplete | ✅ | ✅ | [auto-complete](../../components/auto-complete) | 🔄 `variant` ✅ 4.12.0（经 Select） |
 | Data Entry | Cascader | ✅ | ✅ | [cascader](../../components/cascader) | 🔄 `variant` ✅ 4.10.0 |
 | Data Entry | Checkbox | ✅ | ✅ | [checkbox](../../components/checkbox) | — |
-| Data Entry | ColorPicker | ✅ 5.5 | 🔄 ✅ 4.3.0 | [color-picker](../../components/color-picker) | 单色/预设/清除/格式；🔄 `destroyOnHidden` ✅ 4.14.0；⏭ 渐变 mode、panelRender |
+| Data Entry | ColorPicker | ✅ 5.5 | 🔄 ✅ 4.3.0 | [color-picker](../../components/color-picker) | 单色/预设/清除/格式；🔄 `destroyOnHidden` ✅ 4.14.0；🔄 `panelRender` ✅ 4.15.0；⏭ 渐变 mode |
 | Data Entry | DatePicker | ✅ | ✅ | [date-picker](../../components/date-picker) | 🔄 `variant` ✅ 4.9.0；⚠️ 其他晚期 props 按需补 |
 | Data Entry | Form | ✅ | ✅ | [form](../../components/form) | 🔄 `variant` ✅ 4.10.0；⚠️ 其他高频缺口逐项对齐 |
 | Data Entry | Input | ✅ | ✅ | [input](../../components/input) | 🔄 `Input.OTP` ✅ 4.5.0；`variant` ✅ 4.8.0（⏭ underlined） |
@@ -141,8 +141,9 @@
 10. ~~Mentions / AutoComplete `variant`~~ — ✅ `4.12.0`
 11. ~~Table Column `hidden`~~ — ✅ `4.13.0`
 12. ~~Tabs / Collapse / Tooltip / Dropdown `destroyOnHidden`~~ — ✅ `4.14.0`
-13. Table 其他高频 API（如 `virtual` / `scrollTo`）按需拆版
-14. ColorPicker 渐变 `mode` / `panelRender`；Splitter collapsible / lazy 补齐
+13. ~~ColorPicker `panelRender`~~ — ✅ `4.15.0`
+14. Table 其他高频 API（如 `virtual` / `scrollTo`）按需拆版
+15. ColorPicker 渐变 `mode`；Splitter collapsible / lazy 补齐
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -152,4 +153,4 @@
 
 ---
 
-_上次更新：`4.13.0` Table Column.hidden。每发一版请同步改本表。_
+_上次更新：`4.15.0` ColorPicker.panelRender。每发一版请同步改本表。_

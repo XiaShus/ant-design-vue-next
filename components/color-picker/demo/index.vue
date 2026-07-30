@@ -7,6 +7,7 @@
     <AllowClear />
     <DisabledAlpha />
     <Presets />
+    <PanelRender />
   </demo-sort>
 </template>
 <script lang="ts">
@@ -17,6 +18,7 @@ import Disabled from './disabled.vue';
 import AllowClear from './allow-clear.vue';
 import DisabledAlpha from './disabled-alpha.vue';
 import Presets from './presets.vue';
+import PanelRender from './panel-render.vue';
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
 
@@ -36,6 +38,7 @@ export default {
     AllowClear,
     DisabledAlpha,
     Presets,
+    PanelRender,
   },
 };
 </script>

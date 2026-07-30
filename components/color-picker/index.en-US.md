@@ -36,6 +36,7 @@ Used when the user needs to make a customized color selection.
 | showText | Show color text | `boolean \| (color) => any` | false | 4.3.0 |
 | size | Trigger size | `large \| middle \| small` | - | 4.3.0 |
 | destroyOnHidden | Destroy popup on hide (antd ≥ 5.25; alias of `destroyTooltipOnHide`) | boolean | false | 4.14.0 |
+| panelRender | Custom panel; `extra.components` has bound `Picker` / `Presets` (or use the same-named slot) | `(panel, extra) => any` | - | 4.15.0 |
 | getPopupContainer | Popup container | `(node) => HTMLElement` | - | 4.3.0 |
 
 ### Events
@@ -53,7 +54,6 @@ Used when the user needs to make a customized color selection.
 | Feature                                 | Status                  |
 | --------------------------------------- | ----------------------- |
 | Gradient `mode`                         | soft-skip (later minor) |
-| `panelRender`                           | soft-skip               |
 | antd 6 semantic `classNames` / `styles` | stage B                 |
 
-Default slot customizes the trigger.
+Default slot customizes the trigger. `panelRender` slot args: `{ panel, components }`.

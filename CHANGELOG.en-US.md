@@ -4,6 +4,12 @@
 
 ---
 
+## 4.15.0
+
+`2026-07-30`
+
+- 🌟 ColorPicker supports `panelRender` (prop / slot) with bound `Picker` / `Presets` via `extra.components`
+
 ## 4.14.0
 
 `2026-07-30`

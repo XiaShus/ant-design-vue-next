@@ -8,6 +8,12 @@
 
 ---
 
+## 4.15.0
+
+`2026-07-30`
+
+- 🌟 ColorPicker 支持 `panelRender`（prop / 插槽），`extra.components` 提供已绑定的 `Picker` / `Presets`
+
 ## 4.14.0
 
 `2026-07-30`

@@ -37,6 +37,7 @@ tag: New
 | showText | 显示颜色文本 | `boolean \| (color) => any` | false | 4.3.0 |
 | size | 触发器尺寸 | `large \| middle \| small` | - | 4.3.0 |
 | destroyOnHidden | 关闭后是否销毁弹层（对齐 antd ≥ 5.25；兼容 `destroyTooltipOnHide`） | boolean | false | 4.14.0 |
+| panelRender | 自定义面板内容；`extra.components` 含已绑定的 `Picker` / `Presets`（也可用同名插槽） | `(panel, extra) => any` | - | 4.15.0 |
 | getPopupContainer | 弹层渲染容器 | `(node) => HTMLElement` | - | 4.3.0 |
 
 ### 事件
@@ -63,7 +64,6 @@ tag: New
 | 能力                                  | 状态                   |
 | ------------------------------------- | ---------------------- |
 | `mode` 渐变色                         | ⏭ 软跳过（后续小版本） |
-| `panelRender`                         | ⏭ 软跳过               |
 | antd 6 `classNames` / `styles` 语义化 | ⏭ 阶段 B               |
 
-默认插槽可用于自定义触发器。
+默认插槽可用于自定义触发器；`panelRender` 插槽参数为 `{ panel, components }`。

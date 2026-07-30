@@ -1,5 +1,6 @@
-import type { ExtractPropTypes, PropType, VNodeChild } from 'vue';
+import type { Component, ExtractPropTypes, PropType, VNodeChild } from 'vue';
 import type { VueNode } from '../_util/type';
+import { functionType } from '../_util/type';
 import type { SizeType } from '../config-provider';
 import type { TooltipPlacement } from '../tooltip/abstractTooltipProps';
 import type { AggregationColor, ColorGenInput } from './color';
@@ -16,6 +17,15 @@ export interface PresetsItem {
   defaultOpen?: boolean;
   key?: string | number;
 }
+
+export interface PanelRenderExtra {
+  components: {
+    Picker: Component;
+    Presets: Component;
+  };
+}
+
+export type PanelRender = (panel: VueNode, extra: PanelRenderExtra) => VueNode;
 
 export type ColorPickerProps = Partial<ExtractPropTypes<ReturnType<typeof colorPickerProps>>>;
 
@@ -43,6 +53,8 @@ export function colorPickerProps() {
     size: { type: String as PropType<SizeType> },
     rootClassName: String,
     getPopupContainer: { type: Function as PropType<(node: HTMLElement) => HTMLElement> },
+    /** Custom panel layout (antd ≥ 5.5). Also available as `panelRender` slot. */
+    panelRender: functionType<PanelRender>(),
     /** @deprecated Please use `destroyOnHidden` instead (antd ≥ 5.25). */
     destroyTooltipOnHide: { type: Boolean, default: false },
     destroyOnHidden: { type: Boolean, default: undefined },
