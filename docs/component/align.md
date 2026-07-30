@@ -49,7 +49,7 @@
 | Navigation | Menu | ✅ | ✅ | [menu](../../components/menu) | — |
 | Navigation | Pagination | ✅ | ✅ | [pagination](../../components/pagination) | 🔄 `align` ✅ 4.35.0 |
 | Navigation | Steps | ✅ | ✅ | [steps](../../components/steps) | — |
-| Navigation | Tabs | ✅ | ✅ | [tabs](../../components/tabs) | 🔄 `destroyOnHidden` ✅ 4.14.0 |
+| Navigation | Tabs | ✅ | ✅ | [tabs](../../components/tabs) | 🔄 `destroyOnHidden` ✅ 4.14.0；🔄 `indicator` ✅ 4.42.0 |
 
 ## Data Entry
 
@@ -168,9 +168,10 @@
 37. ~~Anchor `replace`~~ — ✅ `4.39.0`
 38. ~~Form `feedbackIcons`~~ — ✅ `4.40.0`
 39. ~~Skeleton.Node~~ — ✅ `4.41.0`
-40. Notification `showProgress` / `pauseOnHover`；Tabs `indicator`
-41. Table `virtual` 按需拆版（多日）
-42. ColorPicker 渐变 `mode`
+40. ~~Tabs `indicator`~~ — ✅ `4.42.0`
+41. Notification `showProgress` / `pauseOnHover`
+42. Table `virtual` 按需拆版（多日）
+43. ColorPicker 渐变 `mode`
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -180,4 +181,4 @@
 
 ---
 
-_上次更新：`4.41.0` Skeleton.Node。每发一版请同步改本表。_
+_上次更新：`4.42.0` Tabs.indicator。每发一版请同步改本表。_

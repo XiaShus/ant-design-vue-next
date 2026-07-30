@@ -10,6 +10,7 @@ import type {
   OnTabScroll,
   Tab,
 } from './interface';
+import type { TabsIndicator } from './hooks/useIndicator';
 import { defineComponent, computed, onMounted, watchEffect } from 'vue';
 import type { CSSProperties, ExtractPropTypes } from 'vue';
 import {
@@ -83,6 +84,8 @@ export const tabsProps = () => {
     onPrevClick: functionType<MouseEventHandler>(),
     onNextClick: functionType<MouseEventHandler>(),
     tabBarExtraContent: PropTypes.any,
+    /** Customize ink bar size and align (antd ≥ 5.13). */
+    indicator: objectType<TabsIndicator>(),
   };
 };
 
@@ -305,6 +308,7 @@ const InternalTabs = defineComponent({
         style: tabBarStyle,
         getPopupContainer: getPopupContainer.value,
         popupClassName: classNames(props.popupClassName, hashId.value),
+        indicator: props.indicator,
       };
 
       if (renderTabBar) {

@@ -4,6 +4,12 @@
 
 ---
 
+## 4.42.0
+
+`2026-07-31`
+
+- 🌟 Tabs supports `indicator` for ink bar size / align (antd ≥ 5.13)
+
 ## 4.41.0
 
 `2026-07-31`

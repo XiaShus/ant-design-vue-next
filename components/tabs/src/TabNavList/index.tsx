@@ -23,12 +23,12 @@ import { shallowRef, onBeforeUnmount, defineComponent, watch, watchEffect, compu
 import PropTypes from '../../../_util/vue-types';
 import useSyncState from '../hooks/useSyncState';
 import useState from '../../../_util/hooks/useState';
-import raf from '../../../_util/raf';
 import classNames from '../../../_util/classNames';
 import ResizeObserver from '../../../vc-resize-observer';
-import { toPx } from '../../../_util/util';
 import useRefs from '../../../_util/hooks/useRefs';
 import pick from 'lodash-es/pick';
+import useIndicator from '../hooks/useIndicator';
+import type { TabsIndicator } from '../hooks/useIndicator';
 
 const DEFAULT_SIZE = { width: 0, height: 0, left: 0, top: 0, right: 0 };
 export const tabNavListProps = () => {
@@ -53,6 +53,7 @@ export const tabNavListProps = () => {
       type: Function as PropType<(activeKey: Key, e: MouseEvent | KeyboardEvent) => void>,
     },
     onTabScroll: { type: Function as PropType<OnTabScroll> },
+    indicator: objectType<TabsIndicator>(),
   };
 };
 
@@ -368,38 +369,14 @@ export default defineComponent({
     ]);
 
     // =================== Link & Operations ===================
-    const [inkStyle, setInkStyle] = useState<CSSProperties>();
-
     const activeTabOffset = computed(() => tabOffsets.value.get(props.activeKey));
-
-    // Delay set ink style to avoid remove tab blink
-    const inkBarRafRef = shallowRef<number>();
-    const cleanInkBarRaf = () => {
-      raf.cancel(inkBarRafRef.value);
-    };
-
-    watch([activeTabOffset, tabPositionTopOrBottom, () => props.rtl], () => {
-      const newInkStyle: CSSProperties = {};
-
-      if (activeTabOffset.value) {
-        if (tabPositionTopOrBottom.value) {
-          if (props.rtl) {
-            newInkStyle.right = toPx(activeTabOffset.value.right);
-          } else {
-            newInkStyle.left = toPx(activeTabOffset.value.left);
-          }
-
-          newInkStyle.width = toPx(activeTabOffset.value.width);
-        } else {
-          newInkStyle.top = toPx(activeTabOffset.value.top);
-          newInkStyle.height = toPx(activeTabOffset.value.height);
-        }
-      }
-
-      cleanInkBarRaf();
-      inkBarRafRef.value = raf(() => {
-        setInkStyle(newInkStyle);
-      });
+    const indicatorRef = computed(() => props.indicator);
+    const rtlRef = computed(() => !!props.rtl);
+    const { style: inkStyle } = useIndicator({
+      activeTabOffset,
+      horizontal: tabPositionTopOrBottom,
+      rtl: rtlRef,
+      indicator: indicatorRef,
     });
 
     watch(
@@ -426,7 +403,6 @@ export default defineComponent({
 
     onBeforeUnmount(() => {
       clearTouchMoving();
-      cleanInkBarRaf();
     });
 
     return () => {
