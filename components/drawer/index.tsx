@@ -45,7 +45,10 @@ export const drawerProps = () => ({
   autofocus: { type: Boolean, default: undefined },
   closable: { type: Boolean, default: undefined },
   closeIcon: PropTypes.any,
+  /** @deprecated Please use `destroyOnHidden` instead (antd ≥ 5.25). */
   destroyOnClose: { type: Boolean, default: undefined },
+  /** Whether to unmount child components when closed (antd ≥ 5.25). */
+  destroyOnHidden: { type: Boolean, default: undefined },
   forceRender: { type: Boolean, default: undefined },
   getContainer: {
     type: [String, Function, Boolean, Object] as PropType<
@@ -179,6 +182,11 @@ const Drawer = defineComponent({
           `\`${deprecatedName}\` is deprecated, please use \`${newName}\` instead.`,
         );
       });
+      devWarning(
+        props.destroyOnClose === undefined,
+        'Drawer',
+        '`destroyOnClose` is deprecated, please use `destroyOnHidden` instead.',
+      );
     }
 
     const setPush = () => {
@@ -238,7 +246,7 @@ const Drawer = defineComponent({
           // set true only once
           destroyClose.value = true;
         }
-        if (props.destroyOnClose) {
+        if (props.destroyOnHidden ?? props.destroyOnClose) {
           load.value = false;
         }
       }
@@ -391,6 +399,7 @@ const Drawer = defineComponent({
           'closeIcon',
           'closable',
           'destroyOnClose',
+          'destroyOnHidden',
           'drawerStyle',
           'headerStyle',
           'bodyStyle',

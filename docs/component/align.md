@@ -104,9 +104,9 @@
 | 分组 | 组件 | React `antd` | Vue Next | 文档链接 | 缺口备注 |
 | --- | --- | --- | --- | --- | --- |
 | Feedback | Alert | ✅ | ✅ | [alert](../../components/alert) | — |
-| Feedback | Drawer | ✅ | ✅ | [drawer](../../components/drawer) | — |
+| Feedback | Drawer | ✅ | ✅ | [drawer](../../components/drawer) | 🔄 `destroyOnHidden` ✅ 4.11.0 |
 | Feedback | Message | ✅ | ✅ | [message](../../components/message) | — |
-| Feedback | Modal | ✅ | ✅ | [modal](../../components/modal) | ⚠️ 按需补缺口 |
+| Feedback | Modal | ✅ | ✅ | [modal](../../components/modal) | 🔄 `destroyOnHidden` ✅ 4.11.0；⚠️ 其他缺口按需补 |
 | Feedback | Notification | ✅ | ✅ | [notification](../../components/notification) | — |
 | Feedback | Popconfirm | ✅ | ✅ | [popconfirm](../../components/popconfirm) | — |
 | Feedback | Progress | ✅ | ✅ | [progress](../../components/progress) | — |
@@ -137,8 +137,9 @@
 6. ~~ConfigProvider / Input `variant`~~ — ✅ `4.8.0`
 7. ~~Select / InputNumber / DatePicker `variant`~~ — ✅ `4.9.0`
 8. ~~Form / Cascader / TreeSelect `variant`~~ — ✅ `4.10.0`
-9. Table / Modal 高频 API 缺口；Mentions / AutoComplete 等按需接 `variant`
-10. ColorPicker 渐变 `mode` / `panelRender`；Splitter collapsible / lazy 补齐
+9. ~~Modal / Drawer `destroyOnHidden`~~ — ✅ `4.11.0`
+10. Table 高频 API 缺口；Mentions / AutoComplete 等按需接 `variant`
+11. ColorPicker 渐变 `mode` / `panelRender`；Splitter collapsible / lazy 补齐
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -148,4 +149,4 @@
 
 ---
 
-_上次更新：`4.10.0` Form / Cascader / TreeSelect variant。每发一版请同步改本表。_
+_上次更新：`4.11.0` Modal / Drawer destroyOnHidden。每发一版请同步改本表。_

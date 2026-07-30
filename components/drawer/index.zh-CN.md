@@ -28,7 +28,8 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*4wzwRIBLuqEAAA
 | closable | 是否显示左上角的关闭按钮 | boolean | true |  |
 | closeIcon | 自定义关闭图标 | VNode \| slot | `<CloseOutlined />` | 3.0.0 |
 | contentWrapperStyle | 可用于设置 Drawer 包裹内容部分的样式 | CSSProperties | - | 3.0.0 |
-| destroyOnClose | 关闭时销毁 Drawer 里的子元素 | boolean | false |  |
+| destroyOnClose | 关闭时销毁 Drawer 里的子元素（请优先使用 `destroyOnHidden`） | boolean | false |  |
+| destroyOnHidden | 关闭时销毁 Drawer 里的子元素（对齐 antd ≥ 5.25） | boolean | false | 4.11.0 |
 | extra | 抽屉右上角的操作区域 | VNode \| slot | - | 3.0.0 |
 | footer | 抽屉的页脚 | VNode \| slot | - | 3.0.0 |
 | footerStyle | 抽屉页脚部件的样式 | CSSProperties | - | 3.0.0 |
@@ -53,7 +54,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*4wzwRIBLuqEAAA
 
 ## 事件
 
-| 事件名称            | 描述                                 | 类型           | 默认值 | 版本 |
+| 事件名称        | 描述                                 | 类型           | 默认值 | 版本 |
 | --------------- | ------------------------------------ | -------------- | ------ | ---- |
 | afterOpenChange | 切换抽屉时动画结束后的回调           | function(open) | 无     | 4.0  |
 | close           | 点击遮罩层或左上角叉或取消按钮的回调 | function(e)    | 无     |      |

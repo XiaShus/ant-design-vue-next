@@ -24,7 +24,8 @@ When requiring users to interact with the application, but without jumping to a 
 | closable | Whether a close (x) button is visible on top right of the modal dialog or not | boolean | true |  |
 | closeIcon | custom close icon | VNode \| slot | - |  |
 | confirmLoading | Whether to apply loading visual effect for OK button or not | boolean | false |  |
-| destroyOnClose | Whether to unmount child components on onClose | boolean | false |  |
+| destroyOnClose | Whether to unmount child components on close; prefer `destroyOnHidden` | boolean | false |  |
+| destroyOnHidden | Whether to unmount child components on close (antd ≥ 5.25) | boolean | false | 4.11.0 |
 | footer | Footer content, set as `:footer="null"` when you don't need default buttons | string\|slot | OK and Cancel buttons |  |
 | forceRender | Force render Modal | boolean | false |  |
 | getContainer | Return the mount node for Modal | (instance): HTMLElement | () => document.body |  |
@@ -49,7 +50,7 @@ When requiring users to interact with the application, but without jumping to a 
 
 #### Note
 
-> The state of Modal will be preserved at it's component lifecycle by default, if you wish to open it with a brand new state everytime, set `destroyOnClose` on it.
+> The state of Modal will be preserved at it's component lifecycle by default, if you wish to open it with a brand new state everytime, set `destroyOnHidden` (or legacy `destroyOnClose`).
 
 ### Modal.method()
 

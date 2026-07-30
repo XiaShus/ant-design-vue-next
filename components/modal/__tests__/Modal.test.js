@@ -78,4 +78,25 @@ describe('Modal', () => {
       expect(wrapper1.html()).toMatchSnapshot();
     });
   });
+
+  it('destroyOnHidden maps to destroyOnClose for Dialog', async () => {
+    const wrapper = mount(Modal, {
+      sync: false,
+      props: {
+        open: true,
+        getContainer: false,
+        destroyOnHidden: true,
+      },
+      slots: {
+        default: () => <span class="modal-child">child</span>,
+      },
+    });
+    await asyncExpect(() => {
+      expect(wrapper.find('.modal-child').exists()).toBe(true);
+    });
+    await wrapper.setProps({ open: false });
+    await asyncExpect(() => {
+      expect(wrapper.find('.modal-child').exists()).toBe(false);
+    }, 1000);
+  });
 });

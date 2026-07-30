@@ -65,7 +65,10 @@ export const modalProps = () => ({
   forceRender: { type: Boolean, default: undefined },
   okButtonProps: objectType<ButtonPropsType>(),
   cancelButtonProps: objectType<ButtonPropsType>(),
+  /** @deprecated Please use `destroyOnHidden` instead (antd ≥ 5.25). */
   destroyOnClose: { type: Boolean, default: undefined },
+  /** Whether to unmount child components when closed (antd ≥ 5.25). */
+  destroyOnHidden: { type: Boolean, default: undefined },
   wrapClassName: String,
   maskTransitionName: String,
   transitionName: String,
@@ -172,6 +175,11 @@ export default defineComponent({
       'Modal',
       `\`visible\` will be removed in next major version, please use \`open\` instead.`,
     );
+    warning(
+      props.destroyOnClose === undefined,
+      'Modal',
+      '`destroyOnClose` is deprecated. Please use `destroyOnHidden` instead.',
+    );
     const handleCancel = (e: MouseEvent) => {
       emit('update:visible', false);
       emit('update:open', false);
@@ -216,8 +224,11 @@ export default defineComponent({
         getContainer,
         closeIcon = slots.closeIcon?.(),
         focusTriggerAfterClose = true,
+        destroyOnClose,
+        destroyOnHidden,
         ...restProps
       } = props;
+      const mergedDestroyOnClose = destroyOnHidden ?? destroyOnClose;
 
       const wrapClassNameExtended = classNames(wrapClassName, {
         [`${prefixCls.value}-centered`]: !!centered,
@@ -227,6 +238,7 @@ export default defineComponent({
         <Dialog
           {...restProps}
           {...attrs}
+          destroyOnClose={mergedDestroyOnClose}
           rootClassName={hashId.value}
           class={classNames(hashId.value, attrs.class)}
           getContainer={getContainer || getPopupContainer?.value}

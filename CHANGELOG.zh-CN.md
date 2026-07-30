@@ -8,6 +8,12 @@
 
 ---
 
+## 4.11.0
+
+`2026-07-30`
+
+- 🌟 Modal / Drawer 支持 `destroyOnHidden`（对齐 antd ≥ 5.25），`destroyOnClose` 仍可用并提示弃用
+
 ## 4.10.0
 
 `2026-07-30`

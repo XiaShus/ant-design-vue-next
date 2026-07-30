@@ -4,6 +4,12 @@
 
 ---
 
+## 4.11.0
+
+`2026-07-30`
+
+- 🌟 Modal / Drawer support `destroyOnHidden` (antd ≥ 5.25); `destroyOnClose` remains as a deprecated alias
+
 ## 4.10.0
 
 `2026-07-30`
