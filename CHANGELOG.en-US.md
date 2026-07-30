@@ -4,6 +4,12 @@
 
 ---
 
+## 4.56.0
+
+`2026-07-31`
+
+- 🌟 Slider supports nested `tooltip` config (`open` / `placement` / `formatter` / `getPopupContainer`) (antd ≥ 5)
+
 ## 4.55.0
 
 `2026-07-31`

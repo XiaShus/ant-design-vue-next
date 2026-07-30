@@ -31,10 +31,21 @@ To input a value in a range.
 | trackStyle | The style of slider track | CSSProperties | - |  |
 | value(v-model) | The value of slider. When `range` is `false`, use `number`, otherwise, use `[number, number]` | number\|number\[] |  |  |
 | vertical | If true, the slider will be vertical. | Boolean | false |  |
-| tipFormatter | Slider will pass its value to `tipFormatter`, and display its value in Tooltip, and hide Tooltip when return value is null. | Function\|null | IDENTITY |  |
-| tooltipPlacement | Set Tooltip display position. Ref [`Tooltip`](/components/tooltip/). | string |  | 1.5.0 |
-| tooltipOpen | If true, Tooltip will show always, or it will not show anyway, even if dragging or hovering. | Boolean |  | 4.0 |
-| getTooltipPopupContainer | The DOM container of the Tooltip, the default behavior is to create a div element in body. | Function | () => document.body | 1.5.0 |
+| tooltip | Tooltip config. Prefer this over deprecated flat tip props | [tooltip](#tooltip) | - | 4.56.0 |
+| ~~tipFormatter~~ | Deprecated. Please use `tooltip.formatter` | Function\|null | IDENTITY |  |
+| ~~tooltipPlacement~~ | Deprecated. Please use `tooltip.placement` | string |  | 1.5.0 |
+| ~~tooltipOpen~~ | Deprecated. Please use `tooltip.open` | Boolean |  | 4.0 |
+| ~~getTooltipPopupContainer~~ | Deprecated. Please use `tooltip.getPopupContainer` | Function | () => document.body | 1.5.0 |
+
+### tooltip
+
+| Property | Description | Type | Default | Version |
+| --- | --- | --- | --- | --- |
+| open | If true, Tooltip always shows; if false, never shows | boolean | - | 4.56.0 |
+| placement | Tooltip placement. Ref [`Tooltip`](/components/tooltip/) | string | - | 4.56.0 |
+| formatter | Format Tooltip content; `null` hides Tooltip | (value) => ReactNode \| null | IDENTITY | 4.56.0 |
+| getPopupContainer | DOM container of the Tooltip | (triggerNode) => HTMLElement | () => document.body | 4.56.0 |
+| autoAdjustOverflow | Whether to adjust placement when off screen | boolean | true | 4.56.0 |
 
 ### events
 

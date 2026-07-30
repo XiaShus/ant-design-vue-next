@@ -8,17 +8,17 @@ title:
 
 ## zh-CN
 
-使用 `tipFormatter` 可以格式化 `Tooltip` 的内容，设置 `tipFormatter={null}`，则隐藏 `Tooltip`。
+使用 `tooltip.formatter` 可以格式化 `Tooltip` 的内容，设置 `formatter: null` 则隐藏 `Tooltip`。
 
 ## en-US
 
-Use `tipFormatter` to format content of `Tooltip`. If `tipFormatter` is null, hide it.
+Use `tooltip.formatter` to format content of `Tooltip`. If `formatter` is null, hide it.
 </docs>
 
 <template>
   <div>
-    <a-slider :tip-formatter="formatter" />
-    <a-slider :tip-formatter="null" />
+    <a-slider :tooltip="{ formatter }" />
+    <a-slider :tooltip="{ formatter: null }" />
   </div>
 </template>
 <script lang="ts" setup>

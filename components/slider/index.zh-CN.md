@@ -30,10 +30,21 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*XkgXTaudeosAAA
 | step | 步长，取值必须大于 0，并且可被 (max - min) 整除。当 `marks` 不为空对象时，可以设置 `step` 为 `null`，此时 Slider 的可选值仅有 marks 标出来的部分。 | number\|null | 1 |  |
 | value(v-model) | 设置当前取值。当 `range` 为 `false` 时，使用 `number`，否则用 `[number, number]` | number\|number\[] |  |  |
 | vertical | 值为 `true` 时，Slider 为垂直方向 | Boolean | false |  |
-| tipFormatter | Slider 会把当前值传给 `tipFormatter`，并在 Tooltip 中显示 `tipFormatter` 的返回值，若为 null，则隐藏 Tooltip。 | Function\|null | IDENTITY |  |
-| tooltipPlacement | 设置 Tooltip 展示位置。参考 [`Tooltip`](/components/tooltip/)。 | string |  | 1.5.0 |
-| tooltipOpen | 值为`true`时，Tooltip 将会始终显示；否则始终不显示，哪怕在拖拽及移入时。 | Boolean |  | 4.0 |
-| getTooltipPopupContainer | Tooltip 渲染父节点，默认渲染到 body 上。 | Function | () => document.body | 1.5.0 |
+| tooltip | Tooltip 配置，推荐替代已废弃的扁平 tip 属性 | [tooltip](#tooltip) | - | 4.56.0 |
+| ~~tipFormatter~~ | 已废弃，请使用 `tooltip.formatter` | Function\|null | IDENTITY |  |
+| ~~tooltipPlacement~~ | 已废弃，请使用 `tooltip.placement` | string |  | 1.5.0 |
+| ~~tooltipOpen~~ | 已废弃，请使用 `tooltip.open` | Boolean |  | 4.0 |
+| ~~getTooltipPopupContainer~~ | 已废弃，请使用 `tooltip.getPopupContainer` | Function | () => document.body | 1.5.0 |
+
+### tooltip
+
+| 参数 | 说明 | 类型 | 默认值 | 版本 |
+| --- | --- | --- | --- | --- |
+| open | 为 `true` 时始终显示；为 `false` 时始终不显示 | boolean | - | 4.56.0 |
+| placement | Tooltip 展示位置，参考 [`Tooltip`](/components/tooltip/) | string | - | 4.56.0 |
+| formatter | 格式化 Tooltip 内容；为 `null` 时隐藏 | (value) => VueNode \| null | IDENTITY | 4.56.0 |
+| getPopupContainer | Tooltip 渲染父节点 | (triggerNode) => HTMLElement | () => document.body | 4.56.0 |
+| autoAdjustOverflow | 气泡被遮挡时自动调整位置 | boolean | true | 4.56.0 |
 
 ### 事件
 

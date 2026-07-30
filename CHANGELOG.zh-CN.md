@@ -8,6 +8,12 @@
 
 ---
 
+## 4.56.0
+
+`2026-07-31`
+
+- 🌟 Slider 支持嵌套 `tooltip` 配置（`open` / `placement` / `formatter` / `getPopupContainer`，对齐 antd ≥ 5）
+
 ## 4.55.0
 
 `2026-07-31`

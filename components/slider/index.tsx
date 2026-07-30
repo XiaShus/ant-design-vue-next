@@ -43,6 +43,17 @@ interface HandleGeneratorInfo {
 export interface SliderRange {
   draggableTrack?: boolean;
 }
+
+/** Nested tooltip config (antd ≥ 5.x). Prefer over flat tip* / tooltip* props. */
+export interface SliderTooltipConfig {
+  open?: boolean;
+  placement?: TooltipPlacement;
+  formatter?: ((value?: number) => any) | null;
+  getPopupContainer?: (triggerNode: HTMLElement) => HTMLElement;
+  autoAdjustOverflow?: boolean;
+  prefixCls?: string;
+}
+
 export type HandleGeneratorFn = (config: {
   tooltipPrefixCls?: string;
   prefixCls?: string;
@@ -67,15 +78,21 @@ export const sliderProps = () => ({
   included: booleanType(),
   disabled: booleanType(),
   vertical: booleanType(),
+  /** @deprecated Prefer `tooltip.formatter` */
   tipFormatter: someType<((value?: number) => any) | null>(
     [Function, Object],
     () => defaultTipFormatter,
   ),
+  /** @deprecated Prefer `tooltip.open` */
   tooltipOpen: booleanType(),
-  /** @deprecated `tooltipVisible` is deprecated. Please use `tooltipOpen` instead. */
+  /** @deprecated Prefer `tooltip.open` */
   tooltipVisible: booleanType(),
+  /** @deprecated Prefer `tooltip.placement` */
   tooltipPlacement: stringType<TooltipPlacement>(),
+  /** @deprecated Prefer `tooltip.getPopupContainer` */
   getTooltipPopupContainer: functionType<(triggerNode: HTMLElement) => HTMLElement>(),
+  /** Tooltip config object (antd ≥ 5) */
+  tooltip: objectType<SliderTooltipConfig>(),
   autofocus: booleanType(),
   handleStyle: someType<CSSProperties[] | CSSProperties>([Array, Object]),
   trackStyle: someType<CSSProperties[] | CSSProperties>([Array, Object]),
@@ -102,9 +119,17 @@ const Slider = defineComponent({
   setup(props, { attrs, slots, emit, expose }) {
     // Warning for deprecated usage
     if (process.env.NODE_ENV !== 'production') {
-      [['tooltipVisible', 'tooltipOpen']].forEach(([deprecatedName, newName]) => {
+      (
+        [
+          ['tooltipVisible', 'tooltip.open'],
+          ['tooltipOpen', 'tooltip.open'],
+          ['tooltipPlacement', 'tooltip.placement'],
+          ['getTooltipPopupContainer', 'tooltip.getPopupContainer'],
+          ['tooltipPrefixCls', 'tooltip.prefixCls'],
+        ] as const
+      ).forEach(([deprecatedName, newName]) => {
         devWarning(
-          props.tooltipVisible === undefined,
+          (props as any)[deprecatedName] === undefined,
           'Slider',
           `\`${deprecatedName}\` is deprecated, please use \`${newName}\` instead.`,
         );
@@ -122,9 +147,36 @@ const Slider = defineComponent({
     const toggleTooltipOpen = (index: number, visible: boolean) => {
       visibles.value[index] = visible;
     };
+
+    const mergedTooltip = computed(() => {
+      const tip = props.tooltip || {};
+      const formatter =
+        tip.formatter !== undefined
+          ? tip.formatter
+          : props.tipFormatter !== undefined
+          ? props.tipFormatter
+          : defaultTipFormatter;
+      const open =
+        tip.open !== undefined
+          ? tip.open
+          : props.tooltipOpen !== undefined
+          ? props.tooltipOpen
+          : props.tooltipVisible;
+      const placement = tip.placement ?? props.tooltipPlacement;
+      const getContainer = tip.getPopupContainer ?? props.getTooltipPopupContainer;
+      return {
+        formatter,
+        open,
+        placement,
+        getPopupContainer: getContainer,
+        autoAdjustOverflow: tip.autoAdjustOverflow,
+        prefixCls: tip.prefixCls,
+      };
+    });
+
     const tooltipPlacement = computed(() => {
-      if (props.tooltipPlacement) {
-        return props.tooltipPlacement;
+      if (mergedTooltip.value.placement) {
+        return mergedTooltip.value.placement;
       }
       if (!props.vertical) {
         return 'top';
@@ -154,7 +206,11 @@ const Slider = defineComponent({
       tooltipPrefixCls,
       info: { value, dragging, index, ...restProps },
     }) => {
-      const { tipFormatter, tooltipOpen = props.tooltipVisible, getTooltipPopupContainer } = props;
+      const {
+        formatter: tipFormatter,
+        open: tooltipOpen,
+        getPopupContainer: tipGetPopup,
+      } = mergedTooltip.value;
       const isTipFormatter = tipFormatter ? visibles.value[index] || dragging : false;
       const open = tooltipOpen || (tooltipOpen === undefined && isTipFormatter);
       return (
@@ -163,10 +219,11 @@ const Slider = defineComponent({
           title={tipFormatter ? tipFormatter(value) : ''}
           open={open}
           placement={tooltipPlacement.value}
+          autoAdjustOverflow={mergedTooltip.value.autoAdjustOverflow}
           transitionName={`${rootPrefixCls.value}-zoom-down`}
           key={index}
           overlayClassName={`${prefixCls.value}-tooltip`}
-          getPopupContainer={getTooltipPopupContainer || getPopupContainer?.value}
+          getPopupContainer={tipGetPopup || getPopupContainer?.value}
         >
           <VcHandle
             {...restProps}
@@ -182,9 +239,18 @@ const Slider = defineComponent({
         tooltipPrefixCls: customizeTooltipPrefixCls,
         range,
         id = formItemContext.id.value,
+        tooltip: _tooltip,
+        tipFormatter: _tipFormatter,
+        tooltipOpen: _tooltipOpen,
+        tooltipVisible: _tooltipVisible,
+        tooltipPlacement: _tooltipPlacement,
+        getTooltipPopupContainer: _getTooltipPopupContainer,
         ...restProps
       } = props;
-      const tooltipPrefixCls = configProvider.getPrefixCls('tooltip', customizeTooltipPrefixCls);
+      const tooltipPrefixCls = configProvider.getPrefixCls(
+        'tooltip',
+        mergedTooltip.value.prefixCls || customizeTooltipPrefixCls,
+      );
       const cls = classNames(
         attrs.class,
         {

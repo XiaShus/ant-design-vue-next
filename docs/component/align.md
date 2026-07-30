@@ -67,7 +67,7 @@
 | Data Entry | Radio | ✅ | ✅ | [radio](../../components/radio) | — |
 | Data Entry | Rate | ✅ | ✅ | [rate](../../components/rate) | — |
 | Data Entry | Select | ✅ | ✅ | [select](../../components/select) | 🔄 `variant` ✅ 4.9.0；🔄 `maxCount` ✅ 4.20.0 |
-| Data Entry | Slider | ✅ | ✅ | [slider](../../components/slider) | — |
+| Data Entry | Slider | ✅ | ✅ | [slider](../../components/slider) | 🔄 nested `tooltip` ✅ 4.56.0 |
 | Data Entry | Switch | ✅ | ✅ | [switch](../../components/switch) | — |
 | Data Entry | TimePicker | ✅ | ✅ | [time-picker](../../components/time-picker) | 🔄 `needConfirm` ✅ 4.21.0；🔄 `changeOnScroll` ✅ 4.23.0 |
 | Data Entry | Transfer | ✅ | ✅ | [transfer](../../components/transfer) | 🔄 `selectionsIcon` ✅ 4.36.0 |
@@ -182,9 +182,10 @@
 51. ~~Cascader `autoClearSearchValue`~~ — ✅ `4.53.0`
 52. ~~Typography `copyable.format` / `tabIndex`~~ — ✅ `4.54.0`
 53. ~~Progress `steps` object `{ count, gap }`~~ — ✅ `4.55.0`
-54. Table `virtual` 按需拆版（多日）
-55. ColorPicker 渐变 `mode`
-56. Segmented `vertical`（需 MotionThumb 竖向）
+54. ~~Slider nested `tooltip`~~ — ✅ `4.56.0`
+55. Table `virtual` 按需拆版（多日）
+56. ColorPicker 渐变 `mode`
+57. Segmented `vertical`（需 MotionThumb 竖向）
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -194,4 +195,4 @@
 
 ---
 
-_上次更新：`4.55.0` Progress.steps object。每发一版请同步改本表。_
+_上次更新：`4.56.0` Slider.tooltip。每发一版请同步改本表。_
