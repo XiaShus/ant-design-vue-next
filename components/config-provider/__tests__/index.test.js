@@ -101,6 +101,37 @@ describe('ConfigProvider', () => {
     expect(wrapper.find('.ant-input-number-filled').exists()).toBe(true);
   });
 
+  it('Form.variant propagates to Input', () => {
+    const Form = require('../../form').default;
+    const Input = require('../../input').default;
+    const wrapper = mount({
+      render() {
+        return (
+          <Form variant="filled">
+            <Input />
+          </Form>
+        );
+      },
+    });
+    expect(wrapper.find('.ant-input-filled').exists()).toBe(true);
+  });
+
+  it('variant propagates to Cascader and TreeSelect', () => {
+    const Cascader = require('../../cascader').default;
+    const TreeSelect = require('../../tree-select').default;
+    const wrapper = mount({
+      render() {
+        return (
+          <ConfigProvider variant="filled">
+            <Cascader options={[{ value: 'z', label: 'Z' }]} />
+            <TreeSelect treeData={[{ value: 't', title: 'T' }]} />
+          </ConfigProvider>
+        );
+      },
+    });
+    expect(wrapper.find('.ant-select-filled').exists()).toBe(true);
+  });
+
   it('useConfig returns componentSize and componentDisabled', () => {
     let size;
     let disabled;

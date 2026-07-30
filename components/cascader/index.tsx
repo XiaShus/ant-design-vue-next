@@ -31,6 +31,7 @@ import { useCompactItemContext } from '../space/Compact';
 import useSelectStyle from '../select/style';
 import useStyle from './style';
 import { useInjectDisabled } from '../config-provider/DisabledContext';
+import useVariant from '../config-provider/hooks/useVariant';
 // Align the design since we use `rc-select` in root. This help:
 // - List search content will show all content
 // - Hover opacity style
@@ -108,6 +109,8 @@ export function cascaderProps<DataNodeType extends CascaderOptionType = Cascader
     multiple: { type: Boolean, default: undefined },
     size: String as PropType<SizeType>,
     bordered: { type: Boolean, default: undefined },
+    /** Prefer over `bordered` (antd ≥ 5.13). */
+    variant: { type: String as PropType<'outlined' | 'borderless' | 'filled'>, default: undefined },
     placement: { type: String as PropType<SelectCommonPlacement> },
     suffixIcon: PropTypes.any,
     status: String as PropType<InputStatus>,
@@ -162,6 +165,7 @@ const Cascader = defineComponent({
     const mergedSize = computed(() => compactSize.value || contextSize.value);
     const contextDisabled = useInjectDisabled();
     const mergedDisabled = computed(() => disabled.value ?? contextDisabled.value);
+    const variant = useVariant(props);
 
     const [wrapSelectSSR, hashId] = useSelectStyle(prefixCls);
     const [wrapCascaderSSR] = useStyle(cascaderPrefixCls);
@@ -244,13 +248,15 @@ const Cascader = defineComponent({
         notFoundContent = slots.notFoundContent?.(),
         expandIcon = slots.expandIcon?.(),
         multiple,
-        bordered,
         allowClear,
         choiceTransitionName,
         transitionName,
         id = formItemContext.id.value,
         ...restProps
       } = props;
+      delete (restProps as any).bordered;
+      delete (restProps as any).variant;
+      const mergedVariant = variant.value;
       // =================== No Found ====================
       const mergedNotFoundContent = notFoundContent || renderEmpty('Cascader');
 
@@ -291,7 +297,8 @@ const Cascader = defineComponent({
                 [`${prefixCls.value}-lg`]: mergedSize.value === 'large',
                 [`${prefixCls.value}-sm`]: mergedSize.value === 'small',
                 [`${prefixCls.value}-rtl`]: isRtl.value,
-                [`${prefixCls.value}-borderless`]: !bordered,
+                [`${prefixCls.value}-borderless`]: mergedVariant === 'borderless',
+                [`${prefixCls.value}-filled`]: mergedVariant === 'filled',
                 [`${prefixCls.value}-in-form-item`]: formItemInputContext.isFormItemInput,
               },
               getStatusClassNames(

@@ -34,6 +34,7 @@ A form consists of one or more form fields whose type includes input, textarea, 
 | --- | --- | --- | --- | --- |
 | colon | change default props colon value of Form.Item (only effective when prop layout is horizontal) | boolean | true |  |
 | disabled | Set form component disable, only available for antdv components | boolean | false | 4.0 |
+| variant | Variant for nested data-entry components (antd ≥ 5.13) | `outlined` \| `filled` \| `borderless` | - | 4.10.0 |
 | hideRequiredMark | Hide required mark of all form items | Boolean | false |  |
 | labelAlign | text align of label of all items | 'left' \| 'right' | 'right' |  |
 | labelCol | The layout of label. You can set `span` `offset` to something like `{span: 3, offset: 12}` or `sm: {span: 3, offset: 12}` same as with `<Col>` | [object](/components/grid/#col) |  |  |

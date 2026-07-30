@@ -56,11 +56,11 @@
 | 分组 | 组件 | React `antd` | Vue Next | 文档链接 | 缺口备注 |
 | --- | --- | --- | --- | --- | --- |
 | Data Entry | AutoComplete | ✅ | ✅ | [auto-complete](../../components/auto-complete) | — |
-| Data Entry | Cascader | ✅ | ✅ | [cascader](../../components/cascader) | — |
+| Data Entry | Cascader | ✅ | ✅ | [cascader](../../components/cascader) | 🔄 `variant` ✅ 4.10.0 |
 | Data Entry | Checkbox | ✅ | ✅ | [checkbox](../../components/checkbox) | — |
 | Data Entry | ColorPicker | ✅ 5.5 | 🔄 ✅ 4.3.0 | [color-picker](../../components/color-picker) | 单色/预设/清除/格式；⏭ 渐变 mode、panelRender |
 | Data Entry | DatePicker | ✅ | ✅ | [date-picker](../../components/date-picker) | 🔄 `variant` ✅ 4.9.0；⚠️ 其他晚期 props 按需补 |
-| Data Entry | Form | ✅ | ✅ | [form](../../components/form) | ⚠️ 高频，逐项对齐 |
+| Data Entry | Form | ✅ | ✅ | [form](../../components/form) | 🔄 `variant` ✅ 4.10.0；⚠️ 其他高频缺口逐项对齐 |
 | Data Entry | Input | ✅ | ✅ | [input](../../components/input) | 🔄 `Input.OTP` ✅ 4.5.0；`variant` ✅ 4.8.0（⏭ underlined） |
 | Data Entry | InputNumber | ✅ | ✅ | [input-number](../../components/input-number) | 🔄 `variant` ✅ 4.9.0 |
 | Data Entry | Mentions | ✅ | ✅ | [mentions](../../components/mentions) | — |
@@ -71,7 +71,7 @@
 | Data Entry | Switch | ✅ | ✅ | [switch](../../components/switch) | — |
 | Data Entry | TimePicker | ✅ | ✅ | [time-picker](../../components/time-picker) | — |
 | Data Entry | Transfer | ✅ | ✅ | [transfer](../../components/transfer) | — |
-| Data Entry | TreeSelect | ✅ | ✅ | [tree-select](../../components/tree-select) | — |
+| Data Entry | TreeSelect | ✅ | ✅ | [tree-select](../../components/tree-select) | 🔄 `variant` ✅ 4.10.0 |
 | Data Entry | Upload | ✅ | ✅ | [upload](../../components/upload) | — |
 
 ## Data Display
@@ -136,8 +136,9 @@
 5. ~~ConfigProvider `holderRender` / `warning.strict`~~ — ✅ `4.7.0`
 6. ~~ConfigProvider / Input `variant`~~ — ✅ `4.8.0`
 7. ~~Select / InputNumber / DatePicker `variant`~~ — ✅ `4.9.0`
-8. Table / Form / Modal 高频 API 缺口；其余录入组件 `variant` 按需接
-9. ColorPicker 渐变 `mode` / `panelRender`；Splitter collapsible / lazy 补齐
+8. ~~Form / Cascader / TreeSelect `variant`~~ — ✅ `4.10.0`
+9. Table / Modal 高频 API 缺口；Mentions / AutoComplete 等按需接 `variant`
+10. ColorPicker 渐变 `mode` / `panelRender`；Splitter collapsible / lazy 补齐
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -147,4 +148,4 @@
 
 ---
 
-_上次更新：`4.9.0` Select / InputNumber / DatePicker variant。每发一版请同步改本表。_
+_上次更新：`4.10.0` Form / Cascader / TreeSelect variant。每发一版请同步改本表。_

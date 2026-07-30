@@ -25,7 +25,8 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*5-ArSLl5UBsAAA
 | --- | --- | --- | --- | --- |
 | allowClear | 是否支持清除 | boolean | true |  |
 | autofocus | 自动获取焦点 | boolean | false |  |
-| bordered | 是否有边框 | boolean | true | 3.2 |
+| bordered | 是否有边框，请优先使用 `variant` | boolean | true | 3.2 |
+| variant | 形态变体（对齐 antd ≥ 5.13） | `outlined` \| `filled` \| `borderless` | `outlined` | 4.10.0 |
 | clearIcon | 自定义的选择框清空图标 | slot | - | 3.2 |
 | changeOnSelect | （单选时生效）当此项为 true 时，点选每级菜单选项值都会发生变化，具体见上面的演示 | boolean | false |  |
 | defaultValue | 默认的选中项 | string\[] \| number\[] | \[] |  |

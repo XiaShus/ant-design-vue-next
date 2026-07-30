@@ -8,6 +8,13 @@
 
 ---
 
+## 4.10.0
+
+`2026-07-30`
+
+- 🌟 Form 支持 `variant`，向子级数据录入组件注入形态（对齐 antd ≥ 5.13）
+- 🌟 Cascader / TreeSelect 支持 `variant`，并继承 ConfigProvider / Form.variant
+
 ## 4.9.0
 
 `2026-07-30`

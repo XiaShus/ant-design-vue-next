@@ -43,6 +43,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*Y5pcQLplFu4AAA
 | showCheckedStrategy | 定义选中项回填的方式。`TreeSelect.SHOW_ALL`: 显示所有选中节点(包括父节点). `TreeSelect.SHOW_PARENT`: 只显示父节点(当父节点下所有子节点都选中时). 默认只显示子节点. | enum{TreeSelect.SHOW_ALL, TreeSelect.SHOW_PARENT, TreeSelect.SHOW_CHILD } | TreeSelect.SHOW_CHILD |  |  |
 | showSearch | 在下拉中显示搜索框(仅在单选模式下生效) | boolean | false |  |  |
 | size | 选择框大小，可选 `large` `small` | string | 'default' |  |  |
+| variant | 形态变体（对齐 antd ≥ 5.13） | `outlined` \| `filled` \| `borderless` | `outlined` | 4.10.0 |
 | status | 设置校验状态 | 'error' \| 'warning' | - | 3.3.0 |
 | suffixIcon | 自定义的选择框后缀图标 | VNode \| slot | - |  |  |
 | tagRender | 自定义 tag 内容，多选时生效 | slot | - | 3.0 |  |

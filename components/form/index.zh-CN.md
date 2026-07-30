@@ -35,6 +35,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*ylFATY6w-ygAAA
 | --- | --- | --- | --- | --- |
 | colon | 配置 Form.Item 的 colon 的默认值 (只有在属性 layout 为 horizontal 时有效) | boolean | true |  |
 | disabled | 设置表单组件禁用，仅对 antdv 组件有效 | boolean | false | 4.0 |
+| variant | 设置表单内数据录入组件形态（对齐 antd ≥ 5.13） | `outlined` \| `filled` \| `borderless` | - | 4.10.0 |
 | hideRequiredMark | 隐藏所有表单项的必选标记 | Boolean | false |  |
 | labelAlign | label 标签的文本对齐方式 | 'left' \| 'right' | 'right' |  |
 | labelCol | label 标签布局，同 `<Col>` 组件，设置 `span` `offset` 值，如 `{span: 3, offset: 12}` 或 `sm: {span: 3, offset: 12}` | [object](/components/grid-cn/#col) |  |  |

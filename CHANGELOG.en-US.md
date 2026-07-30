@@ -4,6 +4,13 @@
 
 ---
 
+## 4.10.0
+
+`2026-07-30`
+
+- 🌟 Form supports `variant` for nested data-entry controls (antd ≥ 5.13)
+- 🌟 Cascader / TreeSelect support `variant` and inherit ConfigProvider / Form.variant
+
 ## 4.9.0
 
 `2026-07-30`

@@ -42,6 +42,8 @@ import { useInjectGlobalForm } from '../config-provider/context';
 import useStyle from './style';
 import { useProviderSize } from '../config-provider/SizeContext';
 import { useProviderDisabled } from '../config-provider/DisabledContext';
+import { useProviderVariant } from '../config-provider/VariantContext';
+import type { VariantType } from '../config-provider/VariantContext';
 export type RequiredMark = boolean | 'optional';
 export type FormLayout = 'horizontal' | 'inline' | 'vertical';
 
@@ -67,6 +69,8 @@ export const formProps = () => ({
   validateTrigger: someType<string | string[]>([String, Array]),
   size: stringType<SizeType>(),
   disabled: booleanType(),
+  /** Variant for nested data-entry components (antd ≥ 5.13). */
+  variant: stringType<Exclude<VariantType, undefined>>(),
   onValuesChange: functionType<Callbacks['onValuesChange']>(),
   onFieldsChange: functionType<Callbacks['onFieldsChange']>(),
   onFinish: functionType<Callbacks['onFinish']>(),
@@ -140,6 +144,8 @@ const Form = defineComponent({
     });
     useProviderSize(size);
     useProviderDisabled(disabled);
+    const variant = computed(() => props.variant);
+    useProviderVariant(variant);
     const mergedColon = computed(() => props.colon ?? contextForm.value?.colon);
     const { validateMessages: globalValidateMessages } = useInjectGlobalForm();
     const validateMessages = computed(() => {

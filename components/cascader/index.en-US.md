@@ -24,7 +24,8 @@ Cascade selection box.
 | --- | --- | --- | --- | --- |
 | allowClear | whether allow clear | boolean | true |  |
 | autofocus | get focus when component mounted | boolean | false |  |
-| bordered | Whether has border style | boolean | true | 3.2 |
+| bordered | Whether has border style; prefer `variant` | boolean | true | 3.2 |
+| variant | Variants of Cascader (antd ≥ 5.13) | `outlined` \| `filled` \| `borderless` | `outlined` | 4.10.0 |
 | clearIcon | The custom clear icon | slot | - | 3.2 |
 | changeOnSelect | (Work on single select) change value on each selection if set to true, see above demo for details | boolean | false |  |
 | disabled | whether disabled select | boolean | false |  |

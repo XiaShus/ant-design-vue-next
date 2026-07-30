@@ -36,6 +36,7 @@ import useSelectStyle from '../select/style';
 import useStyle from './style';
 import { useCompactItemContext } from '../space/Compact';
 import { useInjectDisabled } from '../config-provider/DisabledContext';
+import useVariant from '../config-provider/hooks/useVariant';
 
 import type { CustomSlotsType } from '../_util/type';
 
@@ -74,6 +75,8 @@ export function treeSelectProps<
     suffixIcon: PropTypes.any,
     size: stringType<SizeType>(),
     bordered: booleanType(),
+    /** Prefer over `bordered` (antd ≥ 5.13). */
+    variant: stringType<'outlined' | 'borderless' | 'filled'>(),
     treeLine: someType<TreeProps['showLine']>([Boolean, Object]),
     replaceFields: objectType<FieldNames>(),
     placement: stringType<SelectCommonPlacement>(),
@@ -151,6 +154,7 @@ const TreeSelect = defineComponent({
     const mergedSize = computed(() => compactSize.value || contextSize.value);
     const contextDisabled = useInjectDisabled();
     const mergedDisabled = computed(() => disabled.value ?? contextDisabled.value);
+    const variant = useVariant(props);
     const rootPrefixCls = computed(() => getPrefixCls());
     // ===================== Placement =====================
     const placement = computed(() => {
@@ -226,7 +230,6 @@ const TreeSelect = defineComponent({
       const {
         notFoundContent = slots.notFoundContent?.(),
         prefixCls: customizePrefixCls,
-        bordered,
         listHeight,
         listItemHeight,
         multiple,
@@ -238,6 +241,7 @@ const TreeSelect = defineComponent({
         id = formItemContext.id.value,
         placeholder = slots.placeholder?.(),
       } = props;
+      const mergedVariant = variant.value;
       const { isFormItemInput, hasFeedback, feedbackIcon } = formItemInputContext;
       // ===================== Icons =====================
       const { suffixIcon, removeIcon, clearIcon } = getIcons(
@@ -267,6 +271,7 @@ const TreeSelect = defineComponent({
         'clearIcon',
         'switcherIcon',
         'bordered',
+        'variant',
         'status',
         'onUpdate:value',
         'onUpdate:treeExpandedKeys',
@@ -279,7 +284,8 @@ const TreeSelect = defineComponent({
           [`${prefixCls.value}-lg`]: mergedSize.value === 'large',
           [`${prefixCls.value}-sm`]: mergedSize.value === 'small',
           [`${prefixCls.value}-rtl`]: direction.value === 'rtl',
-          [`${prefixCls.value}-borderless`]: !bordered,
+          [`${prefixCls.value}-borderless`]: mergedVariant === 'borderless',
+          [`${prefixCls.value}-filled`]: mergedVariant === 'filled',
           [`${prefixCls.value}-in-form-item`]: isFormItemInput,
         },
         getStatusClassNames(prefixCls.value, mergedStatus.value, hasFeedback),
