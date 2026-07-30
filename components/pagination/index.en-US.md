@@ -22,6 +22,7 @@ A long list can be divided into several pages using `Pagination`, and only one p
 
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
+| align | Align | `start` \| `center` \| `end` | - | 4.35.0 |
 | current(v-model) | current page number | number | - |  |
 | defaultCurrent | default initial page number | number | 1 |  |
 | defaultPageSize | default number of data items per page | number | 10 |  |

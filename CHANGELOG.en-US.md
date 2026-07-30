@@ -4,6 +4,12 @@
 
 ---
 
+## 4.35.0
+
+`2026-07-31`
+
+- 🌟 Pagination supports `align` (`start` / `center` / `end`) (antd ≥ 5.19)
+
 ## 4.34.0
 
 `2026-07-31`

@@ -18,6 +18,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*WM86SrBC8TsAAA
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
+| align | 对齐方式 | `start` \| `center` \| `end` | - | 4.35.0 |
 | current(v-model) | 当前页数 | number | - |  |
 | defaultPageSize | 默认的每页条数 | number | 10 |  |
 | disabled | 禁用分页 | boolean | - | 1.5.0 |

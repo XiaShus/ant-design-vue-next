@@ -31,6 +31,8 @@ export const paginationProps = () => ({
   showTotal: functionType<(total: number, range: [number, number]) => any>(),
   size: stringType<'default' | 'small'>(),
   simple: booleanType(),
+  /** Align pagination (antd ≥ 5.19). */
+  align: stringType<'start' | 'center' | 'end'>(),
   locale: Object,
   prefixCls: String,
   selectPrefixCls: String,
@@ -137,6 +139,7 @@ export default defineComponent({
         buildOptionText = slots.buildOptionText,
         selectComponentClass,
         responsive,
+        align,
         ...restProps
       } = props;
 
@@ -155,6 +158,7 @@ export default defineComponent({
           {
             [`${prefixCls.value}-mini`]: isSmall,
             [`${prefixCls.value}-rtl`]: direction.value === 'rtl',
+            [`${prefixCls.value}-${align}`]: !!align,
           },
           attrs.class,
           hashId.value,

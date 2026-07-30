@@ -47,7 +47,7 @@
 | Navigation | Breadcrumb | ✅ | ✅ | [breadcrumb](../../components/breadcrumb) | 🔄 `items` ✅ 4.34.0 |
 | Navigation | Dropdown | ✅ | ✅ | [dropdown](../../components/dropdown) | 🔄 `destroyOnHidden` ✅ 4.14.0 |
 | Navigation | Menu | ✅ | ✅ | [menu](../../components/menu) | — |
-| Navigation | Pagination | ✅ | ✅ | [pagination](../../components/pagination) | — |
+| Navigation | Pagination | ✅ | ✅ | [pagination](../../components/pagination) | 🔄 `align` ✅ 4.35.0 |
 | Navigation | Steps | ✅ | ✅ | [steps](../../components/steps) | — |
 | Navigation | Tabs | ✅ | ✅ | [tabs](../../components/tabs) | 🔄 `destroyOnHidden` ✅ 4.14.0 |
 
@@ -161,8 +161,10 @@
 30. ~~Descriptions `items`~~ — ✅ `4.32.0`
 31. ~~Timeline `items`~~ — ✅ `4.33.0`
 32. ~~Breadcrumb `items`~~ — ✅ `4.34.0`
-33. Table `virtual` 按需拆版（多日）
-34. ColorPicker 渐变 `mode`
+33. ~~Pagination `align`~~ — ✅ `4.35.0`
+34. Table `virtual` 按需拆版（多日）
+35. ColorPicker 渐变 `mode`
+36. Transfer `selectionsIcon` / Tour `actionsRender`
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -172,4 +174,4 @@
 
 ---
 
-_上次更新：`4.34.0` Breadcrumb.items。每发一版请同步改本表。_
+_上次更新：`4.35.0` Pagination.align。每发一版请同步改本表。_
