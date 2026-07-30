@@ -408,4 +408,10 @@ export default {
     type: 'Data Entry',
     title: 'ColorPicker',
   },
+  splitter: {
+    category: 'Components',
+    subtitle: '分隔面板',
+    type: 'Layout',
+    title: 'Splitter',
+  },
 };

@@ -43,6 +43,9 @@ export { default as Checkbox, CheckboxGroup } from './checkbox';
 export type { ColProps } from './col';
 export { default as Col } from './col';
 
+export type { SplitterProps, PanelProps as SplitterPanelProps } from './splitter';
+export { default as Splitter, SplitterPanel } from './splitter';
+
 export type {
   ColorPickerProps,
   ColorFormatType,

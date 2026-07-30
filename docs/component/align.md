@@ -36,7 +36,7 @@
 | Layout | Grid | ✅ | ✅ | [grid](../../components/grid) | — |
 | Layout | Layout | ✅ | ✅ | [layout](../../components/layout) | — |
 | Layout | Space | ✅ | ✅ | [space](../../components/space) | — |
-| Layout | Splitter | ✅ 5.21 | ❌ | — | **阶段 A 高优先级候选** |
+| Layout | Splitter | ✅ 5.21 | 🔄 ✅ 4.4.0 | [splitter](../../components/splitter) | 拖拽/min/max/受控；⏭ 完整 collapsible / lazy |
 | Layout | Masonry | ✅ 6.0 | ⏭ | — | 阶段 B（antd 6） |
 
 ## Navigation
@@ -130,11 +130,11 @@
 ## 阶段 A 候选队列（按可感知价值）
 
 1. ~~**ColorPicker**（antd 5.5）~~ — ✅ `4.3.0`
-2. **Splitter**（antd 5.21）— 下一候选
-3. **Input.OTP**（antd 5.12）
+2. ~~**Splitter**（antd 5.21）~~ — ✅ `4.4.0`
+3. **Input.OTP**（antd 5.12）— 下一候选
 4. ConfigProvider / 主题剩余差异（拆小 PR）
 5. Table / Form / DatePicker / Select / Modal 高频 API 缺口（逐项发版）
-6. ColorPicker 渐变 `mode` / `panelRender` 补齐
+6. ColorPicker 渐变 `mode` / `panelRender`；Splitter collapsible / lazy 补齐
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -144,4 +144,4 @@
 
 ---
 
-_上次更新：`4.3.0` ColorPicker。每发一版请同步改本表。_
+_上次更新：`4.4.0` Splitter。每发一版请同步改本表。_

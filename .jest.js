@@ -20,7 +20,7 @@ module.exports = {
   setupFiles: ['./tests/setup.js'],
   setupFilesAfterEnv: ['./tests/setupAfterEnv.ts'],
   moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx', 'json', 'vue', 'md', 'jpg'],
-  modulePathIgnorePatterns: ['/_site/'],
+  modulePathIgnorePatterns: ['/_site/', '<rootDir>/es/', '<rootDir>/lib/', '<rootDir>/dist/'],
   testPathIgnorePatterns: testPathIgnorePatterns,
   transform: {
     '\\.(vue|md)$': '<rootDir>/node_modules/@vue/vue3-jest',

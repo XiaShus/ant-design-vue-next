@@ -50,6 +50,7 @@ import type { ComponentToken as AppComponentToken } from '../../app/style';
 import type { ComponentToken as WaveToken } from '../../_util/wave/style';
 import type { ComponentToken as FlexToken } from '../../flex/style';
 import type { ComponentToken as ColorPickerComponentToken } from '../../color-picker/style';
+import type { ComponentToken as SplitterComponentToken } from '../../splitter/style';
 
 export interface ComponentTokenMap {
   Affix?: {};
@@ -117,6 +118,7 @@ export interface ComponentTokenMap {
   App?: AppComponentToken;
   Flex?: FlexToken;
   ColorPicker?: ColorPickerComponentToken;
+  Splitter?: SplitterComponentToken;
 
   //   /** @private Internal TS definition. Do not use. */
   Wave?: WaveToken;

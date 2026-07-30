@@ -4,6 +4,13 @@
 
 ---
 
+## 4.4.0
+
+`2026-07-30`
+
+- 🌟 Add [Splitter](./components/splitter), aligned with antd React ≥ 5.21 common APIs (`layout` / `defaultSize` / `size` / `min` / `max` / `resize` events)
+- ⚠️ Full collapsible UI and lazy preview bar are soft-skipped for now
+
 ## 4.3.0
 
 `2026-07-30`

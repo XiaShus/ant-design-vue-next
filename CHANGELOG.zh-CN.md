@@ -10,6 +10,13 @@
 
 ---
 
+## 4.4.0
+
+`2026-07-30`
+
+- 🌟 新增 [Splitter](./components/splitter) 分隔面板，对齐 antd React ≥ 5.21 常用 API（`layout` / `defaultSize` / `size` / `min` / `max` / `resize` 事件）
+- ⚠️ 完整 collapsible UI、lazy 预览条软跳过，见组件文档
+
 ## 4.3.0
 
 `2026-07-30`
