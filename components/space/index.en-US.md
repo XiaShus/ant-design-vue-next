@@ -21,9 +21,12 @@ Set components spacing.
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
 | align | Align items | `start` \| `end` \|`center` \|`baseline` | - | 1.6.5 |
-| direction | The space direction | `vertical` \| `horizontal` | `horizontal` | 1.6.5 |
+| direction | The space direction (also accepts `orientation`) | `vertical` \| `horizontal` | `horizontal` | 1.6.5 |
+| orientation | The space direction | `vertical` \| `horizontal` | `horizontal` | 4.48.0 |
+| separator | Set separator | VueNode \| v-slot:separator | - | 4.48.0 |
 | size | The space size | `small` \| `middle` \| `large` \| `number` | `small` | 1.6.5 |
-| split | Set split | VueNode \| v-slot | - | 2.2.0 |
+| split | Set split (also accepts `separator`) | VueNode \| v-slot:split | - | 2.2.0 |
+| vertical | Syntactic sugar for `orientation="vertical"` | boolean | `false` | 4.48.0 |
 | wrap | Auto wrap line, when `horizontal` effective | boolean | false | 2.2.0 |
 
 ### Space.Compact

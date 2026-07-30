@@ -25,9 +25,12 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*37T2R6O9oi0AAA
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
 | align | 对齐方式 | `start` \| `end` \|`center` \|`baseline` | - | 1.6.5 |
-| direction | 间距方向 | `vertical` \| `horizontal` | `horizontal` | 1.6.5 |
+| direction | 间距方向（也可用 `orientation`） | `vertical` \| `horizontal` | `horizontal` | 1.6.5 |
+| orientation | 间距方向 | `vertical` \| `horizontal` | `horizontal` | 4.48.0 |
+| separator | 设置分隔符 | VueNode \| v-slot:separator | - | 4.48.0 |
 | size | 间距大小 | `small` \| `middle` \| `large` \| `number` | `small` | 1.6.5 |
-| split | 设置拆分 | VueNode \| v-slot | - | 2.2.0 |
+| split | 设置拆分（也可用 `separator`） | VueNode \| v-slot:split | - | 2.2.0 |
+| vertical | `orientation="vertical"` 的语法糖 | boolean | `false` | 4.48.0 |
 | wrap | 是否自动换行，仅在 `horizontal` 时有效 | boolean | false | 2.2.0 |
 
 ### Space.Compact

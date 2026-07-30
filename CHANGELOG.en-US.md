@@ -4,6 +4,12 @@
 
 ---
 
+## 4.48.0
+
+`2026-07-31`
+
+- 🌟 Space supports `orientation`, `vertical`, and `separator` (plus `split` as prop)
+
 ## 4.47.0
 
 `2026-07-31`

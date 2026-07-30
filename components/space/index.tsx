@@ -3,8 +3,8 @@ import { defineComponent, computed, ref, watch, Fragment } from 'vue';
 import PropTypes from '../_util/vue-types';
 import { filterEmpty } from '../_util/props-util';
 import type { SizeType } from '../config-provider';
-import type { CustomSlotsType } from '../_util/type';
-import { booleanType, tuple } from '../_util/type';
+import type { CustomSlotsType, VueNode } from '../_util/type';
+import { booleanType, someType, tuple } from '../_util/type';
 import useConfigInject from '../config-provider/hooks/useConfigInject';
 import useFlexGapSupport from '../_util/hooks/useFlexGapSupport';
 import classNames from '../_util/classNames';
@@ -13,6 +13,7 @@ import Compact from './Compact';
 import useStyle from './style';
 
 export type SpaceSize = SizeType | number;
+export type SpaceOrientation = 'horizontal' | 'vertical';
 const spaceSize = {
   small: 8,
   middle: 16,
@@ -24,8 +25,15 @@ export const spaceProps = () => ({
     type: [String, Number, Array] as PropType<SpaceSize | [SpaceSize, SpaceSize]>,
   },
   direction: PropTypes.oneOf(tuple('horizontal', 'vertical')).def('horizontal'),
+  /** The space direction (preferred alias of direction) */
+  orientation: PropTypes.oneOf(tuple('horizontal', 'vertical')),
+  /** Syntactic sugar for `orientation="vertical"` */
+  vertical: booleanType(),
   align: PropTypes.oneOf(tuple('start', 'end', 'center', 'baseline')),
   wrap: booleanType(),
+  split: someType<VueNode>([Object, String, Number, Boolean]),
+  /** Set separator between items (preferred alias of split) */
+  separator: someType<VueNode>([Object, String, Number, Boolean]),
 });
 
 export type SpaceProps = Partial<ExtractPropTypes<ReturnType<typeof spaceProps>>>;
@@ -41,6 +49,7 @@ const Space = defineComponent({
   props: spaceProps(),
   slots: Object as CustomSlotsType<{
     split?: any;
+    separator?: any;
     default?: any;
   }>,
   setup(props, { slots, attrs }) {
@@ -63,14 +72,31 @@ const Space = defineComponent({
       { immediate: true },
     );
 
+    const mergedOrientation = computed((): SpaceOrientation => {
+      if (props.orientation === 'vertical' || props.orientation === 'horizontal') {
+        return props.orientation;
+      }
+      if (props.vertical) {
+        return 'vertical';
+      }
+      return props.direction === 'vertical' ? 'vertical' : 'horizontal';
+    });
+
     const mergedAlign = computed(() =>
-      props.align === undefined && props.direction === 'horizontal' ? 'center' : props.align,
+      props.align === undefined && mergedOrientation.value === 'horizontal'
+        ? 'center'
+        : props.align,
     );
     const cn = computed(() => {
-      return classNames(prefixCls.value, hashId.value, `${prefixCls.value}-${props.direction}`, {
-        [`${prefixCls.value}-rtl`]: directionConfig.value === 'rtl',
-        [`${prefixCls.value}-align-${mergedAlign.value}`]: mergedAlign.value,
-      });
+      return classNames(
+        prefixCls.value,
+        hashId.value,
+        `${prefixCls.value}-${mergedOrientation.value}`,
+        {
+          [`${prefixCls.value}-rtl`]: directionConfig.value === 'rtl',
+          [`${prefixCls.value}-align-${mergedAlign.value}`]: mergedAlign.value,
+        },
+      );
     });
 
     const marginDirection = computed(() =>
@@ -88,7 +114,8 @@ const Space = defineComponent({
       } as CSSProperties;
     });
     return () => {
-      const { wrap, direction = 'horizontal' } = props;
+      const { wrap } = props;
+      const direction = mergedOrientation.value;
       const children = slots.default?.();
       const items = filterEmpty(children);
       const len = items.length;
@@ -96,7 +123,7 @@ const Space = defineComponent({
       if (len === 0) {
         return null;
       }
-      const split = slots.split?.();
+      const split = props.separator ?? props.split ?? slots.separator?.() ?? slots.split?.();
       const itemClassName = `${prefixCls.value}-item`;
       const horizontalSizeVal = horizontalSize.value;
       const latestIndex = len - 1;

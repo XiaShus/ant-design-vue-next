@@ -8,6 +8,12 @@
 
 ---
 
+## 4.48.0
+
+`2026-07-31`
+
+- 🌟 Space 支持 `orientation` / `vertical` / `separator`（并支持 `split` 作为属性）
+
 ## 4.47.0
 
 `2026-07-31`

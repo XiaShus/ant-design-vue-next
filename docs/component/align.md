@@ -35,7 +35,7 @@
 | Layout | Flex | ✅ 5.10 | ✅ | [flex](../../components/flex) | — |
 | Layout | Grid | ✅ | ✅ | [grid](../../components/grid) | — |
 | Layout | Layout | ✅ | ✅ | [layout](../../components/layout) | — |
-| Layout | Space | ✅ | ✅ | [space](../../components/space) | — |
+| Layout | Space | ✅ | ✅ | [space](../../components/space) | 🔄 `orientation` / `vertical` / `separator` ✅ 4.48.0 |
 | Layout | Splitter | ✅ 5.21 | 🔄 ✅ 4.4.0 | [splitter](../../components/splitter) | 拖拽/min/max/受控；🔄 collapsible / lazy ✅ 4.16.0 |
 | Layout | Masonry | ✅ 6.0 | ⏭ | — | 阶段 B（antd 6） |
 
@@ -174,9 +174,11 @@
 43. ~~Segmented `shape="round"`~~ — ✅ `4.45.0`
 44. ~~Button `autoInsertSpace`~~ — ✅ `4.46.0`
 45. ~~Button `iconPlacement`~~ — ✅ `4.47.0`
-46. Table `virtual` 按需拆版（多日）
-47. ColorPicker 渐变 `mode`
-48. Segmented `vertical`（需 MotionThumb 竖向）
+46. ~~Space `orientation` / `separator` / `vertical`~~ — ✅ `4.48.0`
+47. Table `virtual` 按需拆版（多日）
+48. ColorPicker 渐变 `mode`
+49. Segmented `vertical`（需 MotionThumb 竖向）
+50. Button `color` / `variant`
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -186,4 +188,4 @@
 
 ---
 
-_上次更新：`4.47.0` Button.iconPlacement。每发一版请同步改本表。_
+_上次更新：`4.48.0` Space.orientation/separator。每发一版请同步改本表。_
