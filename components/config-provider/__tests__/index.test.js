@@ -84,6 +84,23 @@ describe('ConfigProvider', () => {
     expect(wrapper.find('.ant-input-filled').exists()).toBe(true);
   });
 
+  it('variant propagates to Select and InputNumber', () => {
+    const Select = require('../../select').default;
+    const InputNumber = require('../../input-number').default;
+    const wrapper = mount({
+      render() {
+        return (
+          <ConfigProvider variant="filled">
+            <Select class="variant-select" options={[{ value: 'a', label: 'A' }]} />
+            <InputNumber class="variant-input-number" />
+          </ConfigProvider>
+        );
+      },
+    });
+    expect(wrapper.find('.ant-select-filled').exists()).toBe(true);
+    expect(wrapper.find('.ant-input-number-filled').exists()).toBe(true);
+  });
+
   it('useConfig returns componentSize and componentDisabled', () => {
     let size;
     let disabled;

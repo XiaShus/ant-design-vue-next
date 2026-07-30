@@ -22,7 +22,8 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*1uH-R5kLAMIAAA
 | addonAfter | 带标签的 input，设置后置标签 | slot | - | 3.0 |
 | addonBefore | 带标签的 input，设置前置标签 | slot | - | 3.0 |
 | autofocus | 自动获取焦点 | boolean | false |  |
-| bordered | 是否有边框 | boolean | true | 3.0 |
+| bordered | 是否有边框，请优先使用 `variant` | boolean | true | 3.0 |
+| variant | 形态变体（对齐 antd ≥ 5.13） | `outlined` \| `filled` \| `borderless` | `outlined` | 4.9.0 |
 | controls | 是否显示增减按钮 | boolean | true | 3.0 |
 | decimalSeparator | 小数点 | string | - |  |
 | defaultValue | 初始值 | number |  |  |

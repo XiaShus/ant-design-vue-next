@@ -258,6 +258,21 @@ const genSelectStyle: GenerateStyle<SelectToken> = token => {
           boxShadow: `none !important`,
         },
 
+        // ==================== Filled ====================
+        [`&-filled ${componentCls}-selector`]: {
+          backgroundColor: `${token.colorFillTertiary} !important`,
+          borderColor: `transparent !important`,
+        },
+        [`&-filled:not(${componentCls}-disabled):hover ${componentCls}-selector`]: {
+          backgroundColor: `${token.colorFillSecondary} !important`,
+        },
+        [`&-filled${componentCls}-focused ${componentCls}-selector, &-filled:focus ${componentCls}-selector`]:
+          {
+            backgroundColor: `${token.colorBgContainer} !important`,
+            borderColor: `${token.colorPrimary} !important`,
+            boxShadow: `0 0 0 ${token.controlOutlineWidth}px ${token.controlOutline}`,
+          },
+
         // ==================== In Form ====================
         [`&${componentCls}-in-form-item`]: {
           width: '100%',

@@ -22,6 +22,7 @@ import { getMergedStatus, getStatusClassNames } from '../../_util/statusUtils';
 //CSSINJS
 import useStyle from '../style';
 import { useCompactItemContext } from '../../space/Compact';
+import useVariant from '../../config-provider/hooks/useVariant';
 import devWarning from '../../vc-util/devWarning';
 import type { CustomSlotsType } from '../../_util/type';
 
@@ -73,6 +74,7 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
         useConfigInject('picker', props);
       const { compactSize, compactItemClassnames } = useCompactItemContext(prefixCls, direction);
       const mergedSize = computed(() => compactSize.value || size.value);
+      const variant = useVariant(props);
       // style
       const [wrapSSR, hashId] = useStyle(prefixCls);
       const pickerRef = ref();
@@ -151,7 +153,6 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
         const p = { ...props, ...attrs };
         const {
           prefixCls: customizePrefixCls,
-          bordered = true,
           placeholder,
           suffixIcon = slots.suffixIcon?.(),
           picker = 'date',
@@ -166,6 +167,9 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
         } = p;
         delete restProps['onUpdate:value'];
         delete restProps['onUpdate:open'];
+        delete restProps.bordered;
+        delete restProps.variant;
+        const mergedVariant = variant.value;
         const { format, showTime } = p as any;
 
         let additionalOverrideProps: any = {};
@@ -212,7 +216,8 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
             class={classNames(
               {
                 [`${pre}-${mergedSize.value}`]: mergedSize.value,
-                [`${pre}-borderless`]: !bordered,
+                [`${pre}-borderless`]: mergedVariant === 'borderless',
+                [`${pre}-filled`]: mergedVariant === 'filled',
               },
               getStatusClassNames(
                 pre,

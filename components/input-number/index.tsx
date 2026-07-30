@@ -23,6 +23,7 @@ import { booleanType, stringType } from '../_util/type';
 import useStyle from './style';
 import { NoCompactStyle, useCompactItemContext } from '../space/Compact';
 import { useInjectDisabled } from '../config-provider/DisabledContext';
+import useVariant from '../config-provider/hooks/useVariant';
 
 import type { CustomSlotsType } from '../_util/type';
 const baseProps = baseInputNumberProps();
@@ -30,6 +31,8 @@ export const inputNumberProps = () => ({
   ...baseProps,
   size: stringType<SizeType>(),
   bordered: booleanType(true),
+  /** Prefer over `bordered` (antd ≥ 5.13). */
+  variant: stringType<'outlined' | 'borderless' | 'filled'>(),
   placeholder: String,
   name: String,
   id: String,
@@ -67,6 +70,7 @@ const InputNumber = defineComponent({
     const { compactSize, compactItemClassnames } = useCompactItemContext(prefixCls, direction);
     const disabledContext = useInjectDisabled();
     const mergedDisabled = computed(() => disabled.value ?? disabledContext.value);
+    const variant = useVariant(props);
     // Style
     const [wrapSSR, hashId] = useStyle(prefixCls);
 
@@ -113,7 +117,6 @@ const InputNumber = defineComponent({
       const id = props.id ?? formItemContext.id.value;
       const {
         class: className,
-        bordered,
         readonly,
         style,
         addonBefore = slots.addonBefore?.(),
@@ -123,6 +126,7 @@ const InputNumber = defineComponent({
         ...others
       } = { ...attrs, ...props, id, disabled: mergedDisabled.value } as InputNumberProps &
         HTMLAttributes;
+      const mergedVariant = variant.value;
 
       const preCls = prefixCls.value;
 
@@ -132,7 +136,8 @@ const InputNumber = defineComponent({
           [`${preCls}-sm`]: mergedSize.value === 'small',
           [`${preCls}-rtl`]: direction.value === 'rtl',
           [`${preCls}-readonly`]: readonly,
-          [`${preCls}-borderless`]: !bordered,
+          [`${preCls}-borderless`]: mergedVariant === 'borderless',
+          [`${preCls}-filled`]: mergedVariant === 'filled',
           [`${preCls}-in-form-item`]: isFormItemInput,
         },
         getStatusClassNames(preCls, mergedStatus.value),
@@ -143,7 +148,7 @@ const InputNumber = defineComponent({
 
       let element = (
         <VcInputNumber
-          {...omit(others, ['size', 'defaultValue'])}
+          {...omit(others, ['size', 'defaultValue', 'bordered', 'variant'])}
           ref={inputNumberRef}
           lazy={!!valueModifiers.lazy}
           value={mergedValue.value}
@@ -176,7 +181,8 @@ const InputNumber = defineComponent({
             [`${preCls}-affix-wrapper-lg`]: mergedSize.value === 'large',
             [`${preCls}-affix-wrapper-rtl`]: direction.value === 'rtl',
             [`${preCls}-affix-wrapper-readonly`]: readonly,
-            [`${preCls}-affix-wrapper-borderless`]: !bordered,
+            [`${preCls}-affix-wrapper-borderless`]: mergedVariant === 'borderless',
+            [`${preCls}-affix-wrapper-filled`]: mergedVariant === 'filled',
             // className will go to addon wrapper
             [`${className}`]: !hasAddon && className,
           },

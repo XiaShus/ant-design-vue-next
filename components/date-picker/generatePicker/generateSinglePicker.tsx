@@ -21,6 +21,7 @@ import { useCompactItemContext } from '../../space/Compact';
 import type { CustomSlotsType } from '../../_util/type';
 //CSSINJS
 import useStyle from '../style';
+import useVariant from '../../config-provider/hooks/useVariant';
 
 export default function generateSinglePicker<DateType, ExtraProps = {}>(
   generateConfig: GenerateConfig<DateType>,
@@ -87,6 +88,7 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
           useConfigInject('picker', props);
         const { compactSize, compactItemClassnames } = useCompactItemContext(prefixCls, direction);
         const mergedSize = computed(() => compactSize.value || size.value);
+        const variant = useVariant(props);
         // style
         const [wrapSSR, hashId] = useStyle(prefixCls);
 
@@ -164,7 +166,6 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
           const locale = { ...contextLocale.value, ...props.locale };
           const p = { ...props, ...attrs };
           const {
-            bordered = true,
             placeholder,
             suffixIcon = slots.suffixIcon?.(),
             showToday = true,
@@ -179,6 +180,9 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
             id = formItemContext.id.value,
             ...restProps
           } = p;
+          delete (restProps as any).bordered;
+          delete (restProps as any).variant;
+          const mergedVariant = variant.value;
           const showTime = (p.showTime as string) === '' ? true : p.showTime;
           const { format } = p as any;
 
@@ -232,7 +236,8 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
               class={classNames(
                 {
                   [`${pre}-${mergedSize.value}`]: mergedSize.value,
-                  [`${pre}-borderless`]: !bordered,
+                  [`${pre}-borderless`]: mergedVariant === 'borderless',
+                  [`${pre}-filled`]: mergedVariant === 'filled',
                 },
                 getStatusClassNames(
                   pre,

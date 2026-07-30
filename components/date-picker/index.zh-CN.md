@@ -81,7 +81,8 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*3OpRQKcygo8AAA
 | --- | --- | --- | --- | --- |
 | allowClear | 是否显示清除按钮 | boolean | true |  |
 | autofocus | 自动获取焦点 | boolean | false |  |
-| bordered | 是否有边框 | boolean | true |  |
+| bordered | 是否有边框，请优先使用 `variant` | boolean | true |  |
+| variant | 形态变体（对齐 antd ≥ 5.13） | `outlined` \| `filled` \| `borderless` | `outlined` | 4.9.0 |
 | dateRender | 自定义日期单元格的内容 | v-slot:dateRender="{current, today}" | - |  |
 | disabled | 禁用 | boolean | false |  |
 | disabledDate | 不可选择的日期 | (currentDate: dayjs) => boolean | - |  |

@@ -296,6 +296,22 @@ const genInputNumberStyles: GenerateStyle<InputNumberToken> = (token: InputNumbe
         },
       },
     },
+
+    // Filled
+    {
+      [`${componentCls}-filled`]: {
+        backgroundColor: token.colorFillTertiary,
+        borderColor: 'transparent',
+        '&:hover': {
+          backgroundColor: token.colorFillSecondary,
+        },
+        [`&${componentCls}-focused, &:focus`]: {
+          backgroundColor: token.colorBgContainer,
+          borderColor: token.colorPrimary,
+          boxShadow: `0 0 0 ${token.controlOutlineWidth}px ${token.controlOutline}`,
+        },
+      },
+    },
   ];
 };
 

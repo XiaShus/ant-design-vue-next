@@ -1001,6 +1001,19 @@ const genPickerStyle: GenerateStyle<PickerToken> = token => {
           boxShadow: 'none !important',
         },
 
+        [`&${componentCls}-filled`]: {
+          backgroundColor: `${token.colorFillTertiary} !important`,
+          borderColor: 'transparent !important',
+          '&:hover': {
+            backgroundColor: `${token.colorFillSecondary} !important`,
+          },
+          [`&${componentCls}-focused`]: {
+            backgroundColor: `${token.colorBgContainer} !important`,
+            borderColor: `${token.colorPrimary} !important`,
+            boxShadow: `0 0 0 ${token.controlOutlineWidth}px ${token.controlOutline}`,
+          },
+        },
+
         // ======================== Input =========================
         [`${componentCls}-input`]: {
           position: 'relative',

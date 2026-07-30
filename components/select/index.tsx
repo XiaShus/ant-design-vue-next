@@ -23,6 +23,7 @@ import { useCompactItemContext } from '../space/Compact';
 // CSSINJS
 import useStyle from './style';
 import { useInjectDisabled } from '../config-provider/DisabledContext';
+import useVariant from '../config-provider/hooks/useVariant';
 import devWarning from '../vc-util/devWarning';
 
 import type { CustomSlotsType } from '../_util/type';
@@ -55,6 +56,8 @@ export const selectProps = () => ({
   size: stringType<SizeType>(),
   mode: stringType<'multiple' | 'tags' | 'SECRET_COMBOBOX_MODE_DO_NOT_USE'>(),
   bordered: booleanType(true),
+  /** Prefer over `bordered` (antd ≥ 5.13). */
+  variant: stringType<'outlined' | 'borderless' | 'filled'>(),
   transitionName: String,
   choiceTransitionName: stringType(''),
   popupClassName: String,
@@ -147,6 +150,7 @@ const Select = defineComponent({
     const mergedSize = computed(() => compactSize.value || contextSize.value);
     const contextDisabled = useInjectDisabled();
     const mergedDisabled = computed(() => disabled.value ?? contextDisabled.value);
+    const variant = useVariant(props);
     // style
     const [wrapSSR, hashId] = useStyle(prefixCls);
 
@@ -173,7 +177,8 @@ const Select = defineComponent({
           [`${prefixCls.value}-lg`]: mergedSize.value === 'large',
           [`${prefixCls.value}-sm`]: mergedSize.value === 'small',
           [`${prefixCls.value}-rtl`]: direction.value === 'rtl',
-          [`${prefixCls.value}-borderless`]: !props.bordered,
+          [`${prefixCls.value}-borderless`]: variant.value === 'borderless',
+          [`${prefixCls.value}-filled`]: variant.value === 'filled',
           [`${prefixCls.value}-in-form-item`]: formItemInputContext.isFormItemInput,
         },
         getStatusClassNames(prefixCls.value, mergedStatus.value, formItemInputContext.hasFeedback),
@@ -251,6 +256,7 @@ const Select = defineComponent({
         'clearIcon',
         'size',
         'bordered',
+        'variant',
         'status',
       ]);
 

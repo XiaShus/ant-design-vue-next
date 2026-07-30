@@ -4,6 +4,12 @@
 
 ---
 
+## 4.9.0
+
+`2026-07-30`
+
+- 🌟 Select / InputNumber / DatePicker / RangePicker support `variant` (outlined / filled / borderless) and inherit ConfigProvider.variant
+
 ## 4.8.0
 
 `2026-07-30`

@@ -29,7 +29,8 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*5oPiTqPxGAUAAA
 | allowClear | 支持清除 | boolean | false |  |
 | autoClearSearchValue | 是否在选中项后清空搜索框，只在 `mode` 为 `multiple` 或 `tags` 时有效。 | boolean | true |  |
 | autofocus | 默认获取焦点 | boolean | false |  |
-| bordered | 是否有边框 | boolean | true |  |
+| bordered | 是否有边框，请优先使用 `variant` | boolean | true |  |
+| variant | 形态变体（对齐 antd ≥ 5.13） | `outlined` \| `filled` \| `borderless` | `outlined` | 4.9.0 |
 | clearIcon | 自定义的多选框清空图标 | VNode \| slot | - |  |
 | defaultActiveFirstOption | 是否默认高亮第一个选项。 | boolean | true |  |
 | defaultOpen | 是否默认展开下拉菜单 | boolean | - |  |
