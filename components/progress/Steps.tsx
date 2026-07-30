@@ -9,6 +9,8 @@ import { getSize } from './utils';
 export const stepsProps = () => ({
   ...progressProps(),
   steps: Number,
+  /** Gap between step items in px (from `steps.gap`) */
+  stepGap: Number,
   strokeColor: someType<string | string[]>(),
   trailColor: String,
 });
@@ -20,7 +22,7 @@ export default defineComponent({
   name: 'Steps',
   props: stepsProps(),
   setup(props, { slots }) {
-    const current = computed(() => Math.round(props.steps * ((props.percent || 0) / 100)));
+    const current = computed(() => Math.round((props.steps || 0) * ((props.percent || 0) / 100)));
     const mergedSize = computed(
       () => props.size ?? [props.size === 'small' ? 2 : 14, props.strokeWidth || 8],
     );
@@ -32,7 +34,7 @@ export default defineComponent({
     );
 
     const styledSteps = computed(() => {
-      const { steps, strokeColor, trailColor, prefixCls } = props;
+      const { steps = 0, strokeColor, trailColor, prefixCls, stepGap } = props;
 
       const temp: VueNode[] = [];
       for (let i = 0; i < steps; i += 1) {
@@ -49,6 +51,9 @@ export default defineComponent({
               backgroundColor: i <= current.value - 1 ? color : trailColor,
               width: `${sizeRef.value.width / steps}px`,
               height: `${sizeRef.value.height}px`,
+              ...(stepGap !== undefined && i < steps - 1
+                ? { marginInlineEnd: `${stepGap}px` }
+                : null),
             }}
           />,
         );

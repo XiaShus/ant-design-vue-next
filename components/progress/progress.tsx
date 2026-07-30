@@ -63,6 +63,17 @@ export default defineComponent({
       return status || 'normal';
     });
 
+    const mergedSteps = computed(() => {
+      const { steps } = props;
+      if (steps === undefined || steps === null) {
+        return null;
+      }
+      if (typeof steps === 'object') {
+        return { count: steps.count, gap: steps.gap };
+      }
+      return { count: steps, gap: undefined as number | undefined };
+    });
+
     const classString = computed(() => {
       const { type, showInfo, size } = props;
       const pre = prefixCls.value;
@@ -73,6 +84,7 @@ export default defineComponent({
         [`${pre}-status-${progressStatus.value}`]: true,
         [`${pre}-show-info`]: showInfo,
         [`${pre}-${size}`]: typeof size === 'string',
+        [`${pre}-steps`]: !!mergedSteps.value,
         [`${pre}-rtl`]: direction.value === 'rtl',
         [hashId.value]: true,
       };
@@ -114,18 +126,20 @@ export default defineComponent({
     };
 
     return () => {
-      const { type, steps, title } = props;
+      const { type, title } = props;
       const { class: cls, ...restAttrs } = attrs;
       const progressInfo = renderProcessInfo();
+      const stepsInfo = mergedSteps.value;
       let progress: VueNode;
       // Render progress shape
       if (type === 'line') {
-        progress = steps ? (
+        progress = stepsInfo ? (
           <Steps
             {...props}
             strokeColor={strokeColorNotGradient.value}
             prefixCls={prefixCls.value}
-            steps={steps}
+            steps={stepsInfo.count}
+            stepGap={stepsInfo.gap}
           >
             {progressInfo}
           </Steps>

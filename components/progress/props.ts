@@ -31,6 +31,9 @@ export interface SuccessProps {
   strokeColor?: string;
 }
 
+/** antd ≥ 5.16 — object form supports `count` + `gap` (gap used by line step spacing). */
+export type ProgressSteps = number | { count: number; gap?: number };
+
 export const progressProps = () => ({
   prefixCls: String,
   type: stringType<ProgressType>(),
@@ -48,7 +51,7 @@ export const progressProps = () => ({
   gapDegree: Number,
   gapPosition: stringType<'top' | 'bottom' | 'left' | 'right'>(),
   size: someType<ProgressSize>([String, Number, Array, Object]),
-  steps: Number,
+  steps: someType<ProgressSteps>([Number, Object]),
   /** @deprecated Use `success` instead */
   successPercent: Number,
   title: String,

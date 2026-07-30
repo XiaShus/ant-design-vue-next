@@ -4,6 +4,12 @@
 
 ---
 
+## 4.55.0
+
+`2026-07-31`
+
+- 🌟 Progress `steps` supports object form `{ count, gap }` (antd ≥ 5.16)
+
 ## 4.54.0
 
 `2026-07-31`
