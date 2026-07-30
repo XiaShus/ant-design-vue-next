@@ -4,6 +4,12 @@
 
 ---
 
+## 4.29.0
+
+`2026-07-31`
+
+- 🌟 Card supports `variant` (`outlined` / `borderless`) (antd ≥ 5.24)
+
 ## 4.28.0
 
 `2026-07-31`

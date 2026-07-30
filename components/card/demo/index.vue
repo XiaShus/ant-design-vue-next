@@ -2,6 +2,7 @@
   <demo-sort>
     <Basic />
     <BorderLess />
+    <Variant />
     <FlexibleContent />
     <GridCard />
     <InColumn />
@@ -16,6 +17,7 @@
 <script lang="ts">
 import Basic from './basic.vue';
 import BorderLess from './border-less.vue';
+import Variant from './variant.vue';
 import FlexibleContent from './flexible-content.vue';
 import GridCard from './grid-card.vue';
 import InColumn from './in-column.vue';
@@ -35,6 +37,7 @@ export default defineComponent({
   components: {
     Basic,
     BorderLess,
+    Variant,
     FlexibleContent,
     GridCard,
     InColumn,

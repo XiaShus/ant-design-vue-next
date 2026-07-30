@@ -21,7 +21,8 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*a-8zR6rrupgAAA
 | --- | --- | --- | --- | --- |
 | activeTabKey | 当前激活页签的 key | string | - |  |
 | bodyStyle | 内容区域自定义样式 | object | - |  |
-| bordered | 是否有边框 | boolean | true |  |
+| bordered | 是否有边框，请使用 `variant` 替代 | boolean | true |  |
+| variant | 形态变体 | `outlined` \| `borderless` | `outlined` | 4.29.0 |
 | defaultActiveTabKey | 初始化选中页签的 key，如果没有设置 activeTabKey | string | 第一个页签 |  |
 | extra | 卡片右上角的操作区域 | string\|slot | - |  |
 | headStyle | 自定义标题区域样式 | object | - |  |

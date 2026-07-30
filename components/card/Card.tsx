@@ -1,5 +1,5 @@
 import type { VNodeTypes, PropType, VNode, ExtractPropTypes, CSSProperties } from 'vue';
-import { isVNode, defineComponent } from 'vue';
+import { computed, isVNode, defineComponent } from 'vue';
 import Tabs from '../tabs';
 import PropTypes from '../_util/vue-types';
 import { flattenChildren, isEmptyElement, filterEmptyWithUndefined } from '../_util/props-util';
@@ -10,6 +10,7 @@ import devWarning from '../vc-util/devWarning';
 import useStyle from './style';
 import Skeleton from '../skeleton';
 import type { CustomSlotsType } from '../_util/type';
+import { stringType } from '../_util/type';
 import { customRenderSlot } from '../_util/vnode';
 
 export interface CardTabListType {
@@ -22,6 +23,7 @@ export interface CardTabListType {
 
 export type CardType = 'inner';
 export type CardSize = 'default' | 'small';
+export type CardVariant = 'outlined' | 'borderless';
 
 const { TabPane } = Tabs;
 
@@ -29,7 +31,10 @@ export const cardProps = () => ({
   prefixCls: String,
   title: PropTypes.any,
   extra: PropTypes.any,
+  /** @deprecated Please use `variant` instead. */
   bordered: { type: Boolean, default: true },
+  /** Card style variant (antd ≥ 5.24). */
+  variant: stringType<CardVariant>(),
   bodyStyle: { type: Object as PropType<CSSProperties>, default: undefined as CSSProperties },
   headStyle: { type: Object as PropType<CSSProperties>, default: undefined as CSSProperties },
   loading: { type: Boolean, default: false },
@@ -68,6 +73,15 @@ const Card = defineComponent({
   setup(props, { slots, attrs }) {
     const { prefixCls, direction, size } = useConfigInject('card', props);
     const [wrapSSR, hashId] = useStyle(prefixCls);
+    const mergedVariant = computed<CardVariant>(() => {
+      if (props.variant) {
+        return props.variant;
+      }
+      if (props.bordered === false) {
+        return 'borderless';
+      }
+      return 'outlined';
+    });
     const getAction = (actions: VNodeTypes[]) => {
       const actionList = actions.map((action, index) =>
         (isVNode(action) && !isEmptyElement(action)) || !isVNode(action) ? (
@@ -96,7 +110,6 @@ const Card = defineComponent({
         headStyle = {},
         bodyStyle = {},
         loading,
-        bordered = true,
         type,
         tabList,
         hoverable,
@@ -114,7 +127,7 @@ const Card = defineComponent({
         [`${pre}`]: true,
         [hashId.value]: true,
         [`${pre}-loading`]: loading,
-        [`${pre}-bordered`]: bordered,
+        [`${pre}-bordered`]: mergedVariant.value !== 'borderless',
         [`${pre}-hoverable`]: !!hoverable,
         [`${pre}-contain-grid`]: isContainGrid(children),
         [`${pre}-contain-tabs`]: tabList && tabList.length,

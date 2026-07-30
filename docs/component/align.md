@@ -81,7 +81,7 @@
 | Data Display | Avatar | ✅ | ✅ | [avatar](../../components/avatar) | 🔄 Group `max` ✅ 4.28.0 |
 | Data Display | Badge | ✅ | ✅ | [badge](../../components/badge) | — |
 | Data Display | Calendar | ✅ | ✅ | [calendar](../../components/calendar) | — |
-| Data Display | Card | ✅ | ✅ | [card](../../components/card) | — |
+| Data Display | Card | ✅ | ✅ | [card](../../components/card) | 🔄 `variant` ✅ 4.29.0 |
 | Data Display | Carousel | ✅ | ✅ | [carousel](../../components/carousel) | — |
 | Data Display | Collapse | ✅ | ✅ | [collapse](../../components/collapse) | 🔄 `destroyOnHidden` ✅ 4.14.0 |
 | Data Display | Descriptions | ✅ | ✅ | [descriptions](../../components/descriptions) | — |
@@ -155,8 +155,9 @@
 24. ~~QRCode `statusRender` / object `iconSize`~~ — ✅ `4.26.0`
 25. ~~Alert object `closable`~~ — ✅ `4.27.0`
 26. ~~Avatar.Group `max`~~ — ✅ `4.28.0`
-27. Table `virtual` 按需拆版（多日）
-28. ColorPicker 渐变 `mode`
+27. ~~Card `variant`~~ — ✅ `4.29.0`
+28. Table `virtual` 按需拆版（多日）
+29. ColorPicker 渐变 `mode`
 
 ## 阶段 B（仅规划，不急实现）
 
