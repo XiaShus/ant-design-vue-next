@@ -31,6 +31,7 @@ For displaying anchor hyperlinks on page and jumping between them.
 | wrapperStyle | The style of the container | object | - |  |
 | items | Data configuration option content, support nesting through children | { key, href, title, target, children }\[] [see](#anchoritem) | - | 4.0 |
 | direction | Set Anchor direction | `vertical` \| `horizontal` | `vertical` | 4.0 |
+| replace | Replace items' href in browser history instead of pushing it | boolean | false | 4.39.0 |
 | customTitle | custom option title by slot | v-slot="AnchorItem" | - | 4.0 |
 
 ### AnchorItem
@@ -42,6 +43,7 @@ For displaying anchor hyperlinks on page and jumping between them.
 | target | Specifies where to display the linked URL | string |  |  |
 | title | The content of hyperlink | VueNode \| (item: AnchorItem) => VueNode |  |  |
 | children | Nested Anchor Link, `Attention: This attribute does not support horizontal orientation` | [AnchorItem](#anchoritem)\[] | - |  |
+| replace | Replace item href in browser history instead of pushing it | boolean | false | 4.39.0 |
 
 ### Events
 
@@ -52,8 +54,9 @@ For displaying anchor hyperlinks on page and jumping between them.
 
 ### Link Props
 
-| Property | Description                               | Type         | Default | Version |
-| -------- | ----------------------------------------- | ------------ | ------- | ------- |
-| href     | target of hyperlink                       | string       |         |         |
-| target   | Specifies where to display the linked URL | string       |         | 1.5.0   |
-| title    | content of hyperlink                      | string\|slot |         |         |
+| Property | Description | Type | Default | Version |
+| --- | --- | --- | --- | --- |
+| href | target of hyperlink | string |  |  |
+| target | Specifies where to display the linked URL | string |  | 1.5.0 |
+| title | content of hyperlink | string\|slot |  |  |
+| replace | Replace href in browser history instead of pushing it | boolean | false | 4.39.0 |

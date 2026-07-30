@@ -4,6 +4,12 @@
 
 ---
 
+## 4.39.0
+
+`2026-07-31`
+
+- 🌟 Anchor supports `replace` for history.replaceState on click (antd ≥ 5.7)
+
 ## 4.38.0
 
 `2026-07-31`

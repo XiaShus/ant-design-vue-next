@@ -5,7 +5,7 @@ import classNames from '../_util/classNames';
 import useConfigInject from '../config-provider/hooks/useConfigInject';
 import { useInjectAnchor } from './context';
 import type { Key, VueNode, CustomSlotsType } from '../_util/type';
-import { objectType, anyType } from '../_util/type';
+import { objectType, anyType, booleanType } from '../_util/type';
 import type { CSSProperties } from '../_util/cssinjs/hooks/useStyleRegister';
 
 export const anchorLinkProps = () => ({
@@ -13,6 +13,8 @@ export const anchorLinkProps = () => ({
   href: String,
   title: anyType<VueNode | ((item: any) => VueNode)>(),
   target: String,
+  /** Replace href in browser history instead of pushing (antd ≥ 5.7). */
+  replace: booleanType(),
   /* private use  */
   customTitleProps: objectType<AnchorLinkItemProps>(),
 });
@@ -22,6 +24,7 @@ export interface AnchorLinkItemProps {
   style?: CSSProperties;
   href?: string;
   target?: string;
+  replace?: boolean;
   children?: AnchorLinkItemProps[];
   title?: VueNode | ((item: AnchorLinkItemProps) => VueNode);
 }
@@ -46,13 +49,34 @@ export default defineComponent({
       unregisterLink,
       registerLink,
       activeLink,
+      replace: contextReplace,
     } = useInjectAnchor();
     const { prefixCls } = useConfigInject('anchor', props);
 
-    const handleClick = (e: Event) => {
+    const handleClick = (e: MouseEvent) => {
       const { href } = props;
       contextHandleClick(e, { title: mergedTitle, href });
       scrollTo(href);
+
+      // Support clicking on an anchor does not record history (via preventDefault in onClick).
+      if (e.defaultPrevented) {
+        return;
+      }
+
+      const mergedReplace = props.replace ?? contextReplace.value;
+      const isExternalLink = href.startsWith('http://') || href.startsWith('https://');
+      if (isExternalLink) {
+        if (mergedReplace) {
+          e.preventDefault();
+          window.location.replace(href);
+        }
+        return;
+      }
+
+      // Internal anchor: control history push vs replace
+      e.preventDefault();
+      const historyMethod = mergedReplace ? 'replaceState' : 'pushState';
+      window.history[historyMethod](null, '', href);
     };
 
     watch(

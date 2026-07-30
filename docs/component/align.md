@@ -43,7 +43,7 @@
 
 | 分组 | 组件 | React `antd` | Vue Next | 文档链接 | 缺口备注 |
 | --- | --- | --- | --- | --- | --- |
-| Navigation | Anchor | ✅ | ✅ | [anchor](../../components/anchor) | — |
+| Navigation | Anchor | ✅ | ✅ | [anchor](../../components/anchor) | 🔄 `replace` ✅ 4.39.0 |
 | Navigation | Breadcrumb | ✅ | ✅ | [breadcrumb](../../components/breadcrumb) | 🔄 `items` ✅ 4.34.0 |
 | Navigation | Dropdown | ✅ | ✅ | [dropdown](../../components/dropdown) | 🔄 `destroyOnHidden` ✅ 4.14.0 |
 | Navigation | Menu | ✅ | ✅ | [menu](../../components/menu) | — |
@@ -165,9 +165,10 @@
 34. ~~Transfer `selectionsIcon`~~ — ✅ `4.36.0`
 35. ~~Tour `actionsRender`~~ — ✅ `4.37.0`
 36. ~~Progress object `size`~~ — ✅ `4.38.0`
-37. Form `feedbackIcons` / Anchor `replace`
-38. Table `virtual` 按需拆版（多日）
-39. ColorPicker 渐变 `mode`
+37. ~~Anchor `replace`~~ — ✅ `4.39.0`
+38. Form `feedbackIcons`
+39. Table `virtual` 按需拆版（多日）
+40. ColorPicker 渐变 `mode`
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -177,4 +178,4 @@
 
 ---
 
-_上次更新：`4.38.0` Progress.size object。每发一版请同步改本表。_
+_上次更新：`4.39.0` Anchor.replace。每发一版请同步改本表。_

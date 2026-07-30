@@ -2,22 +2,23 @@
 ---
 order: 2
 title:
-  zh-CN: 自定义 click 事件
-  en-US: Customize the click event
+  zh-CN: 替换历史记录
+  en-US: Replace history
 ---
 
 ## zh-CN
 
-点击锚点不记录历史。
+设置 `replace` 后，点击锚点会使用 `history.replaceState` 替换当前历史记录，而不是新增一条（antd ≥ 5.7）。
 
 ## en-US
 
-Clicking on an anchor does not record history.
+With `replace`, clicking an anchor uses `history.replaceState` instead of pushing a new history entry (antd ≥ 5.7).
 </docs>
 
 <template>
   <a-anchor
     :affix="false"
+    replace
     :items="[
       {
         key: '1',
@@ -47,14 +48,5 @@ Clicking on an anchor does not record history.
         ],
       },
     ]"
-    @click="handleClick"
   ></a-anchor>
 </template>
-
-<script lang="ts" setup>
-import type { AnchorProps } from 'ant-design-vue';
-const handleClick: AnchorProps['onClick'] = (e, link) => {
-  e.preventDefault();
-  console.log(link);
-};
-</script>

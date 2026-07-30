@@ -9,6 +9,8 @@ export interface AnchorContext {
   scrollTo: (link: string) => void;
   handleClick: (e: Event, info: { title: any; href: string }) => void;
   direction: ComputedRef<AnchorDirection>;
+  /** Replace href in history instead of pushing (antd ≥ 5.7). */
+  replace: ComputedRef<boolean>;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -28,6 +30,7 @@ const useInjectAnchor = () => {
     activeLink: computed(() => ''),
     handleClick: noop,
     direction: computed(() => 'vertical'),
+    replace: computed(() => false),
   } as AnchorContext);
 };
 

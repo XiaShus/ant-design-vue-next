@@ -22,7 +22,7 @@ import type { AnchorLinkItemProps } from './AnchorLink';
 import AnchorLink from './AnchorLink';
 import PropTypes from '../_util/vue-types';
 import devWarning from '../vc-util/devWarning';
-import { arrayType } from '../_util/type';
+import { arrayType, booleanType } from '../_util/type';
 
 export type AnchorDirection = 'vertical' | 'horizontal';
 
@@ -70,6 +70,8 @@ export const anchorProps = () => ({
   targetOffset: Number,
   items: arrayType<AnchorLinkItemProps[]>(),
   direction: PropTypes.oneOf(['vertical', 'horizontal'] as AnchorDirection[]).def('vertical'),
+  /** Replace items' href in browser history instead of pushing (antd ≥ 5.7). */
+  replace: booleanType(false),
   onChange: Function as PropType<(currentActiveLink: string) => void>,
   onClick: Function as PropType<(e: MouseEvent, link: { title: any; href: string }) => void>,
 });
@@ -235,6 +237,7 @@ export default defineComponent({
         emit('click', e, info);
       },
       direction: anchorDirection,
+      replace: computed(() => !!props.replace),
     });
 
     onMounted(() => {
@@ -266,7 +269,7 @@ export default defineComponent({
     const createNestedLink = (options?: AnchorLinkItemProps[]) =>
       Array.isArray(options)
         ? options.map(option => {
-            const { children, key, href, target, class: cls, style, title } = option;
+            const { children, key, href, target, class: cls, style, title, replace } = option;
             return (
               <AnchorLink
                 key={key}
@@ -275,6 +278,7 @@ export default defineComponent({
                 class={cls}
                 style={style}
                 title={title}
+                replace={replace}
                 customTitleProps={option}
                 v-slots={{ customTitle: slots.customTitle }}
               >

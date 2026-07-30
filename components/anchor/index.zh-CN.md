@@ -32,6 +32,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*JGb3RIzyOCkAAA
 | wrapperStyle | 容器样式 | object | - |  |
 | items | 数据化配置选项内容，支持通过 children 嵌套 | { key, href, title, target, children }\[] [具体见](#anchoritem) | - | 4.0 |
 | direction | 设置导航方向 | `vertical` \| `horizontal` | `vertical` | 4.0 |
+| replace | 替换浏览器历史记录中的 href，而不是新增一条 | boolean | false | 4.39.0 |
 | customTitle | 使用插槽自定义选项 title | v-slot="AnchorItem" | - | 4.0 |
 
 ### AnchorItem
@@ -43,6 +44,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*JGb3RIzyOCkAAA
 | target | 该属性指定在何处显示链接的资源 | string | - |  |
 | title | 文字内容 | VueNode \| (item: AnchorItem) => VueNode | - |  |
 | children | 嵌套的 Anchor Link，`注意：水平方向该属性不支持` | [AnchorItem](#anchoritem)\[] | - |  |
+| replace | 替换浏览器历史记录中的 href，而不是新增一条 | boolean | false | 4.39.0 |
 
 ### 事件
 
@@ -53,8 +55,9 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*JGb3RIzyOCkAAA
 
 ### Link Props
 
-| 成员   | 说明                             | 类型         | 默认值 | 版本  |
-| ------ | -------------------------------- | ------------ | ------ | ----- |
-| href   | 锚点链接                         | string       |        |       |
-| target | 该属性指定在何处显示链接的资源。 | string       |        | 1.5.0 |
-| title  | 文字内容                         | string\|slot |        |       |
+| 成员    | 说明                                        | 类型         | 默认值 | 版本   |
+| ------- | ------------------------------------------- | ------------ | ------ | ------ |
+| href    | 锚点链接                                    | string       |        |        |
+| target  | 该属性指定在何处显示链接的资源。            | string       |        | 1.5.0  |
+| title   | 文字内容                                    | string\|slot |        |        |
+| replace | 替换浏览器历史记录中的 href，而不是新增一条 | boolean      | false  | 4.39.0 |
