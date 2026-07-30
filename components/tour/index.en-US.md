@@ -27,6 +27,7 @@ Use when you want to guide users through a product.
 | current(v-model) | What is the current step | `number` | - |  |
 | scrollIntoViewOptions | support pass custom scrollIntoView options | `boolean` \| `ScrollIntoViewOptions` | `true` |  |
 | indicatorsRender | custom indicator | `v-slot:indicatorsRender="{current, total}"` | - |  |
+| actionsRender | custom action buttons | `(originNode, { current, total }) => VueNode` \| `v-slot:actionsRender="{ originNode, current, total }"` | - | 4.37.0 |
 | zIndex | Tour's zIndex | `number` | `1001` |  |
 
 ### Tour events
@@ -51,6 +52,7 @@ Use when you want to guide users through a product.
 | type | Type, affects the background color and text color | `default` `primary` | `default` |  |
 | nextButtonProps | Properties of the Next button | `{ children: VueNode; onClick: Function }` | - |  |
 | prevButtonProps | Properties of the previous button | `{ children: VueNode; onClick: Function }` | - |  |
+| actionsRender | custom action buttons for this step | `(originNode, { current, total }) => VueNode` | - | 4.37.0 |
 | scrollIntoViewOptions | support pass custom scrollIntoView options, the default follows the `scrollIntoViewOptions` property of Tour | `boolean` \| `ScrollIntoViewOptions` | `true` |  |
 
 ### TourStep events

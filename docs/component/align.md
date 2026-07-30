@@ -96,7 +96,7 @@
 | Data Display | Tag | ✅ | ✅ | [tag](../../components/tag) | — |
 | Data Display | Timeline | ✅ | ✅ | [timeline](../../components/timeline) | 🔄 `items` ✅ 4.33.0 |
 | Data Display | Tooltip | ✅ | ✅ | [tooltip](../../components/tooltip) | 🔄 `destroyOnHidden` ✅ 4.14.0（Popover / Popconfirm 同） |
-| Data Display | Tour | ✅ 5.0 | ✅ | [tour](../../components/tour) | — |
+| Data Display | Tour | ✅ 5.0 | ✅ | [tour](../../components/tour) | 🔄 `actionsRender` ✅ 4.37.0 |
 | Data Display | Tree | ✅ | ✅ | [tree](../../components/tree) | — |
 
 ## Feedback
@@ -163,7 +163,7 @@
 32. ~~Breadcrumb `items`~~ — ✅ `4.34.0`
 33. ~~Pagination `align`~~ — ✅ `4.35.0`
 34. ~~Transfer `selectionsIcon`~~ — ✅ `4.36.0`
-35. Tour `actionsRender`
+35. ~~Tour `actionsRender`~~ — ✅ `4.37.0`
 36. Table `virtual` 按需拆版（多日）
 37. ColorPicker 渐变 `mode`
 
@@ -175,4 +175,4 @@
 
 ---
 
-_上次更新：`4.36.0` Transfer.selectionsIcon。每发一版请同步改本表。_
+_上次更新：`4.37.0` Tour.actionsRender。每发一版请同步改本表。_

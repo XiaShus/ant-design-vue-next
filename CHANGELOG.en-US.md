@@ -4,6 +4,12 @@
 
 ---
 
+## 4.37.0
+
+`2026-07-31`
+
+- 🌟 Tour supports `actionsRender` to customize action buttons (antd ≥ 5.25)
+
 ## 4.36.0
 
 `2026-07-31`

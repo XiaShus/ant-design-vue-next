@@ -10,12 +10,16 @@ import Button from '../button';
 import type { ButtonProps } from '../button';
 import defaultLocale from '../locale/en_US';
 
-import type { VueNode } from '../_util/type';
+import type { CustomSlotsType, VueNode } from '../_util/type';
 
 const panelRender = defineComponent({
   name: 'ATourPanel',
   inheritAttrs: false,
   props: tourStepProps(),
+  slots: Object as CustomSlotsType<{
+    indicatorsRender: { current: number; total: number };
+    actionsRender: { originNode: VueNode; current: number; total: number };
+  }>,
   setup(props, { attrs, slots }) {
     const { current, total } = toRefs(props);
 
@@ -69,7 +73,10 @@ const panelRender = defineComponent({
       let mergeIndicatorNode: VueNode;
 
       if (slots.indicatorsRender) {
-        mergeIndicatorNode = slots.indicatorsRender({ current: current.value, total });
+        mergeIndicatorNode = slots.indicatorsRender({
+          current: current.value,
+          total: total.value,
+        });
       } else {
         mergeIndicatorNode = [...Array.from({ length: total.value }).keys()].map(
           (stepItem, index) => (
@@ -92,57 +99,76 @@ const panelRender = defineComponent({
 
       return (
         <LocaleReceiver componentName="Tour" defaultLocale={defaultLocale.Tour}>
-          {contextLocale => (
-            <div
-              {...attrs}
-              class={classNames(
-                stepType === 'primary' ? `${prefixCls}-primary` : '',
-                attrs.class,
-                `${prefixCls}-content`,
-              )}
-            >
-              {arrow && <div class={`${prefixCls}-arrow`} key="arrow" />}
-              <div class={`${prefixCls}-inner`}>
-                <CloseOutlined class={`${prefixCls}-close`} onClick={onClose} />
-                {coverNode}
-                {headerNode}
-                {descriptionNode}
-                <div class={`${prefixCls}-footer`}>
-                  {total.value > 1 && (
-                    <div class={`${prefixCls}-indicators`}>{mergeIndicatorNode}</div>
-                  )}
-                  <div class={`${prefixCls}-buttons`}>
-                    {current.value !== 0 ? (
-                      <Button
-                        {...secondaryBtnProps}
-                        {...prevButtonProps}
-                        onClick={prevBtnClick}
-                        size="small"
-                        class={classNames(`${prefixCls}-prev-btn`, prevButtonProps?.className)}
-                      >
-                        {isFunction(prevButtonProps?.children)
-                          ? prevButtonProps.children()
-                          : prevButtonProps?.children ?? contextLocale.Previous}
-                      </Button>
-                    ) : null}
-                    <Button
-                      type={mainBtnType}
-                      {...nextButtonProps}
-                      onClick={nextBtnClick}
-                      size="small"
-                      class={classNames(`${prefixCls}-next-btn`, nextButtonProps?.className)}
-                    >
-                      {isFunction(nextButtonProps?.children)
-                        ? nextButtonProps?.children()
-                        : isLastStep.value
-                        ? contextLocale.Finish
-                        : contextLocale.Next}
-                    </Button>
+          {contextLocale => {
+            const defaultActionsNode = (
+              <>
+                {current.value !== 0 ? (
+                  <Button
+                    {...secondaryBtnProps}
+                    {...prevButtonProps}
+                    onClick={prevBtnClick}
+                    size="small"
+                    class={classNames(`${prefixCls}-prev-btn`, prevButtonProps?.className)}
+                  >
+                    {isFunction(prevButtonProps?.children)
+                      ? prevButtonProps.children()
+                      : prevButtonProps?.children ?? contextLocale.Previous}
+                  </Button>
+                ) : null}
+                <Button
+                  type={mainBtnType}
+                  {...nextButtonProps}
+                  onClick={nextBtnClick}
+                  size="small"
+                  class={classNames(`${prefixCls}-next-btn`, nextButtonProps?.className)}
+                >
+                  {isFunction(nextButtonProps?.children)
+                    ? nextButtonProps?.children()
+                    : nextButtonProps?.children ??
+                      (isLastStep.value ? contextLocale.Finish : contextLocale.Next)}
+                </Button>
+              </>
+            );
+
+            let actionsNode: VueNode = defaultActionsNode;
+            if (typeof props.actionsRender === 'function') {
+              actionsNode = props.actionsRender(defaultActionsNode, {
+                current: current.value,
+                total: total.value,
+              });
+            } else if (slots.actionsRender) {
+              actionsNode = slots.actionsRender({
+                originNode: defaultActionsNode,
+                current: current.value,
+                total: total.value,
+              });
+            }
+
+            return (
+              <div
+                {...attrs}
+                class={classNames(
+                  stepType === 'primary' ? `${prefixCls}-primary` : '',
+                  attrs.class,
+                  `${prefixCls}-content`,
+                )}
+              >
+                {arrow && <div class={`${prefixCls}-arrow`} key="arrow" />}
+                <div class={`${prefixCls}-inner`}>
+                  <CloseOutlined class={`${prefixCls}-close`} onClick={onClose} />
+                  {coverNode}
+                  {headerNode}
+                  {descriptionNode}
+                  <div class={`${prefixCls}-footer`}>
+                    {total.value > 1 && (
+                      <div class={`${prefixCls}-indicators`}>{mergeIndicatorNode}</div>
+                    )}
+                    <div class={`${prefixCls}-buttons`}>{actionsNode}</div>
                   </div>
                 </div>
               </div>
-            </div>
-          )}
+            );
+          }}
         </LocaleReceiver>
       );
     };

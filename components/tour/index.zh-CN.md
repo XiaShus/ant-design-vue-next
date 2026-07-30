@@ -28,6 +28,7 @@ tag: New
 | current(v-model) | 当前处于哪一步 | `number` | - |  |
 | scrollIntoViewOptions | 是否支持当前元素滚动到视窗内，也可传入配置指定滚动视窗的相关参数 | `boolean` \| `ScrollIntoViewOptions` | `true` |  |
 | indicatorsRender | 自定义指示器 | `v-slot:indicatorsRender="{current, total}"` | - |  |
+| actionsRender | 自定义操作按钮 | `(originNode, { current, total }) => VueNode` \| `v-slot:actionsRender="{ originNode, current, total }"` | - | 4.37.0 |
 | zIndex | Tour 的层级 | `number` | `1001` |  |
 
 ### Tour events
@@ -52,6 +53,7 @@ tag: New
 | type | 类型，影响底色与文字颜色 | `default` \| `primary` | `default` |  |
 | nextButtonProps | 下一步按钮的属性 | `{ children: VueNode; onClick: Function }` | - |  |
 | prevButtonProps | 上一步按钮的属性 | `{ children: VueNode; onClick: Function }` | - |  |
+| actionsRender | 本步骤自定义操作按钮 | `(originNode, { current, total }) => VueNode` | - | 4.37.0 |
 | scrollIntoViewOptions | 是否支持当前元素滚动到视窗内，也可传入配置指定滚动视窗的相关参数，默认跟随 Tour 的 `scrollIntoViewOptions` 属性 | `boolean` \| `ScrollIntoViewOptions` | `true` |  |
 
 ### TourStep events
