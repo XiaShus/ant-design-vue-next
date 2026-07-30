@@ -12,6 +12,7 @@
     <FixedColumnsHeader />
     <FixedColumns />
     <FixedHeader />
+    <ScrollTo />
     <GroupingColumns />
     <MultipleSorter />
     <NestedTable />
@@ -47,6 +48,7 @@ import Expand from './expand.vue';
 import FixedColumnsHeader from './fixed-columns-header.vue';
 import FixedColumns from './fixed-columns.vue';
 import FixedHeader from './fixed-header.vue';
+import ScrollTo from './scroll-to.vue';
 import GroupingColumns from './grouping-columns.vue';
 import Head from './head.vue';
 import NestedTable from './nested-table.vue';
@@ -88,6 +90,7 @@ export default defineComponent({
     FixedColumnsHeader,
     FixedColumns,
     FixedHeader,
+    ScrollTo,
     GroupingColumns,
     Head,
     NestedTable,

@@ -22,6 +22,8 @@ import type {
   TableLocale,
   TableAction,
   FilterValue,
+  TableScrollConfig,
+  TableRef,
 } from './interface';
 import useSelection from './hooks/useSelection';
 import type { SortState } from './hooks/useSorter';
@@ -61,7 +63,7 @@ import {
 import useStyle from './style';
 import type { CustomSlotsType } from '../_util/type';
 
-export type { ColumnsType, TablePaginationConfig };
+export type { ColumnsType, TablePaginationConfig, TableScrollConfig, TableRef };
 
 const EMPTY_LIST: any[] = [];
 
@@ -284,11 +286,84 @@ const InternalTable = defineComponent({
     });
 
     const internalRefs = reactive({
-      body: null,
+      body: null as HTMLElement | null,
     });
+    const rootRef = ref<HTMLDivElement>();
 
     const updateInternalRefs = refs => {
       Object.assign(internalRefs, refs);
+    };
+
+    const escapeAttr = (value: string) =>
+      typeof CSS !== 'undefined' && typeof CSS.escape === 'function'
+        ? CSS.escape(value)
+        : value.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+
+    const scrollToTarget = (config: TableScrollConfig = {}) => {
+      const body = internalRefs.body;
+      const root = rootRef.value;
+
+      if (
+        typeof config.top === 'number' &&
+        config.offset === undefined &&
+        config.key == null &&
+        config.index == null
+      ) {
+        if (body) {
+          body.scrollTop = config.top;
+        }
+        return;
+      }
+
+      const scope: ParentNode = body || root || document;
+      let target: HTMLElement | null = null;
+      if (config.key != null) {
+        target = scope.querySelector(`[data-row-key="${escapeAttr(String(config.key))}"]`);
+      } else if (typeof config.index === 'number') {
+        const rows = scope.querySelectorAll('tr[data-row-key]');
+        target = (rows[config.index] as HTMLElement) || null;
+      }
+
+      if (!target) return;
+
+      if (!body) {
+        target.scrollIntoView({
+          block:
+            config.align === 'start'
+              ? 'start'
+              : config.align === 'end'
+              ? 'end'
+              : config.align === 'center'
+              ? 'center'
+              : 'nearest',
+          inline: 'nearest',
+        });
+        return;
+      }
+
+      const bodyRect = body.getBoundingClientRect();
+      const rowRect = target.getBoundingClientRect();
+      const rowTop = rowRect.top - bodyRect.top + body.scrollTop;
+      const rowHeight = rowRect.height;
+      const viewHeight = body.clientHeight;
+      const align = config.align || 'nearest';
+
+      let nextTop = body.scrollTop;
+      if (typeof config.offset === 'number') {
+        nextTop = rowTop - config.offset;
+      } else if (align === 'start') {
+        nextTop = rowTop;
+      } else if (align === 'end') {
+        nextTop = rowTop + rowHeight - viewHeight;
+      } else if (align === 'center') {
+        nextTop = rowTop - (viewHeight - rowHeight) / 2;
+      } else {
+        if (rowTop < body.scrollTop) nextTop = rowTop;
+        else if (rowTop + rowHeight > body.scrollTop + viewHeight) {
+          nextTop = rowTop + rowHeight - viewHeight;
+        }
+      }
+      body.scrollTop = Math.max(0, nextTop);
     };
 
     // ============================ RowKey ============================
@@ -535,6 +610,10 @@ const InternalTable = defineComponent({
     };
     expose({
       selectedKeySet,
+      scrollTo: scrollToTarget,
+      get nativeElement() {
+        return rootRef.value ?? null;
+      },
     });
 
     const indentSize = computed(() => {
@@ -623,7 +702,7 @@ const InternalTable = defineComponent({
       );
       const tableProps = omit(props, ['columns']);
       return wrapSSR(
-        <div class={wrapperClassNames} style={attrs.style as CSSProperties}>
+        <div ref={rootRef} class={wrapperClassNames} style={attrs.style as CSSProperties}>
           <Spin spinning={false} {...spinProps}>
             {topPaginationNode}
             <RcTable
@@ -693,10 +772,14 @@ const Table = defineComponent({
     default: any;
   }>,
   setup(props, { attrs, slots, expose }) {
-    const table = ref();
+    const table = ref<any>();
     expose({
       table,
-    });
+      get nativeElement() {
+        return table.value?.nativeElement ?? null;
+      },
+      scrollTo: (config: TableScrollConfig) => table.value?.scrollTo?.(config),
+    } as TableRef & { table: typeof table });
     return () => {
       const columns = props.columns || convertChildrenToColumns(slots.default?.());
       return (

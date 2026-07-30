@@ -241,6 +241,21 @@ Properties for row selection.
 | x | Set horizontal scrolling, can also be used to specify the width of the scroll area, could be number, percent value, true and ['max-content'](https://developer.mozilla.org/zh-CN/docs/Web/CSS/width#max-content) | string \| number \| true | - |
 | y | Set vertical scrolling, can also be used to specify the height of the scroll area, could be string or number | string \| number | - |
 
+### Table ref
+
+Access instance via `ref` (antd ≥ 5.11):
+
+| Name | Description | Type | Version |
+| --- | --- | --- | --- |
+| nativeElement | Outermost wrapper element | `HTMLDivElement` | 4.17.0 |
+| scrollTo | Scroll to position or row; `key` matches `rowKey` | `(config: { index?: number; key?: Key; top?: number; offset?: number; align?: 'start' \| 'center' \| 'end' \| 'nearest' }) => void` | 4.17.0 |
+
+```ts
+tableRef.value.scrollTo({ key: '3', align: 'start' });
+tableRef.value.scrollTo({ index: 10, offset: 16 });
+tableRef.value.scrollTo({ top: 0 });
+```
+
 ### selection
 
 Custom selection config

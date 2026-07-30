@@ -246,6 +246,21 @@ type Breakpoint = 'xxxl' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs';
 | x | 设置横向滚动，也可用于指定滚动区域的宽，可以设置为像素值，百分比，true 和 ['max-content'](https://developer.mozilla.org/zh-CN/docs/Web/CSS/width#max-content) | string \| number \| true | - |
 | y | 设置纵向滚动，也可用于指定滚动区域的高，可以设置为像素值 | string \| number | - |
 
+### Table ref（实例方法）
+
+通过 `ref` 获取表格实例（对齐 antd ≥ 5.11）：
+
+| 名称 | 说明 | 类型 | 版本 |
+| --- | --- | --- | --- |
+| nativeElement | 表格最外层包裹节点 | `HTMLDivElement` | 4.17.0 |
+| scrollTo | 滚动到指定位置或行；`key` 对应 `rowKey` | `(config: { index?: number; key?: Key; top?: number; offset?: number; align?: 'start' \| 'center' \| 'end' \| 'nearest' }) => void` | 4.17.0 |
+
+```ts
+tableRef.value.scrollTo({ key: '3', align: 'start' });
+tableRef.value.scrollTo({ index: 10, offset: 16 });
+tableRef.value.scrollTo({ top: 0 });
+```
+
 ### selection
 
 自定义选择配置项

@@ -4,6 +4,12 @@
 
 ---
 
+## 4.17.0
+
+`2026-07-30`
+
+- 🌟 Table instance exposes `scrollTo` / `nativeElement` (antd ≥ 5.11)
+
 ## 4.16.0
 
 `2026-07-30`

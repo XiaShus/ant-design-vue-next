@@ -231,3 +231,17 @@ export interface TransformCellTextProps {
   record: any;
   index: number;
 }
+
+/** Table.scrollTo config (antd ≥ 5.11). */
+export interface TableScrollConfig {
+  index?: number;
+  key?: Key;
+  top?: number;
+  offset?: number;
+  align?: 'start' | 'center' | 'end' | 'nearest';
+}
+
+export interface TableRef {
+  nativeElement: HTMLDivElement | null;
+  scrollTo: (config: TableScrollConfig) => void;
+}

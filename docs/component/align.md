@@ -92,7 +92,7 @@
 | Data Display | QRCode | ✅ 5.1 | ✅ | [qrcode](../../components/qrcode) | — |
 | Data Display | Segmented | ✅ | ✅ | [segmented](../../components/segmented) | — |
 | Data Display | Statistic | ✅ | ✅ | [statistic](../../components/statistic) | — |
-| Data Display | Table | ✅ | ✅ | [table](../../components/table) | 🔄 Column `hidden` ✅ 4.13.0；⚠️ 其他高频缺口逐项对齐 |
+| Data Display | Table | ✅ | ✅ | [table](../../components/table) | 🔄 Column `hidden` ✅ 4.13.0；🔄 `scrollTo` / `nativeElement` ✅ 4.17.0；⏭ `virtual` |
 | Data Display | Tag | ✅ | ✅ | [tag](../../components/tag) | — |
 | Data Display | Timeline | ✅ | ✅ | [timeline](../../components/timeline) | — |
 | Data Display | Tooltip | ✅ | ✅ | [tooltip](../../components/tooltip) | 🔄 `destroyOnHidden` ✅ 4.14.0（Popover / Popconfirm 同） |
@@ -143,8 +143,9 @@
 12. ~~Tabs / Collapse / Tooltip / Dropdown `destroyOnHidden`~~ — ✅ `4.14.0`
 13. ~~ColorPicker `panelRender`~~ — ✅ `4.15.0`
 14. ~~Splitter collapsible / lazy~~ — ✅ `4.16.0`
-15. Table 其他高频 API（如 `virtual` / `scrollTo`）按需拆版
-16. ColorPicker 渐变 `mode`
+15. ~~Table `scrollTo` / `nativeElement`~~ — ✅ `4.17.0`
+16. Table `virtual` 按需拆版
+17. ColorPicker 渐变 `mode`
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -154,4 +155,4 @@
 
 ---
 
-_上次更新：`4.16.0` Splitter collapsible / lazy。每发一版请同步改本表。_
+_上次更新：`4.17.0` Table.scrollTo。每发一版请同步改本表。_

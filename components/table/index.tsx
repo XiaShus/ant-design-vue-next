@@ -12,7 +12,13 @@ import {
 } from './hooks/useSelection';
 
 export type { ColumnProps } from './Column';
-export type { ColumnsType, ColumnType, ColumnGroupType } from './interface';
+export type {
+  ColumnsType,
+  ColumnType,
+  ColumnGroupType,
+  TableRef,
+  TableScrollConfig,
+} from './interface';
 export type { TableProps, TablePaginationConfig };
 
 const TableSummaryRow = SummaryRow;
