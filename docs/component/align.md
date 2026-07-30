@@ -112,7 +112,7 @@
 | Feedback | Progress | ✅ | ✅ | [progress](../../components/progress) | — |
 | Feedback | Result | ✅ | ✅ | [result](../../components/result) | — |
 | Feedback | Skeleton | ✅ | ✅ | [skeleton](../../components/skeleton) | — |
-| Feedback | Spin | ✅ | ✅ | [spin](../../components/spin) | — |
+| Feedback | Spin | ✅ | ✅ | [spin](../../components/spin) | 🔄 `fullscreen` ✅ 4.24.0 |
 | Feedback | Watermark | ✅ 5.1 | ✅ | [watermark](../../components/watermark) | — |
 
 ## Other
@@ -150,8 +150,9 @@
 19. ~~DatePicker / TimePicker `needConfirm`~~ — ✅ `4.21.0`
 20. ~~Modal `afterOpenChange`~~ — ✅ `4.22.0`
 21. ~~TimePicker `changeOnScroll`~~ — ✅ `4.23.0`
-22. Table `virtual` 按需拆版（多日）
-23. ColorPicker 渐变 `mode`
+22. ~~Spin `fullscreen`~~ — ✅ `4.24.0`
+23. Table `virtual` 按需拆版（多日）
+24. ColorPicker 渐变 `mode`
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -161,4 +162,4 @@
 
 ---
 
-_上次更新：`4.23.0` TimePicker.changeOnScroll。每发一版请同步改本表。_
+_上次更新：`4.24.0` Spin.fullscreen。每发一版请同步改本表。_

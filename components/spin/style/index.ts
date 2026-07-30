@@ -220,6 +220,39 @@ const genSpinStyle: GenerateStyle<SpinToken> = (token: SpinToken): CSSObject => 
     [`&${token.componentCls}-show-text ${token.componentCls}-text`]: {
       display: 'block',
     },
+
+    // Fullscreen
+    // ------------------------------
+    [`${token.componentCls}-fullscreen`]: {
+      position: 'fixed',
+      width: '100vw',
+      height: '100vh',
+      backgroundColor: token.colorBgMask,
+      zIndex: token.zIndexPopupBase,
+      inset: 0,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      opacity: 0,
+      visibility: 'hidden',
+      transition: `all ${token.motionDurationMid}`,
+      pointerEvents: 'none',
+
+      '&-show': {
+        opacity: 1,
+        visibility: 'visible',
+        pointerEvents: 'auto',
+      },
+
+      [`${token.componentCls}-dot ${token.componentCls}-dot-item`]: {
+        backgroundColor: token.colorWhite,
+      },
+
+      [`${token.componentCls}-text`]: {
+        color: token.colorTextLightSolid,
+        textShadow: 'none',
+      },
+    },
   },
 });
 

@@ -1,9 +1,19 @@
 import type { VNode, ExtractPropTypes, PropType } from 'vue';
-import { onBeforeUnmount, cloneVNode, isVNode, defineComponent, shallowRef, watch } from 'vue';
+import {
+  Teleport,
+  onBeforeUnmount,
+  cloneVNode,
+  isVNode,
+  defineComponent,
+  shallowRef,
+  watch,
+} from 'vue';
 import { debounce } from 'throttle-debounce';
+import classNames from '../_util/classNames';
 import PropTypes from '../_util/vue-types';
 import { filterEmpty, getPropsSlot } from '../_util/props-util';
 import initDefaultProps from '../_util/props-util/initDefaultProps';
+import { booleanType } from '../_util/type';
 import useStyle from './style';
 import useConfigInject from '../config-provider/hooks/useConfigInject';
 
@@ -16,6 +26,8 @@ export const spinProps = () => ({
   tip: PropTypes.any,
   delay: Number,
   indicator: PropTypes.any,
+  /** Display a fullscreen backdrop with Spin (antd ≥ 5.11). */
+  fullscreen: booleanType(),
 });
 
 export type SpinProps = Partial<ExtractPropTypes<ReturnType<typeof spinProps>>>;
@@ -111,6 +123,21 @@ export default defineComponent({
           {tip ? <div class={`${prefixCls.value}-text`}>{tip}</div> : null}
         </div>
       );
+
+      if (props.fullscreen) {
+        return wrapSSR(
+          <Teleport to="body">
+            <div
+              class={classNames(`${prefixCls.value}-fullscreen`, hashId.value, {
+                [`${prefixCls.value}-fullscreen-show`]: sSpinning.value,
+              })}
+            >
+              {spinElement}
+            </div>
+          </Teleport>,
+        );
+      }
+
       if (children && filterEmpty(children).length) {
         const containerClassName = {
           [`${prefixCls.value}-container`]: true,

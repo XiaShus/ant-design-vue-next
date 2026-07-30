@@ -18,6 +18,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*i43_ToFrL8YAAA
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
 | delay | 延迟显示加载效果的时间（防止闪烁） | number (毫秒) | - |  |
+| fullscreen | 是否全屏展示带遮罩的加载 | boolean | false | 4.24.0 |
 | indicator | 加载指示符 | vNode \| slot | - |  |
 | size | 组件大小，可选值为 `small` `default` `large` | string | `default` |  |
 | spinning | 是否为加载中状态 | boolean | true |  |
