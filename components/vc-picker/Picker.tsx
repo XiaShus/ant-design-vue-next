@@ -100,6 +100,8 @@ export type PickerSharedProps<DateType> = {
   direction?: 'ltr' | 'rtl';
   showToday?: boolean;
   showTime?: boolean | SharedTimeProps<DateType>;
+  /** Need click confirm button to trigger value change (antd ≥ 5.14). */
+  needConfirm?: boolean;
 };
 
 type OmitPanelProps<Props> = Omit<
@@ -158,6 +160,7 @@ function Picker<DateType>() {
       'showHour',
       'showMinute',
       'showSecond',
+      'needConfirm',
       'picker',
       'format',
       'use12Hours',
@@ -203,9 +206,12 @@ function Picker<DateType>() {
       const presets = computed(() => props.presets);
       const presetList = usePresets(presets);
       const picker = computed(() => props.picker ?? 'date');
-      const needConfirmButton = computed(
-        () => (picker.value === 'date' && !!props.showTime) || picker.value === 'time',
-      );
+      const needConfirmButton = computed(() => {
+        if (typeof props.needConfirm === 'boolean') {
+          return props.needConfirm;
+        }
+        return (picker.value === 'date' && !!props.showTime) || picker.value === 'time';
+      });
       // ============================ Warning ============================
       if (process.env.NODE_ENV !== 'production') {
         legacyPropsWarning(props);

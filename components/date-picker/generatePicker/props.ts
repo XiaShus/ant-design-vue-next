@@ -92,6 +92,8 @@ function commonProps<DateType = any>() {
     direction: stringType<'ltr' | 'rtl'>(),
     showToday: booleanType(),
     showTime: someType<boolean | SharedTimeProps<DateType>>([Boolean, Object]),
+    /** Need click confirm button to trigger value change (antd ≥ 5.14). */
+    needConfirm: booleanType(),
     locale: objectType<PickerLocale>(),
     size: stringType<SizeType>(),
     bordered: booleanType(),
@@ -163,6 +165,8 @@ export interface CommonProps<DateType> {
   direction?: 'ltr' | 'rtl';
   showToday?: boolean;
   showTime?: boolean | SharedTimeProps<DateType>;
+  /** Need click confirm button to trigger value change (antd ≥ 5.14). */
+  needConfirm?: boolean;
   locale?: PickerLocale;
   size?: SizeType;
   bordered?: boolean;

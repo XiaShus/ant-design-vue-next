@@ -8,6 +8,12 @@
 
 ---
 
+## 4.21.0
+
+`2026-07-31`
+
+- 🌟 DatePicker / TimePicker / RangePicker 支持 `needConfirm`（对齐 antd ≥ 5.14）
+
 ## 4.20.0
 
 `2026-07-31`

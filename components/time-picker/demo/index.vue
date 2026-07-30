@@ -1,6 +1,7 @@
 <template>
   <demo-sort>
     <Basic />
+    <NeedConfirm />
     <Bordered />
     <RangePicker />
     <Hours />
@@ -19,6 +20,7 @@
 import Hours from './12hours.vue';
 import Addon from './addon.vue';
 import Basic from './basic.vue';
+import NeedConfirm from './need-confirm.vue';
 import Disabled from './disabled.vue';
 import HideColumn from './hide-column.vue';
 import IntervalOptions from './interval-options.vue';
@@ -40,6 +42,7 @@ export default {
     Hours,
     Addon,
     Basic,
+    NeedConfirm,
     Disabled,
     HideColumn,
     IntervalOptions,

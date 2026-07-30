@@ -125,6 +125,8 @@ export type RangePickerSharedProps<DateType> = {
   onOk?: (dates: RangeValue<DateType>) => void;
   direction?: 'ltr' | 'rtl';
   autocomplete?: string;
+  /** Need click confirm button to trigger value change (antd ≥ 5.14). */
+  needConfirm?: boolean;
   /** @private Internal control of active picker. Do not use since it's private usage */
   activePickerIndex?: 0 | 1;
   dateRender?: RangeDateRender<DateType>;
@@ -210,6 +212,7 @@ function RangerPicker<DateType>() {
       'showHour',
       'showMinute',
       'showSecond',
+      'needConfirm',
       'use12Hours',
       'separator',
       'value',
@@ -260,9 +263,12 @@ function RangerPicker<DateType>() {
       'superNextIcon',
     ] as any,
     setup(props, { attrs, expose }) {
-      const needConfirmButton = computed(
-        () => (props.picker === 'date' && !!props.showTime) || props.picker === 'time',
-      );
+      const needConfirmButton = computed(() => {
+        if (typeof props.needConfirm === 'boolean') {
+          return props.needConfirm;
+        }
+        return (props.picker === 'date' && !!props.showTime) || props.picker === 'time';
+      });
       const presets = computed(() => props.presets);
       const ranges = computed(() => props.ranges);
       const presetList = usePresets(presets, ranges);

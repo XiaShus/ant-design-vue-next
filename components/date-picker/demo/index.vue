@@ -5,6 +5,7 @@
     <Bordered />
     <Format />
     <Time />
+    <NeedConfirm />
     <Disabled />
     <DisabledDate />
     <SelectInRnage />
@@ -32,6 +33,7 @@ import SelectInRnage from './select-in-range.vue';
 import Size from './size.vue';
 import Switchable from './switchable.vue';
 import Time from './time.vue';
+import NeedConfirm from './need-confirm.vue';
 import Suffix from './suffix.vue';
 import Bordered from './bordered.vue';
 import RangePicker from './range-picker.vue';
@@ -58,6 +60,7 @@ export default defineComponent({
     Size,
     Switchable,
     Time,
+    NeedConfirm,
     Suffix,
     SelectInRnage,
     Bordered,

@@ -76,6 +76,8 @@ export type PickerPanelSharedProps<DateType> = {
   onOk?: (date: DateType) => void;
 
   direction?: 'ltr' | 'rtl';
+  /** Need click confirm button to trigger value change (antd ≥ 5.14). */
+  needConfirm?: boolean;
 
   /** @private This is internal usage. Do not use in your production env */
   hideHeader?: boolean;
@@ -148,14 +150,18 @@ function PickerPanel<DateType>() {
       onOk: Function,
       components: Object,
       direction: String,
+      needConfirm: { type: Boolean, default: undefined },
       hourStep: { type: Number, default: 1 },
       minuteStep: { type: Number, default: 1 },
       secondStep: { type: Number, default: 1 },
     } as any,
     setup(props, { attrs }) {
-      const needConfirmButton = computed(
-        () => (props.picker === 'date' && !!props.showTime) || props.picker === 'time',
-      );
+      const needConfirmButton = computed(() => {
+        if (typeof props.needConfirm === 'boolean') {
+          return props.needConfirm;
+        }
+        return (props.picker === 'date' && !!props.showTime) || props.picker === 'time';
+      });
 
       const isHourStepValid = computed(() => 24 % props.hourStep === 0);
       const isMinuteStepValid = computed(() => 60 % props.minuteStep === 0);

@@ -59,7 +59,7 @@
 | Data Entry | Cascader | ✅ | ✅ | [cascader](../../components/cascader) | 🔄 `variant` ✅ 4.10.0 |
 | Data Entry | Checkbox | ✅ | ✅ | [checkbox](../../components/checkbox) | — |
 | Data Entry | ColorPicker | ✅ 5.5 | 🔄 ✅ 4.3.0 | [color-picker](../../components/color-picker) | 单色/预设/清除/格式；🔄 `destroyOnHidden` ✅ 4.14.0；🔄 `panelRender` ✅ 4.15.0；🔄 `disabledFormat` ✅ 4.19.0；⏭ 渐变 mode |
-| Data Entry | DatePicker | ✅ | ✅ | [date-picker](../../components/date-picker) | 🔄 `variant` ✅ 4.9.0；⚠️ 其他晚期 props 按需补 |
+| Data Entry | DatePicker | ✅ | ✅ | [date-picker](../../components/date-picker) | 🔄 `variant` ✅ 4.9.0；🔄 `needConfirm` ✅ 4.21.0 |
 | Data Entry | Form | ✅ | ✅ | [form](../../components/form) | 🔄 `variant` ✅ 4.10.0；⚠️ 其他高频缺口逐项对齐 |
 | Data Entry | Input | ✅ | ✅ | [input](../../components/input) | 🔄 `Input.OTP` ✅ 4.5.0；`variant` ✅ 4.8.0；🔄 `underlined` ✅ 4.18.0 |
 | Data Entry | InputNumber | ✅ | ✅ | [input-number](../../components/input-number) | 🔄 `variant` ✅ 4.9.0 |
@@ -69,7 +69,7 @@
 | Data Entry | Select | ✅ | ✅ | [select](../../components/select) | 🔄 `variant` ✅ 4.9.0；🔄 `maxCount` ✅ 4.20.0 |
 | Data Entry | Slider | ✅ | ✅ | [slider](../../components/slider) | — |
 | Data Entry | Switch | ✅ | ✅ | [switch](../../components/switch) | — |
-| Data Entry | TimePicker | ✅ | ✅ | [time-picker](../../components/time-picker) | — |
+| Data Entry | TimePicker | ✅ | ✅ | [time-picker](../../components/time-picker) | 🔄 `needConfirm` ✅ 4.21.0 |
 | Data Entry | Transfer | ✅ | ✅ | [transfer](../../components/transfer) | — |
 | Data Entry | TreeSelect | ✅ | ✅ | [tree-select](../../components/tree-select) | 🔄 `variant` ✅ 4.10.0；🔄 `maxCount` ✅ 4.20.0 |
 | Data Entry | Upload | ✅ | ✅ | [upload](../../components/upload) | — |
@@ -147,8 +147,9 @@
 16. ~~`variant="underlined"`~~ — ✅ `4.18.0`
 17. ~~Table `rowHoverable` + ColorPicker `disabledFormat`~~ — ✅ `4.19.0`
 18. ~~Select / TreeSelect `maxCount`~~ — ✅ `4.20.0`
-19. Table `virtual` 按需拆版
-20. ColorPicker 渐变 `mode`
+19. ~~DatePicker / TimePicker `needConfirm`~~ — ✅ `4.21.0`
+20. Table `virtual` 按需拆版（多日）
+21. ColorPicker 渐变 `mode`
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -158,4 +159,4 @@
 
 ---
 
-_上次更新：`4.20.0` Select/TreeSelect.maxCount。每发一版请同步改本表。_
+_上次更新：`4.21.0` DatePicker/TimePicker.needConfirm。每发一版请同步改本表。_

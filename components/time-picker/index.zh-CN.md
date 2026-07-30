@@ -30,6 +30,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*1hDmQJIDFJQAAA
 | hourStep | 小时选项间隔 | number | 1 |  |
 | inputReadOnly | 设置输入框为只读（避免在移动设备上打开虚拟键盘） | boolean | false |  |
 | minuteStep | 分钟选项间隔 | number | 1 |  |
+| needConfirm | 是否需要确认按钮才触发值更新 | boolean | - | 4.21.0 |
 | open(v-model) | 面板是否打开 | boolean | false |  |
 | placeholder | 没有值的时候显示的内容 | string \| \[string, string] | `请选择时间` |  |
 | placement | 选择框弹出的位置 | `bottomLeft` `bottomRight` `topLeft` `topRight` | bottomLeft |  |
