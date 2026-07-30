@@ -10,6 +10,10 @@ export type FloatButtonShape = 'circle' | 'square';
 
 export type FloatButtonGroupTrigger = 'click' | 'hover';
 
+export type FloatButtonGroupPlacement = 'top' | 'left' | 'right' | 'bottom';
+
+export type FloatButtonHTMLType = 'submit' | 'button' | 'reset';
+
 export type FloatButtonBadgeProps = Omit<BadgeProps, 'status' | 'text' | 'title' | 'children'>;
 
 export const floatButtonProps = () => {
@@ -22,6 +26,8 @@ export const floatButtonProps = () => {
     href: String,
     target: String,
     badge: objectType<FloatButtonBadgeProps>(),
+    /** Set the original html `type` of `button` (antd ≥ 5.21) */
+    htmlType: stringType<FloatButtonHTMLType>(),
     onClick: functionType<MouseEventHandler>(),
   };
 };
@@ -49,6 +55,10 @@ export const floatButtonGroupProps = () => {
     // 展开收起的回调
     onOpenChange: functionType<(open: boolean) => void>(),
     'onUpdate:open': functionType<(open: boolean) => void>(),
+    /** Customize menu animation placement (antd ≥ 5.21) */
+    placement: stringType<FloatButtonGroupPlacement>(),
+    /** Customize close button icon (antd ≥ 5.16) */
+    closeIcon: PropTypes.any,
   };
 };
 

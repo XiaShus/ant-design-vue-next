@@ -20,6 +20,9 @@
   <template v-else-if="iframeName === 'menu-mode'">
     <group-menu></group-menu>
   </template>
+  <template v-else-if="iframeName === 'placement'">
+    <placement></placement>
+  </template>
   <template v-else-if="iframeName === 'backtop'">
     <back-top></back-top>
   </template>
@@ -34,6 +37,7 @@
     <tooltip></tooltip>
     <group></group>
     <group-menu></group-menu>
+    <placement></placement>
     <back-top></back-top>
     <badge></badge>
   </demo-sort>
@@ -47,6 +51,7 @@ import Description from './description.vue';
 import Tooltip from './tooltip.vue';
 import group from './group.vue';
 import GroupMenu from './group-menu.vue';
+import Placement from './placement.vue';
 import BackTop from './back-top.vue';
 import Badge from './badge.vue';
 
@@ -65,6 +70,7 @@ export default defineComponent({
     Tooltip,
     group,
     GroupMenu,
+    Placement,
     BackTop,
     Badge,
   },
@@ -83,6 +89,7 @@ export default defineComponent({
             'floatbutton-with-tooltip': '/iframe/float-button/#floatbutton-with-tooltip',
             'floatbutton-group': '/iframe/float-button/#floatbutton-group',
             'menu-mode': '/iframe/float-button/#menu-mode',
+            placement: '/iframe/float-button/#placement',
             backtop: '/iframe/float-button/#backtop',
             badge: '/iframe/float-button/#badge',
           }

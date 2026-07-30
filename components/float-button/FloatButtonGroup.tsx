@@ -22,6 +22,7 @@ const FloatButtonGroup = defineComponent({
   props: initDefaultProps(floatButtonGroupProps(), {
     type: 'default',
     shape: 'circle',
+    placement: 'top',
   } as FloatButtonGroupProps),
   setup(props, { attrs, slots, emit }) {
     const { prefixCls, direction } = useConfigInject(floatButtonPrefixCls, props);
@@ -90,23 +91,38 @@ const FloatButtonGroup = defineComponent({
     });
 
     return () => {
-      const { shape = 'circle', type = 'default', tooltip, description, trigger } = props;
+      const {
+        shape = 'circle',
+        type = 'default',
+        tooltip,
+        description,
+        trigger,
+        placement = 'top',
+        closeIcon,
+        htmlType,
+      } = props;
 
       const groupPrefixCls = `${prefixCls.value}-group`;
+      const isMenuMode = !!(trigger && ['click', 'hover'].includes(trigger));
+      const isValidPlacement =
+        !!placement && ['top', 'left', 'right', 'bottom'].includes(placement);
 
       const groupCls = classNames(groupPrefixCls, hashId.value, attrs.class, {
         [`${groupPrefixCls}-rtl`]: direction.value === 'rtl',
         [`${groupPrefixCls}-${shape}`]: shape,
-        [`${groupPrefixCls}-${shape}-shadow`]: !trigger,
+        [`${groupPrefixCls}-${shape}-shadow`]: !isMenuMode,
+        [`${groupPrefixCls}-${placement}`]: isMenuMode && isValidPlacement,
       });
 
       const wrapperCls = classNames(hashId.value, `${groupPrefixCls}-wrap`);
 
       const transitionProps = getTransitionProps(`${groupPrefixCls}-wrap`);
 
+      const mergedCloseIcon = closeIcon ?? slots.closeIcon?.() ?? <CloseOutlined />;
+
       return wrapSSR(
         <div ref={floatButtonGroupRef} {...attrs} class={groupCls} {...hoverAction.value}>
-          {trigger && ['click', 'hover'].includes(trigger) ? (
+          {isMenuMode ? (
             <>
               <Transition {...transitionProps}>
                 <div v-show={open.value} class={wrapperCls}>
@@ -119,11 +135,10 @@ const FloatButtonGroup = defineComponent({
                 shape={shape}
                 tooltip={tooltip}
                 description={description}
+                htmlType={htmlType}
                 v-slots={{
                   icon: () =>
-                    open.value
-                      ? slots.closeIcon?.() || <CloseOutlined />
-                      : slots.icon?.() || <FileTextOutlined />,
+                    open.value ? mergedCloseIcon : slots.icon?.() || <FileTextOutlined />,
                   tooltip: slots.tooltip,
                   description: slots.description,
                 }}

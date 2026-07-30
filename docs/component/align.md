@@ -23,7 +23,7 @@
 | 分组 | 组件 | React `antd` | Vue Next | 文档链接 | 缺口备注 |
 | --- | --- | --- | --- | --- | --- |
 | General | Button | ✅ | ✅ | [button](../../components/button) | 🔄 `autoInsertSpace` ✅ 4.46.0；🔄 `iconPlacement` ✅ 4.47.0；🔄 `color` / `variant` ✅ 4.49.0 |
-| General | FloatButton | ✅ 5.0 | ✅ | [float-button](../../components/float-button) | — |
+| General | FloatButton | ✅ 5.0 | ✅ | [float-button](../../components/float-button) | 🔄 Group `placement` / `closeIcon`、`htmlType` ✅ 4.51.0 |
 | General | Icon | ✅ | ✅（`@ant-design/icons-vue`） | — | 图标包独立 |
 | General | Typography | ✅ | ✅ | [typography](../../components/typography) | — |
 
@@ -177,10 +177,11 @@
 46. ~~Space `orientation` / `separator` / `vertical`~~ — ✅ `4.48.0`
 47. ~~Button `color` / `variant`~~ — ✅ `4.49.0`
 48. ~~ConfigProvider `button`（color / variant / autoInsertSpace）~~ — ✅ `4.50.0`
-49. Table `virtual` 按需拆版（多日）
-50. ColorPicker 渐变 `mode`
-51. Segmented `vertical`（需 MotionThumb 竖向）
-52. FloatButton.Group `placement`
+49. ~~FloatButton.Group `placement` / `closeIcon` + `htmlType`~~ — ✅ `4.51.0`
+50. Table `virtual` 按需拆版（多日）
+51. ColorPicker 渐变 `mode`
+52. Segmented `vertical`（需 MotionThumb 竖向）
+53. Image preview `toolbarRender`
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -190,4 +191,4 @@
 
 ---
 
-_上次更新：`4.50.0` ConfigProvider.button。每发一版请同步改本表。_
+_上次更新：`4.51.0` FloatButton.Group.placement。每发一版请同步改本表。_

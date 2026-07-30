@@ -29,6 +29,7 @@ FloatButton. Available since `4.0.0`.
 | shape | Setting button shape | `circle` \| `square` | `circle` |  |
 | href | The target of hyperlink | string | - |  |
 | target | Specifies where to display the linked URL | string | - |  |
+| htmlType | Set the original html `type` of `button` | `submit` \| `reset` \| `button` | `button` | 4.51.0 |
 | badge | Attach Badge to FloatButton. `status` and other props related are not supported. | [BadgeProps](/components/badge#api) | - |  |
 
 ### common events
@@ -44,6 +45,8 @@ FloatButton. Available since `4.0.0`.
 | shape | Setting button shape of children | `circle` \| `square` | `circle` |  |
 | trigger | Which action can trigger menu open/close | `click` \| `hover` | - |  |
 | open(v-model) | Whether the menu is visible or not | boolean | - |  |
+| placement | Customize menu animation placement | `top` \| `left` \| `right` \| `bottom` | `top` | 4.51.0 |
+| closeIcon | Customize close button icon | VueNode \| slot | `<CloseOutlined />` | 4.51.0 |
 
 ### FloatButton.Group Events
 

@@ -31,6 +31,7 @@ tag: New
 | onClick | 点击按钮时的回调 | (event) => void | - |  |
 | href | 点击跳转的地址，指定此属性 button 的行为和 a 链接一致 | string | - |  |
 | target | 相当于 a 标签的 target 属性，href 存在时生效 | string | - |  |
+| htmlType | 设置 `button` 原生的 `type` 值 | `submit` \| `reset` \| `button` | `button` | 4.51.0 |
 | badge | 带徽标数字的悬浮按钮（不支持 status 以及相关属性） | [BadgeProps](/components/badge-cn#api) | - |  |
 
 ### 共同的事件
@@ -41,11 +42,13 @@ tag: New
 
 ### FloatButton.Group
 
-| 参数          | 说明                             | 类型                 | 默认值   | 版本 |
-| ------------- | -------------------------------- | -------------------- | -------- | ---- |
-| shape         | 设置包含的 FloatButton 按钮形状  | `circle` \| `square` | `circle` |      |
-| trigger       | 触发方式（有触发方式为菜单模式） | `click` \| `hover`   | -        |      |
-| open(v-model) | 受控展开                         | boolean              | -        |      |
+| 参数 | 说明 | 类型 | 默认值 | 版本 |
+| --- | --- | --- | --- | --- |
+| shape | 设置包含的 FloatButton 按钮形状 | `circle` \| `square` | `circle` |  |
+| trigger | 触发方式（有触发方式为菜单模式） | `click` \| `hover` | - |  |
+| open(v-model) | 受控展开 | boolean | - |  |
+| placement | 自定义菜单展开方向 | `top` \| `left` \| `right` \| `bottom` | `top` | 4.51.0 |
+| closeIcon | 自定义关闭按钮图标 | VueNode \| slot | `<CloseOutlined />` | 4.51.0 |
 
 ### FloatButton.Group 事件
 

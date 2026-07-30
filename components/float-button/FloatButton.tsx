@@ -39,6 +39,7 @@ const FloatButton = defineComponent({
         description = slots.description?.(),
         tooltip,
         badge = {},
+        htmlType,
         ...restProps
       } = props;
 
@@ -92,7 +93,13 @@ const FloatButton = defineComponent({
             {buttonNode}
           </a>
         ) : (
-          <button ref={floatButtonRef} {...attrs} {...restProps} class={classString} type="button">
+          <button
+            ref={floatButtonRef}
+            {...attrs}
+            {...restProps}
+            class={classString}
+            type={htmlType || 'button'}
+          >
             {buttonNode}
           </button>
         ),

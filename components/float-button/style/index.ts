@@ -33,50 +33,83 @@ type FloatButtonToken = FullToken<'FloatButton'> & {
 const initFloatButtonGroupMotion = (token: FloatButtonToken) => {
   const { componentCls, floatButtonSize, motionDurationSlow, motionEaseInOutCirc } = token;
   const groupPrefixCls = `${componentCls}-group`;
-  const moveDownIn = new Keyframes('antFloatButtonMoveDownIn', {
-    '0%': {
-      transform: `translate3d(0, ${floatButtonSize}px, 0)`,
-      transformOrigin: '0 0',
-      opacity: 0,
-    },
+  const size = `${floatButtonSize}px`;
+  const negSize = `-${floatButtonSize}px`;
 
-    '100%': {
-      transform: 'translate3d(0, 0, 0)',
-      transformOrigin: '0 0',
-      opacity: 1,
-    },
+  const moveTopIn = new Keyframes('antFloatButtonMoveTopIn', {
+    '0%': { transform: `translate3d(0, ${size}, 0)`, transformOrigin: '0 0', opacity: 0 },
+    '100%': { transform: 'translate3d(0, 0, 0)', transformOrigin: '0 0', opacity: 1 },
   });
-  const moveDownOut = new Keyframes('antFloatButtonMoveDownOut', {
-    '0%': {
-      transform: 'translate3d(0, 0, 0)',
-      transformOrigin: '0 0',
-      opacity: 1,
-    },
-
-    '100%': {
-      transform: `translate3d(0, ${floatButtonSize}px, 0)`,
-      transformOrigin: '0 0',
-      opacity: 0,
-    },
+  const moveTopOut = new Keyframes('antFloatButtonMoveTopOut', {
+    '0%': { transform: 'translate3d(0, 0, 0)', transformOrigin: '0 0', opacity: 1 },
+    '100%': { transform: `translate3d(0, ${size}, 0)`, transformOrigin: '0 0', opacity: 0 },
+  });
+  const moveBottomIn = new Keyframes('antFloatButtonMoveBottomIn', {
+    '0%': { transform: `translate3d(0, ${negSize}, 0)`, transformOrigin: '0 0', opacity: 0 },
+    '100%': { transform: 'translate3d(0, 0, 0)', transformOrigin: '0 0', opacity: 1 },
+  });
+  const moveBottomOut = new Keyframes('antFloatButtonMoveBottomOut', {
+    '0%': { transform: 'translate3d(0, 0, 0)', transformOrigin: '0 0', opacity: 1 },
+    '100%': { transform: `translate3d(0, ${negSize}, 0)`, transformOrigin: '0 0', opacity: 0 },
+  });
+  const moveLeftIn = new Keyframes('antFloatButtonMoveLeftIn', {
+    '0%': { transform: `translate3d(${size}, 0, 0)`, transformOrigin: '0 0', opacity: 0 },
+    '100%': { transform: 'translate3d(0, 0, 0)', transformOrigin: '0 0', opacity: 1 },
+  });
+  const moveLeftOut = new Keyframes('antFloatButtonMoveLeftOut', {
+    '0%': { transform: 'translate3d(0, 0, 0)', transformOrigin: '0 0', opacity: 1 },
+    '100%': { transform: `translate3d(${size}, 0, 0)`, transformOrigin: '0 0', opacity: 0 },
+  });
+  const moveRightIn = new Keyframes('antFloatButtonMoveRightIn', {
+    '0%': { transform: `translate3d(${negSize}, 0, 0)`, transformOrigin: '0 0', opacity: 0 },
+    '100%': { transform: 'translate3d(0, 0, 0)', transformOrigin: '0 0', opacity: 1 },
+  });
+  const moveRightOut = new Keyframes('antFloatButtonMoveRightOut', {
+    '0%': { transform: 'translate3d(0, 0, 0)', transformOrigin: '0 0', opacity: 1 },
+    '100%': { transform: `translate3d(${negSize}, 0, 0)`, transformOrigin: '0 0', opacity: 0 },
   });
 
   return [
     {
-      [`${groupPrefixCls}-wrap`]: {
-        ...initMotion(`${groupPrefixCls}-wrap`, moveDownIn, moveDownOut, motionDurationSlow, true),
+      [groupPrefixCls]: {
+        [`&${groupPrefixCls}-top ${groupPrefixCls}-wrap`]: initMotion(
+          `${groupPrefixCls}-wrap`,
+          moveTopIn,
+          moveTopOut,
+          motionDurationSlow,
+          true,
+        ),
+        [`&${groupPrefixCls}-bottom ${groupPrefixCls}-wrap`]: initMotion(
+          `${groupPrefixCls}-wrap`,
+          moveBottomIn,
+          moveBottomOut,
+          motionDurationSlow,
+          true,
+        ),
+        [`&${groupPrefixCls}-left ${groupPrefixCls}-wrap`]: initMotion(
+          `${groupPrefixCls}-wrap`,
+          moveLeftIn,
+          moveLeftOut,
+          motionDurationSlow,
+          true,
+        ),
+        [`&${groupPrefixCls}-right ${groupPrefixCls}-wrap`]: initMotion(
+          `${groupPrefixCls}-wrap`,
+          moveRightIn,
+          moveRightOut,
+          motionDurationSlow,
+          true,
+        ),
       },
     },
     {
       [`${groupPrefixCls}-wrap`]: {
-        [`
-          &${groupPrefixCls}-wrap-enter,
-          &${groupPrefixCls}-wrap-appear
-        `]: {
+        [`&${groupPrefixCls}-wrap-enter, &${groupPrefixCls}-wrap-appear`]: {
           opacity: 0,
           animationTimingFunction: motionEaseInOutCirc,
         },
-
         [`&${groupPrefixCls}-wrap-leave`]: {
+          opacity: 1,
           animationTimingFunction: motionEaseInOutCirc,
         },
       },
@@ -97,16 +130,20 @@ const floatButtonGroupStyle: GenerateStyle<FloatButtonToken, CSSObject> = token 
     floatButtonBodyPadding,
   } = token;
   const groupPrefixCls = `${componentCls}-group`;
+  const offset = floatButtonSize + margin;
   return {
     [groupPrefixCls]: {
       ...resetComponent(token),
       zIndex: 99,
-      display: 'block',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
       border: 'none',
       position: 'fixed',
-      width: floatButtonSize,
       height: 'auto',
       boxShadow: 'none',
+      minWidth: floatButtonSize,
       minHeight: floatButtonSize,
       insetInlineEnd: token.floatButtonInsetInlineEnd,
       insetBlockEnd: token.floatButtonInsetBlockEnd,
@@ -114,9 +151,10 @@ const floatButtonGroupStyle: GenerateStyle<FloatButtonToken, CSSObject> = token 
 
       [`${groupPrefixCls}-wrap`]: {
         zIndex: -1,
-        display: 'block',
-        position: 'relative',
-        marginBottom: margin,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'absolute',
       },
       [`&${groupPrefixCls}-rtl`]: {
         direction: 'rtl',
@@ -125,9 +163,60 @@ const floatButtonGroupStyle: GenerateStyle<FloatButtonToken, CSSObject> = token 
         position: 'static',
       },
     },
+    [`${groupPrefixCls}-top > ${groupPrefixCls}-wrap`]: {
+      flexDirection: 'column',
+      top: 'auto',
+      bottom: offset,
+      '&::after': {
+        content: '""',
+        position: 'absolute',
+        width: '100%',
+        height: margin,
+        bottom: -margin,
+      },
+    },
+    [`${groupPrefixCls}-bottom > ${groupPrefixCls}-wrap`]: {
+      flexDirection: 'column',
+      top: offset,
+      bottom: 'auto',
+      '&::after': {
+        content: '""',
+        position: 'absolute',
+        width: '100%',
+        height: margin,
+        top: -margin,
+      },
+    },
+    [`${groupPrefixCls}-right > ${groupPrefixCls}-wrap`]: {
+      flexDirection: 'row',
+      left: offset,
+      right: 'auto',
+      '&::after': {
+        content: '""',
+        position: 'absolute',
+        width: margin,
+        height: '100%',
+        left: -margin,
+      },
+    },
+    [`${groupPrefixCls}-left > ${groupPrefixCls}-wrap`]: {
+      flexDirection: 'row',
+      left: 'auto',
+      right: offset,
+      '&::after': {
+        content: '""',
+        position: 'absolute',
+        width: margin,
+        height: '100%',
+        right: -margin,
+      },
+    },
     [`${groupPrefixCls}-circle`]: {
+      gap: margin,
+      [`${groupPrefixCls}-wrap`]: {
+        gap: margin,
+      },
       [`${componentCls}-circle:not(:last-child)`]: {
-        marginBottom: token.margin,
         [`${componentCls}-body`]: {
           width: floatButtonSize,
           height: floatButtonSize,
@@ -158,7 +247,6 @@ const floatButtonGroupStyle: GenerateStyle<FloatButtonToken, CSSObject> = token 
         },
       },
       [`${groupPrefixCls}-wrap`]: {
-        display: 'block',
         borderRadius: borderRadiusLG,
         boxShadow: token.boxShadowSecondary,
         [`${componentCls}-square`]: {
@@ -166,6 +254,17 @@ const floatButtonGroupStyle: GenerateStyle<FloatButtonToken, CSSObject> = token 
           marginTop: 0,
           borderRadius: 0,
           padding: floatButtonBodyPadding,
+          [`${componentCls}-body`]: {
+            width: token.floatButtonBodySize,
+            height: token.floatButtonBodySize,
+            borderRadius: borderRadiusSM,
+          },
+        },
+      },
+    },
+    [`${groupPrefixCls}-top > ${groupPrefixCls}-wrap, ${groupPrefixCls}-bottom > ${groupPrefixCls}-wrap`]:
+      {
+        [`> ${componentCls}-square`]: {
           '&:first-child': {
             borderStartStartRadius: borderRadiusLG,
             borderStartEndRadius: borderRadiusLG,
@@ -177,13 +276,25 @@ const floatButtonGroupStyle: GenerateStyle<FloatButtonToken, CSSObject> = token 
           '&:not(:last-child)': {
             borderBottom: `${token.lineWidth}px ${token.lineType} ${token.colorSplit}`,
           },
-          [`${componentCls}-body`]: {
-            width: token.floatButtonBodySize,
-            height: token.floatButtonBodySize,
+        },
+      },
+    [`${groupPrefixCls}-left > ${groupPrefixCls}-wrap, ${groupPrefixCls}-right > ${groupPrefixCls}-wrap`]:
+      {
+        [`> ${componentCls}-square`]: {
+          '&:first-child': {
+            borderStartStartRadius: borderRadiusLG,
+            borderEndStartRadius: borderRadiusLG,
+          },
+          '&:last-child': {
+            borderStartEndRadius: borderRadiusLG,
+            borderEndEndRadius: borderRadiusLG,
+          },
+          '&:not(:last-child)': {
+            borderBottom: 'none',
+            borderInlineEnd: `${token.lineWidth}px ${token.lineType} ${token.colorSplit}`,
           },
         },
       },
-    },
 
     [`${groupPrefixCls}-circle-shadow`]: {
       boxShadow: 'none',

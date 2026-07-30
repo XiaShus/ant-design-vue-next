@@ -8,6 +8,12 @@
 
 ---
 
+## 4.51.0
+
+`2026-07-31`
+
+- 🌟 FloatButton.Group 支持 `placement` / `closeIcon`；FloatButton 支持 `htmlType`（对齐 antd ≥ 5.16 / 5.21）
+
 ## 4.50.0
 
 `2026-07-31`

@@ -4,6 +4,12 @@
 
 ---
 
+## 4.51.0
+
+`2026-07-31`
+
+- 🌟 FloatButton.Group supports `placement` and `closeIcon`; FloatButton supports `htmlType` (antd ≥ 5.16 / 5.21)
+
 ## 4.50.0
 
 `2026-07-31`
