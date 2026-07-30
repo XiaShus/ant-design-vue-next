@@ -28,7 +28,11 @@ export default (name: string, props: Record<any, any>) => {
   );
 
   const dropdownMatchSelectWidth = computed<boolean | number>(
-    () => props.dropdownMatchSelectWidth ?? configProvider.dropdownMatchSelectWidth?.value,
+    () =>
+      props.popupMatchSelectWidth ??
+      props.dropdownMatchSelectWidth ??
+      configProvider.popupMatchSelectWidth?.value ??
+      configProvider.dropdownMatchSelectWidth?.value,
   );
   const virtual = computed(
     () =>

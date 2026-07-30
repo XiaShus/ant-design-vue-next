@@ -121,7 +121,7 @@
 | --- | --- | --- | --- | --- | --- |
 | Other | Affix | ✅ | ✅ | [affix](../../components/affix) | — |
 | Other | App | ✅ 5.1 | ✅ | [app](../../components/app) | — |
-| Other | ConfigProvider | ✅ | ✅ | [config-provider](../../components/config-provider) | ⚠️ 主题 / css-in-js 与 antd 5 剩余差异待盘点 |
+| Other | ConfigProvider | ✅ | ✅ | [config-provider](../../components/config-provider) | 🔄 `useConfig` / `popupMatchSelectWidth`（4.6.0）；⚠️ variant / holderRender / warning.strict 等仍待补 |
 | Other | BorderBeam | ✅ 6.4 | ⏭ | — | 阶段 B |
 | Other | theme / css-in-js | ✅ | ✅（沿用 antdv 混合栈） | — | 不在首周做完整重写 |
 
@@ -132,9 +132,10 @@
 1. ~~**ColorPicker**（antd 5.5）~~ — ✅ `4.3.0`
 2. ~~**Splitter**（antd 5.21）~~ — ✅ `4.4.0`
 3. ~~**Input.OTP**（antd 5.12）~~ — ✅ `4.5.0`
-4. ConfigProvider / 主题剩余差异（拆小 PR）— 下一候选
-5. Table / Form / DatePicker / Select / Modal 高频 API 缺口（逐项发版）
-6. ColorPicker 渐变 `mode` / `panelRender`；Splitter collapsible / lazy 补齐
+4. ~~ConfigProvider `useConfig` + `popupMatchSelectWidth`~~ — ✅ `4.6.0`
+5. ConfigProvider `variant` / `holderRender` / `warning.strict`（拆小 PR）
+6. Table / Form / DatePicker / Select / Modal 高频 API 缺口（逐项发版）
+7. ColorPicker 渐变 `mode` / `panelRender`；Splitter collapsible / lazy 补齐
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -144,4 +145,4 @@
 
 ---
 
-_上次更新：`4.5.0` Input.OTP。每发一版请同步改本表。_
+_上次更新：`4.6.0` ConfigProvider.useConfig。每发一版请同步改本表。_

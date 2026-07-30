@@ -27,6 +27,7 @@ import { useProviderSize } from './SizeContext';
 import { useProviderDisabled } from './DisabledContext';
 import { createTheme } from '../_util/cssinjs';
 import { DesignTokenProvider } from '../theme/internal';
+import { useConfig } from './hooks/useConfig';
 
 export type {
   ConfigProviderProps,
@@ -166,9 +167,15 @@ const ConfigProvider = defineComponent({
     const direction = computed(() => props.direction || parentContext.direction?.value);
     const space = computed(() => props.space ?? parentContext.space?.value);
     const virtual = computed(() => props.virtual ?? parentContext.virtual?.value);
-    const dropdownMatchSelectWidth = computed(
-      () => props.dropdownMatchSelectWidth ?? parentContext.dropdownMatchSelectWidth?.value,
+    // antd ≥ 5.5 prefers popupMatchSelectWidth; keep dropdownMatchSelectWidth as alias
+    const popupMatchSelectWidth = computed(
+      () =>
+        props.popupMatchSelectWidth ??
+        props.dropdownMatchSelectWidth ??
+        parentContext.popupMatchSelectWidth?.value ??
+        parentContext.dropdownMatchSelectWidth?.value,
     );
+    const dropdownMatchSelectWidth = popupMatchSelectWidth;
     const getTargetContainer = computed(() =>
       props.getTargetContainer !== undefined
         ? props.getTargetContainer
@@ -205,6 +212,7 @@ const ConfigProvider = defineComponent({
       space,
       virtual,
       dropdownMatchSelectWidth,
+      popupMatchSelectWidth,
       getPrefixCls,
       iconPrefixCls,
       theme: computed(() => {
@@ -290,12 +298,17 @@ const ConfigProvider = defineComponent({
 });
 
 ConfigProvider.config = setGlobalConfig;
+ConfigProvider.useConfig = useConfig;
 
 ConfigProvider.install = function (app: App) {
   app.component(ConfigProvider.name, ConfigProvider);
 };
 
+export { useConfig };
+export type { UseConfigResult } from './hooks/useConfig';
+
 export default ConfigProvider as typeof ConfigProvider &
   Plugin & {
+    readonly useConfig: typeof useConfig;
     readonly config: typeof setGlobalConfig;
   };

@@ -53,7 +53,8 @@ ConfigProvider 使用 Vue 的 [provide / inject](https://vuejs.org/v2/api/#provi
 | componentSize | 设置 antd 组件大小 | `small` \| `middle` \| `large` | - | 3.0 |
 | csp | 设置 [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) 配置 | { nonce: string } | - |  |
 | direction | 设置文本展示方向。 [示例](#components-config-provider-demo-direction) | `ltr` \| `rtl` | `ltr` | 3.0 |
-| dropdownMatchSelectWidth | 下拉菜单和选择器同宽。默认将设置 `min-width`，当值小于选择框宽度时会被忽略。`false` 时会关闭虚拟滚动 | boolean \| number | - |  |
+| dropdownMatchSelectWidth | 下拉菜单和选择器同宽。默认将设置 `min-width`，当值小于选择框宽度时会被忽略。`false` 时会关闭虚拟滚动。请优先使用 `popupMatchSelectWidth` | boolean \| number | - |  |
+| popupMatchSelectWidth | 同 `dropdownMatchSelectWidth`（antd ≥ 5.5 推荐名） | boolean \| number | - | 4.6.0 |
 | form | 设置 Form 组件的通用属性 | { validateMessages?: [ValidateMessages](/components/form/#validatemessages), requiredMark?: boolean \| `optional`, colon?: boolean} | - | 3.0 |
 | getPopupContainer | 弹出框（Select, Tooltip, Menu 等等）渲染父节点，默认渲染到 body 上。 | Function(triggerNode, dialogContext) | () => document.body |  |
 | getTargetContainer | 配置 Affix、Anchor 滚动监听容器。 | () => HTMLElement | () => window | 3.0 |
@@ -86,6 +87,22 @@ ConfigProvider.config({
   prefixCls,
 });
 ```
+
+### ConfigProvider.useConfig() `4.6.0+`
+
+读取最近一层 `ConfigProvider` 的 `componentSize` / `componentDisabled`（对齐 antd ≥ 5.3）。也支持具名导出 `useConfig`。
+
+```ts
+import { ConfigProvider, useConfig } from 'ant-design-vue-next';
+
+const { componentSize, componentDisabled } = ConfigProvider.useConfig();
+// 或：const { componentSize, componentDisabled } = useConfig();
+```
+
+| 字段              | 说明     | 类型                                                       |
+| ----------------- | -------- | ---------------------------------------------------------- |
+| componentSize     | 组件尺寸 | `ComputedRef<'small' \| 'middle' \| 'large' \| undefined>` |
+| componentDisabled | 组件禁用 | `ComputedRef<boolean \| undefined>`                        |
 
 ## FAQ
 

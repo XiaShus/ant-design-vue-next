@@ -4,6 +4,13 @@
 
 ---
 
+## 4.6.0
+
+`2026-07-30`
+
+- 🌟 ConfigProvider: add [`useConfig()`](./components/config-provider) (antd ≥ 5.3) for `componentSize` / `componentDisabled`
+- 🌟 ConfigProvider: add `popupMatchSelectWidth` (antd ≥ 5.5 preferred name; `dropdownMatchSelectWidth` still works)
+
 ## 4.5.0
 
 `2026-07-30`

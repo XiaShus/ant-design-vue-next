@@ -10,6 +10,13 @@
 
 ---
 
+## 4.6.0
+
+`2026-07-30`
+
+- 🌟 ConfigProvider 新增 [`useConfig()`](./components/config-provider)（对齐 antd ≥ 5.3），可读取最近一层的 `componentSize` / `componentDisabled`
+- 🌟 ConfigProvider 新增 `popupMatchSelectWidth`（antd ≥ 5.5 推荐名，兼容原 `dropdownMatchSelectWidth`）
+
 ## 4.5.0
 
 `2026-07-30`

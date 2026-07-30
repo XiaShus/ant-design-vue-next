@@ -92,7 +92,9 @@ export const configProviderProps = () => ({
   },
   space: objectType<{ size?: SizeType | number }>(),
   virtual: { type: Boolean, default: undefined },
-  dropdownMatchSelectWidth: { type: [Number, Boolean], default: true },
+  dropdownMatchSelectWidth: { type: [Number, Boolean], default: undefined },
+  /** Prefer this over `dropdownMatchSelectWidth` (antd ≥ 5.5 rename). */
+  popupMatchSelectWidth: { type: [Number, Boolean], default: undefined },
   form: objectType<{
     validateMessages?: ValidateMessages;
     requiredMark?: RequiredMark;
@@ -122,6 +124,7 @@ export interface ConfigProviderInnerProps {
   }>;
   virtual?: ComputedRef<boolean>;
   dropdownMatchSelectWidth?: ComputedRef<number | boolean>;
+  popupMatchSelectWidth?: ComputedRef<number | boolean>;
   getPrefixCls: (suffixCls?: string, customizePrefixCls?: string) => string;
   iconPrefixCls: ComputedRef<string>;
   theme?: ComputedRef<ThemeConfig>;

@@ -59,7 +59,8 @@ export type { CommentProps } from './comment';
 export { default as Comment } from './comment';
 
 export type { ConfigProviderProps } from './config-provider';
-export { default as ConfigProvider } from './config-provider';
+export type { UseConfigResult } from './config-provider';
+export { default as ConfigProvider, useConfig } from './config-provider';
 
 export type { DatePickerProps } from './date-picker';
 export {

@@ -52,7 +52,8 @@ Some components use dynamic style to support wave effect. You can config `csp` p
 | componentSize | Config antd component size | `small` \| `middle` \| `large` | - | 3.0 |
 | csp | Set [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) config | { nonce: string } | - |  |
 | direction | Set direction of layout. See [demo](#components-config-provider-demo-direction) | `ltr` \| `rtl` | `ltr` | 3.0 |
-| dropdownMatchSelectWidth | Determine whether the dropdown menu and the select input are the same width. Default set `min-width` same as input. Will ignore when value less than select width. `false` will disable virtual scroll | boolean \| number | - | 3.0 |
+| dropdownMatchSelectWidth | Determine whether the dropdown menu and the select input are the same width. Prefer `popupMatchSelectWidth` (antd ≥ 5.5 rename) | boolean \| number | - | 3.0 |
+| popupMatchSelectWidth | Same as `dropdownMatchSelectWidth` (preferred name) | boolean \| number | - | 4.6.0 |
 | form | Set Form common props | { validateMessages?: [ValidateMessages](/components/form/#validatemessages), requiredMark?: boolean \| `optional` } | - | 3.0 |
 | getPopupContainer | to set the container of the popup element. The default is to create a `div` element in `body`. | Function(triggerNode, dialogContext) | `() => document.body` |  |
 | getTargetContainer | Config Affix, Anchor scroll target container | () => HTMLElement | () => window | 3.0 |
@@ -85,6 +86,22 @@ ConfigProvider.config({
   prefixCls,
 });
 ```
+
+### ConfigProvider.useConfig() `4.6.0+`
+
+Read `componentSize` / `componentDisabled` from the nearest `ConfigProvider` (aligned with antd ≥ 5.3). Also available as named export `useConfig`.
+
+```ts
+import { ConfigProvider, useConfig } from 'ant-design-vue-next';
+
+const { componentSize, componentDisabled } = ConfigProvider.useConfig();
+// or: const { componentSize, componentDisabled } = useConfig();
+```
+
+| Field | Description | Type |
+| --- | --- | --- |
+| componentSize | Component size | `ComputedRef<'small' \| 'middle' \| 'large' \| undefined>` |
+| componentDisabled | Component disabled | `ComputedRef<boolean \| undefined>` |
 
 ## FAQ
 
