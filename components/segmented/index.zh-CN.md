@@ -24,6 +24,7 @@ tag: New
 | block | 将宽度调整为父元素宽度的选项 | boolean | - |  |
 | disabled | 是否禁用 | boolean | false |  |
 | options | 数据化配置选项内容 | string[] \| number[] \| SegmentedOption[] | [] |  |
+| shape | Segmented 形态 | `default` \| `round` | `default` | 4.45.0 |
 | size | 控件尺寸 | `large` \| `middle` \| `small` | - |  |
 | value | 当前选中的值 | string \| number |  |  |
 | label | 使用插槽自定义 label | v-slot:label="SegmentedBaseOption" |  |  |

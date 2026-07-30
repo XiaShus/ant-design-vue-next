@@ -21,6 +21,7 @@ Segmented Controls.
 | block | Option to fit width to its parent\'s width | boolean | false |  |
 | disabled | Disable all segments | boolean | false |  |
 | options | Set children optional | string[] \| number[] \| SegmentedOption[] | [] |  |
+| shape | Shape of Segmented | `default` \| `round` | `default` | 4.45.0 |
 | size | The size of the Segmented. | `large` \| `middle` \| `small` | - |  |
 | value | Currently selected value | string \| number |  |  |
 | label | custom label by slot | v-slot:label="SegmentedBaseOption" |  |  |

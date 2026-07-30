@@ -90,7 +90,7 @@
 | Data Display | List | ✅ | ✅ | [list](../../components/list) | React 6 标 DEPRECATED；阶段 B 再议 |
 | Data Display | Popover | ✅ | ✅ | [popover](../../components/popover) | — |
 | Data Display | QRCode | ✅ 5.1 | ✅ | [qrcode](../../components/qrcode) | 🔄 `statusRender` / object `iconSize` ✅ 4.26.0 |
-| Data Display | Segmented | ✅ | ✅ | [segmented](../../components/segmented) | — |
+| Data Display | Segmented | ✅ | ✅ | [segmented](../../components/segmented) | 🔄 `shape="round"` ✅ 4.45.0；⏭ `vertical` |
 | Data Display | Statistic | ✅ | ✅ | [statistic](../../components/statistic) | 🔄 `Statistic.Timer` ✅ 4.31.0 |
 | Data Display | Table | ✅ | ✅ | [table](../../components/table) | 🔄 Column `hidden` ✅ 4.13.0；🔄 `scrollTo` / `nativeElement` ✅ 4.17.0；🔄 `rowHoverable` ✅ 4.19.0；⏭ `virtual` |
 | Data Display | Tag | ✅ | ✅ | [tag](../../components/tag) | — |
@@ -171,9 +171,10 @@
 40. ~~Tabs `indicator`~~ — ✅ `4.42.0`
 41. ~~Notification `showProgress` / `pauseOnHover`~~ — ✅ `4.43.0`
 42. ~~Message `pauseOnHover`~~ — ✅ `4.44.0`
-43. Table `virtual` 按需拆版（多日）
-44. ColorPicker 渐变 `mode`
-45. Segmented `vertical` / `shape="round"`
+43. ~~Segmented `shape="round"`~~ — ✅ `4.45.0`
+44. Table `virtual` 按需拆版（多日）
+45. ColorPicker 渐变 `mode`
+46. Segmented `vertical`（需 MotionThumb 竖向）
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -183,4 +184,4 @@
 
 ---
 
-_上次更新：`4.44.0` Message.pauseOnHover。每发一版请同步改本表。_
+_上次更新：`4.45.0` Segmented.shape。每发一版请同步改本表。_

@@ -37,6 +37,8 @@ function normalizeOptions(options: (SegmentedOption | string | number)[]) {
     };
   });
 }
+export type SegmentedShape = 'default' | 'round';
+
 export const segmentedProps = () => {
   return {
     prefixCls: String,
@@ -44,6 +46,7 @@ export const segmentedProps = () => {
     block: booleanType(),
     disabled: booleanType(),
     size: stringType<segmentedSize>(),
+    shape: stringType<SegmentedShape>(),
     value: { ...someType<SegmentedValue>([String, Number]), required: true },
     motionName: String,
     onChange: functionType<(val: SegmentedValue) => void>(),
@@ -114,6 +117,7 @@ export default defineComponent({
   props: initDefaultProps(segmentedProps(), {
     options: [],
     motionName: 'thumb-motion',
+    shape: 'default',
   }),
   slots: Object as CustomSlotsType<{
     label: SegmentedBaseOption;
@@ -146,6 +150,7 @@ export default defineComponent({
               [`${pre}-lg`]: size.value == 'large',
               [`${pre}-sm`]: size.value == 'small',
               [`${pre}-rtl`]: direction.value === 'rtl',
+              [`${pre}-shape-round`]: props.shape === 'round',
             },
             attrs.class,
           )}
