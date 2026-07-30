@@ -8,6 +8,12 @@
 
 ---
 
+## 4.57.0
+
+`2026-07-31`
+
+- 🌟 Form `scrollToFirstError` / `scrollToField` 支持 `{ focus }`，新增 `focusField`（对齐 antd ≥ 5.24）
+
 ## 4.56.0
 
 `2026-07-31`

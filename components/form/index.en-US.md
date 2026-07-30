@@ -44,7 +44,7 @@ A form consists of one or more form fields whose type includes input, textarea, 
 | name | Form name. Will be the prefix of Field `id` | string | - | 2.0.0 |
 | noStyle | No style for `true`, used as a pure field control | boolean | false | 3.0 |
 | rules | validation rules of form | object |  |  |
-| scrollToFirstError | Auto scroll to first failed field when submit | boolean \| [options](https://github.com/stipsan/scroll-into-view-if-needed/#options) | false | 2.0.0 |
+| scrollToFirstError | Auto scroll to first failed field when submit. Object form supports scroll options and `{ focus }` to focus the field | boolean \| [ScrollFocusOptions](#scrollfocusoptions) | false | 2.0.0；`focus`: 4.57.0 |
 | feedbackIcons | Custom feedback icons when Form.Item has `hasFeedback` | [FeedbackIcons](#feedbackicons) | - | 4.40.0 |
 | validateOnRuleChange | whether to trigger validation when the `rules` prop is changed | boolean | true |  |
 | validateTrigger | Config field validate trigger | string \| string\[] | `change` | 2.0.0 |
@@ -65,9 +65,14 @@ A form consists of one or more form fields whose type includes input, textarea, 
 | --- | --- | --- | --- |
 | clearValidate | clear validation message for certain fields. The parameter is name or an array of names of the form items whose validation messages will be removed. When omitted, all fields' validation messages will be cleared | (nameList?: [NamePath](#namepath)\[]) => void |  |
 | resetFields | reset all the fields and remove validation result | (nameList?: [NamePath](#namepath)\[]) => void |  |
-| scrollToField | Scroll to field position | (name: [NamePath](#namepath), options: \[[ScrollOptions](https://github.com/stipsan/scroll-into-view-if-needed/tree/ece40bd9143f48caf4b99503425ecb16b0ad8249#options)]) => void |  |
+| scrollToField | Scroll to field position. Pass `{ focus: true }` to focus after scroll | (name: [NamePath](#namepath), options?: [ScrollFocusOptions](#scrollfocusoptions)) => void | `focus`: 4.57.0 |
+| focusField | Focus the field control | (name: [NamePath](#namepath)) => void | 4.57.0 |
 | validate | Validate fields, it is same as validateFields | (nameList?: [NamePath](#namepath)\[]) => Promise |  |
 | validateFields | Validate fields | (nameList?: [NamePath](#namepath)\[]) => Promise |  |
+
+#### ScrollFocusOptions
+
+[scroll-into-view-if-needed options](https://github.com/stipsan/scroll-into-view-if-needed/#options) & `{ focus?: boolean }`
 
 #### NamePath
 

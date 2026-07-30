@@ -10,7 +10,6 @@ import { defaultValidateMessages } from './utils/messages';
 import { allPromiseFinish } from './utils/asyncUtil';
 import { toArray } from './utils/typeUtil';
 import isEqual from 'lodash-es/isEqual';
-import type { Options } from 'scroll-into-view-if-needed';
 import scrollIntoView from 'scroll-into-view-if-needed';
 import initDefaultProps from '../_util/props-util/initDefaultProps';
 import {
@@ -34,6 +33,7 @@ import type {
   Rule,
   FormLabelAlign,
   FeedbackIcons,
+  ScrollFocusOptions,
 } from './interface';
 import useConfigInject from '../config-provider/hooks/useConfigInject';
 import { useProvideForm } from './context';
@@ -63,8 +63,8 @@ export const formProps = () => ({
   rules: objectType<{ [k: string]: Rule[] | Rule }>(),
   validateMessages: objectType<ValidateMessages>(),
   validateOnRuleChange: booleanType(),
-  // 提交失败自动滚动到第一个错误字段
-  scrollToFirstError: anyType<boolean | Options>(),
+  // 提交失败自动滚动到第一个错误字段（支持 antd ≥ 5.24 `{ focus }`）
+  scrollToFirstError: anyType<boolean | ScrollFocusOptions>(),
   onSubmit: functionType<(e: Event) => void>(),
   name: String,
   validateTrigger: someType<string | string[]>([String, Array]),
@@ -101,7 +101,8 @@ export type FormExpose = {
   ) => Promise<{
     [key: string]: any;
   }>;
-  scrollToField: (name: NamePath, options?: {}) => void;
+  scrollToField: (name: NamePath, options?: ScrollFocusOptions) => void;
+  focusField: (name: NamePath) => void;
 };
 
 export type FormInstance = ComponentPublicInstance<FormProps, FormExpose>;
@@ -213,7 +214,7 @@ const Form = defineComponent({
       const { scrollToFirstError } = props;
       emit('finishFailed', errorInfo);
       if (scrollToFirstError && errorInfo.errorFields.length) {
-        let scrollToFieldOptions: Options = {};
+        let scrollToFieldOptions: ScrollFocusOptions = {};
         if (typeof scrollToFirstError === 'object') {
           scrollToFieldOptions = scrollToFirstError;
         }
@@ -223,18 +224,32 @@ const Form = defineComponent({
     const validate = (...args: any[]) => {
       return validateField(...args);
     };
-    const scrollToField = (name?: NamePath, options = {}) => {
-      const fields = getFieldsByNameList(name ? [name] : undefined);
-      if (fields.length) {
-        const fieldId = fields[0].fieldId.value;
-        const node = fieldId ? document.getElementById(fieldId) : null;
+    const getFieldDOMNode = (name?: NamePath) => {
+      const matched = getFieldsByNameList(name ? [name] : undefined);
+      if (!matched.length) {
+        return null;
+      }
+      const fieldId = matched[0].fieldId.value;
+      return fieldId ? document.getElementById(fieldId) : null;
+    };
+    const focusField = (name?: NamePath) => {
+      const node = getFieldDOMNode(name);
+      if (node && typeof node.focus === 'function') {
+        node.focus();
+      }
+    };
+    const scrollToField = (name?: NamePath, options: ScrollFocusOptions = {}) => {
+      const { focus, ...restOpt } = options;
+      const node = getFieldDOMNode(name);
 
-        if (node) {
-          scrollIntoView(node, {
-            scrollMode: 'if-needed',
-            block: 'nearest',
-            ...options,
-          });
+      if (node) {
+        scrollIntoView(node, {
+          scrollMode: 'if-needed',
+          block: 'nearest',
+          ...restOpt,
+        });
+        if (focus) {
+          focusField(name);
         }
       }
     };
@@ -375,6 +390,7 @@ const Form = defineComponent({
       getFieldsValue,
       validate,
       scrollToField,
+      focusField,
     } as FormExpose);
 
     useProvideForm({

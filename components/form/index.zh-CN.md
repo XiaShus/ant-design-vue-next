@@ -45,7 +45,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*ylFATY6w-ygAAA
 | name | 表单名称，会作为表单字段 `id` 前缀使用 | string | - | 2.0.0 |
 | noStyle | 为 `true` 时不带样式，作为纯字段控件使用 | boolean | false | 3.0 |
 | rules | 表单验证规则 | object |  |  |
-| scrollToFirstError | 提交失败自动滚动到第一个错误字段 | boolean \| [options](https://github.com/stipsan/scroll-into-view-if-needed/#options) | false | 2.0.0 |
+| scrollToFirstError | 提交失败自动滚动到第一个错误字段；对象形式支持滚动配置及 `{ focus }` 聚焦该字段 | boolean \| [ScrollFocusOptions](#scrollfocusoptions) | false | 2.0.0；`focus`: 4.57.0 |
 | feedbackIcons | 自定义 Form.Item 开启 `hasFeedback` 时的校验图标 | [FeedbackIcons](#feedbackicons) | - | 4.40.0 |
 | validateOnRuleChange | 是否在 rules 属性改变后立即触发一次验证 | boolean | true |  |
 | validateTrigger | 统一设置字段校验规则 | string \| string\[] | `change` | 2.0.0 |
@@ -66,9 +66,14 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*ylFATY6w-ygAAA
 | --- | --- | --- | --- |
 | clearValidate | 移除表单项的校验结果。传入待移除的表单项的 name 属性或者 name 组成的数组，如不传则移除整个表单的校验结果 | (nameList?: [NamePath](#namepath)\[]) => void |  |
 | resetFields | 对整个表单进行重置，将所有字段值重置为初始值并移除校验结果 | (nameList?: [NamePath](#namepath)\[]) => void |  |
-| scrollToField | 滚动到对应字段位置 | (name: [NamePath](#namepath), options: \[[ScrollOptions](https://github.com/stipsan/scroll-into-view-if-needed/tree/ece40bd9143f48caf4b99503425ecb16b0ad8249#options)]) => void |  |
+| scrollToField | 滚动到对应字段位置；传入 `{ focus: true }` 可在滚动后聚焦 | (name: [NamePath](#namepath), options?: [ScrollFocusOptions](#scrollfocusoptions)) => void | `focus`: 4.57.0 |
+| focusField | 聚焦对应字段控件 | (name: [NamePath](#namepath)) => void | 4.57.0 |
 | validate | 触发表单验证, 同 validateFields | (nameList?: [NamePath](#namepath)\[]) => Promise |  |
 | validateFields | 触发表单验证 | (nameList?: [NamePath](#namepath)\[]) => Promise |  |
+
+#### ScrollFocusOptions
+
+[scroll-into-view-if-needed 配置](https://github.com/stipsan/scroll-into-view-if-needed/#options) & `{ focus?: boolean }`
 
 #### NamePath
 

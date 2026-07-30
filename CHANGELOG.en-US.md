@@ -4,6 +4,12 @@
 
 ---
 
+## 4.57.0
+
+`2026-07-31`
+
+- 🌟 Form `scrollToFirstError` / `scrollToField` support `{ focus }` and `focusField` (antd ≥ 5.24)
+
 ## 4.56.0
 
 `2026-07-31`

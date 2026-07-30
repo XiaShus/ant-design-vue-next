@@ -1,3 +1,4 @@
+import type { Options as ScrollIntoViewOptions } from 'scroll-into-view-if-needed';
 import type { VueNode } from '../_util/type';
 
 export type FormLabelAlign = 'left' | 'right';
@@ -16,6 +17,11 @@ export type FormItemFeedbackConfig = {
 
 export type InternalNamePath = (string | number)[];
 export type NamePath = string | number | InternalNamePath;
+
+/** Options for `scrollToField` / `scrollToFirstError` (antd ≥ 5.24 `focus`). */
+export type ScrollFocusOptions = ScrollIntoViewOptions & {
+  focus?: boolean;
+};
 
 export type StoreValue = any;
 export interface Store {

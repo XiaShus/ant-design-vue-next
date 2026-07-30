@@ -60,7 +60,7 @@
 | Data Entry | Checkbox | ✅ | ✅ | [checkbox](../../components/checkbox) | — |
 | Data Entry | ColorPicker | ✅ 5.5 | 🔄 ✅ 4.3.0 | [color-picker](../../components/color-picker) | 单色/预设/清除/格式；🔄 `destroyOnHidden` ✅ 4.14.0；🔄 `panelRender` ✅ 4.15.0；🔄 `disabledFormat` ✅ 4.19.0；⏭ 渐变 mode |
 | Data Entry | DatePicker | ✅ | ✅ | [date-picker](../../components/date-picker) | 🔄 `variant` ✅ 4.9.0；🔄 `needConfirm` ✅ 4.21.0；🔄 `showTime.changeOnScroll` ✅ 4.23.0 |
-| Data Entry | Form | ✅ | ✅ | [form](../../components/form) | 🔄 `variant` ✅ 4.10.0；🔄 `feedbackIcons` ✅ 4.40.0 |
+| Data Entry | Form | ✅ | ✅ | [form](../../components/form) | 🔄 `variant` ✅ 4.10.0；🔄 `feedbackIcons` ✅ 4.40.0；🔄 `scrollToFirstError` `{ focus }` / `focusField` ✅ 4.57.0 |
 | Data Entry | Input | ✅ | ✅ | [input](../../components/input) | 🔄 `Input.OTP` ✅ 4.5.0；`variant` ✅ 4.8.0；🔄 `underlined` ✅ 4.18.0 |
 | Data Entry | InputNumber | ✅ | ✅ | [input-number](../../components/input-number) | 🔄 `variant` ✅ 4.9.0 |
 | Data Entry | Mentions | ✅ | ✅ | [mentions](../../components/mentions) | 🔄 `variant` ✅ 4.12.0 |
@@ -183,9 +183,10 @@
 52. ~~Typography `copyable.format` / `tabIndex`~~ — ✅ `4.54.0`
 53. ~~Progress `steps` object `{ count, gap }`~~ — ✅ `4.55.0`
 54. ~~Slider nested `tooltip`~~ — ✅ `4.56.0`
-55. Table `virtual` 按需拆版（多日）
-56. ColorPicker 渐变 `mode`
-57. Segmented `vertical`（需 MotionThumb 竖向）
+55. ~~Form `scrollToFirstError` `{ focus }` / `focusField`~~ — ✅ `4.57.0`
+56. Table `virtual` 按需拆版（多日）
+57. ColorPicker 渐变 `mode`
+58. Segmented `vertical`（需 MotionThumb 竖向）
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -195,4 +196,4 @@
 
 ---
 
-_上次更新：`4.56.0` Slider.tooltip。每发一版请同步改本表。_
+_上次更新：`4.57.0` Form scrollToFirstError.focus / focusField。每发一版请同步改本表。_
