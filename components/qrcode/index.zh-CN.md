@@ -20,12 +20,21 @@ tag: New
 | type | 渲染类型 | `'canvas'` \| `'svg'` | `canvas` |  |
 | icon | 二维码中图片的地址（目前只支持图片地址） | string | - |  |
 | size | 二维码大小 | number | 160 |  |
-| iconSize | 二维码中图片的大小 | number | 40 |  |
+| iconSize | 二维码中图片的大小 | number \| `{ width: number; height: number }` | 40 | object: 4.26.0 |
 | color | 二维码颜色 | string | `#000` |  |
 | bgColor | 二维码背景颜色 | string | `transparent` |  |
 | bordered | 是否有边框 | boolean | `true` |  |
 | errorLevel | 二维码纠错等级 | `'L'` \| `'M'` \| `'Q'` \| `'H'` | `'M'` |  |
 | status | 二维码状态 | `active` \| `expired` \| `loading` \| `scanned` | `active` | scanned: 4.0.9 |
+| statusRender | 自定义状态渲染 | `(info: StatusRenderInfo) => VNodeChild` \| slot | - | 4.26.0 |
+
+```ts
+type StatusRenderInfo = {
+  status: Exclude<'active' | 'expired' | 'loading' | 'scanned', 'active'>;
+  locale: Locale['QRCode'];
+  onRefresh?: () => void;
+};
+```
 
 ### 事件
 

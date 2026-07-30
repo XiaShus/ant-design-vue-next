@@ -89,7 +89,7 @@
 | Data Display | Image | ✅ | ✅ | [image](../../components/image) | — |
 | Data Display | List | ✅ | ✅ | [list](../../components/list) | React 6 标 DEPRECATED；阶段 B 再议 |
 | Data Display | Popover | ✅ | ✅ | [popover](../../components/popover) | — |
-| Data Display | QRCode | ✅ 5.1 | ✅ | [qrcode](../../components/qrcode) | — |
+| Data Display | QRCode | ✅ 5.1 | ✅ | [qrcode](../../components/qrcode) | 🔄 `statusRender` / object `iconSize` ✅ 4.26.0 |
 | Data Display | Segmented | ✅ | ✅ | [segmented](../../components/segmented) | — |
 | Data Display | Statistic | ✅ | ✅ | [statistic](../../components/statistic) | — |
 | Data Display | Table | ✅ | ✅ | [table](../../components/table) | 🔄 Column `hidden` ✅ 4.13.0；🔄 `scrollTo` / `nativeElement` ✅ 4.17.0；🔄 `rowHoverable` ✅ 4.19.0；⏭ `virtual` |

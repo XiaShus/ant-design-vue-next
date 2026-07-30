@@ -3,6 +3,7 @@
     <Base />
     <Icon />
     <Status />
+    <CustomStatusRender />
     <CustomType />
     <CustomSize />
     <CustomColor />
@@ -19,6 +20,7 @@ import US from '../index.en-US.md';
 import Base from './base.vue';
 import Icon from './icon.vue';
 import Status from './status.vue';
+import CustomStatusRender from './customStatusRender.vue';
 import CustomSize from './customSize.vue';
 import CustomColor from './customColor.vue';
 import Download from './download.vue';
@@ -31,6 +33,7 @@ export default defineComponent({
     Base,
     Icon,
     Status,
+    CustomStatusRender,
     CustomSize,
     CustomColor,
     Download,

@@ -1,4 +1,5 @@
-import { objectType, stringType } from '../_util/type';
+import { anyType, functionType, objectType, stringType } from '../_util/type';
+import type { StatusRender } from './QrcodeStatus';
 
 export interface ImageSettings {
   src: string;
@@ -8,6 +9,9 @@ export interface ImageSettings {
   x?: number;
   y?: number;
 }
+
+export type IconSize = number | { width: number; height: number };
+
 export const qrProps = () => {
   return {
     size: { type: Number, default: 160 },
@@ -26,9 +30,12 @@ export const qrcodeProps = () => {
     errorLevel: stringType<'L' | 'M' | 'Q' | 'H'>('M'),
 
     icon: String,
-    iconSize: { type: Number, default: 40 },
+    /** Include image size. Object form since 4.26.0 (antd ≥ 5.19). */
+    iconSize: anyType<IconSize>(40),
 
     status: stringType<'active' | 'expired' | 'loading' | 'scanned'>('active'),
+    /** Custom status overlay render (antd ≥ 5.20). Also available as `statusRender` slot. */
+    statusRender: functionType<StatusRender>(),
     bordered: { type: Boolean, default: true },
   };
 };

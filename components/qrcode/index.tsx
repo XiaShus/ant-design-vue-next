@@ -4,21 +4,26 @@ import useConfigInject from '../config-provider/hooks/useConfigInject';
 import useStyle from './style';
 import { useLocaleReceiver } from '../locale/LocaleReceiver';
 import { withInstall } from '../_util/type';
-import Spin from '../spin';
-import Button from '../button';
-import { ReloadOutlined } from '@ant-design/icons-vue';
 import { useToken } from '../theme/internal';
 import { QRCodeCanvas, QRCodeSVG } from './QRCode';
 import warning from '../_util/warning';
 import { qrcodeProps } from './interface';
+import QRcodeStatus from './QrcodeStatus';
+import type { StatusRender, StatusRenderInfo } from './QrcodeStatus';
 
+export type { StatusRender, StatusRenderInfo };
 export type QRCodeProps = Partial<ExtractPropTypes<ReturnType<typeof qrcodeProps>>>;
+
+function isNumber(value: unknown): value is number {
+  return typeof value === 'number';
+}
+
 const QRCode = defineComponent({
   name: 'AQrcode',
   inheritAttrs: false,
   props: qrcodeProps(),
   emits: ['refresh'],
-  setup(props, { emit, attrs, expose }) {
+  setup(props, { emit, attrs, expose, slots }) {
     if (process.env.NODE_ENV !== 'production') {
       warning(
         !(props.icon && props.errorLevel === 'L'),
@@ -46,12 +51,15 @@ const QRCode = defineComponent({
         bgColor = 'transparent',
         errorLevel = 'M',
       } = props;
+      const resolvedIconSize = isNumber(iconSize)
+        ? { width: iconSize, height: iconSize }
+        : { width: iconSize?.width ?? 40, height: iconSize?.height ?? 40 };
       const imageSettings: QRCodeProps['imageSettings'] = {
         src: icon,
         x: undefined,
         y: undefined,
-        height: iconSize,
-        width: iconSize,
+        height: resolvedIconSize.height,
+        width: resolvedIconSize.width,
         excavate: true,
       };
       return {
@@ -65,6 +73,34 @@ const QRCode = defineComponent({
     });
     return () => {
       const pre = prefixCls.value;
+      const onRefresh = () => emit('refresh');
+      const statusRenderInfo: StatusRenderInfo | null =
+        props.status !== 'active'
+          ? {
+              status: props.status as StatusRenderInfo['status'],
+              locale: locale.value,
+              onRefresh,
+            }
+          : null;
+
+      let statusNode: any = null;
+      if (statusRenderInfo) {
+        if (props.statusRender) {
+          statusNode = props.statusRender(statusRenderInfo);
+        } else if (slots.statusRender) {
+          statusNode = slots.statusRender(statusRenderInfo);
+        } else {
+          statusNode = (
+            <QRcodeStatus
+              prefixCls={pre}
+              locale={locale.value}
+              status={statusRenderInfo.status}
+              onRefresh={onRefresh}
+            />
+          );
+        }
+      }
+
       return wrapSSR(
         <div
           {...attrs}
@@ -84,24 +120,7 @@ const QRCode = defineComponent({
             },
           ]}
         >
-          {props.status !== 'active' && (
-            <div class={`${pre}-mask`}>
-              {props.status === 'loading' && <Spin />}
-              {props.status === 'expired' && (
-                <>
-                  <p class={`${pre}-expired`}>{locale.value.expired}</p>
-                  <Button
-                    type="link"
-                    onClick={e => emit('refresh', e)}
-                    v-slots={{ icon: () => <ReloadOutlined /> }}
-                  >
-                    {locale.value.refresh}
-                  </Button>
-                </>
-              )}
-              {props.status === 'scanned' && <p class={`${pre}-scanned`}>{locale.value.scanned}</p>}
-            </div>
-          )}
+          {statusNode && <div class={`${pre}-mask`}>{statusNode}</div>}
           {props.type === 'canvas' ? (
             <QRCodeCanvas ref={qrCodeCanvas} {...qrCodeProps.value} />
           ) : (

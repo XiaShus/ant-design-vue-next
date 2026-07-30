@@ -19,12 +19,21 @@ Used when the link needs to be converted into a QR Code.
 | type | render type | `'canvas'` \| `'svg'` | `canvas` |  |
 | icon | include image url (only image link are supported) | string | - |  |
 | size | QRCode size | number | 128 |  |
-| iconSize | include image size | number | 32 |  |
+| iconSize | include image size | number \| `{ width: number; height: number }` | 40 | object: 4.26.0 |
 | color | QRCode Color | string | `#000` |  |
 | bgColor | QRCode Background Color | string | `transparent` |  |
 | bordered | Whether has border style | boolean | `true` |  |
 | errorLevel | Error Code Level | `'L'` \| `'M'` \| `'Q'` \| `'H'` | `'M'` |  |
 | status | QRCode status | `active` \| `expired` \| `loading` \| `scanned` | `active` | scanned: 4.0.9 |
+| statusRender | custom status render | `(info: StatusRenderInfo) => VNodeChild` \| slot | - | 4.26.0 |
+
+```ts
+type StatusRenderInfo = {
+  status: Exclude<'active' | 'expired' | 'loading' | 'scanned', 'active'>;
+  locale: Locale['QRCode'];
+  onRefresh?: () => void;
+};
+```
 
 ### events
 

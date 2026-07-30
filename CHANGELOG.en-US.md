@@ -4,6 +4,12 @@
 
 ---
 
+## 4.26.0
+
+`2026-07-31`
+
+- 🌟 QRCode supports `statusRender` and object `iconSize` (antd ≥ 5.20 / 5.19)
+
 ## 4.25.0
 
 `2026-07-31`
