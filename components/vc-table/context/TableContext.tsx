@@ -20,6 +20,9 @@ export interface TableContextProps {
   summaryCollect: (uniKey: string, fixed: boolean | string) => void;
 
   transformCellText: TransformCellText<unknown>;
+
+  /** Whether row hover effect is enabled (antd ≥ 5.16). */
+  rowHoverable?: boolean;
 }
 
 export const TableContextKey: InjectionKey<TableContextProps> = Symbol('TableContextProps');

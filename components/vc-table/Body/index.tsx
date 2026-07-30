@@ -50,6 +50,10 @@ export default defineComponent<BodyProps<any>>({
       startRow,
       endRow,
       onHover: (start, end) => {
+        // Respect Table.rowHoverable (antd ≥ 5.16); default enabled.
+        if (tableContext.rowHoverable === false) {
+          return;
+        }
         clearTimeout(timeoutId);
         timeoutId = setTimeout(() => {
           startRow.value = start;

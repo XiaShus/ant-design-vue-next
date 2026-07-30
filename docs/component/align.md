@@ -58,7 +58,7 @@
 | Data Entry | AutoComplete | ✅ | ✅ | [auto-complete](../../components/auto-complete) | 🔄 `variant` ✅ 4.12.0（经 Select） |
 | Data Entry | Cascader | ✅ | ✅ | [cascader](../../components/cascader) | 🔄 `variant` ✅ 4.10.0 |
 | Data Entry | Checkbox | ✅ | ✅ | [checkbox](../../components/checkbox) | — |
-| Data Entry | ColorPicker | ✅ 5.5 | 🔄 ✅ 4.3.0 | [color-picker](../../components/color-picker) | 单色/预设/清除/格式；🔄 `destroyOnHidden` ✅ 4.14.0；🔄 `panelRender` ✅ 4.15.0；⏭ 渐变 mode |
+| Data Entry | ColorPicker | ✅ 5.5 | 🔄 ✅ 4.3.0 | [color-picker](../../components/color-picker) | 单色/预设/清除/格式；🔄 `destroyOnHidden` ✅ 4.14.0；🔄 `panelRender` ✅ 4.15.0；🔄 `disabledFormat` ✅ 4.19.0；⏭ 渐变 mode |
 | Data Entry | DatePicker | ✅ | ✅ | [date-picker](../../components/date-picker) | 🔄 `variant` ✅ 4.9.0；⚠️ 其他晚期 props 按需补 |
 | Data Entry | Form | ✅ | ✅ | [form](../../components/form) | 🔄 `variant` ✅ 4.10.0；⚠️ 其他高频缺口逐项对齐 |
 | Data Entry | Input | ✅ | ✅ | [input](../../components/input) | 🔄 `Input.OTP` ✅ 4.5.0；`variant` ✅ 4.8.0；🔄 `underlined` ✅ 4.18.0 |
@@ -92,7 +92,7 @@
 | Data Display | QRCode | ✅ 5.1 | ✅ | [qrcode](../../components/qrcode) | — |
 | Data Display | Segmented | ✅ | ✅ | [segmented](../../components/segmented) | — |
 | Data Display | Statistic | ✅ | ✅ | [statistic](../../components/statistic) | — |
-| Data Display | Table | ✅ | ✅ | [table](../../components/table) | 🔄 Column `hidden` ✅ 4.13.0；🔄 `scrollTo` / `nativeElement` ✅ 4.17.0；⏭ `virtual` |
+| Data Display | Table | ✅ | ✅ | [table](../../components/table) | 🔄 Column `hidden` ✅ 4.13.0；🔄 `scrollTo` / `nativeElement` ✅ 4.17.0；🔄 `rowHoverable` ✅ 4.19.0；⏭ `virtual` |
 | Data Display | Tag | ✅ | ✅ | [tag](../../components/tag) | — |
 | Data Display | Timeline | ✅ | ✅ | [timeline](../../components/timeline) | — |
 | Data Display | Tooltip | ✅ | ✅ | [tooltip](../../components/tooltip) | 🔄 `destroyOnHidden` ✅ 4.14.0（Popover / Popconfirm 同） |
@@ -145,8 +145,9 @@
 14. ~~Splitter collapsible / lazy~~ — ✅ `4.16.0`
 15. ~~Table `scrollTo` / `nativeElement`~~ — ✅ `4.17.0`
 16. ~~`variant="underlined"`~~ — ✅ `4.18.0`
-17. Table `virtual` 按需拆版
-18. ColorPicker 渐变 `mode`
+17. ~~Table `rowHoverable` + ColorPicker `disabledFormat`~~ — ✅ `4.19.0`
+18. Table `virtual` 按需拆版
+19. ColorPicker 渐变 `mode`
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -156,4 +157,4 @@
 
 ---
 
-_上次更新：`4.18.0` variant underlined。每发一版请同步改本表。_
+_上次更新：`4.19.0` Table.rowHoverable / ColorPicker.disabledFormat。每发一版请同步改本表。_

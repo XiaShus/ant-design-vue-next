@@ -99,6 +99,7 @@ Specify `dataSource` of Table as an array of data.
 | rowClassName | Row's className | Function(record, index):string | - |  |
 | rowExpandable | Enable row can be expandable | (record) => boolean | - |  |
 | rowKey | Row's unique key, could be a string or function that returns a string | string\|Function(record, index):string | `key` |  |
+| rowHoverable | Whether to highlight row on hover (antd ≥ 5.16) | boolean | true | 4.19.0 |
 | rowSelection | Row selection [config](#rowselection) | object | null |  |
 | scroll | Whether the table can be scrollable, [config](#scroll) | object | - |  |
 | showExpandColumn | Show expand column | boolean | true | 3.0 |

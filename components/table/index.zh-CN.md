@@ -104,6 +104,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*Sv8XQ50NB40AAA
 | rowClassName | 表格行的类名 | Function(record, index):string | - |  |
 | rowExpandable | 设置是否允许行展开 | (record) => boolean | - | 3.0 |
 | rowKey | 表格行 key 的取值，可以是字符串或一个函数 | string\|Function(record):string | 'key' |  |
+| rowHoverable | 是否开启行 hover 高亮（对齐 antd ≥ 5.16） | boolean | true | 4.19.0 |
 | rowSelection | 列表项是否可选择，[配置项](#rowselection) | object | null |  |
 | scroll | 表格是否可滚动，也可以指定滚动区域的宽、高，[配置项](#scroll) | object | - |  |
 | showExpandColumn | 设置是否展示行展开列 | boolean | true | 3.0 |

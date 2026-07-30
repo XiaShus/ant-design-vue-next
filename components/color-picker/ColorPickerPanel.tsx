@@ -13,6 +13,7 @@ export default defineComponent({
     format: { type: String as PropType<ColorFormatType>, default: 'hex' },
     disabledAlpha: Boolean,
     allowClear: Boolean,
+    disabledFormat: Boolean,
     presets: { type: Array as PropType<PresetsItem[]> },
     disabled: Boolean,
   },
@@ -28,6 +29,7 @@ export default defineComponent({
             format={props.format}
             disabledAlpha={props.disabledAlpha}
             allowClear={props.allowClear}
+            disabledFormat={props.disabledFormat}
             disabled={props.disabled}
             onChange={c => emit('change', c)}
             onChangeComplete={c => emit('changeComplete', c)}

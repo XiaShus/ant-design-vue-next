@@ -4,6 +4,13 @@
 
 ---
 
+## 4.19.0
+
+`2026-07-30`
+
+- 🌟 Table supports `rowHoverable` (antd ≥ 5.16)
+- 🌟 ColorPicker supports `disabledFormat`
+
 ## 4.18.0
 
 `2026-07-30`

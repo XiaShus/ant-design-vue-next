@@ -30,6 +30,7 @@ tag: New
 | presets | 预设颜色 | `{ label, colors, defaultOpen?, key? }[]` | - | 4.3.0 |
 | disabled | 禁用 | boolean | - | 4.3.0 |
 | disabledAlpha | 禁用透明度 | boolean | false | 4.3.0 |
+| disabledFormat | 隐藏格式选择器 | boolean | false | 4.19.0 |
 | open(v-model) | 是否打开弹层 | boolean | - | 4.3.0 |
 | trigger | 触发方式 | `hover \| click` | `click` | 4.3.0 |
 | placement | 弹出位置 | 同 Tooltip | `bottomLeft` | 4.3.0 |

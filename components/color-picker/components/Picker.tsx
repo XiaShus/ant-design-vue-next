@@ -18,6 +18,7 @@ export default defineComponent({
     format: { type: String as PropType<ColorFormatType>, default: 'hex' },
     disabledAlpha: Boolean,
     allowClear: Boolean,
+    disabledFormat: Boolean,
     disabled: Boolean,
   },
   emits: ['change', 'changeComplete', 'formatChange', 'clear'],
@@ -108,18 +109,20 @@ export default defineComponent({
             <ColorBlock prefixCls={pre} color={rgbString.value} />
           </div>
           <div class={`${pre}-input-container`}>
-            <Select
-              size="small"
-              value={props.format}
-              options={[
-                { value: 'hex', label: 'HEX' },
-                { value: 'rgb', label: 'RGB' },
-                { value: 'hsb', label: 'HSB' },
-              ]}
-              onChange={(v: ColorFormatType) => emit('formatChange', v)}
-              getPopupContainer={n => n.parentElement || document.body}
-              style={{ width: 68 }}
-            />
+            {!props.disabledFormat && (
+              <Select
+                size="small"
+                value={props.format}
+                options={[
+                  { value: 'hex', label: 'HEX' },
+                  { value: 'rgb', label: 'RGB' },
+                  { value: 'hsb', label: 'HSB' },
+                ]}
+                onChange={(v: ColorFormatType) => emit('formatChange', v)}
+                getPopupContainer={n => n.parentElement || document.body}
+                style={{ width: 68 }}
+              />
+            )}
             <Input
               size="small"
               value={inputText.value}

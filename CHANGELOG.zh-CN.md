@@ -8,6 +8,13 @@
 
 ---
 
+## 4.19.0
+
+`2026-07-30`
+
+- 🌟 Table 支持 `rowHoverable`（对齐 antd ≥ 5.16）
+- 🌟 ColorPicker 支持 `disabledFormat`
+
 ## 4.18.0
 
 `2026-07-30`

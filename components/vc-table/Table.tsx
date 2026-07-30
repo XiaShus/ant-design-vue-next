@@ -142,6 +142,9 @@ export interface TableProps<RecordType = DefaultRecordType> {
 
   sticky?: boolean | TableSticky;
 
+  /** Enable row hover highlight (antd ≥ 5.16). Default true. */
+  rowHoverable?: boolean;
+
   canExpandable?: boolean;
 
   onUpdateInternalRefs?: (refs: Record<string, any>) => void;
@@ -185,6 +188,7 @@ export default defineComponent({
     'childrenColumnName',
     'rowExpandable',
     'sticky',
+    'rowHoverable',
     'transformColumns',
     'internalHooks',
     'internalRefs',
@@ -566,7 +570,9 @@ export default defineComponent({
     };
     useProvideTable(
       reactive({
-        ...toRefs(reactivePick(props, 'prefixCls', 'direction', 'transformCellText')),
+        ...toRefs(
+          reactivePick(props, 'prefixCls', 'direction', 'transformCellText', 'rowHoverable'),
+        ),
         getComponent,
         scrollbarSize,
         fixedInfoList: computed(() =>

@@ -29,6 +29,7 @@ Used when the user needs to make a customized color selection.
 | presets | Preset colors | `{ label, colors, defaultOpen?, key? }[]` | - | 4.3.0 |
 | disabled | Disable | boolean | - | 4.3.0 |
 | disabledAlpha | Disable alpha | boolean | false | 4.3.0 |
+| disabledFormat | Hide format selector | boolean | false | 4.19.0 |
 | open(v-model) | Popup open | boolean | - | 4.3.0 |
 | trigger | Trigger mode | `hover \| click` | `click` | 4.3.0 |
 | placement | Placement | same as Tooltip | `bottomLeft` | 4.3.0 |

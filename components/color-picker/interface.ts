@@ -39,6 +39,8 @@ export function colorPickerProps() {
     presets: { type: Array as PropType<PresetsItem[]> },
     disabled: { type: Boolean, default: undefined },
     disabledAlpha: { type: Boolean, default: false },
+    /** Hide format selector (antd ≥ 5.14). */
+    disabledFormat: { type: Boolean, default: false },
     open: { type: Boolean, default: undefined },
     trigger: { type: String as PropType<TriggerType>, default: 'click' },
     placement: { type: String as PropType<TooltipPlacement>, default: 'bottomLeft' },

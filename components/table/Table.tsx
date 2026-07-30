@@ -209,6 +209,8 @@ export const tableProps = () => {
     sortDirections: arrayType<SortOrder[]>(),
     showSorterTooltip: someType<boolean | TooltipProps>([Boolean, Object], true),
     transformCellText: functionType<TableProps['transformCellText']>(),
+    /** Whether to show row hover background (antd ≥ 5.16). */
+    rowHoverable: booleanType(true),
   };
 };
 
