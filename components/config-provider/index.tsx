@@ -218,6 +218,9 @@ const ConfigProvider = defineComponent({
     const transfer = computed(() =>
       props.transfer !== undefined ? props.transfer : parentContext.transfer?.value,
     );
+    const button = computed(() =>
+      props.button !== undefined ? props.button : parentContext.button?.value,
+    );
     const form = computed(() =>
       props.form !== undefined ? props.form : parentContext.form?.value,
     );
@@ -254,6 +257,7 @@ const ConfigProvider = defineComponent({
       input,
       pagination,
       transfer,
+      button,
       form,
       select,
       componentSize,

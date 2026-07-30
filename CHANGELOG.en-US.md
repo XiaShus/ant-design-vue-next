@@ -4,6 +4,12 @@
 
 ---
 
+## 4.50.0
+
+`2026-07-31`
+
+- 🌟 ConfigProvider supports `button` config (`color` / `variant` / `autoInsertSpace`) (antd ≥ 5.17 / 5.25)
+
 ## 4.49.0
 
 `2026-07-31`

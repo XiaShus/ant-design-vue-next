@@ -121,7 +121,7 @@
 | --- | --- | --- | --- | --- | --- |
 | Other | Affix | ✅ | ✅ | [affix](../../components/affix) | — |
 | Other | App | ✅ 5.1 | ✅ | [app](../../components/app) | — |
-| Other | ConfigProvider | ✅ | ✅ | [config-provider](../../components/config-provider) | 🔄 `useConfig` / `popupMatchSelectWidth`（4.6）；`holderRender` / `warning.strict`（4.7）；`variant`（4.8）；🔄 `underlined` ✅ 4.18.0；🔄 `transfer.selectionsIcon` ✅ 4.36.0 |
+| Other | ConfigProvider | ✅ | ✅ | [config-provider](../../components/config-provider) | 🔄 `useConfig` / `popupMatchSelectWidth`（4.6）；`holderRender` / `warning.strict`（4.7）；`variant`（4.8）；🔄 `underlined` ✅ 4.18.0；🔄 `transfer.selectionsIcon` ✅ 4.36.0；🔄 `button`（color/variant/autoInsertSpace）✅ 4.50.0 |
 | Other | BorderBeam | ✅ 6.4 | ⏭ | — | 阶段 B |
 | Other | theme / css-in-js | ✅ | ✅（沿用 antdv 混合栈） | — | 不在首周做完整重写 |
 
@@ -176,9 +176,11 @@
 45. ~~Button `iconPlacement`~~ — ✅ `4.47.0`
 46. ~~Space `orientation` / `separator` / `vertical`~~ — ✅ `4.48.0`
 47. ~~Button `color` / `variant`~~ — ✅ `4.49.0`
-48. Table `virtual` 按需拆版（多日）
-49. ColorPicker 渐变 `mode`
-50. Segmented `vertical`（需 MotionThumb 竖向）
+48. ~~ConfigProvider `button`（color / variant / autoInsertSpace）~~ — ✅ `4.50.0`
+49. Table `virtual` 按需拆版（多日）
+50. ColorPicker 渐变 `mode`
+51. Segmented `vertical`（需 MotionThumb 竖向）
+52. FloatButton.Group `placement`
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -188,4 +190,4 @@
 
 ---
 
-_上次更新：`4.49.0` Button.color/variant。每发一版请同步改本表。_
+_上次更新：`4.50.0` ConfigProvider.button。每发一版请同步改本表。_

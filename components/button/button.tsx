@@ -43,14 +43,18 @@ export default defineComponent({
   name: 'AButton',
   inheritAttrs: false,
   __ANT_BUTTON: true,
-  props: initDefaultProps(buttonProps(), { type: 'default' }),
+  // No default `type` — undefined allows ConfigProvider `button.color`/`variant` (antd ≥ 5.25)
+  props: initDefaultProps(buttonProps(), {}),
   slots: Object as CustomSlotsType<{
     icon: any;
     default: any;
   }>,
   // emits: ['click', 'mousedown'],
   setup(props, { slots, attrs, emit, expose }) {
-    const { prefixCls, autoInsertSpaceInButton, direction, size } = useConfigInject('btn', props);
+    const { prefixCls, autoInsertSpaceInButton, direction, size, configProvider } = useConfigInject(
+      'btn',
+      props,
+    );
     const [wrapSSR, hashId] = useStyle(prefixCls);
     const groupSizeContext = GroupSizeContext.useInject();
     const disabledContext = useInjectDisabled();
@@ -63,7 +67,10 @@ export default defineComponent({
     const hasTwoCNChar = shallowRef(false);
 
     const autoInsertSpace = computed(
-      () => props.autoInsertSpace ?? autoInsertSpaceInButton.value !== false,
+      () =>
+        props.autoInsertSpace ??
+        configProvider.button?.value?.autoInsertSpace ??
+        autoInsertSpaceInButton.value !== false,
     );
     const { compactSize, compactItemClassnames } = useCompactItemContext(prefixCls, direction);
 
@@ -109,12 +116,22 @@ export default defineComponent({
         const mappedVariant = (variant || mapped[1] || 'outlined') as ButtonVariantType;
         return [mappedColor, mappedVariant] as const;
       }
+      // Explicit type / danger keep legacy classes (blocks ConfigProvider, same as antd)
+      if (type || danger) {
+        return null;
+      }
+      // ConfigProvider button.color + button.variant
+      const buttonConfig = configProvider.button?.value;
+      if (buttonConfig?.color && buttonConfig?.variant) {
+        return [buttonConfig.color, buttonConfig.variant] as const;
+      }
       return null;
     });
 
     const classes = computed(() => {
       const { type, shape = 'default', ghost, block, danger = false } = props;
       const pre = prefixCls.value;
+      const mergedType = type || 'default';
 
       const sizeClassNameMap = { large: 'lg', small: 'sm', middle: undefined };
       const sizeFullname = compactSize.value || groupSizeContext?.size || size.value;
@@ -126,7 +143,7 @@ export default defineComponent({
       const mergedVariant = colorVariant?.[1];
       const unbordered = useColorVariant
         ? isUnBorderedButtonVariant(mergedVariant)
-        : isUnBorderedButtonType(type);
+        : isUnBorderedButtonType(mergedType);
 
       return [
         compactItemClassnames.value,
@@ -135,7 +152,7 @@ export default defineComponent({
           [`${pre}`]: true,
           [`${pre}-${shape}`]: shape !== 'default' && shape,
           // Legacy type classes when color/variant API is not used
-          [`${pre}-${type}`]: !useColorVariant && !!type,
+          [`${pre}-${mergedType}`]: !useColorVariant,
           // Isolated color/variant classes to avoid clashing with type styles
           [`${pre}-color-${mergedColor}`]: useColorVariant && !!mergedColor,
           [`${pre}-variant-${mergedVariant}`]: useColorVariant && !!mergedVariant,

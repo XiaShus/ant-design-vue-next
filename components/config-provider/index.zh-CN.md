@@ -49,7 +49,8 @@ ConfigProvider 使用 Vue 的 [provide / inject](https://vuejs.org/v2/api/#provi
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
-| autoInsertSpaceInButton | 设置为 `false` 时，移除按钮中 2 个汉字之间的空格 | boolean | true |  |
+| autoInsertSpaceInButton | 设置为 `false` 时，移除按钮中 2 个汉字之间的空格。推荐使用 `button.autoInsertSpace` | boolean | true |  |
+| button | 设置 Button 组件的通用属性 | { color?: `default` \| `primary` \| `danger`, variant?: `outlined` \| `dashed` \| `solid` \| `filled` \| `text` \| `link`, autoInsertSpace?: boolean } | - | 4.50.0 |
 | componentSize | 设置 antd 组件大小 | `small` \| `middle` \| `large` | - | 3.0 |
 | csp | 设置 [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) 配置 | { nonce: string } | - |  |
 | direction | 设置文本展示方向。 [示例](#components-config-provider-demo-direction) | `ltr` \| `rtl` | `ltr` | 3.0 |

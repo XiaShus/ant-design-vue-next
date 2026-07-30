@@ -107,6 +107,12 @@ export const configProviderProps = () => ({
   transfer: objectType<{
     selectionsIcon?: VueNode;
   }>(),
+  /** Button common props (antd ≥ 5.17 / 5.25). */
+  button: objectType<{
+    color?: 'default' | 'primary' | 'danger';
+    variant?: 'outlined' | 'dashed' | 'solid' | 'filled' | 'text' | 'link';
+    autoInsertSpace?: boolean;
+  }>(),
   theme: objectType<ThemeConfig>(),
   select: objectType<{
     showSearch?: boolean;
@@ -155,6 +161,11 @@ export interface ConfigProviderInnerProps {
   }>;
   transfer?: ComputedRef<{
     selectionsIcon?: VueNode;
+  }>;
+  button?: ComputedRef<{
+    color?: 'default' | 'primary' | 'danger';
+    variant?: 'outlined' | 'dashed' | 'solid' | 'filled' | 'text' | 'link';
+    autoInsertSpace?: boolean;
   }>;
   form?: ComputedRef<{
     validateMessages?: ValidateMessages;
