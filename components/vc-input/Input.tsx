@@ -191,7 +191,8 @@ export default defineComponent({
       if (!inputProps.autofocus) {
         delete inputProps.autofocus;
       }
-      const inputNode = <BaseInputCore {...omit(inputProps, ['size'])} />;
+      // Cast: attrs.style (StyleValue) is wider than BaseInputCore's style prop under Vue 3.5+ types
+      const inputNode = <BaseInputCore {...(omit(inputProps, ['size']) as any)} />;
       return inputNode;
     };
     const getSuffix = () => {

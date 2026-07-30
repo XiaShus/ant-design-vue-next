@@ -1,14 +1,16 @@
-# Change Log (The following content is translated by Google)
+# Change Log
 
-`ant-design-vue` strictly follows [Semantic Versioning 2.0.0](http://semver.org/).
-
-#### Release Schedule
-
-- Weekly release: patch version at the end of every week for routine bugfix (anytime for urgent bugfix).
-- Monthly release: minor version at the end of every month for new features.
-- Major version release is not included in this schedule for breaking change and new features.
+`ant-design-vue-next` (community continuation) follows [Semantic Versioning 2.0.0](http://semver.org/). Baseline inherited from `ant-design-vue@4.2.6`.
 
 ---
+
+## 4.3.0
+
+`2026-07-30`
+
+- 🌟 Add [ColorPicker](https://github.com/XiaShus/ant-design-vue-next), aligned with antd React ≥ 5.5 common APIs (`value` / `format` / `presets` / `allowClear` / `showText` / `disabledAlpha`, etc.)
+- 📝 Bootstrap community continuation metadata and [alignment board](./docs/component/align.md)
+- ⚠️ Gradient `mode`, `panelRender`, and antd 6 semantic classNames are soft-skipped for now
 
 ## 4.2.6
 

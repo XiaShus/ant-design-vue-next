@@ -49,6 +49,7 @@ import type { ComponentToken as QRCodeComponentToken } from '../../qrcode/style'
 import type { ComponentToken as AppComponentToken } from '../../app/style';
 import type { ComponentToken as WaveToken } from '../../_util/wave/style';
 import type { ComponentToken as FlexToken } from '../../flex/style';
+import type { ComponentToken as ColorPickerComponentToken } from '../../color-picker/style';
 
 export interface ComponentTokenMap {
   Affix?: {};
@@ -115,6 +116,7 @@ export interface ComponentTokenMap {
   QRCode?: QRCodeComponentToken;
   App?: AppComponentToken;
   Flex?: FlexToken;
+  ColorPicker?: ColorPickerComponentToken;
 
   //   /** @private Internal TS definition. Do not use. */
   Wave?: WaveToken;

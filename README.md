@@ -1,124 +1,104 @@
 <p align="center">
-  <a href="https://www.antdv.com/">
-    <img width="200" src="https://www.antdv.com/logo.png">
+  <a href="https://github.com/XiaShus/ant-design-vue-next">
+    <img width="200" src="https://aliyuncdn.antdv.com/logo.png">
   </a>
 </p>
 
-<h1 align="center">
-  <a href="https://www.antdv.com/" target="_blank">Ant Design Vue</a>
-</h1>
+<h1 align="center">Ant Design Vue Next</h1>
 
 <div align="center">
 
-An enterprise-class UI components based on Ant Design and Vue.
+**Community continuation** of [ant-design-vue](https://github.com/vueComponent/ant-design-vue), aligning follow-up features with [ant-design](https://github.com/ant-design/ant-design).
 
-![test](https://github.com/vueComponent/ant-design-vue/workflows/test/badge.svg) [![codecov](https://img.shields.io/codecov/c/github/vueComponent/ant-design-vue/master.svg?style=flat-square)](https://codecov.io/gh/vueComponent/ant-design-vue) [![npm package](https://img.shields.io/npm/v/ant-design-vue.svg?style=flat-square)](https://www.npmjs.org/package/ant-design-vue) [![NPM downloads](http://img.shields.io/npm/dm/ant-design-vue.svg?style=flat-square)](http://www.npmtrends.com/ant-design-vue) [![backers](https://opencollective.com/ant-design-vue/backers/badge.svg)](#backers) [![sponsors](https://opencollective.com/ant-design-vue/sponsors/badge.svg)](#sponsors) [![extension-for-VSCode](https://img.shields.io/badge/extension%20for-VSCode-blue.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=ant-design-vue.vscode-ant-design-vue-helper) [![issues-helper](https://img.shields.io/badge/Issues%20Manage%20By-issues--helper-orange?style=flat-square)](https://github.com/actions-cool/issues-helper)
+[![npm package](https://img.shields.io/npm/v/ant-design-vue-next.svg?style=flat-square)](https://www.npmjs.com/package/ant-design-vue-next) [![npm downloads](https://img.shields.io/npm/dm/ant-design-vue-next.svg?style=flat-square)](https://www.npmjs.com/package/ant-design-vue-next) [![License](https://img.shields.io/npm/l/ant-design-vue-next.svg?style=flat-square)](./LICENSE)
 
-</div>
-
-[![](https://cdn-images-1.medium.com/max/2000/1*NIlj0-TdLMbo_hzSBP8tmg.png)](https://www.antdv.com/)
-
-<div align="center">
-  <sup><strong>Sponsored by</strong></sup>
-  <br>
-  <table>
-    <tr>
-      <td align="center">
-        <a href="https://mentorbook.ai/" target="_blank">
-          <img src="/site/public/mentorbook_banner_en.svg" alt="Mentorbook.AI - Your AI Mentor, Your Learning Journey" width="420" />
-        </a>
-      </td>
-      <td align="center">
-        <a href="https://github.com/pireel/pireel" target="_blank">
-          <img src="/site/public/pireel_banner_en.svg" alt="Pireel - Open-source AI video editing agent" width="420" />
-        </a>
-      </td>
-    </tr>
-  </table>
 </div>
 
 English | [简体中文](./README-zh_CN.md)
 
+> This is **not** an official successor to Ant Design Vue. It is a community fork that keeps shipping from the `ant-design-vue@4.2.6` baseline.
+
+**Repository:** https://github.com/XiaShus/ant-design-vue-next  
+**npm:** https://www.npmjs.com/package/ant-design-vue-next
+
+**Upstream / alignment targets:**
+
+- Vue baseline: [vueComponent/ant-design-vue](https://github.com/vueComponent/ant-design-vue) (`4.2.6`)
+- React alignment: [ant-design/ant-design](https://github.com/ant-design/ant-design) (stage A: remaining **antd 5.x** gaps → stage B: antd 6 roadmap)
+
+## Relation to `antdv-next`
+
+There is an independent community project:
+
+- GitHub: https://github.com/antdv-next/antdv-next
+- npm: `antdv-next`
+- Docs: https://www.antdv-next.com
+
+|  | `ant-design-vue-next` (this repo) | `antdv-next` |
+| --- | --- | --- |
+| Strategy | Fork / continue from `ant-design-vue@4.2.6`, maximize API compatibility for existing antdv users | Independent rewrite / next-generation stack |
+| Package name | `ant-design-vue-next` | `antdv-next` |
+| Relation | **Parallel community option** — we do not merge with or claim to replace `antdv-next` | Separate project |
+
+Pick based on your needs: stay close to classic antdv APIs → this package; adopt the other stack’s direction → `antdv-next`.
+
+## Alignment board
+
+See [docs/component/align.md](./docs/component/align.md) for the component-by-component gap tracker (antd 5.x first, antd 6 later).
+
 ## Features
 
-- An enterprise-class UI design system for desktop applications.
-- A set of high-quality Vue components out of the box.
-- Shared [Ant Design of React](https://ant.design/docs/spec/introduce) design resources.
+- Enterprise-class UI design system for Vue 3.
+- Drop-in continuation of `ant-design-vue` 4.x APIs where possible.
+- Incremental alignment with Ant Design React (antd 5.x remaining gaps first).
 
-## Getting started & staying tuned with us.
-
-Star us, and you will receive all releases notifications from GitHub without any delay!
-
-![star us](https://user-images.githubusercontent.com/6937879/261937060-e0501ab3-9388-4712-a25d-3f2ba2271865.gif)
-
-## Environment Support
-
-- Modern browsers. v1.x support Internet Explorer 9+ (with [polyfills](https://www.antdv.com/docs/vue/getting-started/#compatibility))
-- Server-side Rendering
-- Support Vue 2 & Vue 3
-- [Electron](https://electronjs.org/)
-
-| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png" alt="Opera" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Opera | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/electron/electron_48x48.png" alt="Electron" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Electron |
-| --- | --- | --- | --- | --- | --- |
-| Edge | last 2 versions | last 2 versions | last 2 versions | last 2 versions | last 2 versions |
-
-## Using npm or yarn
-
-**We recommend using npm or yarn to install**, it not only makes development easier, but also allow you to take advantage of the rich ecosystem of Javascript packages and tooling.
+## Install
 
 ```bash
-$ npm install ant-design-vue --save
+npm install ant-design-vue-next --save
 ```
 
 ```bash
-$ yarn add ant-design-vue
+yarn add ant-design-vue-next
 ```
 
-If you are in a bad network environment, you can try other registries and tools like [cnpm](https://github.com/cnpm/cnpm).
+```bash
+pnpm add ant-design-vue-next
+```
+
+Migration tip: replace `ant-design-vue` imports with `ant-design-vue-next`. Most 4.2.x APIs remain the same; check [CHANGELOG](./CHANGELOG.zh-CN.md) and [align.md](./docs/component/align.md) for new pieces.
+
+## Usage
+
+```html
+<script setup lang="ts">
+  import { Button } from 'ant-design-vue-next';
+  import 'ant-design-vue-next/dist/reset.css';
+</script>
+
+<template>
+  <button type="primary">Hello</button>
+</template>
+```
+
+On-demand / style import paths mirror classic antdv (`es/`, `lib/`, component `style` entries).
+
+## Versioning
+
+| Stage | Versions | Goal |
+| --- | --- | --- |
+| A (current) | `4.3.0`, `4.4.0`, … | Fill antd **5.x** APIs missing or incomplete in antdv 4.2.6 |
+| B (later) | `5.0.0` / `6.0.0` planning | Align with antd 6 (larger API / css-in-js shifts) — **not** claimed in week one |
+
+Release cadence: one high-value runtime capability → semver → docs/changelog → build → npm publish → git tag → push.
 
 ## Links
 
-- [Home page](https://www.antdv.com/)
+- [ant-design-vue (upstream)](https://github.com/vueComponent/ant-design-vue)
+- [Ant Design (React)](https://ant.design/)
+- [antdv-next (parallel community)](https://github.com/antdv-next/antdv-next)
 - [Vue](https://vuejs.org/)
-- [Ant Design Of React](http://ant.design/)
 
-## Ecosystem
+## License
 
-| Project | Description |
-| --- | --- |
-| [vue-ref](https://github.com/vueComponent/vue-ref) | You can use the callback to get a reference like react |
-| [ant-design-vue-helper](https://marketplace.visualstudio.com/items?itemName=ant-design-vue.vscode-ant-design-vue-helper) | A vscode extension for ant-design-vue |
-| [vue-cli-plugin-ant-design](https://github.com/vueComponent/vue-cli-plugin-ant-design) | Vue-cli 3 plugin to add ant-design-vue |
-| [vue-dash-event](https://github.com/vueComponent/vue-dash-event) | The library function, implemented in the DOM template, can use the custom event of the ant-design-vue component (camelCase) |
-| [@formily/antdv](https://github.com/formilyjs/antdv) | The Library with Formily and ant-design-vue |
-| [@ant-design-vue/nuxt](https://github.com/vueComponent/ant-design-vue-nuxt) | A nuxt module for ant-design-vue |
-| [ant-design-x-vue](https://github.com/wzc520pyfm/ant-design-x-vue) | A Vue AI interface solutions base on the Ant Design X design specification |
-
-## Donation
-
-ant-design-vue is an MIT-licensed open source project. In order to achieve better and sustainable development of the project, we expect to gain more [backers](https://github.com/vueComponent/ant-design-vue/blob/master/BACKERS.md). You can support us in any of the following ways:
-
-- [Patreon](https://www.patreon.com/tangjinzhou)
-- [opencollective](https://opencollective.com/ant-design-vue)
-- [paypal](https://www.paypal.me/tangjinzhou)
-- ETH: 0x30cc48515d8ae9fefa20ab87226ad7e8ab9c3bc2
-
-## Sponsors
-
-Become a sponsor and get your logo on our README on Github with a link to your site. [[Become a sponsor](https://opencollective.com/ant-design-vue#sponsor)]
-
-<a href="http://www.jeecg.com/" target="_blank"><img src="https://www.antdv.com/jeecg-logo.png" height="64"></a> <a href="https://opencollective.com/ant-design-vue/sponsor/0/website" target="_blank"><img src="https://opencollective.com/ant-design-vue/sponsor/0/avatar.svg"></a> <a href="https://opencollective.com/ant-design-vue/sponsor/1/website" target="_blank"><img src="https://opencollective.com/ant-design-vue/sponsor/1/avatar.svg"></a> <a href="https://opencollective.com/ant-design-vue/sponsor/2/website" target="_blank"><img src="https://opencollective.com/ant-design-vue/sponsor/2/avatar.svg"></a> <a href="https://opencollective.com/ant-design-vue/sponsor/3/website" target="_blank"><img src="https://opencollective.com/ant-design-vue/sponsor/3/avatar.svg"></a> <a href="https://opencollective.com/ant-design-vue/sponsor/4/website" target="_blank"><img src="https://opencollective.com/ant-design-vue/sponsor/4/avatar.svg"></a> <a href="https://opencollective.com/ant-design-vue/sponsor/5/website" target="_blank"><img src="https://opencollective.com/ant-design-vue/sponsor/5/avatar.svg"></a> <a href="https://opencollective.com/ant-design-vue/sponsor/6/website" target="_blank"><img src="https://opencollective.com/ant-design-vue/sponsor/6/avatar.svg"></a> <a href="https://opencollective.com/ant-design-vue/sponsor/7/website" target="_blank"><img src="https://opencollective.com/ant-design-vue/sponsor/7/avatar.svg"></a> <a href="https://opencollective.com/ant-design-vue/sponsor/8/website" target="_blank"><img src="https://opencollective.com/ant-design-vue/sponsor/8/avatar.svg"></a> <a href="https://opencollective.com/ant-design-vue/sponsor/9/website" target="_blank"><img src="https://opencollective.com/ant-design-vue/sponsor/9/avatar.svg"></a> <a href="https://opencollective.com/ant-design-vue/sponsor/10/website" target="_blank"><img src="https://opencollective.com/ant-design-vue/sponsor/10/avatar.svg"></a>
-
-## [More Sponsor (From Patreon、alipay、wechat、paypal...)](https://github.com/vueComponent/ant-design-vue/blob/master/BACKERS.md)
-
-## Contributors
-
-Thank you to all the people who already contributed to ant-design-vue!
-
-<a href="https://github.com/vueComponent/ant-design-vue/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=vueComponent/ant-design-vue&max=100&columns=15" />
-</a>
-
-[![Let's fund issues in this repository](https://issuehunt.io/static/embed/issuehunt-button-v1.svg)](https://issuehunt.io/repos/104172832)
-
-This project is tested with BrowserStack.
+[MIT](./LICENSE)

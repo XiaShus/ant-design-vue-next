@@ -173,10 +173,7 @@ ${pkg.name} v${pkg.version}
 Copyright 2017-present, Ant Design Vue.
 All rights reserved.
       `),
-      new WebpackBar({
-        name: '🚚  Ant Design Vue Tools',
-        color: '#2f54eb',
-      }),
+      // WebpackBar removed: incompatible with webpack@5.100+ ProgressPlugin schema
       new CleanUpStatsPlugin(),
     ],
     performance: {

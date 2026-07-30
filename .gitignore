@@ -84,3 +84,6 @@ components/version/version.tsx
 components/version/token.json
 components/version/token-meta.json
 ~component-api.json
+
+# Upstream React reference (local only, never commit)
+.ref-antd/

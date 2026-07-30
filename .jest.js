@@ -7,7 +7,7 @@ const transformIgnorePatterns = [
   // 'node_modules/(?!.*(@babel|lodash-es))',
   'node_modules/(?!@ant-design/icons-vue|@ant-design/icons-svg|lodash-es)/',
 ];
-const testPathIgnorePatterns = ['/node_modules/', 'node'];
+const testPathIgnorePatterns = ['/node_modules/', 'node', '/.ref-antd/'];
 
 function getTestRegex(libDir) {
   if (libDir === 'dist') {
@@ -33,6 +33,8 @@ module.exports = {
     '^@/(.*)$/': '<rootDir>/$1',
     '^ant-design-vue$': '<rootDir>/components/index',
     '^ant-design-vue/es/(.*)$': '<rootDir>/components/$1',
+    '^ant-design-vue-next$': '<rootDir>/components/index',
+    '^ant-design-vue-next/es/(.*)$': '<rootDir>/components/$1',
   },
   snapshotSerializers: ['<rootDir>/node_modules/jest-serializer-vue'],
   collectCoverage: process.env.COVERAGE === 'true',

@@ -43,6 +43,15 @@ export { default as Checkbox, CheckboxGroup } from './checkbox';
 export type { ColProps } from './col';
 export { default as Col } from './col';
 
+export type {
+  ColorPickerProps,
+  ColorFormatType,
+  PresetsItem as ColorPickerPresetsItem,
+  ColorValueType,
+} from './color-picker';
+export { default as ColorPicker, AggregationColor } from './color-picker';
+export type { ColorGenInput as ColorPickerColorGenInput } from './color-picker';
+
 export type { CommentProps } from './comment';
 export { default as Comment } from './comment';
 

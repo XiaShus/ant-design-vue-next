@@ -1,14 +1,22 @@
 # 更新日志
 
-`ant-design-vue` 严格遵循 [Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/) 语义化版本规范。
+`ant-design-vue-next`（社区续作）严格遵循 [Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/) 语义化版本规范。基线继承自 `ant-design-vue@4.2.6`。
 
 #### 发布周期
 
-- 修订版本号：每周末会进行日常 bugfix 更新。（如果有紧急的 bugfix，则任何时候都可发布）
-- 次版本号：每月发布一个带有新特性的向下兼容的版本。
-- 主版本号：含有破坏性更新和新特性，不在发布周期内。
+- 修订版本号：日常 bugfix。
+- 次版本号：一项高价值对齐特性（或一组小修复）。
+- 主版本号：含破坏性更新（阶段 B / antd 6）时单独规划。
 
 ---
+
+## 4.3.0
+
+`2026-07-30`
+
+- 🌟 新增 [ColorPicker](https://github.com/XiaShus/ant-design-vue-next) 颜色选择器，对齐 antd React ≥ 5.5 常用 API（`value` / `format` / `presets` / `allowClear` / `showText` / `disabledAlpha` 等）
+- 📝 建立社区续作仓库元数据与 [对齐看板](./docs/component/align.md)
+- ⚠️ 渐变 `mode`、`panelRender`、antd 6 语义化 classNames 暂软跳过，见组件文档
 
 ## 4.2.6
 
