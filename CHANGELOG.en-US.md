@@ -4,6 +4,12 @@
 
 ---
 
+## 4.32.0
+
+`2026-07-31`
+
+- 🌟 Descriptions supports `items` config (antd ≥ 5.8)
+
 ## 4.31.0
 
 `2026-07-31`

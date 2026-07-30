@@ -72,7 +72,7 @@ export {
   QuarterPicker,
 } from './date-picker';
 
-export type { DescriptionsProps } from './descriptions';
+export type { DescriptionsProps, DescriptionsItemType } from './descriptions';
 export { default as Descriptions, DescriptionsItem } from './descriptions';
 
 export type { DividerProps } from './divider';

@@ -26,7 +26,8 @@ import PropTypes from '../_util/vue-types';
 import { cloneElement } from '../_util/vnode';
 import { flattenChildren } from '../_util/props-util';
 import useConfigInject from '../config-provider/hooks/useConfigInject';
-import type { CustomSlotsType } from '../_util/type';
+import type { CustomSlotsType, VueNode } from '../_util/type';
+import { arrayType } from '../_util/type';
 import useStyle from './style';
 
 export const DescriptionsItemProps = {
@@ -46,6 +47,16 @@ const descriptionsItemProp = () => ({
 export type DescriptionsItemProp = Partial<
   ExtractPropTypes<ReturnType<typeof descriptionsItemProp>>
 >;
+
+/** Item config for `items` prop (antd ≥ 5.8). */
+export type DescriptionsItemType = {
+  key?: string | number;
+  label?: VueNode;
+  children?: VueNode;
+  span?: number;
+  labelStyle?: CSSProperties;
+  contentStyle?: CSSProperties;
+};
 
 export const DescriptionsItem = defineComponent({
   compatConfig: { MODE: 3 },
@@ -145,6 +156,8 @@ export const descriptionsProps = () => ({
   colon: { type: Boolean, default: undefined },
   labelStyle: { type: Object as PropType<CSSProperties>, default: undefined as CSSProperties },
   contentStyle: { type: Object as PropType<CSSProperties>, default: undefined as CSSProperties },
+  /** Describe list items (antd ≥ 5.8). Prefer over nested `Descriptions.Item`. */
+  items: arrayType<DescriptionsItemType[]>(),
 });
 
 export type DescriptionsProps = HTMLAttributes &
@@ -207,8 +220,19 @@ const Descriptions = defineComponent({
         extra = slots.extra?.(),
       } = props;
 
-      const children = slots.default?.();
-      const rows = getRows(children, mergeColumn.value);
+      const itemNodes =
+        props.items?.map(item => (
+          <DescriptionsItem
+            key={item.key}
+            label={item.label}
+            span={item.span}
+            labelStyle={item.labelStyle}
+            contentStyle={item.contentStyle}
+          >
+            {item.children}
+          </DescriptionsItem>
+        )) ?? slots.default?.();
+      const rows = getRows(itemNodes as VNode[], mergeColumn.value);
 
       return wrapSSR(
         <div

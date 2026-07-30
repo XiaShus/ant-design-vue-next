@@ -1,6 +1,7 @@
 <template>
   <demo-sort :cols="1">
     <Basic />
+    <Items />
     <Border />
     <Size />
     <Responsive />
@@ -11,6 +12,7 @@
 
 <script lang="ts">
 import Basic from './basic.vue';
+import Items from './items.vue';
 import Border from './border.vue';
 import Responsive from './responsive.vue';
 import Size from './size.vue';
@@ -32,6 +34,7 @@ export default defineComponent({
   US,
   components: {
     Basic,
+    Items,
     Border,
     Size,
     Responsive,

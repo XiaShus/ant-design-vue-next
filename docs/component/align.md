@@ -84,7 +84,7 @@
 | Data Display | Card | ✅ | ✅ | [card](../../components/card) | 🔄 `variant` ✅ 4.29.0 |
 | Data Display | Carousel | ✅ | ✅ | [carousel](../../components/carousel) | — |
 | Data Display | Collapse | ✅ | ✅ | [collapse](../../components/collapse) | 🔄 `destroyOnHidden` ✅ 4.14.0；🔄 `size` ✅ 4.30.0 |
-| Data Display | Descriptions | ✅ | ✅ | [descriptions](../../components/descriptions) | — |
+| Data Display | Descriptions | ✅ | ✅ | [descriptions](../../components/descriptions) | 🔄 `items` ✅ 4.32.0 |
 | Data Display | Empty | ✅ | ✅ | [empty](../../components/empty) | — |
 | Data Display | Image | ✅ | ✅ | [image](../../components/image) | — |
 | Data Display | List | ✅ | ✅ | [list](../../components/list) | React 6 标 DEPRECATED；阶段 B 再议 |
@@ -158,8 +158,9 @@
 27. ~~Card `variant`~~ — ✅ `4.29.0`
 28. ~~Collapse `size`~~ — ✅ `4.30.0`
 29. ~~Statistic.Timer~~ — ✅ `4.31.0`
-30. Table `virtual` 按需拆版（多日）
-31. ColorPicker 渐变 `mode`
+30. ~~Descriptions `items`~~ — ✅ `4.32.0`
+31. Table `virtual` 按需拆版（多日）
+32. ColorPicker 渐变 `mode`
 
 ## 阶段 B（仅规划，不急实现）
 

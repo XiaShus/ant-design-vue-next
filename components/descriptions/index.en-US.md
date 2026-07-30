@@ -23,10 +23,24 @@ Commonly displayed on the details page.
 | column | the number of `DescriptionItems` in a row,could be a number or a object like `{ xs: 8, sm: 16, md: 24}`,(Only set `bordered={true}` to take effect) | number | 3 |  |  |  |
 | contentStyle | Customize content style | CSSProperties | - | 2.2.0 |  |  |
 | extra | The action area of the description list, placed at the top-right | string \| VNode \| slot | - | 2.0.0 |  |  |
+| items | Describe the contents of the list item | [DescriptionsItemType](#descriptionsitemtype)[] | - | 4.32.0 |  |  |
 | labelStyle | Customize label style | CSSProperties | - | 2.2.0 |  |  |
 | layout | Define description layout | `horizontal` \| `vertical` | `horizontal` |  |  |
 | size | set the size of the list. Can be set to `middle`,`small`, or not filled | `default` \| `middle` \| `small` | `default` |  |
 | title | The title of the description list, placed at the top | string \| VNode \| slot | - |  |  |  |
+
+#### DescriptionsItemType
+
+```ts
+type DescriptionsItemType = {
+  key?: string | number;
+  label?: VueNode;
+  children?: VueNode;
+  span?: number;
+  labelStyle?: CSSProperties;
+  contentStyle?: CSSProperties;
+};
+```
 
 ### Item props
 
