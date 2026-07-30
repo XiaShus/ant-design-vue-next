@@ -99,3 +99,27 @@ Supports all props of `Input`.
 | visible(v-model) | password visibility                                    | boolean | false   |
 | iconRender       | Custom toggle button                                   | slot    | -       |
 | visibilityToggle | Whether show toggle button or control password visible | boolean | true    |
+
+### Input.OTP
+
+> Available since `ant-design-vue-next@4.5.0` (aligned with antd ≥ 5.12 / docs demos 5.16).
+
+| Property | Description | Type | Default | Version |
+| --- | --- | --- | --- | --- |
+| value(v-model) | Input value | string | - | 4.5.0 |
+| defaultValue | Default value | string | - | 4.5.0 |
+| length | Number of input boxes | number | 6 | 4.5.0 |
+| formatter | Format display value | `(value: string) => string` | - | 4.5.0 |
+| mask | Custom mask; `true` uses `•` | boolean \| string | - | 4.5.0 |
+| separator | Separator | VueNode \| `(index) => VueNode` | - | 4.5.0 |
+| disabled | Disabled | boolean | - | 4.5.0 |
+| status | Validation status | `error \| warning` | - | 4.5.0 |
+| size | Size | `large \| middle \| small` | - | 4.5.0 |
+| type | Native input type | string | - | 4.5.0 |
+
+#### Input.OTP events
+
+| Event  | Description                 | Arguments                   | Version |
+| ------ | --------------------------- | --------------------------- | ------- |
+| change | Fired when all cells filled | `(value: string) => void`   | 4.5.0   |
+| input  | Fired on each input         | `(value: string[]) => void` | 4.5.0   |

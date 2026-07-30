@@ -97,8 +97,15 @@ export { default as Form, FormItem, FormItemRest } from './form';
 
 export { default as Grid } from './grid';
 
-export type { InputProps, TextAreaProps } from './input';
-export { default as Input, InputGroup, InputPassword, InputSearch, Textarea } from './input';
+export type { InputProps, TextAreaProps, OTPProps } from './input';
+export {
+  default as Input,
+  InputGroup,
+  InputPassword,
+  InputSearch,
+  Textarea,
+  InputOTP,
+} from './input';
 
 export type { ImageProps } from './image';
 export { default as Image, ImagePreviewGroup } from './image';

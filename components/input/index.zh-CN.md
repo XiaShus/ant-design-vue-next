@@ -49,11 +49,11 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*sBqqTatJ-AkAAA
 ### TextArea
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |  |
-| --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- | --- | --- | --- |
 | allowClear | 可以点击清除图标删除内容 | boolean |  | 1.5.0 |  |
 | autosize | 自适应内容高度，可设置为 `true | false` 或对象：`{ minRows: 2, maxRows: 6 }` | boolean\|object | false |  |
 | defaultValue | 输入框默认内容 | string |  |  |  |
-_| showCount | 是否展示字数 | boolean \| { formatter: (info: { value: string, count: number, maxLength?: number }) => string } | false |  |  |_
+| \_ | showCount | 是否展示字数 | boolean \| { formatter: (info: { value: string, count: number, maxLength?: number }) => string } | false |  |  | \_ |
 | value(v-model) | 输入框内容 | string |  |  |  |
 
 ### TextArea 事件
@@ -100,3 +100,27 @@ _| showCount | 是否展示字数 | boolean \| { formatter: (info: { value: stri
 | visible(v-model) | 密码是否可见                     | boolean | false  |
 | iconRender       | 自定义切换按钮                   | slot    | -      |
 | visibilityToggle | 是否显示切换按钮或者控制密码显隐 | boolean | true   |
+
+### Input.OTP
+
+> 自 `ant-design-vue-next@4.5.0` 起可用（对齐 antd ≥ 5.12 / 文档示例 5.16）。
+
+| 参数 | 说明 | 类型 | 默认值 | 版本 |
+| --- | --- | --- | --- | --- |
+| value(v-model) | 输入值 | string | - | 4.5.0 |
+| defaultValue | 默认值 | string | - | 4.5.0 |
+| length | 输入框个数 | number | 6 | 4.5.0 |
+| formatter | 格式化展示值 | `(value: string) => string` | - | 4.5.0 |
+| mask | 自定义遮罩，为 `true` 时使用 `•` | boolean \| string | - | 4.5.0 |
+| separator | 分隔符 | VueNode \| `(index) => VueNode` | - | 4.5.0 |
+| disabled | 禁用 | boolean | - | 4.5.0 |
+| status | 校验状态 | `error \| warning` | - | 4.5.0 |
+| size | 尺寸 | `large \| middle \| small` | - | 4.5.0 |
+| type | 原生 input type | string | - | 4.5.0 |
+
+#### Input.OTP 事件
+
+| 事件名称 | 说明         | 回调参数                    | 版本  |
+| -------- | ------------ | --------------------------- | ----- |
+| change   | 填满时触发   | `(value: string) => void`   | 4.5.0 |
+| input    | 每次输入触发 | `(value: string[]) => void` | 4.5.0 |

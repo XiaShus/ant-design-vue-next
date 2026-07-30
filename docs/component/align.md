@@ -61,7 +61,7 @@
 | Data Entry | ColorPicker | ✅ 5.5 | 🔄 ✅ 4.3.0 | [color-picker](../../components/color-picker) | 单色/预设/清除/格式；⏭ 渐变 mode、panelRender |
 | Data Entry | DatePicker | ✅ | ✅ | [date-picker](../../components/date-picker) | ⚠️ 与 antd 5 晚期 props 可能有差，按需补 |
 | Data Entry | Form | ✅ | ✅ | [form](../../components/form) | ⚠️ 高频，逐项对齐 |
-| Data Entry | Input | ✅ | ✅ | [input](../../components/input) | ❌ 缺 `Input.OTP`（antd 5.12+） |
+| Data Entry | Input | ✅ | ✅ | [input](../../components/input) | 🔄 `Input.OTP` ✅ 4.5.0 |
 | Data Entry | InputNumber | ✅ | ✅ | [input-number](../../components/input-number) | — |
 | Data Entry | Mentions | ✅ | ✅ | [mentions](../../components/mentions) | — |
 | Data Entry | Radio | ✅ | ✅ | [radio](../../components/radio) | — |
@@ -131,8 +131,8 @@
 
 1. ~~**ColorPicker**（antd 5.5）~~ — ✅ `4.3.0`
 2. ~~**Splitter**（antd 5.21）~~ — ✅ `4.4.0`
-3. **Input.OTP**（antd 5.12）— 下一候选
-4. ConfigProvider / 主题剩余差异（拆小 PR）
+3. ~~**Input.OTP**（antd 5.12）~~ — ✅ `4.5.0`
+4. ConfigProvider / 主题剩余差异（拆小 PR）— 下一候选
 5. Table / Form / DatePicker / Select / Modal 高频 API 缺口（逐项发版）
 6. ColorPicker 渐变 `mode` / `panelRender`；Splitter collapsible / lazy 补齐
 
@@ -144,4 +144,4 @@
 
 ---
 
-_上次更新：`4.4.0` Splitter。每发一版请同步改本表。_
+_上次更新：`4.5.0` Input.OTP。每发一版请同步改本表。_

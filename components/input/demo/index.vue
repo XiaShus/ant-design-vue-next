@@ -15,6 +15,7 @@
     <textarea-resize />
     <borderlessVue />
     <statusVue />
+    <Otp />
   </demo-sort>
 </template>
 
@@ -34,6 +35,7 @@ import Addon from './addon.vue';
 import Tooltip from './tooltip.vue';
 import borderlessVue from './borderless.vue';
 import statusVue from './status.vue';
+import Otp from './otp.vue';
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
 import { defineComponent } from 'vue';
@@ -57,6 +59,7 @@ export default defineComponent({
     PasswordInput,
     ShowCount,
     borderlessVue,
+    Otp,
   },
 });
 </script>

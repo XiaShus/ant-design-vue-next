@@ -4,6 +4,12 @@
 
 ---
 
+## 4.5.0
+
+`2026-07-30`
+
+- 🌟 Add [Input.OTP](./components/input), aligned with antd React ≥ 5.12 common APIs (`length` / `formatter` / `mask` / `separator` / `change` / `input`)
+
 ## 4.4.0
 
 `2026-07-30`

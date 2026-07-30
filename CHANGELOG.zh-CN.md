@@ -10,6 +10,12 @@
 
 ---
 
+## 4.5.0
+
+`2026-07-30`
+
+- 🌟 新增 [Input.OTP](./components/input) 一次性密码框，对齐 antd React ≥ 5.12 常用 API（`length` / `formatter` / `mask` / `separator` / `change` / `input`）
+
 ## 4.4.0
 
 `2026-07-30`
