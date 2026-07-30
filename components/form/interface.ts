@@ -2,6 +2,18 @@ import type { VueNode } from '../_util/type';
 
 export type FormLabelAlign = 'left' | 'right';
 
+/** Custom feedback icons callback (antd ≥ 5.9). Return `false` to hide an icon. */
+export type FeedbackIconStatus = 'success' | 'warning' | 'error' | 'validating';
+export type FeedbackIcons = (info: {
+  status?: FeedbackIconStatus | '';
+  errors?: VueNode[];
+  warnings?: VueNode[];
+}) => Partial<Record<FeedbackIconStatus, VueNode | false | null>>;
+
+export type FormItemFeedbackConfig = {
+  icons: FeedbackIcons;
+};
+
 export type InternalNamePath = (string | number)[];
 export type NamePath = string | number | InternalNamePath;
 

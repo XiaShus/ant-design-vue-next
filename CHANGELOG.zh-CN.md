@@ -8,6 +8,12 @@
 
 ---
 
+## 4.40.0
+
+`2026-07-31`
+
+- 🌟 Form 支持 `feedbackIcons`，以及 Form.Item `hasFeedback.icons`（对齐 antd ≥ 5.9）
+
 ## 4.39.0
 
 `2026-07-31`

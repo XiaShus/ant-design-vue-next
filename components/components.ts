@@ -94,7 +94,15 @@ export type {
 } from './float-button/interface';
 export { default as FloatButton, FloatButtonGroup, BackTop } from './float-button';
 
-export type { FormProps, FormItemProps, FormInstance, FormItemInstance } from './form';
+export type {
+  FormProps,
+  FormItemProps,
+  FormInstance,
+  FormItemInstance,
+  FeedbackIcons,
+  FormItemFeedbackConfig,
+  ValidateStatus,
+} from './form';
 export { default as Form, FormItem, FormItemRest } from './form';
 
 export { default as Grid } from './grid';

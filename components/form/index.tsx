@@ -3,10 +3,10 @@ import Form, { formProps } from './Form';
 import FormItem, { formItemProps } from './FormItem';
 import useForm from './useForm';
 import FormItemRest, { useInjectFormItemContext } from './FormItemContext';
-export type { Rule, RuleObject } from './interface';
+export type { Rule, RuleObject, FeedbackIcons, FormItemFeedbackConfig } from './interface';
 
 export type { FormProps, FormInstance } from './Form';
-export type { FormItemProps, FormItemInstance } from './FormItem';
+export type { FormItemProps, FormItemInstance, ValidateStatus } from './FormItem';
 
 Form.useInjectFormItemContext = useInjectFormItemContext;
 Form.ItemRest = FormItemRest;

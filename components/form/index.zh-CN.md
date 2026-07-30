@@ -46,6 +46,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*ylFATY6w-ygAAA
 | noStyle | 为 `true` 时不带样式，作为纯字段控件使用 | boolean | false | 3.0 |
 | rules | 表单验证规则 | object |  |  |
 | scrollToFirstError | 提交失败自动滚动到第一个错误字段 | boolean \| [options](https://github.com/stipsan/scroll-into-view-if-needed/#options) | false | 2.0.0 |
+| feedbackIcons | 自定义 Form.Item 开启 `hasFeedback` 时的校验图标 | [FeedbackIcons](#feedbackicons) | - | 4.40.0 |
 | validateOnRuleChange | 是否在 rules 属性改变后立即触发一次验证 | boolean | true |  |
 | validateTrigger | 统一设置字段校验规则 | string \| string\[] | `change` | 2.0.0 |
 | wrapperCol | 需要为输入控件设置布局样式时，使用该属性，用法同 labelCol | [object](/components/grid-cn/#col) |  |  |
@@ -73,6 +74,16 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*ylFATY6w-ygAAA
 
 `string | number | (string | number)[]`
 
+#### FeedbackIcons
+
+```ts
+type FeedbackIcons = (info: {
+  status?: ValidateStatus;
+  errors?: VueNode[];
+  warnings?: VueNode[];
+}) => Partial<Record<'success' | 'warning' | 'error' | 'validating', VueNode | false | null>>;
+```
+
 ### Form.Item
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
@@ -80,7 +91,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*ylFATY6w-ygAAA
 | autoLink | 是否自动关联表单域，对于大部分情况都可以使用自动关联，如果不满足自动关联的条件，可以手动关联，参见下方注意事项 | boolean | true |  |
 | colon | 配合 label 属性使用，表示是否显示 label 后面的冒号 | boolean | true |  |
 | extra | 额外的提示信息，和 help 类似，当需要错误信息和提示文案同时出现时，可以使用这个。 | string\|slot |  |  |
-| hasFeedback | 配合 validateStatus 属性使用，展示校验状态图标，建议只配合 Input 组件使用 | boolean | false |  |
+| hasFeedback | 配合 validateStatus 属性使用，展示校验状态图标，建议只配合 Input 组件使用；对象形式可自定义图标 | boolean \| { icons: [FeedbackIcons](#feedbackicons) } | false | object: 4.40.0 |
 | help | 提示信息，如不设置，则会根据校验规则自动生成 | string\|slot |  |  |
 | htmlFor | 设置子元素 label `htmlFor` 属性 | string |  |  |
 | label | label 标签的文本 | string\|slot |  |  |

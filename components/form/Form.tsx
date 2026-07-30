@@ -33,6 +33,7 @@ import type {
   ValidateMessages,
   Rule,
   FormLabelAlign,
+  FeedbackIcons,
 } from './interface';
 import useConfigInject from '../config-provider/hooks/useConfigInject';
 import { useProvideForm } from './context';
@@ -71,6 +72,8 @@ export const formProps = () => ({
   disabled: booleanType(),
   /** Variant for nested data-entry components (antd ≥ 5.13). */
   variant: stringType<Exclude<VariantType, undefined>>(),
+  /** Custom feedback icons for Form.Item hasFeedback (antd ≥ 5.9). */
+  feedbackIcons: functionType<FeedbackIcons>(),
   onValuesChange: functionType<Callbacks['onValuesChange']>(),
   onFieldsChange: functionType<Callbacks['onFieldsChange']>(),
   onFinish: functionType<Callbacks['onFinish']>(),
@@ -392,6 +395,7 @@ const Form = defineComponent({
         emit('validate', name, status, errors);
       },
       validateMessages,
+      feedbackIcons: computed(() => props.feedbackIcons),
     });
 
     watch(

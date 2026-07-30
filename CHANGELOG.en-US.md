@@ -4,6 +4,12 @@
 
 ---
 
+## 4.40.0
+
+`2026-07-31`
+
+- 🌟 Form supports `feedbackIcons` and Form.Item `hasFeedback.icons` (antd ≥ 5.9)
+
 ## 4.39.0
 
 `2026-07-31`

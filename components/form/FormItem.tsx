@@ -32,9 +32,11 @@ import { getNamePath } from './utils/valueUtil';
 import { toArray } from './utils/typeUtil';
 import { warning } from '../vc-util/warning';
 import find from 'lodash-es/find';
-import type { CustomSlotsType } from '../_util/type';
-import { tuple } from '../_util/type';
+import type { CustomSlotsType, VueNode } from '../_util/type';
+import { someType, tuple } from '../_util/type';
 import type {
+  FeedbackIcons,
+  FormItemFeedbackConfig,
   FormLabelAlign,
   InternalNamePath,
   Rule,
@@ -54,6 +56,7 @@ import useStyle from './style';
 
 const ValidateStatuses = tuple('success', 'warning', 'error', 'validating', '');
 export type ValidateStatus = (typeof ValidateStatuses)[number];
+export type { FeedbackIcons, FormItemFeedbackConfig };
 
 export interface FieldExpose {
   fieldValue: Ref<any>;
@@ -112,7 +115,8 @@ export const formItemProps = () => ({
   extra: PropTypes.any,
   labelCol: { type: Object as PropType<ColProps & HTMLAttributes> },
   wrapperCol: { type: Object as PropType<ColProps & HTMLAttributes> },
-  hasFeedback: { type: Boolean, default: false },
+  /** Show feedback icon; object form customizes icons (antd ≥ 5.9). */
+  hasFeedback: someType<boolean | FormItemFeedbackConfig>([Boolean, Object], false),
   colon: { type: Boolean, default: undefined },
   labelAlign: String as PropType<FormLabelAlign>,
   prop: { type: [String, Number, Array] as PropType<string | number | Array<string | number>> },
@@ -414,11 +418,13 @@ export default defineComponent({
       }
       return validateState.value;
     });
+    const hasFeedbackEnabled = computed(() => !!props.hasFeedback);
     const itemClassName = computed(() => ({
       [`${prefixCls.value}-item`]: true,
       [hashId.value]: true,
       // Status
-      [`${prefixCls.value}-item-has-feedback`]: mergedValidateStatus.value && props.hasFeedback,
+      [`${prefixCls.value}-item-has-feedback`]:
+        mergedValidateStatus.value && hasFeedbackEnabled.value,
       [`${prefixCls.value}-item-has-success`]: mergedValidateStatus.value === 'success',
       [`${prefixCls.value}-item-has-warning`]: mergedValidateStatus.value === 'warning',
       [`${prefixCls.value}-item-has-error`]: mergedValidateStatus.value === 'error',
@@ -429,22 +435,44 @@ export default defineComponent({
     FormItemInputContext.useProvide(formItemInputContext);
     watchEffect(() => {
       let feedbackIcon: any;
-      if (props.hasFeedback) {
-        const IconNode = mergedValidateStatus.value && iconMap[mergedValidateStatus.value];
-        feedbackIcon = IconNode ? (
+      if (hasFeedbackEnabled.value) {
+        const status = mergedValidateStatus.value;
+        const itemIcons =
+          props.hasFeedback !== true && props.hasFeedback && typeof props.hasFeedback === 'object'
+            ? props.hasFeedback.icons
+            : undefined;
+        const customIcons = itemIcons || formContext.feedbackIcons?.value;
+        const customIconNode =
+          status && customIcons
+            ? customIcons({
+                status,
+                errors: debounceErrors.value,
+                warnings: [],
+              })?.[status as Exclude<ValidateStatus, ''>]
+            : undefined;
+        const IconNode = status && iconMap[status];
+        let iconInner: VueNode = null;
+        if (customIconNode === false) {
+          iconInner = null;
+        } else if (customIconNode != null) {
+          iconInner = customIconNode;
+        } else if (IconNode) {
+          iconInner = <IconNode />;
+        }
+        feedbackIcon = iconInner ? (
           <span
             class={classNames(
               `${prefixCls.value}-item-feedback-icon`,
-              `${prefixCls.value}-item-feedback-icon-${mergedValidateStatus.value}`,
+              `${prefixCls.value}-item-feedback-icon-${status}`,
             )}
           >
-            <IconNode />
+            {iconInner}
           </span>
         ) : null;
       }
       Object.assign(formItemInputContext, {
         status: mergedValidateStatus.value,
-        hasFeedback: props.hasFeedback,
+        hasFeedback: hasFeedbackEnabled.value,
         feedbackIcon,
         isFormItemInput: true,
       });

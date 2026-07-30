@@ -3,7 +3,7 @@ import { inject, provide, computed } from 'vue';
 import type { ColProps } from '../grid';
 import type { RequiredMark } from './Form';
 import type { ValidateStatus, FieldExpose } from './FormItem';
-import type { FormLabelAlign, Rule, ValidateMessages } from './interface';
+import type { FeedbackIcons, FormLabelAlign, Rule, ValidateMessages } from './interface';
 import { defaultValidateMessages } from './utils/messages';
 
 export interface FormContextProps {
@@ -27,6 +27,8 @@ export interface FormContextProps {
     errors: string[] | null,
   ) => void;
   validateMessages: ComputedRef<ValidateMessages>;
+  /** Custom feedback icons (antd ≥ 5.9). */
+  feedbackIcons?: ComputedRef<FeedbackIcons | undefined>;
 }
 
 export const FormContextKey: InjectionKey<FormContextProps> = Symbol('formContextKey');
@@ -53,6 +55,7 @@ export const useInjectForm = () => {
     validateTrigger: computed(() => undefined),
     onValidate: () => {},
     validateMessages: computed(() => defaultValidateMessages),
+    feedbackIcons: computed(() => undefined),
   } as FormContextProps);
 };
 
