@@ -1,6 +1,7 @@
 <template>
   <demo-sort>
     <basic />
+    <afterOpenChangeVue />
     <async />
     <custom-footer />
     <confirm />
@@ -19,6 +20,7 @@
 </template>
 <script lang="ts">
 import Basic from './basic.vue';
+import afterOpenChangeVue from './after-open-change.vue';
 import Async from './async.vue';
 import Footer from './footer.vue';
 import Confirm from './confirm.vue';
@@ -41,6 +43,7 @@ export default defineComponent({
   US,
   components: {
     Basic,
+    afterOpenChangeVue,
     Async,
     CustomFooter: Footer,
     Confirm,

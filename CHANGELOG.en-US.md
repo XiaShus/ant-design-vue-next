@@ -4,6 +4,12 @@
 
 ---
 
+## 4.22.0
+
+`2026-07-31`
+
+- 🌟 Modal supports `afterOpenChange` (antd ≥ 5.4)
+
 ## 4.21.0
 
 `2026-07-31`

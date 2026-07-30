@@ -54,6 +54,8 @@ export const modalProps = () => ({
   'onUpdate:open': Function as PropType<(open: boolean) => void>,
   onChange: Function as PropType<(open: boolean) => void>,
   afterClose: Function as PropType<() => void>,
+  /** Callback when open/close animation ends (antd ≥ 5.4). */
+  afterOpenChange: Function as PropType<(open: boolean) => void>,
   centered: { type: Boolean, default: undefined },
   width: [String, Number],
   footer: PropTypes.any,
@@ -103,6 +105,7 @@ export interface ModalFuncProps {
   onOk?: (...args: any[]) => any;
   onCancel?: (...args: any[]) => any;
   afterClose?: () => void;
+  afterOpenChange?: (open: boolean) => void;
   okButtonProps?: ButtonPropsType;
   cancelButtonProps?: ButtonPropsType;
   centered?: boolean;
@@ -191,6 +194,11 @@ export default defineComponent({
       emit('ok', e);
     };
 
+    const handleAfterOpenChange = (open: boolean) => {
+      props.afterOpenChange?.(open);
+      emit('afterOpenChange', open);
+    };
+
     const renderFooter = () => {
       const {
         okText = slots.okText?.(),
@@ -246,6 +254,7 @@ export default defineComponent({
           wrapClassName={wrapClassNameExtended}
           visible={open ?? visible}
           onClose={handleCancel}
+          afterOpenChange={handleAfterOpenChange}
           focusTriggerAfterClose={focusTriggerAfterClose}
           transitionName={getTransitionName(rootPrefixCls.value, 'zoom', props.transitionName)}
           maskTransitionName={getTransitionName(

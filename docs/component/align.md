@@ -106,7 +106,7 @@
 | Feedback | Alert | ✅ | ✅ | [alert](../../components/alert) | — |
 | Feedback | Drawer | ✅ | ✅ | [drawer](../../components/drawer) | 🔄 `destroyOnHidden` ✅ 4.11.0 |
 | Feedback | Message | ✅ | ✅ | [message](../../components/message) | — |
-| Feedback | Modal | ✅ | ✅ | [modal](../../components/modal) | 🔄 `destroyOnHidden` ✅ 4.11.0；⚠️ 其他缺口按需补 |
+| Feedback | Modal | ✅ | ✅ | [modal](../../components/modal) | 🔄 `destroyOnHidden` ✅ 4.11.0；🔄 `afterOpenChange` ✅ 4.22.0 |
 | Feedback | Notification | ✅ | ✅ | [notification](../../components/notification) | — |
 | Feedback | Popconfirm | ✅ | ✅ | [popconfirm](../../components/popconfirm) | — |
 | Feedback | Progress | ✅ | ✅ | [progress](../../components/progress) | — |
@@ -148,8 +148,9 @@
 17. ~~Table `rowHoverable` + ColorPicker `disabledFormat`~~ — ✅ `4.19.0`
 18. ~~Select / TreeSelect `maxCount`~~ — ✅ `4.20.0`
 19. ~~DatePicker / TimePicker `needConfirm`~~ — ✅ `4.21.0`
-20. Table `virtual` 按需拆版（多日）
-21. ColorPicker 渐变 `mode`
+20. ~~Modal `afterOpenChange`~~ — ✅ `4.22.0`
+21. Table `virtual` 按需拆版（多日）
+22. ColorPicker 渐变 `mode`
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -159,4 +160,4 @@
 
 ---
 
-_上次更新：`4.21.0` DatePicker/TimePicker.needConfirm。每发一版请同步改本表。_
+_上次更新：`4.22.0` Modal.afterOpenChange。每发一版请同步改本表。_

@@ -17,6 +17,7 @@ When requiring users to interact with the application, but without jumping to a 
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
 | afterClose | Specify a function that will be called when modal is closed completely. | function | - |  |
+| afterOpenChange | Callback when the animation ends when Modal is turned on and off | function(open) | - | 4.22.0 |
 | bodyStyle | Body style for modal body element. Such as height, padding etc. | object | {} |  |
 | cancelButtonProps | The cancel button props | [ButtonProps](/components/button/#api) | - |  |
 | cancelText | Text of the Cancel button | string\|slot | `Cancel` |  |

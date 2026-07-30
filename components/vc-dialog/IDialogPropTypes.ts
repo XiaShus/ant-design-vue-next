@@ -6,6 +6,8 @@ export function dialogPropTypes() {
     keyboard: { type: Boolean, default: undefined },
     mask: { type: Boolean, default: undefined },
     afterClose: Function,
+    /** Callback after open/close animation ends. */
+    afterOpenChange: Function as PropType<(open: boolean) => void>,
     closable: { type: Boolean, default: undefined },
     maskClosable: { type: Boolean, default: undefined },
     visible: { type: Boolean, default: undefined },

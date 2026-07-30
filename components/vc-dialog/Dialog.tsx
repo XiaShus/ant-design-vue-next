@@ -51,6 +51,7 @@ export default defineComponent({
           lastOutSideActiveElementRef.value = document.activeElement as HTMLElement;
           contentRef.value?.focus();
         }
+        props.afterOpenChange?.(true);
       } else {
         const preAnimatedVisible = animatedVisible.value;
         // Clean up scroll bar & focus back
@@ -67,6 +68,7 @@ export default defineComponent({
         // Trigger afterClose only when change visible from true to false
         if (preAnimatedVisible) {
           props.afterClose?.();
+          props.afterOpenChange?.(false);
         }
       }
     };
