@@ -86,7 +86,7 @@
 | Data Display | Collapse | ✅ | ✅ | [collapse](../../components/collapse) | 🔄 `destroyOnHidden` ✅ 4.14.0；🔄 `size` ✅ 4.30.0 |
 | Data Display | Descriptions | ✅ | ✅ | [descriptions](../../components/descriptions) | 🔄 `items` ✅ 4.32.0 |
 | Data Display | Empty | ✅ | ✅ | [empty](../../components/empty) | — |
-| Data Display | Image | ✅ | ✅ | [image](../../components/image) | — |
+| Data Display | Image | ✅ | ✅ | [image](../../components/image) | 🔄 preview `toolbarRender` ✅ 4.52.0 |
 | Data Display | List | ✅ | ✅ | [list](../../components/list) | React 6 标 DEPRECATED；阶段 B 再议 |
 | Data Display | Popover | ✅ | ✅ | [popover](../../components/popover) | — |
 | Data Display | QRCode | ✅ 5.1 | ✅ | [qrcode](../../components/qrcode) | 🔄 `statusRender` / object `iconSize` ✅ 4.26.0 |
@@ -178,10 +178,11 @@
 47. ~~Button `color` / `variant`~~ — ✅ `4.49.0`
 48. ~~ConfigProvider `button`（color / variant / autoInsertSpace）~~ — ✅ `4.50.0`
 49. ~~FloatButton.Group `placement` / `closeIcon` + `htmlType`~~ — ✅ `4.51.0`
-50. Table `virtual` 按需拆版（多日）
-51. ColorPicker 渐变 `mode`
-52. Segmented `vertical`（需 MotionThumb 竖向）
-53. Image preview `toolbarRender`
+50. ~~Image preview `toolbarRender`~~ — ✅ `4.52.0`
+51. Table `virtual` 按需拆版（多日）
+52. ColorPicker 渐变 `mode`
+53. Segmented `vertical`（需 MotionThumb 竖向）
+54. Cascader `autoClearSearchValue`
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -191,4 +192,4 @@
 
 ---
 
-_上次更新：`4.51.0` FloatButton.Group.placement。每发一版请同步改本表。_
+_上次更新：`4.52.0` Image.preview.toolbarRender。每发一版请同步改本表。_

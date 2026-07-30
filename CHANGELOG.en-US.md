@@ -4,6 +4,12 @@
 
 ---
 
+## 4.52.0
+
+`2026-07-31`
+
+- 🌟 Image preview supports `toolbarRender` (antd ≥ 5.7)
+
 ## 4.51.0
 
 `2026-07-31`

@@ -42,6 +42,42 @@ Previewable image.
   src?: string;
   maskClassName?: string;
   current?: number;
+  /** Custom toolbar (antd ≥ 5.7). `4.52.0+` */
+  toolbarRender?: (
+    originalNode: VNode,
+    info: {
+      icons: {
+        flipYIcon: VNode;
+        flipXIcon: VNode;
+        rotateLeftIcon: VNode;
+        rotateRightIcon: VNode;
+        zoomOutIcon: VNode;
+        zoomInIcon: VNode;
+      };
+      actions: {
+        onActive?: (index: number) => void;
+        onFlipY: () => void;
+        onFlipX: () => void;
+        onRotateLeft: () => void;
+        onRotateRight: () => void;
+        onZoomOut: () => void;
+        onZoomIn: () => void;
+        onReset: () => void;
+        onClose: () => void;
+      };
+      transform: {
+        x: number;
+        y: number;
+        rotate: number;
+        scale: number;
+        flipX: boolean;
+        flipY: boolean;
+      };
+      current: number;
+      total: number;
+      image: { url: string; alt?: string; width?: number | string; height?: number | string };
+    },
+  ) => any;
 }
 ```
 

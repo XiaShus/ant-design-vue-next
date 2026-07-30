@@ -23,6 +23,8 @@ export type ImagePreviewType = Omit<
   getContainer?: GetContainer | false;
   maskClassName?: string;
   icons?: PreviewProps['icons'];
+  /** Custom preview toolbar (antd ≥ 5.7) */
+  toolbarRender?: PreviewProps['toolbarRender'];
 };
 
 export const imageProps = () => ({

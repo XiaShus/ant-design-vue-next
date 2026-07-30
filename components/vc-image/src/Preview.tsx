@@ -20,8 +20,53 @@ import { warning } from '../../vc-util/warning';
 import useFrameSetState from './hooks/useFrameSetState';
 import getFixScaleEleTransPosition from './getFixScaleEleTransPosition';
 import type { MouseEventHandler, WheelEventHandler } from '../../_util/EventInterface';
+import type { VueNode } from '../../_util/type';
 
 import { context } from './PreviewGroup';
+
+export type PreviewTransformType = {
+  x: number;
+  y: number;
+  rotate: number;
+  scale: number;
+  flipX: boolean;
+  flipY: boolean;
+};
+
+export type PreviewImgInfo = {
+  url: string;
+  alt?: string;
+  width?: string | number;
+  height?: string | number;
+};
+
+export type ToolbarRenderInfoType = {
+  icons: {
+    flipYIcon: VueNode;
+    flipXIcon: VueNode;
+    rotateLeftIcon: VueNode;
+    rotateRightIcon: VueNode;
+    zoomOutIcon: VueNode;
+    zoomInIcon: VueNode;
+  };
+  actions: {
+    onActive?: (index: number) => void;
+    onFlipY: () => void;
+    onFlipX: () => void;
+    onRotateLeft: () => void;
+    onRotateRight: () => void;
+    onZoomOut: () => void;
+    onZoomIn: () => void;
+    onReset: () => void;
+    onClose: () => void;
+  };
+  transform: PreviewTransformType;
+  current: number;
+  total: number;
+  image: PreviewImgInfo;
+};
+
+export type ToolbarRender = (originalNode: VueNode, info: ToolbarRenderInfoType) => VueNode;
 
 export interface PreviewProps extends Omit<IDialogChildProps, 'onClose' | 'mask'> {
   onClose?: (e: Element) => void;
@@ -39,6 +84,8 @@ export interface PreviewProps extends Omit<IDialogChildProps, 'onClose' | 'mask'
     flipX?: VNode;
     flipY?: VNode;
   };
+  /** Custom preview toolbar (antd ≥ 5.7 `toolbarRender`) */
+  toolbarRender?: ToolbarRender;
 }
 
 const initialPosition = {
@@ -54,6 +101,7 @@ export const previewProps = {
     type: Object as PropType<PreviewProps['icons']>,
     default: () => ({} as PreviewProps['icons']),
   },
+  toolbarRender: Function as PropType<ToolbarRender>,
 };
 const Preview = defineComponent({
   compatConfig: { MODE: 3 },
@@ -144,6 +192,23 @@ const Preview = defineComponent({
 
     const onFlipY = () => {
       flip.y = -flip.y;
+    };
+
+    const onReset = () => {
+      scale.value = 1;
+      rotate.value = 0;
+      flip.x = 1;
+      flip.y = 1;
+      setPosition(initialPosition);
+    };
+
+    const onActive = (index: number) => {
+      if (!isPreviewGroup.value) {
+        return;
+      }
+      if (index >= 0 && index < previewGroupCount.value) {
+        setCurrent(previewUrlsKeys.value[index]);
+      }
     };
 
     const onSwitchLeft: MouseEventHandler = event => {
@@ -345,7 +410,64 @@ const Preview = defineComponent({
     });
 
     return () => {
-      const { visible, prefixCls, rootClassName } = props;
+      const { visible, prefixCls, rootClassName, toolbarRender } = props;
+
+      const originalNode = (
+        <ul class={`${prefixCls}-operations`}>
+          {tools.map(({ icon: IconType, onClick, type, disabled }) => (
+            <li
+              class={classnames(toolClassName, {
+                [`${prefixCls}-operations-operation-disabled`]: disabled && disabled?.value,
+              })}
+              onClick={onClick}
+              key={type}
+            >
+              {IconType ? cloneVNode(IconType as VNode, { class: iconClassName }) : null}
+            </li>
+          ))}
+        </ul>
+      );
+
+      const toolbarInfo: ToolbarRenderInfoType = {
+        icons: {
+          flipYIcon: flipY,
+          flipXIcon: flipX,
+          rotateLeftIcon: rotateLeft,
+          rotateRightIcon: rotateRight,
+          zoomOutIcon: zoomOut,
+          zoomInIcon: zoomIn,
+        },
+        actions: {
+          onActive: isPreviewGroup.value ? onActive : undefined,
+          onFlipY,
+          onFlipX,
+          onRotateLeft,
+          onRotateRight,
+          onZoomOut: () => onZoomOut(),
+          onZoomIn: () => onZoomIn(),
+          onReset,
+          onClose,
+        },
+        transform: {
+          x: position.x,
+          y: position.y,
+          rotate: rotate.value,
+          scale: scale.value,
+          flipX: flip.x === -1,
+          flipY: flip.y === -1,
+        },
+        current: isPreviewGroup.value ? currentPreviewIndex.value : 0,
+        total: isPreviewGroup.value ? previewGroupCount.value : 1,
+        image: {
+          url: combinationSrc.value || '',
+          alt: props.alt,
+          width: imgRef.value?.naturalWidth || imgRef.value?.width,
+          height: imgRef.value?.naturalHeight || imgRef.value?.height,
+        },
+      };
+
+      const toolbarNode = toolbarRender ? toolbarRender(originalNode, toolbarInfo) : originalNode;
+
       return (
         <Dialog
           {...attrs}
@@ -361,24 +483,9 @@ const Preview = defineComponent({
           rootClassName={rootClassName}
           getContainer={props.getContainer}
         >
-          <div class={[`${props.prefixCls}-operations-wrapper`, rootClassName]}>
-            <ul class={`${props.prefixCls}-operations`}>
-              {tools.map(({ icon: IconType, onClick, type, disabled }) => (
-                <li
-                  class={classnames(toolClassName, {
-                    [`${props.prefixCls}-operations-operation-disabled`]:
-                      disabled && disabled?.value,
-                  })}
-                  onClick={onClick}
-                  key={type}
-                >
-                  {cloneVNode(IconType, { class: iconClassName })}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <div class={[`${prefixCls}-operations-wrapper`, rootClassName]}>{toolbarNode}</div>
           <div
-            class={`${props.prefixCls}-img-wrapper`}
+            class={`${prefixCls}-img-wrapper`}
             style={{
               transform: `translate3d(${position.x}px, ${position.y}px, 0)`,
             }}
@@ -387,7 +494,7 @@ const Preview = defineComponent({
               onMousedown={onMouseDown}
               onDblclick={onDoubleClick}
               ref={imgRef}
-              class={`${props.prefixCls}-img`}
+              class={`${prefixCls}-img`}
               src={combinationSrc.value}
               alt={props.alt}
               style={{
@@ -399,8 +506,8 @@ const Preview = defineComponent({
           </div>
           {showLeftOrRightSwitches.value && (
             <div
-              class={classnames(`${props.prefixCls}-switch-left`, {
-                [`${props.prefixCls}-switch-left-disabled`]: currentPreviewIndex.value <= 0,
+              class={classnames(`${prefixCls}-switch-left`, {
+                [`${prefixCls}-switch-left-disabled`]: currentPreviewIndex.value <= 0,
               })}
               onClick={onSwitchLeft}
             >
@@ -409,8 +516,8 @@ const Preview = defineComponent({
           )}
           {showLeftOrRightSwitches.value && (
             <div
-              class={classnames(`${props.prefixCls}-switch-right`, {
-                [`${props.prefixCls}-switch-right-disabled`]:
+              class={classnames(`${prefixCls}-switch-right`, {
+                [`${prefixCls}-switch-right-disabled`]:
                   currentPreviewIndex.value >= previewGroupCount.value - 1,
               })}
               onClick={onSwitchRight}
