@@ -22,6 +22,7 @@ The size of progress.
       <a-progress :percent="50" />
       <a-progress :percent="50" size="small" />
       <a-progress :percent="50" :size="[300, 20]" />
+      <a-progress :percent="50" :size="{ width: 300, height: 20 }" />
     </a-space>
     <br />
     <br />

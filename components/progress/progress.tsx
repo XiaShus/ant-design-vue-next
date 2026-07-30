@@ -72,7 +72,7 @@ export default defineComponent({
         [`${pre}-${(type === 'dashboard' && 'circle') || type}`]: true,
         [`${pre}-status-${progressStatus.value}`]: true,
         [`${pre}-show-info`]: showInfo,
-        [`${pre}-${size}`]: size,
+        [`${pre}-${size}`]: typeof size === 'string',
         [`${pre}-rtl`]: direction.value === 'rtl',
         [hashId.value]: true,
       };

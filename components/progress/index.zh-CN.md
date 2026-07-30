@@ -32,7 +32,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*HJH8Tb1lcYAAAA
 | title | html 标签 title | string | - | 3.0 |
 | trailColor | 未完成的分段的颜色 | string | - |  |
 | type | 类型，可选 `line` `circle` `dashboard` | string | `line` |  |
-| size | 进度条的尺寸 | number \| \[number, number] \| "small" \| "default" | "default" |  |
+| size | 进度条的尺寸 | number \| \[number, number] \| { width?: number; height?: number } \| "small" \| "default" | "default" | object: 4.38.0 |
 
 ### `type="line"`
 

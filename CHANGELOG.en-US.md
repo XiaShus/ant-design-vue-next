@@ -4,6 +4,12 @@
 
 ---
 
+## 4.38.0
+
+`2026-07-31`
+
+- 🌟 Progress `size` supports `{ width, height }` object (antd ≥ 5.18)
+
 ## 4.37.0
 
 `2026-07-31`

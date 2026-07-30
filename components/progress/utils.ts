@@ -1,7 +1,7 @@
 import { presetPrimaryColors } from '@ant-design/colors';
 import devWarning from '../vc-util/devWarning';
 import type { CircleProps } from './Circle';
-import type { ProgressProps } from './props';
+import type { ProgressProps, ProgressSize } from './props';
 
 export function validProgress(progress: number | undefined) {
   if (!progress || progress < 0) {
@@ -43,6 +43,17 @@ export function getStrokeColor({
   return [successColor || presetPrimaryColors.green, strokeColor || null!];
 }
 
+function toWidthHeight(
+  size: Exclude<ProgressSize, string | number | undefined>,
+  defaultWidth: number,
+  defaultHeight: number,
+): [number, number] {
+  if (Array.isArray(size)) {
+    return [size[0] ?? defaultWidth, size[1] ?? defaultHeight];
+  }
+  return [size.width ?? defaultWidth, size.height ?? defaultHeight];
+}
+
 export const getSize = (
   size: ProgressProps['size'],
   type: ProgressProps['type'] | 'step',
@@ -62,7 +73,7 @@ export const getSize = (
     } else if (typeof size === 'number') {
       [width, height] = [size, size];
     } else {
-      [width = 14, height = 8] = size;
+      [width, height] = toWidthHeight(size, 14, 8);
     }
     width *= steps;
   } else if (type === 'line') {
@@ -72,14 +83,14 @@ export const getSize = (
     } else if (typeof size === 'number') {
       [width, height] = [size, size];
     } else {
-      [width = -1, height = 8] = size;
+      [width, height] = toWidthHeight(size, -1, 8);
     }
   } else if (type === 'circle' || type === 'dashboard') {
     if (typeof size === 'string' || typeof size === 'undefined') {
       [width, height] = size === 'small' ? [60, 60] : [120, 120];
     } else if (typeof size === 'number') {
       [width, height] = [size, size];
-    } else {
+    } else if (Array.isArray(size)) {
       if (process.env.NODE_ENV !== 'production') {
         devWarning(
           false,
@@ -87,9 +98,18 @@ export const getSize = (
           'Type "circle" and "dashboard" do not accept array as `size`, please use number or preset size instead.',
         );
       }
-
       width = size[0] ?? size[1] ?? 120;
       height = size[0] ?? size[1] ?? 120;
+    } else if (size && typeof size === 'object') {
+      if (process.env.NODE_ENV !== 'production') {
+        devWarning(
+          false,
+          'Progress',
+          'Type "circle" and "dashboard" do not accept object as `size`, please use number or preset size instead.',
+        );
+      }
+      width = size.width ?? size.height ?? 120;
+      height = size.width ?? size.height ?? 120;
     }
   }
   return { width, height };

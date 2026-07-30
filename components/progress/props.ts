@@ -14,7 +14,12 @@ export type ProgressStatusesType = (typeof progressStatuses)[number];
 const ProgressType = ['line', 'circle', 'dashboard'] as const;
 export type ProgressType = (typeof ProgressType)[number];
 const ProgressSize = ['default', 'small'] as const;
-export type ProgressSize = (typeof ProgressSize)[number] | number | [number, number];
+/** Object form aligns with antd ≥ 5.18. */
+export type ProgressSize =
+  | (typeof ProgressSize)[number]
+  | number
+  | [number, number]
+  | { width?: number; height?: number };
 export type StringGradients = { [percentage: string]: string };
 type FromToGradients = { from: string; to: string };
 export type ProgressGradient = { direction?: string } & (StringGradients | FromToGradients);
@@ -42,7 +47,7 @@ export const progressProps = () => ({
   success: objectType<SuccessProps>(),
   gapDegree: Number,
   gapPosition: stringType<'top' | 'bottom' | 'left' | 'right'>(),
-  size: someType<ProgressSize | number | [number, number]>([String, Number, Array]),
+  size: someType<ProgressSize>([String, Number, Array, Object]),
   steps: Number,
   /** @deprecated Use `success` instead */
   successPercent: Number,

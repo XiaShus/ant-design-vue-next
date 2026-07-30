@@ -109,7 +109,7 @@
 | Feedback | Modal | ✅ | ✅ | [modal](../../components/modal) | 🔄 `destroyOnHidden` ✅ 4.11.0；🔄 `afterOpenChange` ✅ 4.22.0 |
 | Feedback | Notification | ✅ | ✅ | [notification](../../components/notification) | — |
 | Feedback | Popconfirm | ✅ | ✅ | [popconfirm](../../components/popconfirm) | — |
-| Feedback | Progress | ✅ | ✅ | [progress](../../components/progress) | — |
+| Feedback | Progress | ✅ | ✅ | [progress](../../components/progress) | 🔄 object `size` ✅ 4.38.0 |
 | Feedback | Result | ✅ | ✅ | [result](../../components/result) | — |
 | Feedback | Skeleton | ✅ | ✅ | [skeleton](../../components/skeleton) | — |
 | Feedback | Spin | ✅ | ✅ | [spin](../../components/spin) | 🔄 `fullscreen` ✅ 4.24.0 |
@@ -164,8 +164,10 @@
 33. ~~Pagination `align`~~ — ✅ `4.35.0`
 34. ~~Transfer `selectionsIcon`~~ — ✅ `4.36.0`
 35. ~~Tour `actionsRender`~~ — ✅ `4.37.0`
-36. Table `virtual` 按需拆版（多日）
-37. ColorPicker 渐变 `mode`
+36. ~~Progress object `size`~~ — ✅ `4.38.0`
+37. Form `feedbackIcons` / Anchor `replace`
+38. Table `virtual` 按需拆版（多日）
+39. ColorPicker 渐变 `mode`
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -175,4 +177,4 @@
 
 ---
 
-_上次更新：`4.37.0` Tour.actionsRender。每发一版请同步改本表。_
+_上次更新：`4.38.0` Progress.size object。每发一版请同步改本表。_

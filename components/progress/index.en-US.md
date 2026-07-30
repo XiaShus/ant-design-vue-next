@@ -31,7 +31,7 @@ Properties that shared by all types.
 | title | html dom title | string | - | 3.0 |
 | trailColor | The color of unfilled part | string | - |  |
 | type | To set the type, options: `line` `circle` `dashboard` | string | `line` |  |
-| size | Progress size | number \| \[number, number] \| "small" \| "default" | "default" |  |
+| size | Progress size | number \| \[number, number] \| { width?: number; height?: number } \| "small" \| "default" | "default" | object: 4.38.0 |
 
 ### `type="line"`
 
