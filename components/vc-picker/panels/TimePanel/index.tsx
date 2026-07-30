@@ -20,6 +20,8 @@ export type SharedTimeProps<DateType> = {
   secondStep?: number;
   hideDisabledOptions?: boolean;
   defaultValue?: DateType;
+  /** Trigger selection when scrolling the column (antd ≥ 5.14). */
+  changeOnScroll?: boolean;
 
   /** @deprecated Please use `disabledTime` instead. */
   disabledHours?: DisabledTimes['disabledHours'];

@@ -30,6 +30,7 @@ By clicking the input box, you can select a time from a popup panel.
 | inputReadOnly | Set the `readonly` attribute of the input tag (avoids virtual keyboard on touch devices) | boolean | false |  |
 | minuteStep | Interval between minutes in picker | number | 1 |  |
 | needConfirm | Need click confirm button to trigger value change | boolean | - | 4.21.0 |
+| changeOnScroll | Trigger selection when scrolling the column | boolean | false | 4.23.0 |
 | open(v-model) | Whether to popup panel | boolean | false |  |
 | placeholder | Display when there's no value | string \| \[string, string] | `Select a time` |  |
 | placement | The position where the selection box pops up | `bottomLeft` `bottomRight` `topLeft` `topRight` | bottomLeft |  |

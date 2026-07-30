@@ -974,8 +974,17 @@ function RangerPicker<DateType>() {
         );
       }
 
-      const onContextSelect = (date: DateType, type: 'key' | 'mouse' | 'submit') => {
+      const onContextSelect = (date: DateType, type: 'key' | 'mouse' | 'submit' | 'scroll') => {
         const values = updateValues(selectedValue.value, date, mergedActivePickerIndex.value);
+
+        if (type === 'scroll') {
+          if (!needConfirmButton.value) {
+            triggerChange(values, mergedActivePickerIndex.value);
+          } else {
+            setSelectedValue(values);
+          }
+          return;
+        }
 
         if (type === 'submit' || (type !== 'key' && !needConfirmButton.value)) {
           // triggerChange will also update selected values

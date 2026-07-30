@@ -132,6 +132,7 @@ The following APIs are shared by DatePicker, RangePicker.
 | showNow | Whether to show 'Now' button on panel when `showTime` is set | boolean | - |  |
 | showTime | To provide an additional time selection | object \| boolean | [TimePicker Options](/components/time-picker/#api) |  |
 | showTime.defaultValue | To set default time of selected date, [demo](#components-date-picker-demo-disabled-date) | [dayjs](https://day.js.org/) | dayjs() |  |
+| showTime.changeOnScroll | Trigger time selection when scrolling columns | boolean | false | 4.23.0 |
 | showToday | Whether to show `Today` button | boolean | true |  |
 | value(v-model) | To set date | [dayjs](https://day.js.org/) | - |  |
 

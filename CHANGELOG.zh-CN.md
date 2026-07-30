@@ -8,6 +8,12 @@
 
 ---
 
+## 4.23.0
+
+`2026-07-31`
+
+- 🌟 TimePicker / DatePicker `showTime` 支持 `changeOnScroll`（对齐 antd ≥ 5.14）
+
 ## 4.22.0
 
 `2026-07-31`

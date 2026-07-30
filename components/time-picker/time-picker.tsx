@@ -35,6 +35,8 @@ export const timePickerProps = () => ({
   minuteStep: Number,
   secondStep: Number,
   hideDisabledOptions: booleanType(),
+  /** Trigger selection when scrolling the column (antd ≥ 5.14). */
+  changeOnScroll: booleanType(),
   popupClassName: String,
   status: stringType<InputStatus>(),
 });

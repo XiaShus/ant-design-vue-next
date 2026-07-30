@@ -297,7 +297,7 @@ function PickerPanel<DateType>() {
 
       const triggerSelect = (
         date: DateType,
-        type: 'key' | 'mouse' | 'submit',
+        type: 'key' | 'mouse' | 'submit' | 'scroll',
         forceTriggerSelect = false,
       ) => {
         const { picker, generateConfig, onSelect, onChange, disabledDate } = props;

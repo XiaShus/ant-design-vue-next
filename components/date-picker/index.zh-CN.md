@@ -133,6 +133,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*3OpRQKcygo8AAA
 | showNow | 当设定了 `showTime` 的时候，面板是否显示“此刻”按钮 | boolean | - |  |
 | showTime | 增加时间选择功能 | Object \| boolean | [TimePicker Options](/components/time-picker/#api) |  |
 | showTime.defaultValue | 设置用户选择日期时默认的时分秒，[例子](#components-date-picker-demo-disabled-date) | [dayjs](https://day.js.org/) | dayjs() |  |
+| showTime.changeOnScroll | 滚动时间列时是否触发选中 | boolean | false | 4.23.0 |
 | showToday | 是否展示“今天”按钮 | boolean | true |  |
 | value(v-model) | 日期 | [dayjs](https://day.js.org/) | - |  |
 

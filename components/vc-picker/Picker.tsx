@@ -402,7 +402,14 @@ function Picker<DateType>() {
         locale: toRef(props, 'locale'),
       });
 
-      const onContextSelect = (date: DateType, type: 'key' | 'mouse' | 'submit') => {
+      const onContextSelect = (date: DateType, type: 'key' | 'mouse' | 'submit' | 'scroll') => {
+        if (type === 'scroll') {
+          // Scroll updates value without closing the panel
+          if (!needConfirmButton.value) {
+            triggerChange(date);
+          }
+          return;
+        }
         if (type === 'submit' || (type !== 'key' && !needConfirmButton.value)) {
           // triggerChange will also update selected values
           triggerChange(date);

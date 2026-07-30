@@ -63,6 +63,7 @@ const TimeBody = defineComponent({
     'disabledSeconds',
     'disabledTime',
     'hideDisabledOptions',
+    'changeOnScroll',
     'onSelect',
   ],
   setup(props) {
@@ -204,6 +205,7 @@ const TimeBody = defineComponent({
         showSecond,
         use12Hours,
         hideDisabledOptions,
+        changeOnScroll,
         onSelect,
       } = props;
       const columns: {
@@ -241,7 +243,7 @@ const TimeBody = defineComponent({
         node: VueNode,
         columnValue: number,
         units: Unit[],
-        onColumnSelect: (diff: number) => void,
+        onColumnSelect: (diff: number, fromScroll?: boolean) => void,
       ) {
         if (condition !== false) {
           columns.push({
@@ -252,6 +254,7 @@ const TimeBody = defineComponent({
               onSelect: onColumnSelect,
               units,
               hideDisabledOptions,
+              changeOnScroll,
             }),
             onSelect: onColumnSelect,
             value: columnValue,
@@ -261,9 +264,18 @@ const TimeBody = defineComponent({
       }
 
       // Hour
-      addColumnNode(showHour, <TimeUnitColumn key="hour" />, hour.value, hours.value, num => {
-        onSelect(setTime(isPM.value, num, minute.value, second.value), 'mouse');
-      });
+      addColumnNode(
+        showHour,
+        <TimeUnitColumn key="hour" />,
+        hour.value,
+        hours.value,
+        (num, fromScroll) => {
+          onSelect(
+            setTime(isPM.value, num, minute.value, second.value),
+            fromScroll ? 'scroll' : 'mouse',
+          );
+        },
+      );
 
       // Minute
       addColumnNode(
@@ -271,8 +283,11 @@ const TimeBody = defineComponent({
         <TimeUnitColumn key="minute" />,
         minute.value,
         minutes.value,
-        num => {
-          onSelect(setTime(isPM.value, hour.value, num, second.value), 'mouse');
+        (num, fromScroll) => {
+          onSelect(
+            setTime(isPM.value, hour.value, num, second.value),
+            fromScroll ? 'scroll' : 'mouse',
+          );
         },
       );
 
@@ -282,8 +297,11 @@ const TimeBody = defineComponent({
         <TimeUnitColumn key="second" />,
         second.value,
         seconds.value,
-        num => {
-          onSelect(setTime(isPM.value, hour.value, minute.value, num), 'mouse');
+        (num, fromScroll) => {
+          onSelect(
+            setTime(isPM.value, hour.value, minute.value, num),
+            fromScroll ? 'scroll' : 'mouse',
+          );
         },
       );
 
@@ -301,8 +319,11 @@ const TimeBody = defineComponent({
           { label: 'AM', value: 0, disabled: AMPMDisabled.value[0] },
           { label: 'PM', value: 1, disabled: AMPMDisabled.value[1] },
         ],
-        num => {
-          onSelect(setTime(!!num, hour.value, minute.value, second.value), 'mouse');
+        (num, fromScroll) => {
+          onSelect(
+            setTime(!!num, hour.value, minute.value, second.value),
+            fromScroll ? 'scroll' : 'mouse',
+          );
         },
       );
 
