@@ -65,6 +65,31 @@ export type { ColumnsType, TablePaginationConfig };
 
 const EMPTY_LIST: any[] = [];
 
+/** Drop `hidden` columns (antd ≥ 5.13); prune empty groups. */
+function filterHiddenColumns<RecordType>(
+  columns: ColumnsType<RecordType>,
+): ColumnsType<RecordType> {
+  return columns
+    .map(column => {
+      if ('children' in column && Array.isArray(column.children)) {
+        return {
+          ...column,
+          children: filterHiddenColumns(column.children),
+        };
+      }
+      return column;
+    })
+    .filter(column => {
+      if (column.hidden) {
+        return false;
+      }
+      if ('children' in column && Array.isArray(column.children)) {
+        return column.children.length > 0;
+      }
+      return true;
+    }) as ColumnsType<RecordType>;
+}
+
 interface ChangeEventInfo<RecordType = DefaultRecordType> {
   pagination: {
     current?: number;
@@ -216,10 +241,11 @@ const InternalTable = defineComponent({
       const matched = new Set(
         Object.keys(screens.value).filter((m: Breakpoint) => screens.value[m]),
       );
-      return props.columns.filter(
+      const responsiveColumns = props.columns.filter(
         (c: ColumnType<DefaultRecordType>) =>
           !c.responsive || c.responsive.some((r: Breakpoint) => matched.has(r)),
       );
+      return filterHiddenColumns(responsiveColumns);
     });
 
     const {

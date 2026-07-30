@@ -178,6 +178,7 @@ One of the Table `columns` prop for describing the table's columns, Column has t
 | minWidth | Drag the minimum width of the column, it will be affected by the automatic adjustment and distribution of the table width | number | 50 | 3.0 |
 | resizable | Whether the width can be adjusted by dragging, at this time width must be number type | boolean | - | 3.0 |
 | responsive | The list of breakpoints at which to display this column. Always visible if not set. | [Breakpoint](#breakpoint)\[] | - | 3.0 |
+| hidden | Hidden this column (antd ≥ 5.13) | boolean | false | 4.13.0 |
 | rowScope | Set scope attribute for all cells in this column | `row` \| `rowgroup` | - | 4.0 |
 | sortDirections | supported sort way, could be `'ascend'`, `'descend'` | Array | `['ascend', 'descend']` | 1.5.0 |
 | sorter | Sort function for local sort, see [Array.sort](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)'s compareFunction. If you need sort buttons only, set to `true` | Function\|boolean | - |  |

@@ -92,7 +92,7 @@
 | Data Display | QRCode | ✅ 5.1 | ✅ | [qrcode](../../components/qrcode) | — |
 | Data Display | Segmented | ✅ | ✅ | [segmented](../../components/segmented) | — |
 | Data Display | Statistic | ✅ | ✅ | [statistic](../../components/statistic) | — |
-| Data Display | Table | ✅ | ✅ | [table](../../components/table) | ⚠️ 高频，逐项对齐 |
+| Data Display | Table | ✅ | ✅ | [table](../../components/table) | 🔄 Column `hidden` ✅ 4.13.0；⚠️ 其他高频缺口逐项对齐 |
 | Data Display | Tag | ✅ | ✅ | [tag](../../components/tag) | — |
 | Data Display | Timeline | ✅ | ✅ | [timeline](../../components/timeline) | — |
 | Data Display | Tooltip | ✅ | ✅ | [tooltip](../../components/tooltip) | — |
@@ -139,8 +139,9 @@
 8. ~~Form / Cascader / TreeSelect `variant`~~ — ✅ `4.10.0`
 9. ~~Modal / Drawer `destroyOnHidden`~~ — ✅ `4.11.0`
 10. ~~Mentions / AutoComplete `variant`~~ — ✅ `4.12.0`
-11. Table 高频 API 缺口
-12. ColorPicker 渐变 `mode` / `panelRender`；Splitter collapsible / lazy 补齐
+11. ~~Table Column `hidden`~~ — ✅ `4.13.0`
+12. Table 其他高频 API（如 `virtual` / `scrollTo`）按需拆版
+13. ColorPicker 渐变 `mode` / `panelRender`；Splitter collapsible / lazy 补齐
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -150,4 +151,4 @@
 
 ---
 
-_上次更新：`4.12.0` Mentions / AutoComplete variant。每发一版请同步改本表。_
+_上次更新：`4.13.0` Table Column.hidden。每发一版请同步改本表。_

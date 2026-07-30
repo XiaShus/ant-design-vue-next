@@ -4,6 +4,12 @@
 
 ---
 
+## 4.13.0
+
+`2026-07-30`
+
+- 🌟 Table Column supports `hidden` (antd ≥ 5.13), pruning empty ColumnGroups
+
 ## 4.12.0
 
 `2026-07-30`

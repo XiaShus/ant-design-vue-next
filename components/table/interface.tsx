@@ -132,6 +132,8 @@ export interface ColumnType<RecordType = DefaultRecordType>
   filterResetToDefaultFilteredValue?: boolean;
   // Responsive
   responsive?: Breakpoint[];
+  /** Hide this column (antd ≥ 5.13). */
+  hidden?: boolean;
 
   // Deprecated
   /** @deprecated Please use `filterDropdownOpen` instead */

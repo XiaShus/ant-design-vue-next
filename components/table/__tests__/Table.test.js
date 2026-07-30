@@ -97,6 +97,28 @@ describe('Table', () => {
     expect(wrapper.findAll('.ant-spin')).toHaveLength(1);
   });
 
+  it('hides columns with hidden prop', async () => {
+    const columns = [
+      { title: 'Name', dataIndex: 'firstName', key: 'firstName' },
+      { title: 'Age', dataIndex: 'age', key: 'age', hidden: true },
+      { title: 'Last', dataIndex: 'lastName', key: 'lastName' },
+    ];
+    const wrapper = mount(Table, {
+      props: {
+        columns,
+        dataSource: data,
+        pagination: false,
+      },
+      sync: false,
+    });
+    await sleep();
+    const headers = wrapper.findAll('th').map(th => th.text());
+    expect(headers).toContain('Name');
+    expect(headers).toContain('Last');
+    expect(headers).not.toContain('Age');
+    expect(wrapper.findAll('tbody tr').at(0).findAll('td')).toHaveLength(2);
+  });
+
   it('align column should not override cell style', done => {
     const columns = [
       { title: 'Name', dataIndex: 'name', key: 'name' },
