@@ -4,6 +4,12 @@
 
 ---
 
+## 4.47.0
+
+`2026-07-31`
+
+- 🌟 Button supports `iconPlacement` / deprecated `iconPosition` (antd ≥ 5.17)
+
 ## 4.46.0
 
 `2026-07-31`

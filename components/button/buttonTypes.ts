@@ -2,11 +2,12 @@ import PropTypes from '../_util/vue-types';
 
 import type { ExtractPropTypes, PropType } from 'vue';
 import type { SizeType } from '../config-provider';
-import { booleanType, eventType } from '../_util/type';
+import { booleanType, eventType, stringType } from '../_util/type';
 import type { MouseEventHandler } from '../_util/EventInterface';
 
 export type ButtonType = 'link' | 'default' | 'primary' | 'ghost' | 'dashed' | 'text';
 export type ButtonShape = 'default' | 'circle' | 'round';
+export type ButtonIconPlacement = 'start' | 'end';
 
 export type ButtonHTMLType = 'submit' | 'button' | 'reset';
 
@@ -40,6 +41,10 @@ export const buttonProps = () => ({
   title: String,
   /** We default to providing a space between two Chinese characters; set to false to disable */
   autoInsertSpace: booleanType(),
+  /** Set the icon position of button */
+  iconPlacement: stringType<ButtonIconPlacement>(),
+  /** @deprecated Please use `iconPlacement` instead */
+  iconPosition: stringType<ButtonIconPlacement>(),
   onClick: eventType<MouseEventHandler>(),
   onMousedown: eventType<MouseEventHandler>(),
 });

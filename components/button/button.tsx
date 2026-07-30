@@ -85,6 +85,10 @@ export default defineComponent({
       },
     );
 
+    const mergedIconPlacement = computed(
+      () => props.iconPlacement ?? props.iconPosition ?? 'start',
+    );
+
     const classes = computed(() => {
       const { type, shape = 'default', ghost, block, danger } = props;
       const pre = prefixCls.value;
@@ -107,6 +111,7 @@ export default defineComponent({
           [`${pre}-block`]: block,
           [`${pre}-dangerous`]: !!danger,
           [`${pre}-rtl`]: direction.value === 'rtl',
+          [`${pre}-icon-end`]: mergedIconPlacement.value === 'end',
         },
       ];
     });
@@ -156,6 +161,11 @@ export default defineComponent({
         !(props.ghost && isUnBorderedButtonType(props.type)),
         'Button',
         "`link` or `text` button can't be a `ghost` button.",
+      );
+      devWarning(
+        !(props.iconPosition !== undefined),
+        'Button',
+        '`iconPosition` is deprecated. Please use `iconPlacement` instead.',
       );
     });
 
@@ -217,19 +227,33 @@ export default defineComponent({
         insertSpace(child, isNeedInserted && autoInsertSpace.value),
       );
 
+      const isRTL = direction.value === 'rtl';
+      const iconFirst =
+        (mergedIconPlacement.value === 'start' && !isRTL) ||
+        (mergedIconPlacement.value === 'end' && isRTL);
+      const contentNodes = iconFirst ? (
+        <>
+          {iconNode}
+          {kids}
+        </>
+      ) : (
+        <>
+          {kids}
+          {iconNode}
+        </>
+      );
+
       if (href !== undefined) {
         return wrapSSR(
           <a {...buttonProps} href={href} target={target} ref={buttonNodeRef}>
-            {iconNode}
-            {kids}
+            {contentNodes}
           </a>,
         );
       }
 
       let buttonNode = (
         <button {...buttonProps} ref={buttonNodeRef} type={htmlType}>
-          {iconNode}
-          {kids}
+          {contentNodes}
         </button>
       );
 
