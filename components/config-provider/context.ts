@@ -103,6 +103,10 @@ export const configProviderProps = () => ({
   pagination: objectType<{
     showSizeChanger?: boolean;
   }>(),
+  /** Transfer common props (antd ≥ 5.7; `selectionsIcon` ≥ 5.14). */
+  transfer: objectType<{
+    selectionsIcon?: VueNode;
+  }>(),
   theme: objectType<ThemeConfig>(),
   select: objectType<{
     showSearch?: boolean;
@@ -148,6 +152,9 @@ export interface ConfigProviderInnerProps {
   }>;
   pagination?: ComputedRef<{
     showSizeChanger?: boolean;
+  }>;
+  transfer?: ComputedRef<{
+    selectionsIcon?: VueNode;
   }>;
   form?: ComputedRef<{
     validateMessages?: ValidateMessages;

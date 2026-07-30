@@ -47,6 +47,8 @@ export const transferListProps = {
   disabled: booleanType(),
   direction: stringType<TransferDirection>(),
   showSelectAll: booleanType(),
+  /** Custom header selections dropdown icon (antd ≥ 5.14). */
+  selectionsIcon: PropTypes.any,
   remove: String,
   selectAll: String,
   selectCurrent: String,
@@ -395,7 +397,7 @@ export default defineComponent({
 
       const dropdown = (
         <Dropdown class={`${prefixCls}-header-dropdown`} overlay={menu} disabled={disabled}>
-          <DownOutlined />
+          {props.selectionsIcon ?? <DownOutlined />}
         </Dropdown>
       );
 

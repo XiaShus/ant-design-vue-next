@@ -215,6 +215,9 @@ const ConfigProvider = defineComponent({
     const pagination = computed(() =>
       props.pagination !== undefined ? props.pagination : parentContext.pagination?.value,
     );
+    const transfer = computed(() =>
+      props.transfer !== undefined ? props.transfer : parentContext.transfer?.value,
+    );
     const form = computed(() =>
       props.form !== undefined ? props.form : parentContext.form?.value,
     );
@@ -250,6 +253,7 @@ const ConfigProvider = defineComponent({
       pageHeader,
       input,
       pagination,
+      transfer,
       form,
       select,
       componentSize,

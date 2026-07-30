@@ -4,6 +4,12 @@
 
 ---
 
+## 4.36.0
+
+`2026-07-31`
+
+- 🌟 Transfer supports `selectionsIcon` and ConfigProvider `transfer.selectionsIcon` (antd ≥ 5.14)
+
 ## 4.35.0
 
 `2026-07-31`

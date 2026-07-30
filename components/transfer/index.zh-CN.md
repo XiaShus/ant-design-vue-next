@@ -35,6 +35,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*yv12S4sSRAEAAA
 | render | 每行数据渲染函数，该函数的入参为 `dataSource` 中的项，返回值为 element。或者返回一个普通对象，其中 `label` 字段为 element，`value` 字段为 title | Function(record)\| slot |  |  |
 | selectAllLabels | 自定义顶部多选框标题的集合 | VueNode \| ((info: { selectedCount: number; totalCount: number }) => VueNode); | - | 3.0.0 |
 | selectedKeys(v-model) | 设置哪些项应该被选中 | string\[] | \[] |  |
+| selectionsIcon | 自定义全选区域下拉图标 | VueNode \| slot | - | 4.36.0 |
 | showSearch | 是否显示搜索框 | boolean | false |  |
 | showSelectAll | 是否展示全选勾选框 | boolean | true |  |
 | status | 设置校验状态 | 'error' \| 'warning' | - | 3.3.0 |

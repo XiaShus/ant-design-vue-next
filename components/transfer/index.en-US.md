@@ -34,6 +34,7 @@ One or more elements can be selected from either column, one click on the proper
 | render | The function to generate the item shown on a column. Based on an record (element of the dataSource array), this function should return a element which is generated from that record. Also, it can return a plain object with `value` and `label`, `label` is a element and `value` is for title | Function(record) \| slot |  |  |
 | selectAllLabels | A set of customized labels for select all checkboxes on the header | VueNode \| ((info: { selectedCount: number; totalCount: number }) => VueNode); | - | 3.0.0 |
 | selectedKeys(v-model) | A set of keys of selected items. | string\[] | \[] |  |
+| selectionsIcon | Custom icon for the header selections dropdown | VueNode \| slot | - | 4.36.0 |
 | showSearch | If included, a search box is shown on each column. | boolean | false |  |
 | showSelectAll | Show select all checkbox on the header | boolean | true |  |
 | status | Set validation status | 'error' \| 'warning' | - | 3.3.0 |

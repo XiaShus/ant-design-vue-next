@@ -8,6 +8,12 @@
 
 ---
 
+## 4.36.0
+
+`2026-07-31`
+
+- 🌟 Transfer 支持 `selectionsIcon`，以及 ConfigProvider `transfer.selectionsIcon`（对齐 antd ≥ 5.14）
+
 ## 4.35.0
 
 `2026-07-31`

@@ -102,6 +102,8 @@ export const transferProps = () => ({
   rowKey: functionType<(record: TransferItem) => string>(),
   showSelectAll: booleanType(),
   selectAllLabels: arrayType<SelectAllLabel[]>(),
+  /** Custom header selections dropdown icon (antd ≥ 5.14). */
+  selectionsIcon: PropTypes.any,
   children: functionType<(props: TransferListBodyProps) => VueNode>(),
   oneWay: booleanType(),
   pagination: someType<PaginationType>([Object, Boolean]),
@@ -133,6 +135,7 @@ const Transfer = defineComponent({
     notFoundContent?: any;
     leftSelectAllLabel?: any;
     rightSelectAllLabel?: any;
+    selectionsIcon?: any;
     footer?: any;
     default?: any;
   }>,
@@ -356,6 +359,10 @@ const Transfer = defineComponent({
       const locale = getLocale(transferLocale, renderEmpty);
       const { footer } = slots;
       const renderItem = props.render || slots.render;
+      const selectionsIcon =
+        props.selectionsIcon ??
+        slots.selectionsIcon?.() ??
+        configProvider.transfer?.value?.selectionsIcon;
       const leftActive = targetSelectedKeys.value.length > 0;
       const rightActive = sourceSelectedKeys.value.length > 0;
 
@@ -396,6 +403,7 @@ const Transfer = defineComponent({
             direction={direction.value === 'rtl' ? 'right' : 'left'}
             showSelectAll={showSelectAll}
             selectAllLabel={selectAllLabels[0] || slots.leftSelectAllLabel}
+            selectionsIcon={selectionsIcon}
             pagination={mergedPagination}
             {...locale}
             v-slots={{ titleText: () => leftTitle, footer }}
@@ -434,6 +442,7 @@ const Transfer = defineComponent({
             direction={direction.value === 'rtl' ? 'left' : 'right'}
             showSelectAll={showSelectAll}
             selectAllLabel={selectAllLabels[1] || slots.rightSelectAllLabel}
+            selectionsIcon={selectionsIcon}
             showRemove={oneWay}
             pagination={mergedPagination}
             {...locale}
