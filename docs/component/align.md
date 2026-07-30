@@ -111,7 +111,7 @@
 | Feedback | Popconfirm | ✅ | ✅ | [popconfirm](../../components/popconfirm) | — |
 | Feedback | Progress | ✅ | ✅ | [progress](../../components/progress) | 🔄 object `size` ✅ 4.38.0 |
 | Feedback | Result | ✅ | ✅ | [result](../../components/result) | — |
-| Feedback | Skeleton | ✅ | ✅ | [skeleton](../../components/skeleton) | — |
+| Feedback | Skeleton | ✅ | ✅ | [skeleton](../../components/skeleton) | 🔄 `Skeleton.Node` ✅ 4.41.0 |
 | Feedback | Spin | ✅ | ✅ | [spin](../../components/spin) | 🔄 `fullscreen` ✅ 4.24.0 |
 | Feedback | Watermark | ✅ 5.1 | ✅ | [watermark](../../components/watermark) | — |
 
@@ -167,8 +167,10 @@
 36. ~~Progress object `size`~~ — ✅ `4.38.0`
 37. ~~Anchor `replace`~~ — ✅ `4.39.0`
 38. ~~Form `feedbackIcons`~~ — ✅ `4.40.0`
-39. Table `virtual` 按需拆版（多日）
-40. ColorPicker 渐变 `mode`
+39. ~~Skeleton.Node~~ — ✅ `4.41.0`
+40. Notification `showProgress` / `pauseOnHover`；Tabs `indicator`
+41. Table `virtual` 按需拆版（多日）
+42. ColorPicker 渐变 `mode`
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -178,4 +180,4 @@
 
 ---
 
-_上次更新：`4.40.0` Form.feedbackIcons。每发一版请同步改本表。_
+_上次更新：`4.41.0` Skeleton.Node。每发一版请同步改本表。_

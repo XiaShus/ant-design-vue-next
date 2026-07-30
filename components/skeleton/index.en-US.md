@@ -62,3 +62,11 @@ Provide a placeholder while you wait for content to load, or to visualise conten
 | -------- | --------------------- | ------------------------------- | ------- |
 | active   | Show animation effect | boolean                         | false   |
 | size     | Set the size of input | `large` \| `small` \| `default` | -       |
+
+### SkeletonNodeProps
+
+| Property | Description           | Type    | Default | Version |
+| -------- | --------------------- | ------- | ------- | ------- |
+| active   | Show animation effect | boolean | false   | 4.41.0  |
+
+Custom placeholder content via default slot.

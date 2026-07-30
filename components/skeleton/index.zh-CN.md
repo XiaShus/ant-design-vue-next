@@ -63,3 +63,11 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*VcjGQLSrYdcAAA
 | ------ | ---------------- | ------------------------------- | ------ |
 | active | 是否展示动画效果 | boolean                         | false  |
 | size   | 设置输入框的大小 | `large` \| `small` \| `default` | -      |
+
+### SkeletonNodeProps
+
+| 属性   | 说明             | 类型    | 默认值 | 版本   |
+| ------ | ---------------- | ------- | ------ | ------ |
+| active | 是否展示动画效果 | boolean | false  | 4.41.0 |
+
+通过默认插槽自定义占位内容。

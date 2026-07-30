@@ -4,6 +4,12 @@
 
 ---
 
+## 4.41.0
+
+`2026-07-31`
+
+- 🌟 Skeleton.Node custom skeleton placeholder (antd ≥ 4.21 / 5.x)
+
 ## 4.40.0
 
 `2026-07-31`

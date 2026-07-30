@@ -2,18 +2,17 @@
 ---
 order: 2.1
 title:
-  zh-CN: 按钮/头像/输入框/图像
-  en-US: Button/Avatar/Input/Image
+  zh-CN: 按钮/头像/输入框/图像/节点
+  en-US: Button/Avatar/Input/Image/Node
 ---
 
 ## zh-CN
 
-骨架按钮、头像、输入框和图像。
+骨架按钮、头像、输入框、图像与自定义节点（`Skeleton.Node`）。
 
 ## en-US
 
-Skeleton Button, Avatar, Input and Image.
-
+Skeleton Button, Avatar, Input, Image and custom Node.
 </docs>
 
 <template>
@@ -27,7 +26,13 @@ Skeleton Button, Avatar, Input and Image.
   <a-skeleton-button :active="active" :size="size" :shape="buttonShape" :block="block" />
   <br />
   <br />
-  <a-skeleton-image />
+  <a-space>
+    <a-skeleton-image />
+    <a-skeleton-node :active="active" style="width: 160px" />
+    <a-skeleton-node :active="active">
+      <DotChartOutlined style="font-size: 40px; color: #bfbfbf" />
+    </a-skeleton-node>
+  </a-space>
   <a-divider />
   <a-form layout="inline" style="margin: 16px 0">
     <a-form-item label="Active">
@@ -60,6 +65,7 @@ Skeleton Button, Avatar, Input and Image.
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue';
+import { DotChartOutlined } from '@ant-design/icons-vue';
 import type { SkeletonButtonProps, SkeletonAvatarProps } from 'ant-design-vue';
 const active = ref(false);
 const block = ref(false);

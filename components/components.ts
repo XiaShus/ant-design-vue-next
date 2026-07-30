@@ -198,6 +198,7 @@ export type {
   SkeletonImageProps,
   SkeletonAvatarProps,
   SkeletonTitleProps,
+  SkeletonNodeProps,
 } from './skeleton';
 export {
   default as Skeleton,
@@ -206,6 +207,7 @@ export {
   SkeletonInput,
   SkeletonImage,
   SkeletonTitle,
+  SkeletonNode,
 } from './skeleton';
 
 export type { SliderProps } from './slider';
