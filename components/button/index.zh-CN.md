@@ -38,6 +38,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*Lp1kTYmSsgoAAA
 | --- | --- | --- | --- | --- |
 | autoInsertSpace | 两个汉字之间是否自动插入空格，设为 `false` 可关闭 | boolean | `true` | 4.46.0 |
 | block | 将按钮宽度调整为其父宽度的选项 | boolean | `false` |  |
+| color | 设置按钮颜色，需与 `variant` 搭配 | `default` \| `primary` \| `danger` | - | 4.49.0 |
 | danger | 设置危险按钮 | boolean | `false` | 2.2.0 |
 | disabled | 按钮失效状态 | boolean | `false` |  |
 | ghost | 幽灵属性，使按钮背景透明 | boolean | `false` |  |
@@ -51,6 +52,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*Lp1kTYmSsgoAAA
 | size | 设置按钮大小 | `large` \| `middle` \| `small` | `middle` |  |
 | target | 相当于 a 链接的 target 属性，href 存在时生效 | string | - |  |
 | type | 设置按钮类型 | `primary` \| `ghost` \| `dashed` \| `link` \| `text` \| `default` | `default` |  |
+| variant | 设置按钮变体，需与 `color` 搭配 | `outlined` \| `dashed` \| `solid` \| `filled` \| `text` \| `link` | - | 4.49.0 |
 
 ### 事件
 

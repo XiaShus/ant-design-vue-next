@@ -393,6 +393,205 @@ const genTypeButtonStyle: GenerateStyle<ButtonToken> = token => {
   };
 };
 
+/** Additive styles for Button `color` + `variant` API (antd ≥ 5.21) */
+const genColorVariantButtonStyle: GenerateStyle<ButtonToken> = token => {
+  const { componentCls } = token;
+  const colorDefault = `${componentCls}-color-default`;
+  const colorPrimary = `${componentCls}-color-primary`;
+  const colorDanger = `${componentCls}-color-danger`;
+  const variantSolid = `${componentCls}-variant-solid`;
+  const variantOutlined = `${componentCls}-variant-outlined`;
+  const variantDashed = `${componentCls}-variant-dashed`;
+  const variantFilled = `${componentCls}-variant-filled`;
+  const variantText = `${componentCls}-variant-text`;
+  const variantLink = `${componentCls}-variant-link`;
+
+  return {
+    // default + outlined/dashed (~ type=default / dashed)
+    [`${componentCls}${colorDefault}${variantOutlined}`]: genDefaultButtonStyle(token),
+    [`${componentCls}${colorDefault}${variantDashed}`]: genDashedButtonStyle(token),
+    // default + solid
+    [`${componentCls}${colorDefault}${variantSolid}`]: {
+      ...genSolidButtonStyle(token),
+      color: token.colorTextLightSolid,
+      backgroundColor: token.colorText,
+      borderColor: token.colorText,
+      ...genHoverActiveButtonStyle(
+        {
+          color: token.colorTextLightSolid,
+          backgroundColor: token.colorTextSecondary,
+          borderColor: token.colorTextSecondary,
+        },
+        {
+          color: token.colorTextLightSolid,
+          backgroundColor: token.colorTextTertiary,
+          borderColor: token.colorTextTertiary,
+        },
+      ),
+    },
+    // default + filled
+    [`${componentCls}${colorDefault}${variantFilled}`]: {
+      ...genSolidButtonStyle(token),
+      color: token.colorText,
+      backgroundColor: token.colorFillTertiary,
+      borderColor: 'transparent',
+      boxShadow: 'none',
+      ...genHoverActiveButtonStyle(
+        {
+          backgroundColor: token.colorFillSecondary,
+        },
+        {
+          backgroundColor: token.colorFill,
+        },
+      ),
+    },
+    // default + text / link
+    [`${componentCls}${colorDefault}${variantText}`]: genTextButtonStyle(token),
+    [`${componentCls}${colorDefault}${variantLink}`]: {
+      ...genLinkButtonStyle(token),
+      color: token.colorText,
+      ...genHoverActiveButtonStyle(
+        { color: token.colorPrimaryHover },
+        { color: token.colorPrimaryActive },
+      ),
+    },
+
+    // primary + solid (~ type=primary)
+    [`${componentCls}${colorPrimary}${variantSolid}`]: genPrimaryButtonStyle(token),
+    // primary + outlined / dashed
+    [`${componentCls}${colorPrimary}${variantOutlined}, ${componentCls}${colorPrimary}${variantDashed}`]:
+      {
+        ...genSolidButtonStyle(token),
+        color: token.colorPrimary,
+        borderColor: token.colorPrimary,
+        backgroundColor: token.colorBgContainer,
+        ...genHoverActiveButtonStyle(
+          {
+            color: token.colorPrimaryHover,
+            borderColor: token.colorPrimaryHover,
+          },
+          {
+            color: token.colorPrimaryActive,
+            borderColor: token.colorPrimaryActive,
+          },
+        ),
+      },
+    [`${componentCls}${colorPrimary}${variantDashed}`]: {
+      borderStyle: 'dashed',
+    },
+    // primary + filled
+    [`${componentCls}${colorPrimary}${variantFilled}`]: {
+      ...genSolidButtonStyle(token),
+      color: token.colorPrimary,
+      backgroundColor: token.colorPrimaryBg,
+      borderColor: 'transparent',
+      boxShadow: 'none',
+      ...genHoverActiveButtonStyle(
+        {
+          backgroundColor: token.colorPrimaryBgHover,
+        },
+        {
+          backgroundColor: token.colorPrimaryBorder,
+        },
+      ),
+    },
+    // primary + text / link
+    [`${componentCls}${colorPrimary}${variantText}`]: {
+      ...genTextButtonStyle(token),
+      color: token.colorPrimary,
+      ...genHoverActiveButtonStyle(
+        {
+          color: token.colorPrimaryHover,
+          backgroundColor: token.colorPrimaryBg,
+        },
+        {
+          color: token.colorPrimaryActive,
+          backgroundColor: token.colorPrimaryBgHover,
+        },
+      ),
+    },
+    [`${componentCls}${colorPrimary}${variantLink}`]: genLinkButtonStyle(token),
+
+    // danger + solid
+    [`${componentCls}${colorDanger}${variantSolid}`]: {
+      ...genSolidButtonStyle(token),
+      color: token.colorTextLightSolid,
+      backgroundColor: token.colorError,
+      borderColor: token.colorError,
+      ...genHoverActiveButtonStyle(
+        {
+          backgroundColor: token.colorErrorHover,
+          borderColor: token.colorErrorHover,
+        },
+        {
+          backgroundColor: token.colorErrorActive,
+          borderColor: token.colorErrorActive,
+        },
+      ),
+    },
+    // danger + outlined / dashed
+    [`${componentCls}${colorDanger}${variantOutlined}, ${componentCls}${colorDanger}${variantDashed}`]:
+      {
+        ...genSolidButtonStyle(token),
+        color: token.colorError,
+        borderColor: token.colorError,
+        backgroundColor: token.colorBgContainer,
+        ...genHoverActiveButtonStyle(
+          {
+            color: token.colorErrorHover,
+            borderColor: token.colorErrorBorderHover,
+          },
+          {
+            color: token.colorErrorActive,
+            borderColor: token.colorErrorActive,
+          },
+        ),
+      },
+    [`${componentCls}${colorDanger}${variantDashed}`]: {
+      borderStyle: 'dashed',
+    },
+    // danger + filled
+    [`${componentCls}${colorDanger}${variantFilled}`]: {
+      ...genSolidButtonStyle(token),
+      color: token.colorError,
+      backgroundColor: token.colorErrorBg,
+      borderColor: 'transparent',
+      boxShadow: 'none',
+      ...genHoverActiveButtonStyle(
+        {
+          backgroundColor: token.colorErrorBgHover,
+        },
+        {
+          backgroundColor: token.colorErrorBorder,
+        },
+      ),
+    },
+    // danger + text / link
+    [`${componentCls}${colorDanger}${variantText}`]: {
+      ...genTextButtonStyle(token),
+      color: token.colorError,
+      ...genHoverActiveButtonStyle(
+        {
+          color: token.colorErrorHover,
+          backgroundColor: token.colorErrorBg,
+        },
+        {
+          color: token.colorErrorHover,
+          backgroundColor: token.colorErrorBgHover,
+        },
+      ),
+    },
+    [`${componentCls}${colorDanger}${variantLink}`]: {
+      ...genLinkButtonStyle(token),
+      color: token.colorError,
+      ...genHoverActiveButtonStyle(
+        { color: token.colorErrorHover },
+        { color: token.colorErrorActive },
+      ),
+    },
+  };
+};
+
 // =============================== Size ===============================
 const genSizeButtonStyle = (token: ButtonToken, sizePrefixCls: string = ''): CSSInterpolation => {
   const {
@@ -520,6 +719,9 @@ export default genComponentStyleHook('Button', token => {
 
     // Group (type, ghost, danger, disabled, loading)
     genTypeButtonStyle(buttonToken),
+
+    // color + variant API
+    genColorVariantButtonStyle(buttonToken),
 
     // Button Group
     genGroupStyle(buttonToken),

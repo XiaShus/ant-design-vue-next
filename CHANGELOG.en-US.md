@@ -4,6 +4,12 @@
 
 ---
 
+## 4.49.0
+
+`2026-07-31`
+
+- 🌟 Button supports `color` + `variant` composition (antd ≥ 5.21)
+
 ## 4.48.0
 
 `2026-07-31`

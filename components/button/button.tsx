@@ -22,6 +22,12 @@ import type { VNode } from 'vue';
 import { GroupSizeContext } from './button-group';
 import { useCompactItemContext } from '../space/Compact';
 import type { CustomSlotsType } from '../_util/type';
+import {
+  ButtonTypeMap,
+  isUnBorderedButtonVariant,
+  type ButtonColorType,
+  type ButtonVariantType,
+} from './buttonHelpers';
 
 type Loading = boolean | number;
 
@@ -89,13 +95,38 @@ export default defineComponent({
       () => props.iconPlacement ?? props.iconPosition ?? 'start',
     );
 
+    const mergedColorVariant = computed(() => {
+      const { color, variant, type, danger } = props;
+      if (color && variant) {
+        return [color, variant] as const;
+      }
+      // Partial color/variant: fall back through type map
+      if (color || variant) {
+        const mapped = ButtonTypeMap[type || 'default'] || [];
+        const mappedColor = (
+          danger ? 'danger' : color || mapped[0] || 'default'
+        ) as ButtonColorType;
+        const mappedVariant = (variant || mapped[1] || 'outlined') as ButtonVariantType;
+        return [mappedColor, mappedVariant] as const;
+      }
+      return null;
+    });
+
     const classes = computed(() => {
-      const { type, shape = 'default', ghost, block, danger } = props;
+      const { type, shape = 'default', ghost, block, danger = false } = props;
       const pre = prefixCls.value;
 
       const sizeClassNameMap = { large: 'lg', small: 'sm', middle: undefined };
       const sizeFullname = compactSize.value || groupSizeContext?.size || size.value;
       const sizeCls = sizeFullname ? sizeClassNameMap[sizeFullname] || '' : '';
+
+      const colorVariant = mergedColorVariant.value;
+      const useColorVariant = !!colorVariant;
+      const mergedColor = colorVariant?.[0];
+      const mergedVariant = colorVariant?.[1];
+      const unbordered = useColorVariant
+        ? isUnBorderedButtonVariant(mergedVariant)
+        : isUnBorderedButtonType(type);
 
       return [
         compactItemClassnames.value,
@@ -103,13 +134,17 @@ export default defineComponent({
           [hashId.value]: true,
           [`${pre}`]: true,
           [`${pre}-${shape}`]: shape !== 'default' && shape,
-          [`${pre}-${type}`]: type,
+          // Legacy type classes when color/variant API is not used
+          [`${pre}-${type}`]: !useColorVariant && !!type,
+          // Isolated color/variant classes to avoid clashing with type styles
+          [`${pre}-color-${mergedColor}`]: useColorVariant && !!mergedColor,
+          [`${pre}-variant-${mergedVariant}`]: useColorVariant && !!mergedVariant,
           [`${pre}-${sizeCls}`]: sizeCls,
           [`${pre}-loading`]: innerLoading.value,
-          [`${pre}-background-ghost`]: ghost && !isUnBorderedButtonType(type),
+          [`${pre}-background-ghost`]: ghost && !unbordered,
           [`${pre}-two-chinese-chars`]: hasTwoCNChar.value && autoInsertSpace.value,
           [`${pre}-block`]: block,
-          [`${pre}-dangerous`]: !!danger,
+          [`${pre}-dangerous`]: !useColorVariant && !!danger,
           [`${pre}-rtl`]: direction.value === 'rtl',
           [`${pre}-icon-end`]: mergedIconPlacement.value === 'end',
         },
@@ -157,8 +192,12 @@ export default defineComponent({
     };
 
     watchEffect(() => {
+      const colorVariant = mergedColorVariant.value;
+      const unbordered = colorVariant
+        ? isUnBorderedButtonVariant(colorVariant[1])
+        : isUnBorderedButtonType(props.type);
       devWarning(
-        !(props.ghost && isUnBorderedButtonType(props.type)),
+        !(props.ghost && unbordered),
         'Button',
         "`link` or `text` button can't be a `ghost` button.",
       );
@@ -191,9 +230,13 @@ export default defineComponent({
       const { icon = slots.icon?.() } = props;
       const children = flattenChildren(slots.default?.());
 
-      isNeedInserted = children.length === 1 && !icon && !isUnBorderedButtonType(props.type);
+      const colorVariant = mergedColorVariant.value;
+      const unbordered = colorVariant
+        ? isUnBorderedButtonVariant(colorVariant[1])
+        : isUnBorderedButtonType(props.type);
+      isNeedInserted = children.length === 1 && !icon && !unbordered;
 
-      const { type, htmlType, href, title, target } = props;
+      const { htmlType, href, title, target } = props;
 
       const iconType = innerLoading.value ? 'loading' : icon;
       const buttonProps = {
@@ -257,7 +300,7 @@ export default defineComponent({
         </button>
       );
 
-      if (!isUnBorderedButtonType(type)) {
+      if (!unbordered) {
         buttonNode = (
           <Wave ref="wave" disabled={!!innerLoading.value}>
             {buttonNode}

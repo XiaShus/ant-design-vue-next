@@ -5,9 +5,12 @@ import type { SizeType } from '../config-provider';
 import { booleanType, eventType, stringType } from '../_util/type';
 import type { MouseEventHandler } from '../_util/EventInterface';
 
+import type { ButtonColorType, ButtonVariantType } from './buttonHelpers';
+
 export type ButtonType = 'link' | 'default' | 'primary' | 'ghost' | 'dashed' | 'text';
 export type ButtonShape = 'default' | 'circle' | 'round';
 export type ButtonIconPlacement = 'start' | 'end';
+export type { ButtonColorType, ButtonVariantType };
 
 export type ButtonHTMLType = 'submit' | 'button' | 'reset';
 
@@ -45,6 +48,10 @@ export const buttonProps = () => ({
   iconPlacement: stringType<ButtonIconPlacement>(),
   /** @deprecated Please use `iconPlacement` instead */
   iconPosition: stringType<ButtonIconPlacement>(),
+  /** Set button color (use with `variant`) */
+  color: stringType<ButtonColorType>(),
+  /** Set button variant (use with `color`) */
+  variant: stringType<ButtonVariantType>(),
   onClick: eventType<MouseEventHandler>(),
   onMousedown: eventType<MouseEventHandler>(),
 });
