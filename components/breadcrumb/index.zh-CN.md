@@ -17,12 +17,13 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*Tr90QKrE_LcAAA
 
 ## API
 
-| 参数 | 说明 | 类型 | 可选值 | 默认值 |
-| --- | --- | --- | --- | --- |
-| itemRender | 自定义链接函数，和 vue-router 配置使用， 也可使用 #itemRender="props" | ({route, params, routes, paths}) => vNode |  | - |
-| params | 路由的参数 | object |  | - |
-| routes | router 的路由栈信息 | [routes\[\]](#routes) |  | - |
-| separator | 分隔符自定义 | string\|slot |  | '/' |
+| 参数 | 说明 | 类型 | 可选值 | 默认值 | 版本 |
+| --- | --- | --- | --- | --- | --- |
+| items | 面包屑配置项 | [ItemType\[\]](#itemtype) |  | - | 4.34.0 |
+| itemRender | 自定义链接函数，和 vue-router 配置使用， 也可使用 #itemRender="props" | ({route, params, routes, paths}) => vNode |  | - |  |
+| params | 路由的参数 | object |  | - |  |
+| routes | router 的路由栈信息。已废弃，请使用 `items` | [routes\[\]](#routes) |  | - |  |
+| separator | 分隔符自定义 | string\|slot |  | '/' |  |
 
 ### Breadcrumb.Item
 
@@ -45,9 +46,34 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*Tr90QKrE_LcAAA
 
 > 注意：在使用 `Breadcrumb.Separator` 时，其父组件的分隔符必须设置为 `separator=""`，否则会出现父组件默认的分隔符。
 
+### ItemType
+
+```ts
+interface BreadcrumbItemType {
+  key?: string | number;
+  href?: string;
+  path?: string;
+  title?: VueNode;
+  /** @deprecated 请使用 `title` */
+  breadcrumbName?: string;
+  menu?: MenuProps;
+  dropdownProps?: DropdownProps;
+  onClick?: (e: MouseEvent) => void;
+  children?: Omit<BreadcrumbItemType, 'children'>[];
+}
+
+interface BreadcrumbSeparatorType {
+  type: 'separator';
+  separator?: VueNode;
+}
+
+type ItemType = Partial<BreadcrumbItemType & BreadcrumbSeparatorType>;
+```
+
 ### routes
 
 ```ts
+/** @deprecated 请使用带 `title` 的 `items`。 */
 interface Route {
   path: string;
   breadcrumbName: string;

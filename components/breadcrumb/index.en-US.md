@@ -18,9 +18,10 @@ A breadcrumb displays the current location within a hierarchy. It allows going b
 
 | Property | Description | Type | Optional | Default | Version |
 | --- | --- | --- | --- | --- | --- |
+| items | Breadcrumb items config | [ItemType\[\]](#itemtype) |  | - | 4.34.0 |
 | itemRender | Custom item renderer, #itemRender="{route, params, routes, paths}" | ({route, params, routes, paths}) => vNode |  | - |  |
 | params | Routing parameters | object |  | - |  |
-| routes | The routing stack information of router | [routes\[\]](#routes) |  | - |  |
+| routes | The routing stack information of router. Deprecated, prefer `items` | [routes\[\]](#routes) |  | - |  |
 | separator | Custom separator | string\|slot |  | `/` |  |
 
 ### Breadcrumb.Item
@@ -44,9 +45,34 @@ A breadcrumb displays the current location within a hierarchy. It allows going b
 
 > When using `Breadcrumb.Separator`,its parent component must be set to `separator=""`, otherwise the default separator of the parent component will appear.
 
+### ItemType
+
+```ts
+interface BreadcrumbItemType {
+  key?: string | number;
+  href?: string;
+  path?: string;
+  title?: VueNode;
+  /** @deprecated Please use `title` instead */
+  breadcrumbName?: string;
+  menu?: MenuProps;
+  dropdownProps?: DropdownProps;
+  onClick?: (e: MouseEvent) => void;
+  children?: Omit<BreadcrumbItemType, 'children'>[];
+}
+
+interface BreadcrumbSeparatorType {
+  type: 'separator';
+  separator?: VueNode;
+}
+
+type ItemType = Partial<BreadcrumbItemType & BreadcrumbSeparatorType>;
+```
+
 ### routes
 
 ```ts
+/** @deprecated Prefer `items` with `title`. */
 interface Route {
   path: string;
   breadcrumbName: string;

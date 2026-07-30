@@ -4,6 +4,12 @@
 
 ---
 
+## 4.34.0
+
+`2026-07-31`
+
+- 🌟 Breadcrumb supports `items` config with `title` (antd ≥ 5.3); `routes` kept for compatibility
+
 ## 4.33.0
 
 `2026-07-31`

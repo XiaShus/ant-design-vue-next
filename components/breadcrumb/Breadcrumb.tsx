@@ -5,52 +5,110 @@ import { flattenChildren, getPropsSlot } from '../_util/props-util';
 import warning from '../_util/warning';
 import type { BreadcrumbItemProps } from './BreadcrumbItem';
 import BreadcrumbItem from './BreadcrumbItem';
+import BreadcrumbSeparator from './BreadcrumbSeparator';
 import Menu from '../menu';
+import type { MenuProps } from '../menu';
 import useConfigInject from '../config-provider/hooks/useConfigInject';
 import useStyle from './style';
 import type { CustomSlotsType, VueNode } from '../_util/type';
+import { arrayType } from '../_util/type';
+import type { DropdownProps } from '../dropdown';
 
+/** @deprecated Prefer `BreadcrumbItemType` with `title`. */
 export interface Route {
-  path: string;
-  breadcrumbName: string;
+  path?: string;
+  breadcrumbName?: string;
   children?: Omit<Route, 'children'>[];
 }
 
+/** Item config for `items` prop (antd ≥ 5.3). */
+export interface BreadcrumbItemType {
+  key?: string | number;
+  href?: string;
+  path?: string;
+  title?: VueNode;
+  /** @deprecated Please use `title` instead */
+  breadcrumbName?: string;
+  menu?: MenuProps;
+  /** @deprecated Please use `menu` instead */
+  overlay?: any;
+  className?: string;
+  dropdownProps?: DropdownProps;
+  onClick?: (e: MouseEvent) => void;
+  children?: Omit<BreadcrumbItemType, 'children'>[];
+}
+
+export interface BreadcrumbSeparatorType {
+  type: 'separator';
+  separator?: VueNode;
+}
+
+export type BreadcrumbItemConfig = Partial<BreadcrumbItemType & BreadcrumbSeparatorType>;
+
 export const breadcrumbProps = () => ({
   prefixCls: String,
+  /** @deprecated Please use `items` instead */
   routes: { type: Array as PropType<Route[]> },
   params: PropTypes.any,
   separator: PropTypes.any,
+  /** Breadcrumb items (antd ≥ 5.3). */
+  items: arrayType<BreadcrumbItemConfig[]>(),
   itemRender: {
     type: Function as PropType<
-      (opt: { route: Route; params: unknown; routes: Route[]; paths: string[] }) => VueNode
+      (opt: {
+        route: BreadcrumbItemConfig;
+        params: unknown;
+        routes: BreadcrumbItemConfig[];
+        paths: string[];
+      }) => VueNode
     >,
   },
 });
 
 export type BreadcrumbProps = Partial<ExtractPropTypes<ReturnType<typeof breadcrumbProps>>>;
 
-function getBreadcrumbName(route: Route, params: unknown) {
-  if (!route.breadcrumbName) {
-    return null;
+function getBreadcrumbName(route: BreadcrumbItemConfig, params: unknown) {
+  const name = route.title ?? route.breadcrumbName;
+  if (name == null || typeof name !== 'string') {
+    return name ?? null;
   }
-  const paramsKeys = Object.keys(params).join('|');
-  const name = route.breadcrumbName.replace(
+  const paramsKeys = Object.keys(params || {}).join('|');
+  if (!paramsKeys) {
+    return name;
+  }
+  return name.replace(
     new RegExp(`:(${paramsKeys})`, 'g'),
-    (replacement, key) => params[key] || replacement,
+    (replacement, key) => (params as any)[key] || replacement,
   );
-  return name;
 }
+
 function defaultItemRender(opt: {
-  route: Route;
+  route: BreadcrumbItemConfig;
   params: unknown;
-  routes: Route[];
+  routes: BreadcrumbItemConfig[];
   paths: string[];
 }): VueNode {
   const { route, params, routes, paths } = opt;
   const isLastItem = routes.indexOf(route) === routes.length - 1;
   const name = getBreadcrumbName(route, params);
-  return isLastItem ? <span>{name}</span> : <a href={`#/${paths.join('/')}`}>{name}</a>;
+  if (isLastItem) {
+    return <span>{name}</span>;
+  }
+  if (route.href !== undefined) {
+    return <a href={route.href}>{name}</a>;
+  }
+  return <a href={`#/${paths.join('/')}`}>{name}</a>;
+}
+
+function normalizeRoutes(routes: Route[] = []): BreadcrumbItemConfig[] {
+  return routes.map(route => ({
+    ...route,
+    title: route.breadcrumbName,
+    children: route.children?.map(child => ({
+      ...child,
+      title: child.breadcrumbName,
+    })),
+  }));
 }
 
 export default defineComponent({
@@ -60,7 +118,12 @@ export default defineComponent({
   props: breadcrumbProps(),
   slots: Object as CustomSlotsType<{
     separator: any;
-    itemRender: { route: Route; params: any; routes: Route[]; paths: string[] };
+    itemRender: {
+      route: BreadcrumbItemConfig;
+      params: any;
+      routes: BreadcrumbItemConfig[];
+      paths: string[];
+    };
     default: any;
   }>,
   setup(props, { slots, attrs }) {
@@ -68,8 +131,8 @@ export default defineComponent({
     const [wrapSSR, hashId] = useStyle(prefixCls);
     const getPath = (path: string, params: unknown) => {
       path = (path || '').replace(/^\//, '');
-      Object.keys(params).forEach(key => {
-        path = path.replace(`:${key}`, params[key]);
+      Object.keys(params || {}).forEach(key => {
+        path = path.replace(`:${key}`, (params as any)[key]);
       });
       return path;
     };
@@ -83,61 +146,87 @@ export default defineComponent({
       return originalPaths;
     };
 
-    const genForRoutes = ({
-      routes = [],
+    const genForItems = ({
+      items = [],
       params = {},
       separator,
       itemRender = defaultItemRender,
-    }: any) => {
-      const paths = [];
-      return routes.map((route: Route) => {
-        const path = getPath(route.path, params);
+    }: {
+      items?: BreadcrumbItemConfig[];
+      params?: any;
+      separator?: any;
+      itemRender?: typeof defaultItemRender;
+    }) => {
+      const paths: string[] = [];
+      return items.map((item, index) => {
+        if (item.type === 'separator') {
+          return <BreadcrumbSeparator key={`sep-${index}`}>{item.separator}</BreadcrumbSeparator>;
+        }
 
+        const path = getPath(item.path || '', params);
         if (path) {
           paths.push(path);
         }
         const tempPaths = [...paths];
-        // generated overlay by route.children
         let overlay = null;
-        if (route.children && route.children.length) {
+        if (item.menu) {
+          overlay = <Menu {...item.menu} />;
+        } else if (item.overlay) {
+          overlay = item.overlay;
+        } else if (item.children && item.children.length) {
           overlay = (
             <Menu
-              items={route.children.map(child => ({
-                key: child.path || child.breadcrumbName,
+              items={item.children.map((child, i) => ({
+                key: child.key ?? child.path ?? child.breadcrumbName ?? i,
                 label: itemRender({
                   route: child,
                   params,
-                  routes,
-                  paths: addChildPath(tempPaths, child.path, params),
+                  routes: items,
+                  paths: addChildPath(tempPaths, child.path || '', params),
                 }),
               }))}
-            ></Menu>
+            />
           );
         }
-        const itemProps: BreadcrumbItemProps = { separator };
+        const itemProps: BreadcrumbItemProps = {
+          separator,
+          dropdownProps: item.dropdownProps,
+        };
         if (overlay) {
           itemProps.overlay = overlay;
         }
+        if (item.href !== undefined) {
+          itemProps.href = item.href;
+        }
+        if (item.onClick) {
+          itemProps.onClick = item.onClick;
+        }
         return (
-          <BreadcrumbItem {...itemProps} key={path || route.breadcrumbName}>
-            {itemRender({ route, params, routes, paths: tempPaths })}
+          <BreadcrumbItem
+            {...itemProps}
+            key={item.key ?? (path || item.breadcrumbName || index)}
+            class={item.className}
+          >
+            {itemRender({ route: item, params, routes: items, paths: tempPaths })}
           </BreadcrumbItem>
         );
       });
     };
+
     return () => {
       let crumbs: VueNode[];
 
-      const { routes, params = {} } = props;
+      const { routes, params = {}, items } = props;
 
       const children = flattenChildren(getPropsSlot(slots, props));
       const separator = getPropsSlot(slots, props, 'separator') ?? '/';
 
       const itemRender = props.itemRender || slots.itemRender || defaultItemRender;
-      if (routes && routes.length > 0) {
-        // generated by route
-        crumbs = genForRoutes({
-          routes,
+      const mergedItems = items?.length ? items : routes?.length ? normalizeRoutes(routes) : null;
+
+      if (mergedItems && mergedItems.length > 0) {
+        crumbs = genForItems({
+          items: mergedItems,
           params,
           separator,
           itemRender,

@@ -3,7 +3,13 @@ import Breadcrumb from './Breadcrumb';
 import BreadcrumbItem from './BreadcrumbItem';
 import BreadcrumbSeparator from './BreadcrumbSeparator';
 
-export type { BreadcrumbProps } from './Breadcrumb';
+export type {
+  BreadcrumbProps,
+  BreadcrumbItemType,
+  BreadcrumbItemConfig,
+  BreadcrumbSeparatorType,
+  Route,
+} from './Breadcrumb';
 export type { BreadcrumbItemProps } from './BreadcrumbItem';
 export type { BreadcrumbSeparatorProps } from './BreadcrumbSeparator';
 

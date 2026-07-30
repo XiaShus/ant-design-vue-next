@@ -44,7 +44,7 @@
 | 分组 | 组件 | React `antd` | Vue Next | 文档链接 | 缺口备注 |
 | --- | --- | --- | --- | --- | --- |
 | Navigation | Anchor | ✅ | ✅ | [anchor](../../components/anchor) | — |
-| Navigation | Breadcrumb | ✅ | ✅ | [breadcrumb](../../components/breadcrumb) | — |
+| Navigation | Breadcrumb | ✅ | ✅ | [breadcrumb](../../components/breadcrumb) | 🔄 `items` ✅ 4.34.0 |
 | Navigation | Dropdown | ✅ | ✅ | [dropdown](../../components/dropdown) | 🔄 `destroyOnHidden` ✅ 4.14.0 |
 | Navigation | Menu | ✅ | ✅ | [menu](../../components/menu) | — |
 | Navigation | Pagination | ✅ | ✅ | [pagination](../../components/pagination) | — |
@@ -160,8 +160,9 @@
 29. ~~Statistic.Timer~~ — ✅ `4.31.0`
 30. ~~Descriptions `items`~~ — ✅ `4.32.0`
 31. ~~Timeline `items`~~ — ✅ `4.33.0`
-32. Table `virtual` 按需拆版（多日）
-33. ColorPicker 渐变 `mode`
+32. ~~Breadcrumb `items`~~ — ✅ `4.34.0`
+33. Table `virtual` 按需拆版（多日）
+34. ColorPicker 渐变 `mode`
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -171,4 +172,4 @@
 
 ---
 
-_上次更新：`4.25.0` Divider.variant / size。每发一版请同步改本表。_
+_上次更新：`4.34.0` Breadcrumb.items。每发一版请同步改本表。_
