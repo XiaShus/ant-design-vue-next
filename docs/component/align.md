@@ -36,7 +36,7 @@
 | Layout | Grid | ✅ | ✅ | [grid](../../components/grid) | — |
 | Layout | Layout | ✅ | ✅ | [layout](../../components/layout) | — |
 | Layout | Space | ✅ | ✅ | [space](../../components/space) | — |
-| Layout | Splitter | ✅ 5.21 | 🔄 ✅ 4.4.0 | [splitter](../../components/splitter) | 拖拽/min/max/受控；⏭ 完整 collapsible / lazy |
+| Layout | Splitter | ✅ 5.21 | 🔄 ✅ 4.4.0 | [splitter](../../components/splitter) | 拖拽/min/max/受控；🔄 collapsible / lazy ✅ 4.16.0 |
 | Layout | Masonry | ✅ 6.0 | ⏭ | — | 阶段 B（antd 6） |
 
 ## Navigation
@@ -142,8 +142,9 @@
 11. ~~Table Column `hidden`~~ — ✅ `4.13.0`
 12. ~~Tabs / Collapse / Tooltip / Dropdown `destroyOnHidden`~~ — ✅ `4.14.0`
 13. ~~ColorPicker `panelRender`~~ — ✅ `4.15.0`
-14. Table 其他高频 API（如 `virtual` / `scrollTo`）按需拆版
-15. ColorPicker 渐变 `mode`；Splitter collapsible / lazy 补齐
+14. ~~Splitter collapsible / lazy~~ — ✅ `4.16.0`
+15. Table 其他高频 API（如 `virtual` / `scrollTo`）按需拆版
+16. ColorPicker 渐变 `mode`
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -153,4 +154,4 @@
 
 ---
 
-_上次更新：`4.15.0` ColorPicker.panelRender。每发一版请同步改本表。_
+_上次更新：`4.16.0` Splitter collapsible / lazy。每发一版请同步改本表。_

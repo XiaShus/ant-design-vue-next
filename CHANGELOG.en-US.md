@@ -4,6 +4,12 @@
 
 ---
 
+## 4.16.0
+
+`2026-07-30`
+
+- 🌟 Splitter completes Panel `collapsible` controls and `lazy` drag preview bar, plus `collapse` event
+
 ## 4.15.0
 
 `2026-07-30`

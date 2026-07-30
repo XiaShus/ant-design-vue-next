@@ -22,18 +22,19 @@ tag: New
 
 ### Splitter
 
-| 参数   | 说明                           | 类型                     | 默认值       | 版本  |
-| ------ | ------------------------------ | ------------------------ | ------------ | ----- |
-| layout | 布局方向                       | `horizontal \| vertical` | `horizontal` | 4.4.0 |
-| lazy   | 懒拖拽预览（暂软跳过完整实现） | boolean                  | false        | 4.4.0 |
+| 参数 | 说明 | 类型 | 默认值 | 版本 |
+| --- | --- | --- | --- | --- |
+| layout | 布局方向 | `horizontal \| vertical` | `horizontal` | 4.4.0 |
+| lazy | 懒拖拽：拖拽时显示预览条，松手后再更新尺寸 | boolean | false | 4.16.0 |
 
 ### 事件
 
-| 事件名称    | 说明     | 回调参数                    | 版本  |
-| ----------- | -------- | --------------------------- | ----- |
-| resize      | 尺寸变化 | `(sizes: number[]) => void` | 4.4.0 |
-| resizeStart | 开始拖拽 | `(sizes: number[]) => void` | 4.4.0 |
-| resizeEnd   | 结束拖拽 | `(sizes: number[]) => void` | 4.4.0 |
+| 事件名称    | 说明     | 回调参数                    | 版本   |
+| ----------- | -------- | --------------------------- | ------ |
+| resize      | 尺寸变化 | `(sizes: number[]) => void` | 4.4.0  |
+| resizeStart | 开始拖拽 | `(sizes: number[]) => void` | 4.4.0  |
+| resizeEnd   | 结束拖拽 | `(sizes: number[]) => void` | 4.4.0  |
+| collapse    | 折叠变化 | `(sizes: number[]) => void` | 4.16.0 |
 
 ### Panel
 
@@ -43,12 +44,11 @@ tag: New
 | size | 受控尺寸 | `number \| string` | - | 4.4.0 |
 | min / max | 阈值 | `number \| string` | - | 4.4.0 |
 | resizable | 是否可拖拽 | boolean | true | 4.4.0 |
-| collapsible | 快速折叠 | boolean \| object | false | 4.4.0（API 保留，行为后续补齐） |
+| collapsible | 快速折叠；`true` 等同两侧可折叠 | `boolean \| { start?: boolean; end?: boolean; showCollapsibleIcon?: boolean \| 'auto' }` | false | 4.16.0 |
 | destroyOnHidden | 折叠销毁内容 | boolean | - | 4.4.0 |
 
 ### 差异 / 软跳过
 
-| 能力                                       | 状态         |
-| ------------------------------------------ | ------------ |
-| 完整 collapsible UI / lazy 预览条          | ⏭ 后续小版本 |
-| antd 6 `orientation` / semantic classNames | ⏭ 阶段 B     |
+| 能力                                       | 状态     |
+| ------------------------------------------ | -------- |
+| antd 6 `orientation` / semantic classNames | ⏭ 阶段 B |
