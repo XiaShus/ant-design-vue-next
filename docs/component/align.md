@@ -31,7 +31,7 @@
 
 | 分组 | 组件 | React `antd` | Vue Next | 文档链接 | 缺口备注 |
 | --- | --- | --- | --- | --- | --- |
-| Layout | Divider | ✅ | ✅ | [divider](../../components/divider) | — |
+| Layout | Divider | ✅ | ✅ | [divider](../../components/divider) | 🔄 `variant` / `size` ✅ 4.25.0 |
 | Layout | Flex | ✅ 5.10 | ✅ | [flex](../../components/flex) | — |
 | Layout | Grid | ✅ | ✅ | [grid](../../components/grid) | — |
 | Layout | Layout | ✅ | ✅ | [layout](../../components/layout) | — |
@@ -151,8 +151,9 @@
 20. ~~Modal `afterOpenChange`~~ — ✅ `4.22.0`
 21. ~~TimePicker `changeOnScroll`~~ — ✅ `4.23.0`
 22. ~~Spin `fullscreen`~~ — ✅ `4.24.0`
-23. Table `virtual` 按需拆版（多日）
-24. ColorPicker 渐变 `mode`
+23. ~~Divider `variant` / `size`~~ — ✅ `4.25.0`
+24. Table `virtual` 按需拆版（多日）
+25. ColorPicker 渐变 `mode`
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -162,4 +163,4 @@
 
 ---
 
-_上次更新：`4.24.0` Spin.fullscreen。每发一版请同步改本表。_
+_上次更新：`4.25.0` Divider.variant / size。每发一版请同步改本表。_

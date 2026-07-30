@@ -98,9 +98,22 @@ const genSharedDividerStyle: GenerateStyle<DividerToken> = (token): CSSObject =>
         borderWidth: `${lineWidth}px 0 0`,
       },
 
+      '&-dotted': {
+        background: 'none',
+        borderColor: colorSplit,
+        borderStyle: 'dotted',
+        borderWidth: `${lineWidth}px 0 0`,
+      },
+
       [`&-horizontal${componentCls}-with-text${componentCls}-dashed`]: {
         '&::before, &::after': {
           borderStyle: 'dashed none none',
+        },
+      },
+
+      [`&-horizontal${componentCls}-with-text${componentCls}-dotted`]: {
+        '&::before, &::after': {
+          borderStyle: 'dotted none none',
         },
       },
 
@@ -109,6 +122,25 @@ const genSharedDividerStyle: GenerateStyle<DividerToken> = (token): CSSObject =>
         borderInlineEnd: 0,
         borderBlockStart: 0,
         borderBlockEnd: 0,
+      },
+
+      [`&-vertical${componentCls}-dotted`]: {
+        borderInlineStartWidth: lineWidth,
+        borderInlineEnd: 0,
+        borderBlockStart: 0,
+        borderBlockEnd: 0,
+        borderStyle: 'dotted',
+      },
+
+      // Size (horizontal only)
+      [`&-horizontal${componentCls}-sm`]: {
+        marginBlock: token.marginXS,
+      },
+      [`&-horizontal${componentCls}-md`]: {
+        marginBlock: token.margin,
+      },
+      [`&-horizontal${componentCls}-lg`]: {
+        marginBlock: token.marginLG,
       },
 
       [`&-plain${componentCls}-with-text`]: {

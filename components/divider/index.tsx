@@ -1,9 +1,12 @@
 import { flattenChildren } from '../_util/props-util';
 import type { ExtractPropTypes, PropType } from 'vue';
 import { computed, defineComponent } from 'vue';
-import { withInstall } from '../_util/type';
+import { booleanType, stringType, withInstall } from '../_util/type';
 import useConfigInject from '../config-provider/hooks/useConfigInject';
 import useStyle from './style';
+
+export type DividerVariant = 'dashed' | 'dotted' | 'solid';
+export type DividerSize = 'small' | 'middle' | 'medium' | 'large';
 
 export const dividerProps = () => ({
   prefixCls: String,
@@ -11,18 +14,17 @@ export const dividerProps = () => ({
     type: String as PropType<'horizontal' | 'vertical' | ''>,
     default: 'horizontal',
   },
-  dashed: {
-    type: Boolean,
-    default: false,
-  },
+  /** @deprecated Please use `variant="dashed"` instead. */
+  dashed: booleanType(false),
+  /** Line style (antd ≥ 5.20). */
+  variant: stringType<DividerVariant>(),
+  /** Horizontal spacing size (antd ≥ 5.25). */
+  size: stringType<DividerSize>(),
   orientation: {
     type: String as PropType<'left' | 'right' | 'center'>,
     default: 'center',
   },
-  plain: {
-    type: Boolean,
-    default: false,
-  },
+  plain: booleanType(false),
   orientationMargin: [String, Number],
 });
 export type DividerProps = Partial<ExtractPropTypes<ReturnType<typeof dividerProps>>>;
@@ -41,16 +43,38 @@ const Divider = defineComponent({
     const hasCustomMarginRight = computed(
       () => props.orientation === 'right' && props.orientationMargin != null,
     );
+    const mergedVariant = computed<DividerVariant>(() => {
+      if (props.variant) {
+        return props.variant;
+      }
+      return props.dashed ? 'dashed' : 'solid';
+    });
+    const sizeClass = computed(() => {
+      const { size } = props;
+      if (size === 'small') {
+        return 'sm';
+      }
+      if (size === 'large') {
+        return 'lg';
+      }
+      if (size === 'middle' || size === 'medium') {
+        return 'md';
+      }
+      return null;
+    });
     const classString = computed(() => {
-      const { type, dashed, plain } = props;
+      const { type, plain } = props;
       const prefixCls = prefixClsRef.value;
+      const variant = mergedVariant.value;
       return {
         [prefixCls]: true,
         [hashId.value]: !!hashId.value,
         [`${prefixCls}-${type}`]: true,
-        [`${prefixCls}-dashed`]: !!dashed,
+        [`${prefixCls}-dashed`]: variant === 'dashed',
+        [`${prefixCls}-dotted`]: variant === 'dotted',
         [`${prefixCls}-plain`]: !!plain,
         [`${prefixCls}-rtl`]: direction.value === 'rtl',
+        [`${prefixCls}-${sizeClass.value}`]: !!sizeClass.value && type !== 'vertical',
         [`${prefixCls}-no-default-orientation-margin-left`]: hasCustomMarginLeft.value,
         [`${prefixCls}-no-default-orientation-margin-right`]: hasCustomMarginRight.value,
       };
