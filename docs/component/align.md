@@ -61,7 +61,7 @@
 | Data Entry | ColorPicker | ✅ 5.5 | 🔄 ✅ 4.3.0 | [color-picker](../../components/color-picker) | 单色/预设/清除/格式；🔄 `destroyOnHidden` ✅ 4.14.0；🔄 `panelRender` ✅ 4.15.0；⏭ 渐变 mode |
 | Data Entry | DatePicker | ✅ | ✅ | [date-picker](../../components/date-picker) | 🔄 `variant` ✅ 4.9.0；⚠️ 其他晚期 props 按需补 |
 | Data Entry | Form | ✅ | ✅ | [form](../../components/form) | 🔄 `variant` ✅ 4.10.0；⚠️ 其他高频缺口逐项对齐 |
-| Data Entry | Input | ✅ | ✅ | [input](../../components/input) | 🔄 `Input.OTP` ✅ 4.5.0；`variant` ✅ 4.8.0（⏭ underlined） |
+| Data Entry | Input | ✅ | ✅ | [input](../../components/input) | 🔄 `Input.OTP` ✅ 4.5.0；`variant` ✅ 4.8.0；🔄 `underlined` ✅ 4.18.0 |
 | Data Entry | InputNumber | ✅ | ✅ | [input-number](../../components/input-number) | 🔄 `variant` ✅ 4.9.0 |
 | Data Entry | Mentions | ✅ | ✅ | [mentions](../../components/mentions) | 🔄 `variant` ✅ 4.12.0 |
 | Data Entry | Radio | ✅ | ✅ | [radio](../../components/radio) | — |
@@ -121,7 +121,7 @@
 | --- | --- | --- | --- | --- | --- |
 | Other | Affix | ✅ | ✅ | [affix](../../components/affix) | — |
 | Other | App | ✅ 5.1 | ✅ | [app](../../components/app) | — |
-| Other | ConfigProvider | ✅ | ✅ | [config-provider](../../components/config-provider) | 🔄 `useConfig` / `popupMatchSelectWidth`（4.6）；`holderRender` / `warning.strict`（4.7）；`variant`（4.8，已接到 Input） |
+| Other | ConfigProvider | ✅ | ✅ | [config-provider](../../components/config-provider) | 🔄 `useConfig` / `popupMatchSelectWidth`（4.6）；`holderRender` / `warning.strict`（4.7）；`variant`（4.8）；🔄 `underlined` ✅ 4.18.0 |
 | Other | BorderBeam | ✅ 6.4 | ⏭ | — | 阶段 B |
 | Other | theme / css-in-js | ✅ | ✅（沿用 antdv 混合栈） | — | 不在首周做完整重写 |
 
@@ -144,8 +144,9 @@
 13. ~~ColorPicker `panelRender`~~ — ✅ `4.15.0`
 14. ~~Splitter collapsible / lazy~~ — ✅ `4.16.0`
 15. ~~Table `scrollTo` / `nativeElement`~~ — ✅ `4.17.0`
-16. Table `virtual` 按需拆版
-17. ColorPicker 渐变 `mode`
+16. ~~`variant="underlined"`~~ — ✅ `4.18.0`
+17. Table `virtual` 按需拆版
+18. ColorPicker 渐变 `mode`
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -155,4 +156,4 @@
 
 ---
 
-_上次更新：`4.17.0` Table.scrollTo。每发一版请同步改本表。_
+_上次更新：`4.18.0` variant underlined。每发一版请同步改本表。_

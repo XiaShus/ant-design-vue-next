@@ -312,6 +312,28 @@ const genInputNumberStyles: GenerateStyle<InputNumberToken> = (token: InputNumbe
         },
       },
     },
+
+    // Underlined
+    {
+      [`${componentCls}-underlined`]: {
+        borderRadius: 0,
+        borderWidth: `0 0 ${token.lineWidth}px 0`,
+        borderTopColor: 'transparent',
+        borderInlineColor: 'transparent',
+        boxShadow: 'none',
+        '&:hover': {
+          borderBottomColor: token.colorPrimaryHover,
+          boxShadow: 'none',
+        },
+        [`&${componentCls}-focused, &:focus`]: {
+          borderBottomColor: token.colorPrimary,
+          boxShadow: 'none',
+        },
+        [`${componentCls}-handler-wrap`]: {
+          opacity: 0,
+        },
+      },
+    },
   ];
 };
 

@@ -8,11 +8,11 @@ title:
 
 ## zh-CN
 
-Input 支持 `outlined`（默认）、`filled`、`borderless` 三种形态（对齐 antd ≥ 5.13）。也可通过 `ConfigProvider` 的 `variant` 统一配置。
+Input 支持 `outlined`（默认）、`filled`、`borderless`、`underlined` 形态（`underlined` 对齐 antd ≥ 5.24）。也可通过 `ConfigProvider` 的 `variant` 统一配置。
 
 ## en-US
 
-Input supports `outlined` (default), `filled`, and `borderless` variants (antd ≥ 5.13). Use ConfigProvider `variant` for a global default.
+Input supports `outlined` (default), `filled`, `borderless`, and `underlined` (antd ≥ 5.24). Use ConfigProvider `variant` for a global default.
 
 </docs>
 <template>
@@ -20,6 +20,7 @@ Input supports `outlined` (default), `filled`, and `borderless` variants (antd �
     <a-input v-model:value="v1" variant="outlined" placeholder="outlined" />
     <a-input v-model:value="v2" variant="filled" placeholder="filled" />
     <a-input v-model:value="v3" variant="borderless" placeholder="borderless" />
+    <a-input v-model:value="v5" variant="underlined" placeholder="underlined" />
     <a-config-provider variant="filled">
       <a-input v-model:value="v4" placeholder="from ConfigProvider" />
     </a-config-provider>
@@ -31,4 +32,5 @@ const v1 = ref('');
 const v2 = ref('');
 const v3 = ref('');
 const v4 = ref('');
+const v5 = ref('');
 </script>

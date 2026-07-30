@@ -192,6 +192,31 @@ export const genBasicInputStyle = (token: InputToken): CSSObject => ({
     },
   },
 
+  '&-underlined': {
+    borderRadius: 0,
+    borderWidth: `0 0 ${token.lineWidth}px 0`,
+    borderTopColor: 'transparent',
+    borderInlineColor: 'transparent',
+    boxShadow: 'none',
+    '&:hover': {
+      borderBottomColor: token.colorPrimaryHover,
+      borderTopColor: 'transparent',
+      borderInlineColor: 'transparent',
+      boxShadow: 'none',
+    },
+    '&:focus, &-focused': {
+      borderBottomColor: token.colorPrimary,
+      borderTopColor: 'transparent',
+      borderInlineColor: 'transparent',
+      boxShadow: 'none',
+      outline: 0,
+    },
+    '&-disabled, &[disabled]': {
+      borderBottomColor: token.colorBorder,
+      boxShadow: 'none',
+    },
+  },
+
   // Reset height for `textarea`s
   'textarea&': {
     maxWidth: '100%', // prevent textearea resize from coming out of its container
@@ -733,6 +758,22 @@ const genAffixStyle: GenerateStyle<InputToken> = (token: InputToken) => {
           backgroundColor: token.colorBgContainer,
           borderColor: token.colorPrimary,
           boxShadow: `0 0 0 ${token.controlOutlineWidth}px ${token.controlOutline}`,
+        },
+      },
+
+      [`&-underlined`]: {
+        borderRadius: 0,
+        borderWidth: `0 0 ${token.lineWidth}px 0`,
+        borderTopColor: 'transparent',
+        borderInlineColor: 'transparent',
+        boxShadow: 'none',
+        [`&:not(${componentCls}-affix-wrapper-disabled):hover`]: {
+          borderBottomColor: token.colorPrimaryHover,
+          boxShadow: 'none',
+        },
+        [`&-focused, &:focus`]: {
+          borderBottomColor: token.colorPrimary,
+          boxShadow: 'none',
         },
       },
     },

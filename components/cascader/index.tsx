@@ -110,7 +110,10 @@ export function cascaderProps<DataNodeType extends CascaderOptionType = Cascader
     size: String as PropType<SizeType>,
     bordered: { type: Boolean, default: undefined },
     /** Prefer over `bordered` (antd ≥ 5.13). */
-    variant: { type: String as PropType<'outlined' | 'borderless' | 'filled'>, default: undefined },
+    variant: {
+      type: String as PropType<'outlined' | 'borderless' | 'filled' | 'underlined'>,
+      default: undefined,
+    },
     placement: { type: String as PropType<SelectCommonPlacement> },
     suffixIcon: PropTypes.any,
     status: String as PropType<InputStatus>,
@@ -299,6 +302,7 @@ const Cascader = defineComponent({
                 [`${prefixCls.value}-rtl`]: isRtl.value,
                 [`${prefixCls.value}-borderless`]: mergedVariant === 'borderless',
                 [`${prefixCls.value}-filled`]: mergedVariant === 'filled',
+                [`${prefixCls.value}-underlined`]: mergedVariant === 'underlined',
                 [`${prefixCls.value}-in-form-item`]: formItemInputContext.isFormItemInput,
               },
               getStatusClassNames(

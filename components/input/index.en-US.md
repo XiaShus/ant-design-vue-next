@@ -23,7 +23,7 @@ A basic widget for getting the user input is a text field. Keyboard and mouse ca
 | addonBefore | The label text displayed before (on the left side of) the input field. | string\|slot |  |  |
 | allowClear | allow to remove input content with clear icon | boolean |  |  |
 | bordered | Whether has border style; prefer `variant` | boolean | true | 4.5.0 |
-| variant | Variants of Input (antd ≥ 5.13) | `outlined` \| `filled` \| `borderless` | `outlined` | 4.8.0 |
+| variant | Variants of Input (antd ≥ 5.13) | `outlined` \| `filled` \| `borderless` \| `underlined` | `outlined` | 4.8.0 |
 | clearIcon | custom clear icon when allowClear | slot | `<CloseCircleFilled />` | 3.3.0 |
 | defaultValue | The initial input content | string |  |  |
 | disabled | Whether the input is disabled. | boolean | false |  |

@@ -96,7 +96,7 @@ function commonProps<DateType = any>() {
     size: stringType<SizeType>(),
     bordered: booleanType(),
     /** Prefer over `bordered` (antd ≥ 5.13). */
-    variant: stringType<'outlined' | 'borderless' | 'filled'>(),
+    variant: stringType<'outlined' | 'borderless' | 'filled' | 'underlined'>(),
     dateRender: functionType<DateRender<DateType>>(),
     disabledDate: functionType<(date: DateType) => boolean>(),
     mode: stringType<PanelMode>(),
@@ -166,7 +166,7 @@ export interface CommonProps<DateType> {
   locale?: PickerLocale;
   size?: SizeType;
   bordered?: boolean;
-  variant?: 'outlined' | 'borderless' | 'filled';
+  variant?: 'outlined' | 'borderless' | 'filled' | 'underlined';
   dateRender?: DateRender<DateType>;
   disabledDate?: (date: DateType) => boolean;
   mode?: PanelMode;

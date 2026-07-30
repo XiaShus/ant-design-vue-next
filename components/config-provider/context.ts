@@ -116,7 +116,7 @@ export const configProviderProps = () => ({
   }>(),
   /** Global variant for data-entry components (antd ≥ 5.19). */
   variant: {
-    type: String as PropType<'outlined' | 'borderless' | 'filled'>,
+    type: String as PropType<'outlined' | 'borderless' | 'filled' | 'underlined'>,
     default: undefined,
   },
 });
@@ -159,7 +159,7 @@ export interface ConfigProviderInnerProps {
   }>;
   componentSize?: ComputedRef<SizeType>;
   componentDisabled?: ComputedRef<boolean>;
-  variant?: ComputedRef<'outlined' | 'borderless' | 'filled' | undefined>;
+  variant?: ComputedRef<'outlined' | 'borderless' | 'filled' | 'underlined' | undefined>;
   transformCellText?: ComputedRef<(tableProps: TransformCellTextProps) => any>;
   wave?: ComputedRef<{
     disabled?: boolean;

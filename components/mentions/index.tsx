@@ -99,7 +99,7 @@ export const mentionsProps = () => ({
   status: String as PropType<InputStatus>,
   bordered: booleanType(true),
   /** Prefer over `bordered` (antd ≥ 5.13). */
-  variant: stringType<'outlined' | 'borderless' | 'filled'>(),
+  variant: stringType<'outlined' | 'borderless' | 'filled' | 'underlined'>(),
 });
 
 export type MentionsProps = Partial<ExtractPropTypes<ReturnType<typeof mentionsProps>>>;
@@ -232,6 +232,7 @@ const Mentions = defineComponent({
           [`${prefixCls.value}-rtl`]: direction.value === 'rtl',
           [`${prefixCls.value}-borderless`]: mergedVariant === 'borderless',
           [`${prefixCls.value}-filled`]: mergedVariant === 'filled',
+          [`${prefixCls.value}-underlined`]: mergedVariant === 'underlined',
         },
         getStatusClassNames(prefixCls.value, mergedStatus.value),
         !hasFeedback && className,
@@ -285,6 +286,7 @@ const Mentions = defineComponent({
               {
                 [`${prefixCls.value}-affix-wrapper-borderless`]: mergedVariant === 'borderless',
                 [`${prefixCls.value}-affix-wrapper-filled`]: mergedVariant === 'filled',
+                [`${prefixCls.value}-affix-wrapper-underlined`]: mergedVariant === 'underlined',
               },
               className,
               hashId.value,

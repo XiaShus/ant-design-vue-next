@@ -64,7 +64,7 @@ Some components use dynamic style to support wave effect. You can config `csp` p
 | renderEmpty | set empty content of components. Ref [Empty](/components/empty/) | slot-scope \| Function(componentName: string): VNode | - |  |
 | space | Set Space `size`, ref [Space](/components/space) | { size: `small` \| `middle` \| `large` \| `number` } | - | 3.0 |
 | transformCellText | Table data can be changed again before rendering. The default configuration of general user empty data. | Function({ text, column, record, index }) => any | - | 1.5.4 |
-| variant | Set variant of data entry components (antd ≥ 5.19) | `outlined` \| `filled` \| `borderless` | - | 4.8.0 |
+| variant | Set variant of data entry components (antd ≥ 5.19) | `outlined` \| `filled` \| `borderless` \| `underlined` | - | 4.8.0 |
 | virtual | Disable virtual scroll when set to false | boolean | true | 3.0 |
 | warning | Config warning level; `strict: false` softens to warn | { strict?: boolean } | - | 4.7.0 |
 | wave | Config wave effect | { disabled?: boolean } | - | 4.0.7 |

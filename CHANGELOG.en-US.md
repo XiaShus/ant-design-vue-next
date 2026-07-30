@@ -4,6 +4,12 @@
 
 ---
 
+## 4.18.0
+
+`2026-07-30`
+
+- 🌟 Data-entry `variant` supports `underlined` (antd ≥ 5.24), including ConfigProvider / Form inheritance
+
 ## 4.17.0
 
 `2026-07-30`

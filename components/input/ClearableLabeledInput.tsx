@@ -38,7 +38,7 @@ export default defineComponent({
     focused: { type: Boolean, default: undefined },
     bordered: { type: Boolean, default: true },
     variant: {
-      type: String as PropType<'outlined' | 'borderless' | 'filled'>,
+      type: String as PropType<'outlined' | 'borderless' | 'filled' | 'underlined'>,
       default: undefined,
     },
     triggerFocus: { type: Function as PropType<() => void> },
@@ -103,6 +103,7 @@ export default defineComponent({
           [`${prefixCls}-affix-wrapper-rtl`]: direction === 'rtl',
           [`${prefixCls}-affix-wrapper-borderless`]: mergedVariant === 'borderless',
           [`${prefixCls}-affix-wrapper-filled`]: mergedVariant === 'filled',
+          [`${prefixCls}-affix-wrapper-underlined`]: mergedVariant === 'underlined',
           // className will go to addon wrapper
           [`${attrs.class}`]: !hasAddon({ addonAfter, addonBefore }) && attrs.class,
         },

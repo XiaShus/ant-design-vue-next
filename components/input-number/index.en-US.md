@@ -20,7 +20,7 @@ When a numeric value needs to be provided.
 | addonBefore | The label text displayed before (on the left side of) the input field | slot | - | 3.0 |
 | autofocus | get focus when component mounted | boolean | false |  |
 | bordered | Whether has border style; prefer `variant` | boolean | true | 3.0 |
-| variant | Variants of InputNumber (antd ≥ 5.13) | `outlined` \| `filled` \| `borderless` | `outlined` | 4.9.0 |
+| variant | Variants of InputNumber (antd ≥ 5.13) | `outlined` \| `filled` \| `borderless` \| `underlined` | `outlined` | 4.9.0 |
 | controls | Whether to show `+-` controls | boolean | true | 3.0 |
 | decimalSeparator | decimal separator | string | - |  |
 | defaultValue | initial value | number |  |  |

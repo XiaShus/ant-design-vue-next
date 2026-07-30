@@ -32,7 +32,7 @@ export const inputNumberProps = () => ({
   size: stringType<SizeType>(),
   bordered: booleanType(true),
   /** Prefer over `bordered` (antd ≥ 5.13). */
-  variant: stringType<'outlined' | 'borderless' | 'filled'>(),
+  variant: stringType<'outlined' | 'borderless' | 'filled' | 'underlined'>(),
   placeholder: String,
   name: String,
   id: String,
@@ -138,6 +138,7 @@ const InputNumber = defineComponent({
           [`${preCls}-readonly`]: readonly,
           [`${preCls}-borderless`]: mergedVariant === 'borderless',
           [`${preCls}-filled`]: mergedVariant === 'filled',
+          [`${preCls}-underlined`]: mergedVariant === 'underlined',
           [`${preCls}-in-form-item`]: isFormItemInput,
         },
         getStatusClassNames(preCls, mergedStatus.value),
@@ -183,6 +184,7 @@ const InputNumber = defineComponent({
             [`${preCls}-affix-wrapper-readonly`]: readonly,
             [`${preCls}-affix-wrapper-borderless`]: mergedVariant === 'borderless',
             [`${preCls}-affix-wrapper-filled`]: mergedVariant === 'filled',
+            [`${preCls}-affix-wrapper-underlined`]: mergedVariant === 'underlined',
             // className will go to addon wrapper
             [`${className}`]: !hasAddon && className,
           },

@@ -202,6 +202,7 @@ export default defineComponent({
           {
             [`${prefixCls.value}-borderless`]: mergedVariant === 'borderless',
             [`${prefixCls.value}-filled`]: mergedVariant === 'filled',
+            [`${prefixCls.value}-underlined`]: mergedVariant === 'underlined',
             [`${customClass}`]: customClass && !showCount.value,
             [`${prefixCls.value}-sm`]: size.value === 'small',
             [`${prefixCls.value}-lg`]: size.value === 'large',

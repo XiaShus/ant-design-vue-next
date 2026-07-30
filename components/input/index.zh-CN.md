@@ -24,7 +24,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*sBqqTatJ-AkAAA
 | addonBefore | 带标签的 input，设置前置标签 | string\|slot |  |  |
 | allowClear | 可以点击清除图标删除内容 | boolean |  |  |
 | bordered | 是否有边框，请优先使用 `variant` | boolean | true | 3.0 |
-| variant | 形态变体（对齐 antd ≥ 5.13） | `outlined` \| `filled` \| `borderless` | `outlined` | 4.8.0 |
+| variant | 形态变体（对齐 antd ≥ 5.13） | `outlined` \| `filled` \| `borderless` \| `underlined` | `outlined` | 4.8.0 |
 | clearIcon | 自定义清除图标 （allowClear 为 true 时生效） | slot | `<CloseCircleFilled />` | 3.3.0 |
 | defaultValue | 输入框默认内容 | string |  |  |
 | disabled | 是否禁用状态，默认为 false | boolean | false |  |

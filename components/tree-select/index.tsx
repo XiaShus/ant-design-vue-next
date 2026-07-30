@@ -76,7 +76,7 @@ export function treeSelectProps<
     size: stringType<SizeType>(),
     bordered: booleanType(),
     /** Prefer over `bordered` (antd ≥ 5.13). */
-    variant: stringType<'outlined' | 'borderless' | 'filled'>(),
+    variant: stringType<'outlined' | 'borderless' | 'filled' | 'underlined'>(),
     treeLine: someType<TreeProps['showLine']>([Boolean, Object]),
     replaceFields: objectType<FieldNames>(),
     placement: stringType<SelectCommonPlacement>(),
@@ -286,6 +286,7 @@ const TreeSelect = defineComponent({
           [`${prefixCls.value}-rtl`]: direction.value === 'rtl',
           [`${prefixCls.value}-borderless`]: mergedVariant === 'borderless',
           [`${prefixCls.value}-filled`]: mergedVariant === 'filled',
+          [`${prefixCls.value}-underlined`]: mergedVariant === 'underlined',
           [`${prefixCls.value}-in-form-item`]: isFormItemInput,
         },
         getStatusClassNames(prefixCls.value, mergedStatus.value, hasFeedback),

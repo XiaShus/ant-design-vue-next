@@ -28,7 +28,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*pxR2S53P_xoAAA
 | prefix | 设置触发关键字 | string \| string\[] | '@' |
 | split | 设置选中项前后分隔符 | string | ' ' |
 | status | 设置校验状态 | 'error' \| 'warning' | - | 3.3.0 |
-| variant | 形态变体（对齐 antd ≥ 5.13） | `outlined` \| `filled` \| `borderless` | `outlined` | 4.12.0 |
+| variant | 形态变体（对齐 antd ≥ 5.13） | `outlined` \| `filled` \| `borderless` \| `underlined` | `outlined` | 4.12.0 |
 | validateSearch | 自定义触发验证逻辑 | (text: string, props: MentionsProps) => void |  |
 | value(v-model) | 设置值 | string |  |
 | options | 选项配置 | [Options](#option) | \[] | 4.0 |

@@ -218,6 +218,7 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
                 [`${pre}-${mergedSize.value}`]: mergedSize.value,
                 [`${pre}-borderless`]: mergedVariant === 'borderless',
                 [`${pre}-filled`]: mergedVariant === 'filled',
+                [`${pre}-underlined`]: mergedVariant === 'underlined',
               },
               getStatusClassNames(
                 pre,

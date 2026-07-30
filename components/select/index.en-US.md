@@ -29,7 +29,7 @@ Select component to select value from options.
 | autoClearSearchValue | Whether the current search will be cleared on selecting an item. Only applies when `mode` is set to `multiple` or `tags`. | boolean | true |  |
 | autofocus | Get focus by default | boolean | false |  |
 | bordered | Whether has border style; prefer `variant` | boolean | true |  |
-| variant | Variants of Select (antd ≥ 5.13) | `outlined` \| `filled` \| `borderless` | `outlined` | 4.9.0 |
+| variant | Variants of Select (antd ≥ 5.13) | `outlined` \| `filled` \| `borderless` \| `underlined` | `outlined` | 4.9.0 |
 | clearIcon | The custom clear icon | VNode \| slot | - |  |
 | defaultActiveFirstOption | Whether active first option by default | boolean | true |  |
 | defaultOpen | Initial open state of dropdown | boolean | - |  |

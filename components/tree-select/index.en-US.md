@@ -42,7 +42,7 @@ Tree selection control.
 | showCheckedStrategy | The way show selected item in box. **Default:** just show child nodes. **`TreeSelect.SHOW_ALL`:** show all checked treeNodes (include parent treeNode). **`TreeSelect.SHOW_PARENT`:** show checked treeNodes (just show parent treeNode). | enum { TreeSelect.SHOW_ALL, TreeSelect.SHOW_PARENT, TreeSelect.SHOW_CHILD } | TreeSelect.SHOW_CHILD |  |  |
 | showSearch | Whether to display a search input in the dropdown menu(valid only in the single mode) | boolean | false |  |  |
 | size | To set the size of the select input, options: `large` `small` | string | 'default' |  |  |
-| variant | Variants of TreeSelect (antd ≥ 5.13) | `outlined` \| `filled` \| `borderless` | `outlined` | 4.10.0 |
+| variant | Variants of TreeSelect (antd ≥ 5.13) | `outlined` \| `filled` \| `borderless` \| `underlined` | `outlined` | 4.10.0 |
 | status | Set validation status | 'error' \| 'warning' | - | 3.3.0 |
 | suffixIcon | The custom suffix icon | VNode \| slot | - |  |  |
 | tagRender | Customize tag render when `multiple` | (props) => slot | - | 3.0 |  |

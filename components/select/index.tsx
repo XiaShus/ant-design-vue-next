@@ -57,7 +57,7 @@ export const selectProps = () => ({
   mode: stringType<'multiple' | 'tags' | 'SECRET_COMBOBOX_MODE_DO_NOT_USE'>(),
   bordered: booleanType(true),
   /** Prefer over `bordered` (antd ≥ 5.13). */
-  variant: stringType<'outlined' | 'borderless' | 'filled'>(),
+  variant: stringType<'outlined' | 'borderless' | 'filled' | 'underlined'>(),
   transitionName: String,
   choiceTransitionName: stringType(''),
   popupClassName: String,
@@ -179,6 +179,7 @@ const Select = defineComponent({
           [`${prefixCls.value}-rtl`]: direction.value === 'rtl',
           [`${prefixCls.value}-borderless`]: variant.value === 'borderless',
           [`${prefixCls.value}-filled`]: variant.value === 'filled',
+          [`${prefixCls.value}-underlined`]: variant.value === 'underlined',
           [`${prefixCls.value}-in-form-item`]: formItemInputContext.isFormItemInput,
         },
         getStatusClassNames(prefixCls.value, mergedStatus.value, formItemInputContext.hasFeedback),

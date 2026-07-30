@@ -1014,6 +1014,22 @@ const genPickerStyle: GenerateStyle<PickerToken> = token => {
           },
         },
 
+        [`&${componentCls}-underlined`]: {
+          borderRadius: 0,
+          borderWidth: `0 0 ${token.lineWidth}px 0 !important`,
+          borderTopColor: 'transparent !important',
+          borderInlineColor: 'transparent !important',
+          boxShadow: 'none !important',
+          '&:hover': {
+            borderBottomColor: `${token.colorPrimaryHover} !important`,
+            boxShadow: 'none !important',
+          },
+          [`&${componentCls}-focused`]: {
+            borderBottomColor: `${token.colorPrimary} !important`,
+            boxShadow: 'none !important',
+          },
+        },
+
         // ======================== Input =========================
         [`${componentCls}-input`]: {
           position: 'relative',

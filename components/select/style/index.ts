@@ -273,6 +273,24 @@ const genSelectStyle: GenerateStyle<SelectToken> = token => {
             boxShadow: `0 0 0 ${token.controlOutlineWidth}px ${token.controlOutline}`,
           },
 
+        // ==================== Underlined ====================
+        [`&-underlined ${componentCls}-selector`]: {
+          borderRadius: 0,
+          borderWidth: `0 0 ${token.lineWidth}px 0 !important`,
+          borderTopColor: 'transparent !important',
+          borderInlineColor: 'transparent !important',
+          boxShadow: 'none !important',
+        },
+        [`&-underlined:not(${componentCls}-disabled):hover ${componentCls}-selector`]: {
+          borderBottomColor: `${token.colorPrimaryHover} !important`,
+          boxShadow: 'none !important',
+        },
+        [`&-underlined${componentCls}-focused ${componentCls}-selector, &-underlined:focus ${componentCls}-selector`]:
+          {
+            borderBottomColor: `${token.colorPrimary} !important`,
+            boxShadow: 'none !important',
+          },
+
         // ==================== In Form ====================
         [`&${componentCls}-in-form-item`]: {
           width: '100%',

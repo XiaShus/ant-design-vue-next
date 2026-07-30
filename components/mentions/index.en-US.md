@@ -27,7 +27,7 @@ When you need to mention someone or something.
 | prefix | Set trigger prefix keyword | string \| string\[] | '@' |
 | split | Set split string before and after selected mention | string | ' ' |
 | status | Set validation status | 'error' \| 'warning' \| 'success' \| 'validating' | - | 3.3.0 |
-| variant | Variants of Mentions (antd ≥ 5.13) | `outlined` \| `filled` \| `borderless` | `outlined` | 4.12.0 |
+| variant | Variants of Mentions (antd ≥ 5.13) | `outlined` \| `filled` \| `borderless` \| `underlined` | `outlined` | 4.12.0 |
 | validateSearch | Customize trigger search logic | (text: string, props: MentionsProps) => void |  |
 | value(v-model) | Set value of mentions | string |  |
 | options | Option Configuration | [Options](#option) | \[] | 4.0 |

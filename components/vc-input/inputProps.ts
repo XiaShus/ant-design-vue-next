@@ -88,7 +88,7 @@ export const inputProps = () => ({
   bordered: { type: Boolean, default: undefined },
   /** Prefer over `bordered` (antd ≥ 5.13). */
   variant: {
-    type: String as PropType<'outlined' | 'borderless' | 'filled'>,
+    type: String as PropType<'outlined' | 'borderless' | 'filled' | 'underlined'>,
     default: undefined,
   },
   showCount: { type: [Boolean, Object] as PropType<boolean | ShowCountProps> },
