@@ -4,6 +4,12 @@
 
 ---
 
+## 4.28.0
+
+`2026-07-31`
+
+- 🌟 Avatar.Group supports `max` config object (antd ≥ 5.18)
+
 ## 4.27.0
 
 `2026-07-31`

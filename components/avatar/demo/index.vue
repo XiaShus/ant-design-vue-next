@@ -5,6 +5,7 @@
     <dynamic />
     <badge />
     <group />
+    <Max />
     <responsive />
   </demo-sort>
 </template>
@@ -15,6 +16,7 @@ import Type from './type.vue';
 import Dynamic from './dynamic.vue';
 import Badge from './badge.vue';
 import Group from './group.vue';
+import Max from './max.vue';
 import Responsive from './responsive.vue';
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
@@ -29,6 +31,7 @@ export default defineComponent({
     Dynamic,
     Badge,
     Group,
+    Max,
     Responsive,
   },
   setup() {

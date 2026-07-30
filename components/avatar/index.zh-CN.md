@@ -34,9 +34,10 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*YbgyQaRGz-UAAA
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
-| maxCount | 显示的最大头像个数 | number | - |  |
-| maxPopoverPlacement | 多余头像气泡弹出位置 | `top` \| `bottom` | `top` |  |
-| maxPopoverTrigger | 设置多余头像 Popover 的触发方式 | `hover` \| `focus` \| `click` | `hover` | 3.0 |
-| maxStyle | 多余头像样式 | CSSProperties | - |  |
+| max | 最大显示数相关配置 | `{ count?: number; style?: CSSProperties; popover?: PopoverProps }` | - | 4.28.0 |
+| maxCount | 显示的最大头像个数，请使用 `max={{ count }}` | number | - |  |
+| maxPopoverPlacement | 多余头像气泡弹出位置，请使用 `max={{ popover }}` | `top` \| `bottom` | `top` |  |
+| maxPopoverTrigger | 设置多余头像 Popover 的触发方式，请使用 `max={{ popover }}` | `hover` \| `focus` \| `click` | `hover` | 3.0 |
+| maxStyle | 多余头像样式，请使用 `max={{ style }}` | CSSProperties | - |  |
 | size | 设置头像的大小 | number \| `large` \| `small` \| `default` \| { xs: number, sm: number, ...} | `default` |  |
 | shape | 设置头像的形状 | `circle` \| `square` | `circle` | 4.0 |

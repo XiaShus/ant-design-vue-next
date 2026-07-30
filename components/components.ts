@@ -11,6 +11,7 @@ export type { AlertProps, AlertClosableType, AlertClosable } from './alert';
 export { default as Alert } from './alert';
 
 export type { AvatarProps } from './avatar';
+export type { AvatarGroupMax, AvatarGroupProps } from './avatar/Group';
 export { default as Avatar, AvatarGroup } from './avatar';
 
 export type { BadgeProps } from './badge';

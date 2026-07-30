@@ -2,19 +2,34 @@ import { cloneElement } from '../_util/vnode';
 import type { AvatarSize } from './Avatar';
 import Avatar from './Avatar';
 import Popover from '../popover';
+import type { PopoverProps } from '../popover';
 import type { PropType, ExtractPropTypes, CSSProperties } from 'vue';
 import { computed, defineComponent, watchEffect } from 'vue';
 import { flattenChildren, getPropsSlot } from '../_util/props-util';
 import useConfigInject from '../config-provider/hooks/useConfigInject';
 import useStyle from './style';
 import { useAvatarProviderContext } from './AvatarContext';
+import { objectType } from '../_util/type';
+
+/** Max display config (antd ≥ 5.18). */
+export type AvatarGroupMax = {
+  count?: number;
+  style?: CSSProperties;
+  popover?: PopoverProps;
+};
 
 export const groupProps = () => ({
   prefixCls: String,
+  /** @deprecated Please use `max={{ count: number }}` */
   maxCount: Number,
+  /** @deprecated Please use `max={{ style: CSSProperties }}` */
   maxStyle: { type: Object as PropType<CSSProperties>, default: undefined as CSSProperties },
+  /** @deprecated Please use `max={{ popover: PopoverProps }}` */
   maxPopoverPlacement: { type: String as PropType<'top' | 'bottom'>, default: 'top' },
+  /** @deprecated Please use `max={{ popover: PopoverProps }}` */
   maxPopoverTrigger: String as PropType<'hover' | 'focus' | 'click'>,
+  /** Max display config (antd ≥ 5.18). */
+  max: objectType<AvatarGroupMax>(),
   /*
    * Size of avatar, options: `large`, `small`, `default`
    * or a custom number size
@@ -43,11 +58,12 @@ const Group = defineComponent({
     });
     return () => {
       const {
-        maxPopoverPlacement = 'top',
         maxCount,
         maxStyle,
+        maxPopoverPlacement = 'top',
         maxPopoverTrigger = 'hover',
         shape,
+        max,
       } = props;
 
       const cls = {
@@ -64,20 +80,28 @@ const Group = defineComponent({
         }),
       );
 
+      const mergeCount = max?.count ?? maxCount;
       const numOfChildren = childrenWithProps.length;
-      if (maxCount && maxCount < numOfChildren) {
-        const childrenShow = childrenWithProps.slice(0, maxCount);
-        const childrenHidden = childrenWithProps.slice(maxCount, numOfChildren);
+      if (mergeCount && mergeCount < numOfChildren) {
+        const childrenShow = childrenWithProps.slice(0, mergeCount);
+        const childrenHidden = childrenWithProps.slice(mergeCount, numOfChildren);
+
+        const mergeStyle = max?.style ?? maxStyle;
+        const mergePopoverTrigger = max?.popover?.trigger ?? maxPopoverTrigger;
+        const mergePopoverPlacement = max?.popover?.placement ?? maxPopoverPlacement;
 
         childrenShow.push(
           <Popover
             key="avatar-popover-key"
             content={childrenHidden}
-            trigger={maxPopoverTrigger}
-            placement={maxPopoverPlacement}
-            overlayClassName={`${groupPrefixCls.value}-popover`}
+            {...(max?.popover || {})}
+            trigger={mergePopoverTrigger as any}
+            placement={mergePopoverPlacement as any}
+            overlayClassName={[`${groupPrefixCls.value}-popover`, max?.popover?.overlayClassName]
+              .filter(Boolean)
+              .join(' ')}
           >
-            <Avatar style={maxStyle} shape={shape}>{`+${numOfChildren - maxCount}`}</Avatar>
+            <Avatar style={mergeStyle} shape={shape}>{`+${numOfChildren - mergeCount}`}</Avatar>
           </Popover>,
         );
         return wrapSSR(

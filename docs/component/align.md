@@ -78,7 +78,7 @@
 
 | 分组 | 组件 | React `antd` | Vue Next | 文档链接 | 缺口备注 |
 | --- | --- | --- | --- | --- | --- |
-| Data Display | Avatar | ✅ | ✅ | [avatar](../../components/avatar) | — |
+| Data Display | Avatar | ✅ | ✅ | [avatar](../../components/avatar) | 🔄 Group `max` ✅ 4.28.0 |
 | Data Display | Badge | ✅ | ✅ | [badge](../../components/badge) | — |
 | Data Display | Calendar | ✅ | ✅ | [calendar](../../components/calendar) | — |
 | Data Display | Card | ✅ | ✅ | [card](../../components/card) | — |
@@ -154,8 +154,9 @@
 23. ~~Divider `variant` / `size`~~ — ✅ `4.25.0`
 24. ~~QRCode `statusRender` / object `iconSize`~~ — ✅ `4.26.0`
 25. ~~Alert object `closable`~~ — ✅ `4.27.0`
-26. Table `virtual` 按需拆版（多日）
-27. ColorPicker 渐变 `mode`
+26. ~~Avatar.Group `max`~~ — ✅ `4.28.0`
+27. Table `virtual` 按需拆版（多日）
+28. ColorPicker 渐变 `mode`
 
 ## 阶段 B（仅规划，不急实现）
 

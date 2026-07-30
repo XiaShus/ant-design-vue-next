@@ -29,9 +29,10 @@ Avatars can be used to represent people or objects. It supports images, `Icon`s,
 
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
-| maxCount | Max avatars to show | number | - |  |
-| maxPopoverPlacement | The placement of excess avatar Popover | `top` \| `bottom` | `top` |  |
-| maxPopoverTrigger | Set the trigger of excess avatar Popover | `hover` \| `focus` \| `click` | `hover` | 3.0 |
-| maxStyle | The style of excess avatar style | CSSProperties | - |  |
+| max | Max display config | `{ count?: number; style?: CSSProperties; popover?: PopoverProps }` | - | 4.28.0 |
+| maxCount | Max avatars to show. Please use `max={{ count }}` | number | - |  |
+| maxPopoverPlacement | The placement of excess avatar Popover. Please use `max={{ popover }}` | `top` \| `bottom` | `top` |  |
+| maxPopoverTrigger | Set the trigger of excess avatar Popover. Please use `max={{ popover }}` | `hover` \| `focus` \| `click` | `hover` | 3.0 |
+| maxStyle | The style of excess avatar style. Please use `max={{ style }}` | CSSProperties | - |  |
 | size | The size of the avatar | number \| `large` \| `small` \| `default` \| { xs: number, sm: number, ...} | `default` |  |
 | shape | The shape of the avatar | `circle` \| `square` | `circle` | 4.0 |
