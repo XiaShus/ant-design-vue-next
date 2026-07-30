@@ -35,7 +35,24 @@ interface HolderRef extends NotificationAPI {
 const Holder = defineComponent({
   name: 'Holder',
   inheritAttrs: false,
-  props: ['prefixCls', 'class', 'type', 'icon', 'content', 'onAllRemoved'],
+  props: [
+    'prefixCls',
+    'class',
+    'type',
+    'icon',
+    'content',
+    'onAllRemoved',
+    'top',
+    'bottom',
+    'getContainer',
+    'getPopupContainer',
+    'placement',
+    'maxCount',
+    'rtl',
+    'duration',
+    'showProgress',
+    'pauseOnHover',
+  ],
   setup(props: HolderProps, { expose }) {
     const { getPrefixCls, getPopupContainer } = useConfigInject('notification', props);
     const prefixCls = computed(() => props.prefixCls || getPrefixCls('notification'));
@@ -59,7 +76,9 @@ const Holder = defineComponent({
       motion: getNotificationMotion,
       closable: true,
       closeIcon: getCloseIcon(prefixCls.value),
-      duration: DEFAULT_DURATION,
+      duration: props.duration ?? DEFAULT_DURATION,
+      showProgress: props.showProgress,
+      pauseOnHover: props.pauseOnHover,
       getContainer: () =>
         props.getPopupContainer?.() || getPopupContainer.value?.() || document.body,
       maxCount: props.maxCount,

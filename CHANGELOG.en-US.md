@@ -4,6 +4,12 @@
 
 ---
 
+## 4.43.0
+
+`2026-07-31`
+
+- 🌟 Notification supports `showProgress` and `pauseOnHover` (antd ≥ 5.18)
+
 ## 4.42.0
 
 `2026-07-31`

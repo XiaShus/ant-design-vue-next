@@ -28,6 +28,8 @@ export interface ConfigProps {
   top?: string | number;
   bottom?: string | number;
   duration?: number;
+  showProgress?: boolean;
+  pauseOnHover?: boolean;
   prefixCls?: string;
   placement?: NotificationPlacement;
   getContainer?: () => HTMLElement;
@@ -44,6 +46,8 @@ let defaultPrefixCls = '';
 let defaultPlacement: NotificationPlacement = 'topRight';
 let defaultGetContainer = () => document.body;
 let defaultCloseIcon = null;
+let defaultShowProgress: boolean | undefined;
+let defaultPauseOnHover = true;
 let rtl = false;
 let maxCount: number;
 
@@ -69,6 +73,12 @@ function setNotificationConfig(options: ConfigProps) {
   }
   if (closeIcon !== undefined) {
     defaultCloseIcon = closeIcon;
+  }
+  if (options.showProgress !== undefined) {
+    defaultShowProgress = options.showProgress;
+  }
+  if (options.pauseOnHover !== undefined) {
+    defaultPauseOnHover = options.pauseOnHover;
   }
   if (options.rtl !== undefined) {
     rtl = options.rtl;
@@ -146,6 +156,8 @@ export interface NotificationArgsProps {
   key?: string;
   onClose?: () => void;
   duration?: number | null;
+  showProgress?: boolean;
+  pauseOnHover?: boolean;
   icon?: VueNode | (() => VueNode);
   placement?: NotificationPlacement;
   maxCount?: number;
@@ -164,6 +176,8 @@ export interface NotificationArgsProps {
 function notice(args: NotificationArgsProps) {
   const { icon, type, description, message, btn } = args;
   const duration = args.duration === undefined ? defaultDuration : args.duration;
+  const showProgress = args.showProgress === undefined ? defaultShowProgress : args.showProgress;
+  const pauseOnHover = args.pauseOnHover === undefined ? defaultPauseOnHover : args.pauseOnHover;
   getNotificationInstance(args, notification => {
     notification.notice({
       content: ({ prefixCls: outerPrefixCls }) => {
@@ -190,6 +204,8 @@ function notice(args: NotificationArgsProps) {
         );
       },
       duration,
+      showProgress,
+      pauseOnHover,
       closable: true,
       onClose: args.onClose,
       onClick: args.onClick,

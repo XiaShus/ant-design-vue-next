@@ -8,6 +8,12 @@
 
 ---
 
+## 4.43.0
+
+`2026-07-31`
+
+- 🌟 Notification 支持 `showProgress` / `pauseOnHover`（对齐 antd ≥ 5.18）
+
 ## 4.42.0
 
 `2026-07-31`

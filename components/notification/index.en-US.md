@@ -42,7 +42,9 @@ The properties of config are as follows:
 | icon | Customized icon | VNode \| () => VNode | - |  |
 | key | The unique identifier of the Notification | string | - |  |
 | message | The title of notification box (required) | string\| VNode \| () => VNode | - |  |
+| pauseOnHover | Whether to pause the timer on hover | boolean | true | 4.43.0 |
 | placement | Position of Notification, can be one of `top` `topLeft` `topRight` `bottom` `bottomLeft` `bottomRight` | string | `topRight` | `top` `bottom` 3.3.0 |
+| showProgress | Show progress bar for auto-closing notification | boolean | - | 4.43.0 |
 | style | Customized inline style | Object \| string | - |  |
 | top | Distance from the top of the viewport, when `placement` is `topRight` or `topLeft` (unit: pixels). | string | `24px` |  |
 | onClick | Specify a function that will be called when the notification is clicked | Function | - |  |
@@ -72,8 +74,10 @@ notification.config({
 | duration | Time in seconds before Notification is closed. When set to 0 or null, it will never be closed automatically | number | 4.5 |  |
 | getContainer | Return the mount node for Notification | () => HTMLNode | () => document.body |  |
 | maxCount | Max Notification show, drop oldest if exceed limit | number | - | 3.0 |
+| pauseOnHover | Whether to pause the timer on hover | boolean | true | 4.43.0 |
 | placement | Position of Notification, can be one of `topLeft` `topRight` `bottomLeft` `bottomRight` | string | `topRight` |  |
 | rtl | Whether to enable RTL mode | boolean | false |  |
+| showProgress | Show progress bar for auto-closing notification | boolean | - | 4.43.0 |
 | top | Distance from the top of the viewport, when `placement` is `topRight` or `topLeft` (unit: pixels). | string | `24px` |  |
 
 ## FAQ

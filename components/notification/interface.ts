@@ -18,6 +18,8 @@ export interface ArgsProps {
   key?: Key;
   onClose?: () => void;
   duration?: number | null;
+  showProgress?: boolean;
+  pauseOnHover?: boolean;
   icon?: (() => VueNode) | VueNode;
   placement?: NotificationPlacement;
   style?: CSSProperties;
@@ -42,6 +44,8 @@ export interface GlobalConfigProps {
   top?: number | string;
   bottom?: number | string;
   duration?: number;
+  showProgress?: boolean;
+  pauseOnHover?: boolean;
   prefixCls?: string;
   getContainer?: () => HTMLElement;
   placement?: NotificationPlacement;
@@ -58,4 +62,7 @@ export interface NotificationConfig {
   placement?: NotificationPlacement;
   maxCount?: number;
   rtl?: boolean;
+  duration?: number;
+  showProgress?: boolean;
+  pauseOnHover?: boolean;
 }

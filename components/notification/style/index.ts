@@ -20,6 +20,8 @@ export interface NotificationToken extends FullToken<'Notification'> {
   animationMaxHeight: number;
   notificationIconSize: number;
   notificationCloseButtonSize: number;
+  notificationProgressBg: string;
+  notificationProgressHeight: number;
 }
 
 const genNotificationStyle: GenerateStyle<NotificationToken> = token => {
@@ -245,6 +247,39 @@ const genNotificationStyle: GenerateStyle<NotificationToken> = token => {
           float: 'right',
           marginTop: token.marginSM,
         },
+
+        [`${noticeCls}-progress`]: {
+          position: 'absolute',
+          display: 'block',
+          appearance: 'none',
+          WebkitAppearance: 'none',
+          inlineSize: `calc(100% - ${borderRadiusLG * 2}px)`,
+          left: {
+            _skip_check_: true,
+            value: borderRadiusLG,
+          },
+          right: {
+            _skip_check_: true,
+            value: borderRadiusLG,
+          },
+          bottom: 0,
+          blockSize: token.notificationProgressHeight,
+          border: 0,
+
+          '&, &::-webkit-progress-bar': {
+            borderRadius: borderRadiusLG,
+            backgroundColor: 'rgba(0, 0, 0, 0.04)',
+          },
+
+          '&::-moz-progress-bar': {
+            background: token.notificationProgressBg,
+          },
+
+          '&::-webkit-progress-value': {
+            borderRadius: borderRadiusLG,
+            background: token.notificationProgressBg,
+          },
+        },
       },
     },
 
@@ -276,6 +311,8 @@ export default genComponentStyleHook(
       animationMaxHeight: 150,
       notificationIconSize: token.fontSizeLG * token.lineHeightLG,
       notificationCloseButtonSize: token.controlHeightLG * 0.55,
+      notificationProgressHeight: 2,
+      notificationProgressBg: `linear-gradient(90deg, ${token.colorPrimaryBorderHover}, ${token.colorPrimary})`,
     });
 
     return [genNotificationStyle(notificationToken)];

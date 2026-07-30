@@ -43,7 +43,9 @@ config 参数如下：
 | icon | 自定义图标 | VNode \| () => VNode | - |  |
 | key | 当前通知唯一标志 | string | - |  |
 | message | 通知提醒标题，必选 | string \| VNode \| () => VNode | - |  |
+| pauseOnHover | 悬停时是否暂停自动关闭计时 | boolean | true | 4.43.0 |
 | placement | 弹出位置，可选 `top` `topLeft` `topRight` `bottom` `bottomLeft` `bottomRight` | string | `topRight` | `top` `bottom` 3.3.0 |
+| showProgress | 展示自动关闭进度条 | boolean | - | 4.43.0 |
 | style | 自定义内联样式 | Object \| string | - |  |
 | top | 消息从顶部弹出时，距离顶部的位置，单位像素。 | string | `24px` |  |
 | onClick | 点击通知时触发的回调函数 | Function | - |  |
@@ -73,8 +75,10 @@ notification.config({
 | duration | 默认自动关闭延时，单位秒 | number | 4.5 |  |
 | getContainer | 配置渲染节点的输出位置 | () => HTMLNode | () => document.body |  |
 | maxCount | 最大显示数, 超过限制时，最早的消息会被自动关闭 | number | - | 3.0 |
+| pauseOnHover | 悬停时是否暂停自动关闭计时 | boolean | true | 4.43.0 |
 | placement | 弹出位置，可选 `topLeft` `topRight` `bottomLeft` `bottomRight` | string | topRight |  |
 | rtl | 是否开启 RTL 模式 | boolean | false | 3.0 |
+| showProgress | 展示自动关闭进度条 | boolean | - | 4.43.0 |
 | top | 消息从顶部弹出时，距离顶部的位置，单位像素。 | string | `24px` |  |
 
 ## FAQ

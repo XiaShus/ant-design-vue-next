@@ -107,7 +107,7 @@
 | Feedback | Drawer | ✅ | ✅ | [drawer](../../components/drawer) | 🔄 `destroyOnHidden` ✅ 4.11.0 |
 | Feedback | Message | ✅ | ✅ | [message](../../components/message) | — |
 | Feedback | Modal | ✅ | ✅ | [modal](../../components/modal) | 🔄 `destroyOnHidden` ✅ 4.11.0；🔄 `afterOpenChange` ✅ 4.22.0 |
-| Feedback | Notification | ✅ | ✅ | [notification](../../components/notification) | — |
+| Feedback | Notification | ✅ | ✅ | [notification](../../components/notification) | 🔄 `showProgress` / `pauseOnHover` ✅ 4.43.0 |
 | Feedback | Popconfirm | ✅ | ✅ | [popconfirm](../../components/popconfirm) | — |
 | Feedback | Progress | ✅ | ✅ | [progress](../../components/progress) | 🔄 object `size` ✅ 4.38.0 |
 | Feedback | Result | ✅ | ✅ | [result](../../components/result) | — |
@@ -169,7 +169,7 @@
 38. ~~Form `feedbackIcons`~~ — ✅ `4.40.0`
 39. ~~Skeleton.Node~~ — ✅ `4.41.0`
 40. ~~Tabs `indicator`~~ — ✅ `4.42.0`
-41. Notification `showProgress` / `pauseOnHover`
+41. ~~Notification `showProgress` / `pauseOnHover`~~ — ✅ `4.43.0`
 42. Table `virtual` 按需拆版（多日）
 43. ColorPicker 渐变 `mode`
 
@@ -181,4 +181,4 @@
 
 ---
 
-_上次更新：`4.42.0` Tabs.indicator。每发一版请同步改本表。_
+_上次更新：`4.43.0` Notification.showProgress。每发一版请同步改本表。_
