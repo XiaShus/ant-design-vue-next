@@ -86,6 +86,11 @@ export const inputProps = () => ({
   maxlength: Number,
   loading: { type: Boolean, default: undefined },
   bordered: { type: Boolean, default: undefined },
+  /** Prefer over `bordered` (antd ≥ 5.13). */
+  variant: {
+    type: String as PropType<'outlined' | 'borderless' | 'filled'>,
+    default: undefined,
+  },
   showCount: { type: [Boolean, Object] as PropType<boolean | ShowCountProps> },
   htmlSize: Number,
   onPressEnter: Function as PropType<KeyboardEventHandler>,

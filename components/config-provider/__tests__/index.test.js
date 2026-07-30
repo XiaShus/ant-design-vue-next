@@ -70,6 +70,20 @@ describe('ConfigProvider', () => {
     setWarningConfig({ strict: true });
   });
 
+  it('variant propagates to Input', () => {
+    const Input = require('../../input').default;
+    const wrapper = mount({
+      render() {
+        return (
+          <ConfigProvider variant="filled">
+            <Input class="variant-input" />
+          </ConfigProvider>
+        );
+      },
+    });
+    expect(wrapper.find('.ant-input-filled').exists()).toBe(true);
+  });
+
   it('useConfig returns componentSize and componentDisabled', () => {
     let size;
     let disabled;

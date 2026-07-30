@@ -18,6 +18,7 @@ import { NoCompactStyle, useCompactItemContext } from '../space/Compact';
 // CSSINJS
 import useStyle from './style';
 import { useInjectDisabled } from '../config-provider/DisabledContext';
+import useVariant from '../config-provider/hooks/useVariant';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -30,6 +31,7 @@ export default defineComponent({
     const formItemInputContext = FormItemInputContext.useInject();
     const mergedStatus = computed(() => getMergedStatus(formItemInputContext.status, props.status));
     const { direction, prefixCls, size, autocomplete } = useConfigInject('input', props);
+    const variant = useVariant(props);
 
     // ===================== Compact Item =====================
     const { compactSize, compactItemClassnames } = useCompactItemContext(prefixCls, direction);
@@ -115,7 +117,6 @@ export default defineComponent({
       const { hasFeedback, feedbackIcon } = formItemInputContext;
       const {
         allowClear,
-        bordered = true,
         prefix = slots.prefix?.(),
         suffix = slots.suffix?.(),
         addonAfter = slots.addonAfter?.(),
@@ -123,6 +124,7 @@ export default defineComponent({
         id = formItemContext.id?.value,
         ...rest
       } = props;
+      const mergedVariant = variant.value;
       const suffixNode = (hasFeedback || suffix) && (
         <>
           {suffix}
@@ -135,7 +137,7 @@ export default defineComponent({
       return wrapSSR(
         <VcInput
           {...attrs}
-          {...omit(rest, ['onUpdate:value', 'onChange', 'onInput'])}
+          {...omit(rest, ['onUpdate:value', 'onChange', 'onInput', 'bordered', 'variant'])}
           onChange={triggerChange}
           id={id}
           disabled={props.disabled ?? disabled.value}
@@ -167,7 +169,8 @@ export default defineComponent({
               [`${prefixClsValue}-sm`]: mergedSize.value === 'small',
               [`${prefixClsValue}-lg`]: mergedSize.value === 'large',
               [`${prefixClsValue}-rtl`]: direction.value === 'rtl',
-              [`${prefixClsValue}-borderless`]: !bordered,
+              [`${prefixClsValue}-borderless`]: mergedVariant === 'borderless',
+              [`${prefixClsValue}-filled`]: mergedVariant === 'filled',
             },
             !inputHasPrefixSuffix && getStatusClassNames(prefixClsValue, mergedStatus.value),
             hashId.value,
@@ -177,7 +180,8 @@ export default defineComponent({
               [`${prefixClsValue}-affix-wrapper-sm`]: mergedSize.value === 'small',
               [`${prefixClsValue}-affix-wrapper-lg`]: mergedSize.value === 'large',
               [`${prefixClsValue}-affix-wrapper-rtl`]: direction.value === 'rtl',
-              [`${prefixClsValue}-affix-wrapper-borderless`]: !bordered,
+              [`${prefixClsValue}-affix-wrapper-borderless`]: mergedVariant === 'borderless',
+              [`${prefixClsValue}-affix-wrapper-filled`]: mergedVariant === 'filled',
             },
             getStatusClassNames(`${prefixClsValue}-affix-wrapper`, mergedStatus.value, hasFeedback),
             hashId.value,

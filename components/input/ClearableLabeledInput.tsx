@@ -37,6 +37,10 @@ export default defineComponent({
     readonly: { type: Boolean, default: undefined },
     focused: { type: Boolean, default: undefined },
     bordered: { type: Boolean, default: true },
+    variant: {
+      type: String as PropType<'outlined' | 'borderless' | 'filled'>,
+      default: undefined,
+    },
     triggerFocus: { type: Function as PropType<() => void> },
     hidden: Boolean,
     status: String as PropType<InputStatus>,
@@ -70,6 +74,7 @@ export default defineComponent({
         allowClear,
         direction,
         bordered,
+        variant,
         hidden,
         status: customStatus,
         addonAfter = slots.addonAfter,
@@ -78,6 +83,7 @@ export default defineComponent({
       } = props;
 
       const { status: contextStatus, hasFeedback } = statusContext;
+      const mergedVariant = variant || (bordered === false ? 'borderless' : 'outlined');
 
       if (!allowClear) {
         return cloneElement(element, {
@@ -95,7 +101,8 @@ export default defineComponent({
         ),
         {
           [`${prefixCls}-affix-wrapper-rtl`]: direction === 'rtl',
-          [`${prefixCls}-affix-wrapper-borderless`]: !bordered,
+          [`${prefixCls}-affix-wrapper-borderless`]: mergedVariant === 'borderless',
+          [`${prefixCls}-affix-wrapper-filled`]: mergedVariant === 'filled',
           // className will go to addon wrapper
           [`${attrs.class}`]: !hasAddon({ addonAfter, addonBefore }) && attrs.class,
         },

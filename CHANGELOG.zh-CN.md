@@ -8,6 +8,13 @@
 
 ---
 
+## 4.8.0
+
+`2026-07-30`
+
+- 🌟 ConfigProvider 支持 `variant`（outlined / filled / borderless，对齐 antd ≥ 5.19）
+- 🌟 Input / TextArea 支持 `variant`（对齐 antd ≥ 5.13）；`bordered={false}` 仍映射为 borderless
+
 ## 4.7.0
 
 `2026-07-30`

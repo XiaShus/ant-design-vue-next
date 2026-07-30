@@ -24,6 +24,7 @@ import { getMergedStatus, getStatusClassNames } from '../_util/statusUtils';
 // CSSINJS
 import useStyle from './style';
 import { useInjectDisabled } from '../config-provider/DisabledContext';
+import useVariant from '../config-provider/hooks/useVariant';
 
 function fixEmojiLength(value: string, maxLength: number) {
   return [...(value || '')].slice(0, maxLength).join('');
@@ -62,6 +63,7 @@ export default defineComponent({
     const resizableTextArea = shallowRef();
     const mergedValue = shallowRef('');
     const { prefixCls, size, direction } = useConfigInject('input', props);
+    const variant = useVariant(props);
 
     // Style
     const [wrapSSR, hashId] = useStyle(prefixCls);
@@ -192,13 +194,14 @@ export default defineComponent({
     };
     const renderTextArea = () => {
       const { class: customClass } = attrs;
-      const { bordered = true } = props;
+      const mergedVariant = variant.value;
       const resizeProps = {
-        ...omit(props, ['allowClear']),
+        ...omit(props, ['allowClear', 'bordered', 'variant']),
         ...attrs,
         class: [
           {
-            [`${prefixCls.value}-borderless`]: !bordered,
+            [`${prefixCls.value}-borderless`]: mergedVariant === 'borderless',
+            [`${prefixCls.value}-filled`]: mergedVariant === 'filled',
             [`${customClass}`]: customClass && !showCount.value,
             [`${prefixCls.value}-sm`]: size.value === 'small',
             [`${prefixCls.value}-lg`]: size.value === 'large',
@@ -249,8 +252,9 @@ export default defineComponent({
       mergedValue.value = val;
     });
     return () => {
-      const { maxlength, bordered = true, hidden } = props;
+      const { maxlength, hidden } = props;
       const { style, class: customClass } = attrs;
+      const mergedVariant = variant.value;
       const inputProps: any = {
         ...props,
         ...attrs,
@@ -258,7 +262,8 @@ export default defineComponent({
         inputType: 'text',
         handleReset,
         direction: direction.value,
-        bordered,
+        bordered: mergedVariant !== 'borderless',
+        variant: mergedVariant,
         style: showCount.value ? undefined : style,
         hashId: hashId.value,
         disabled: props.disabled ?? disabled.value,

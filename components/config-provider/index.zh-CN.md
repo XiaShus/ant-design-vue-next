@@ -65,7 +65,9 @@ ConfigProvider 使用 Vue 的 [provide / inject](https://vuejs.org/v2/api/#provi
 | renderEmpty | 自定义组件空状态。参考 [空状态](/components/empty/) | slot \| Function(componentName: string): VNode | - |  |
 | space | 设置 Space 的 `size`，参考 [Space](/components/space) | { size: `small` \| `middle` \| `large` \| `number` } | - | 3.0 |
 | transformCellText | Table 数据渲染前可以再次改变，一般用户空数据的默认配置 | Function({ text, column, record, index }) => any | - | 1.5.4 |
+| variant | 设置数据录入类组件的形态（对齐 antd ≥ 5.19） | `outlined` \| `filled` \| `borderless` | - | 4.8.0 |
 | virtual | 设置 `false` 时关闭虚拟滚动 | boolean | - | 3.0 |
+| warning | 设置警告等级；`strict: false` 时降级为 warn | { strict?: boolean } | - | 4.7.0 |
 | wave | 设置水波纹特效 | { disabled?: boolean } | - | 4.0.7 |
 
 ### ConfigProvider.config() `3.0.0+`
@@ -97,6 +99,14 @@ ConfigProvider.config({
   holderRender: children => (
     <ConfigProvider theme={{ token: { colorPrimary: '#00b96b' } }}>{children}</ConfigProvider>
   ),
+});
+```
+
+#### warning `4.7.0+`（对齐 antd ≥ 5.10）
+
+```jsx
+ConfigProvider.config({
+  warning: { strict: false },
 });
 ```
 

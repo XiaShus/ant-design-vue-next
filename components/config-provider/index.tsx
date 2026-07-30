@@ -25,6 +25,7 @@ import {
 } from './context';
 import { useProviderSize } from './SizeContext';
 import { useProviderDisabled } from './DisabledContext';
+import { useProviderVariant } from './VariantContext';
 import { createTheme } from '../_util/cssinjs';
 import { DesignTokenProvider } from '../theme/internal';
 import { useConfig } from './hooks/useConfig';
@@ -222,6 +223,7 @@ const ConfigProvider = defineComponent({
     );
     const componentSize = computed(() => props.componentSize);
     const componentDisabled = computed(() => props.componentDisabled);
+    const variant = computed(() => props.variant ?? parentContext.variant?.value);
     const wave = computed(() => props.wave ?? parentContext.wave?.value);
     watchEffect(() => {
       if (props.warning) {
@@ -252,6 +254,7 @@ const ConfigProvider = defineComponent({
       select,
       componentSize,
       componentDisabled,
+      variant,
       transformCellText: computed(() => props.transformCellText),
       wave,
     };
@@ -292,6 +295,7 @@ const ConfigProvider = defineComponent({
     useProvideGlobalForm({ validateMessages: validateMessagesRef });
     useProviderSize(componentSize);
     useProviderDisabled(componentDisabled);
+    useProviderVariant(variant);
 
     const renderProvider = (legacyLocale: Locale) => {
       let childNode = shouldWrapSSR.value ? wrapSSR(slots.default?.()) : slots.default?.();

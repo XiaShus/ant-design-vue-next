@@ -61,7 +61,7 @@
 | Data Entry | ColorPicker | ✅ 5.5 | 🔄 ✅ 4.3.0 | [color-picker](../../components/color-picker) | 单色/预设/清除/格式；⏭ 渐变 mode、panelRender |
 | Data Entry | DatePicker | ✅ | ✅ | [date-picker](../../components/date-picker) | ⚠️ 与 antd 5 晚期 props 可能有差，按需补 |
 | Data Entry | Form | ✅ | ✅ | [form](../../components/form) | ⚠️ 高频，逐项对齐 |
-| Data Entry | Input | ✅ | ✅ | [input](../../components/input) | 🔄 `Input.OTP` ✅ 4.5.0 |
+| Data Entry | Input | ✅ | ✅ | [input](../../components/input) | 🔄 `Input.OTP` ✅ 4.5.0；`variant` ✅ 4.8.0（⏭ underlined） |
 | Data Entry | InputNumber | ✅ | ✅ | [input-number](../../components/input-number) | — |
 | Data Entry | Mentions | ✅ | ✅ | [mentions](../../components/mentions) | — |
 | Data Entry | Radio | ✅ | ✅ | [radio](../../components/radio) | — |
@@ -121,7 +121,7 @@
 | --- | --- | --- | --- | --- | --- |
 | Other | Affix | ✅ | ✅ | [affix](../../components/affix) | — |
 | Other | App | ✅ 5.1 | ✅ | [app](../../components/app) | — |
-| Other | ConfigProvider | ✅ | ✅ | [config-provider](../../components/config-provider) | 🔄 `useConfig` / `popupMatchSelectWidth`（4.6）；`holderRender`（4.7）；⚠️ `variant` / `warning.strict` 仍待补 |
+| Other | ConfigProvider | ✅ | ✅ | [config-provider](../../components/config-provider) | 🔄 `useConfig` / `popupMatchSelectWidth`（4.6）；`holderRender` / `warning.strict`（4.7）；`variant`（4.8，已接到 Input） |
 | Other | BorderBeam | ✅ 6.4 | ⏭ | — | 阶段 B |
 | Other | theme / css-in-js | ✅ | ✅（沿用 antdv 混合栈） | — | 不在首周做完整重写 |
 
@@ -133,8 +133,8 @@
 2. ~~**Splitter**（antd 5.21）~~ — ✅ `4.4.0`
 3. ~~**Input.OTP**（antd 5.12）~~ — ✅ `4.5.0`
 4. ~~ConfigProvider `useConfig` + `popupMatchSelectWidth`~~ — ✅ `4.6.0`
-5. ~~ConfigProvider `holderRender`~~ — ✅ `4.7.0`
-6. ConfigProvider `variant` / `warning.strict`（拆小 PR）
+5. ~~ConfigProvider `holderRender` / `warning.strict`~~ — ✅ `4.7.0`
+6. ~~ConfigProvider / Input `variant`~~ — ✅ `4.8.0`（⏭ underlined；其余录入组件按需接）
 7. Table / Form / DatePicker / Select / Modal 高频 API 缺口（逐项发版）
 8. ColorPicker 渐变 `mode` / `panelRender`；Splitter collapsible / lazy 补齐
 
@@ -146,4 +146,4 @@
 
 ---
 
-_上次更新：`4.7.0` ConfigProvider.holderRender。每发一版请同步改本表。_
+_上次更新：`4.8.0` ConfigProvider / Input variant。每发一版请同步改本表。_

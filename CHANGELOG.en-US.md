@@ -4,6 +4,13 @@
 
 ---
 
+## 4.8.0
+
+`2026-07-30`
+
+- 🌟 ConfigProvider supports `variant` (outlined / filled / borderless, antd ≥ 5.19)
+- 🌟 Input / TextArea support `variant` (antd ≥ 5.13); `bordered={false}` still maps to borderless
+
 ## 4.7.0
 
 `2026-07-30`

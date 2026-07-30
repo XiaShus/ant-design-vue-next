@@ -173,6 +173,25 @@ export const genBasicInputStyle = (token: InputToken): CSSObject => ({
     },
   },
 
+  '&-filled': {
+    backgroundColor: token.colorFillTertiary,
+    borderColor: 'transparent',
+    '&:hover': {
+      backgroundColor: token.colorFillSecondary,
+    },
+    '&:focus, &-focused': {
+      backgroundColor: token.colorBgContainer,
+      borderColor: token.colorPrimary,
+      boxShadow: `0 0 0 ${token.controlOutlineWidth}px ${token.controlOutline}`,
+      outline: 0,
+    },
+    '&-disabled, &[disabled]': {
+      backgroundColor: token.colorFillTertiary,
+      borderColor: 'transparent',
+      boxShadow: 'none',
+    },
+  },
+
   // Reset height for `textarea`s
   'textarea&': {
     maxWidth: '100%', // prevent textearea resize from coming out of its container
@@ -703,6 +722,19 @@ const genAffixStyle: GenerateStyle<InputToken> = (token: InputToken) => {
 
       // status
       ...genStatusStyle(token, `${componentCls}-affix-wrapper`),
+
+      [`&-filled`]: {
+        backgroundColor: token.colorFillTertiary,
+        borderColor: 'transparent',
+        [`&:not(${componentCls}-affix-wrapper-disabled):hover`]: {
+          backgroundColor: token.colorFillSecondary,
+        },
+        [`&-focused, &:focus`]: {
+          backgroundColor: token.colorBgContainer,
+          borderColor: token.colorPrimary,
+          boxShadow: `0 0 0 ${token.controlOutlineWidth}px ${token.controlOutline}`,
+        },
+      },
     },
   };
 };
