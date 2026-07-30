@@ -22,7 +22,7 @@
 
 | 分组 | 组件 | React `antd` | Vue Next | 文档链接 | 缺口备注 |
 | --- | --- | --- | --- | --- | --- |
-| General | Button | ✅ | ✅ | [button](../../components/button) | — |
+| General | Button | ✅ | ✅ | [button](../../components/button) | 🔄 `autoInsertSpace` ✅ 4.46.0 |
 | General | FloatButton | ✅ 5.0 | ✅ | [float-button](../../components/float-button) | — |
 | General | Icon | ✅ | ✅（`@ant-design/icons-vue`） | — | 图标包独立 |
 | General | Typography | ✅ | ✅ | [typography](../../components/typography) | — |
@@ -172,9 +172,10 @@
 41. ~~Notification `showProgress` / `pauseOnHover`~~ — ✅ `4.43.0`
 42. ~~Message `pauseOnHover`~~ — ✅ `4.44.0`
 43. ~~Segmented `shape="round"`~~ — ✅ `4.45.0`
-44. Table `virtual` 按需拆版（多日）
-45. ColorPicker 渐变 `mode`
-46. Segmented `vertical`（需 MotionThumb 竖向）
+44. ~~Button `autoInsertSpace`~~ — ✅ `4.46.0`
+45. Table `virtual` 按需拆版（多日）
+46. ColorPicker 渐变 `mode`
+47. Segmented `vertical`（需 MotionThumb 竖向）
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -184,4 +185,4 @@
 
 ---
 
-_上次更新：`4.45.0` Segmented.shape。每发一版请同步改本表。_
+_上次更新：`4.46.0` Button.autoInsertSpace。每发一版请同步改本表。_

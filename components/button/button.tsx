@@ -56,7 +56,9 @@ export default defineComponent({
     const innerLoading = shallowRef<Loading>(false);
     const hasTwoCNChar = shallowRef(false);
 
-    const autoInsertSpace = computed(() => autoInsertSpaceInButton.value !== false);
+    const autoInsertSpace = computed(
+      () => props.autoInsertSpace ?? autoInsertSpaceInButton.value !== false,
+    );
     const { compactSize, compactItemClassnames } = useCompactItemContext(prefixCls, direction);
 
     // =============== Update Loading ===============
@@ -112,7 +114,7 @@ export default defineComponent({
     const fixTwoCNChar = () => {
       // Fix for HOC usage like <FormatMessage />
       const node = buttonNodeRef.value!;
-      if (!node || autoInsertSpaceInButton.value === false) {
+      if (!node || autoInsertSpace.value === false) {
         return;
       }
       const buttonText = node.textContent;

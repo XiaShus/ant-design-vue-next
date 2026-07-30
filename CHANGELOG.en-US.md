@@ -4,6 +4,12 @@
 
 ---
 
+## 4.46.0
+
+`2026-07-31`
+
+- 🌟 Button supports per-instance `autoInsertSpace` (antd ≥ 5.17)
+
 ## 4.45.0
 
 `2026-07-31`

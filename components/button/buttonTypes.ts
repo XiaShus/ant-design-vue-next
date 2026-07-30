@@ -2,7 +2,7 @@ import PropTypes from '../_util/vue-types';
 
 import type { ExtractPropTypes, PropType } from 'vue';
 import type { SizeType } from '../config-provider';
-import { eventType } from '../_util/type';
+import { booleanType, eventType } from '../_util/type';
 import type { MouseEventHandler } from '../_util/EventInterface';
 
 export type ButtonType = 'link' | 'default' | 'primary' | 'ghost' | 'dashed' | 'text';
@@ -38,6 +38,8 @@ export const buttonProps = () => ({
   href: String,
   target: String,
   title: String,
+  /** We default to providing a space between two Chinese characters; set to false to disable */
+  autoInsertSpace: booleanType(),
   onClick: eventType<MouseEventHandler>(),
   onMousedown: eventType<MouseEventHandler>(),
 });
