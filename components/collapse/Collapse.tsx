@@ -60,7 +60,7 @@ export default defineComponent({
       },
       { deep: true },
     );
-    const { prefixCls, direction, rootPrefixCls } = useConfigInject('collapse', props);
+    const { prefixCls, direction, rootPrefixCls, size } = useConfigInject('collapse', props);
 
     // style
     const [wrapSSR, hashId] = useStyle(prefixCls);
@@ -186,6 +186,8 @@ export default defineComponent({
           [`${prefixCls.value}-icon-position-${iconPosition.value}`]: true,
           [`${prefixCls.value}-rtl`]: direction.value === 'rtl',
           [`${prefixCls.value}-ghost`]: !!ghost,
+          [`${prefixCls.value}-small`]: size.value === 'small',
+          [`${prefixCls.value}-large`]: size.value === 'large',
           [attrs.class as string]: !!attrs.class,
         },
         hashId.value,

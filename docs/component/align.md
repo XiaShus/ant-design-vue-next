@@ -83,7 +83,7 @@
 | Data Display | Calendar | ✅ | ✅ | [calendar](../../components/calendar) | — |
 | Data Display | Card | ✅ | ✅ | [card](../../components/card) | 🔄 `variant` ✅ 4.29.0 |
 | Data Display | Carousel | ✅ | ✅ | [carousel](../../components/carousel) | — |
-| Data Display | Collapse | ✅ | ✅ | [collapse](../../components/collapse) | 🔄 `destroyOnHidden` ✅ 4.14.0 |
+| Data Display | Collapse | ✅ | ✅ | [collapse](../../components/collapse) | 🔄 `destroyOnHidden` ✅ 4.14.0；🔄 `size` ✅ 4.30.0 |
 | Data Display | Descriptions | ✅ | ✅ | [descriptions](../../components/descriptions) | — |
 | Data Display | Empty | ✅ | ✅ | [empty](../../components/empty) | — |
 | Data Display | Image | ✅ | ✅ | [image](../../components/image) | — |
@@ -156,8 +156,9 @@
 25. ~~Alert object `closable`~~ — ✅ `4.27.0`
 26. ~~Avatar.Group `max`~~ — ✅ `4.28.0`
 27. ~~Card `variant`~~ — ✅ `4.29.0`
-28. Table `virtual` 按需拆版（多日）
-29. ColorPicker 渐变 `mode`
+28. ~~Collapse `size`~~ — ✅ `4.30.0`
+29. Table `virtual` 按需拆版（多日）
+30. ColorPicker 渐变 `mode`
 
 ## 阶段 B（仅规划，不急实现）
 

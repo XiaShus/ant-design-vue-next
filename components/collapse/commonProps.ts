@@ -6,6 +6,9 @@ export type CollapsibleType = 'header' | 'icon' | 'disabled';
 
 export type ActiveKeyType = Array<string | number> | string | number;
 
+/** Collapse size (antd ≥ 5.2). `default` / `middle` share the same style. */
+export type CollapseSize = 'large' | 'middle' | 'small' | 'default';
+
 export interface PanelProps {
   isActive?: boolean;
   header?: any;
@@ -32,6 +35,8 @@ const collapseProps = () => ({
   expandIconPosition: stringType<'start' | 'end'>(),
   collapsible: stringType<CollapsibleType>(),
   ghost: booleanType(),
+  /** Collapse size (antd ≥ 5.2). */
+  size: stringType<CollapseSize>(),
   onChange: functionType<(key: Key | Key[]) => void>(),
   'onUpdate:activeKey': functionType<(key: Key | Key[]) => void>(),
 });

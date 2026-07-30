@@ -9,6 +9,8 @@ type CollapseToken = FullToken<'Collapse'> & {
   collapseContentBg: string;
   collapseHeaderBg: string;
   collapseHeaderPadding: string;
+  collapseHeaderPaddingSM: string;
+  collapseHeaderPaddingLG: string;
   collapsePanelBorderRadius: number;
   collapseContentPaddingHorizontal: number;
 };
@@ -21,6 +23,8 @@ export const genBaseStyle: GenerateStyle<CollapseToken> = token => {
     collapseContentPaddingHorizontal,
     collapseHeaderBg,
     collapseHeaderPadding,
+    collapseHeaderPaddingSM,
+    collapseHeaderPaddingLG,
     collapsePanelBorderRadius,
 
     lineWidth,
@@ -30,9 +34,13 @@ export const genBaseStyle: GenerateStyle<CollapseToken> = token => {
     colorTextHeading,
     colorTextDisabled,
     fontSize,
+    fontSizeLG,
     lineHeight,
+    lineHeightLG,
     marginSM,
     paddingSM,
+    paddingLG,
+    paddingXS,
     motionDurationSlow,
     fontSizeIcon,
   } = token;
@@ -150,6 +158,41 @@ export const genBaseStyle: GenerateStyle<CollapseToken> = token => {
         },
       },
 
+      '&-small': {
+        [`> ${componentCls}-item`]: {
+          [`> ${componentCls}-header`]: {
+            padding: collapseHeaderPaddingSM,
+            paddingInlineStart: paddingXS,
+
+            [`> ${componentCls}-expand-icon`]: {
+              marginInlineStart: paddingSM - paddingXS,
+            },
+          },
+          [`> ${componentCls}-content > ${componentCls}-content-box`]: {
+            padding: paddingSM,
+          },
+        },
+      },
+
+      '&-large': {
+        [`> ${componentCls}-item`]: {
+          fontSize: fontSizeLG,
+          lineHeight: lineHeightLG,
+          [`> ${componentCls}-header`]: {
+            padding: collapseHeaderPaddingLG,
+            paddingInlineStart: padding,
+
+            [`> ${componentCls}-expand-icon`]: {
+              height: fontSizeLG * lineHeightLG,
+              marginInlineStart: paddingLG - padding,
+            },
+          },
+          [`> ${componentCls}-content > ${componentCls}-content-box`]: {
+            padding: paddingLG,
+          },
+        },
+      },
+
       [`& ${componentCls}-item-disabled > ${componentCls}-header`]: {
         [`
           &,
@@ -257,6 +300,8 @@ export default genComponentStyleHook('Collapse', token => {
     collapseContentBg: token.colorBgContainer,
     collapseHeaderBg: token.colorFillAlter,
     collapseHeaderPadding: `${token.paddingSM}px ${token.padding}px`,
+    collapseHeaderPaddingSM: `${token.paddingXS}px ${token.paddingSM}px`,
+    collapseHeaderPaddingLG: `${token.padding}px ${token.paddingLG}px`,
     collapsePanelBorderRadius: token.borderRadiusLG,
     collapseContentPaddingHorizontal: 16, // Fixed value
   });

@@ -28,6 +28,7 @@ A content area which can be collapsed and expanded.
 | expandIcon | allow to customize collapse icon | Function(props):VNode \| v-slot:expandIcon="props" |  |  |
 | expandIconPosition | Set expand icon position | `start` \| `end` | - | 4.0 |
 | ghost | Make the collapse borderless and its background transparent | boolean | false | 3.0 |
+| size | Set collapse size | `large` \| `middle` \| `small` \| `default` | `default` | 4.30.0 |
 
 ### events
 
