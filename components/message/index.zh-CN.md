@@ -57,6 +57,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*7qMTRoq3ZGkAAA
 | duration | 自动关闭的延时，单位秒。设为 0 时不自动关闭。 | number | 3 |  |
 | icon | 自定义图标 | VNode \| () => VNode | - |  |
 | key | 当前提示的唯一标志 | string \| number | - |  |
+| pauseOnHover | 悬停时是否暂停自动关闭计时 | boolean | true | 4.44.0 |
 | style | 自定义内联样式 | CSSProperties | - |  |
 | onClick | 点击 message 时触发的回调函数 | function | - |  |
 | onClose | 关闭时触发的回调函数 | function | - |  |
@@ -86,6 +87,7 @@ message.config({
 | duration | 默认自动关闭延时，单位秒 | number | 3 |  |  |
 | getContainer | 配置渲染节点的输出位置 | () => HTMLElement | () => document.body |  |  |
 | maxCount | 最大显示数, 超过限制时，最早的消息会被自动关闭 | number | - |  |  |
+| pauseOnHover | 悬停时是否暂停自动关闭计时 | boolean | true | 4.44.0 |  |
 | prefixCls | 消息节点的 className 前缀 | string | `ant-message` | 3.0 |  |
 | rtl | 是否开启 RTL 模式 | boolean | false |  |  |
 | top | 消息距离顶部的位置 | string | `8px` |  |  |

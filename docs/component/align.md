@@ -105,7 +105,7 @@
 | --- | --- | --- | --- | --- | --- |
 | Feedback | Alert | ✅ | ✅ | [alert](../../components/alert) | 🔄 object `closable` ✅ 4.27.0 |
 | Feedback | Drawer | ✅ | ✅ | [drawer](../../components/drawer) | 🔄 `destroyOnHidden` ✅ 4.11.0 |
-| Feedback | Message | ✅ | ✅ | [message](../../components/message) | — |
+| Feedback | Message | ✅ | ✅ | [message](../../components/message) | 🔄 `pauseOnHover` ✅ 4.44.0 |
 | Feedback | Modal | ✅ | ✅ | [modal](../../components/modal) | 🔄 `destroyOnHidden` ✅ 4.11.0；🔄 `afterOpenChange` ✅ 4.22.0 |
 | Feedback | Notification | ✅ | ✅ | [notification](../../components/notification) | 🔄 `showProgress` / `pauseOnHover` ✅ 4.43.0 |
 | Feedback | Popconfirm | ✅ | ✅ | [popconfirm](../../components/popconfirm) | — |
@@ -170,8 +170,10 @@
 39. ~~Skeleton.Node~~ — ✅ `4.41.0`
 40. ~~Tabs `indicator`~~ — ✅ `4.42.0`
 41. ~~Notification `showProgress` / `pauseOnHover`~~ — ✅ `4.43.0`
-42. Table `virtual` 按需拆版（多日）
-43. ColorPicker 渐变 `mode`
+42. ~~Message `pauseOnHover`~~ — ✅ `4.44.0`
+43. Table `virtual` 按需拆版（多日）
+44. ColorPicker 渐变 `mode`
+45. Segmented `vertical` / `shape="round"`
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -181,4 +183,4 @@
 
 ---
 
-_上次更新：`4.43.0` Notification.showProgress。每发一版请同步改本表。_
+_上次更新：`4.44.0` Message.pauseOnHover。每发一版请同步改本表。_

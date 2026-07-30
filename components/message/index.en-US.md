@@ -54,6 +54,7 @@ The properties of config are as follows:
 | duration | time(seconds) before auto-dismiss, don't dismiss if set to 0 | number | 3 |  |
 | icon | Customized Icon | VNode \| ()=> VNode | - |  |
 | key | The unique identifier of the Message | string\|number | - |  |
+| pauseOnHover | Whether to pause the timer on hover | boolean | true | 4.44.0 |
 | style | Customized inline style | CSSProperties | - |  |
 | onClick | Specify a function that will be called when the message is clicked | function | - |  |
 | onClose | Specify a function that will be called when the message is closed | function | - |  |
@@ -83,6 +84,7 @@ message.config({
 | duration | time before auto-dismiss, in seconds | number | 1.5 |  |
 | getContainer | Return the mount node for Message | () => HTMLElement | () => document.body |  |
 | maxCount | max message show, drop oldest if exceed limit | number | - |  |
+| pauseOnHover | Whether to pause the timer on hover | boolean | true | 4.44.0 |
 | prefixCls | The prefix className of message node | string | `ant-message` | 3.0 |
 | rtl | Whether to enable RTL mode | boolean | false | 3.0 |
 | top | distance from top | string | `8px` |  |

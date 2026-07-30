@@ -33,7 +33,10 @@ export interface ConfigOptions {
   transitionName?: string;
   maxCount?: number;
   rtl?: boolean;
+  pauseOnHover?: boolean;
 }
+
+let defaultPauseOnHover = true;
 
 function setMessageConfig(options: ConfigOptions) {
   if (options.top !== undefined) {
@@ -62,6 +65,9 @@ function setMessageConfig(options: ConfigOptions) {
   }
   if (options.rtl !== undefined) {
     rtl = options.rtl;
+  }
+  if (options.pauseOnHover !== undefined) {
+    defaultPauseOnHover = options.pauseOnHover;
   }
 }
 
@@ -127,10 +133,12 @@ export interface MessageArgsProps {
   class?: string;
   appContext?: any;
   onClick?: (e: MouseEvent) => void;
+  pauseOnHover?: boolean;
 }
 
 function notice(args: MessageArgsProps): MessageType {
   const duration = args.duration !== undefined ? args.duration : defaultDuration;
+  const pauseOnHover = args.pauseOnHover === undefined ? defaultPauseOnHover : args.pauseOnHover;
 
   const target = args.key || getKeyThenIncreaseKey();
   const closePromise = new Promise(resolve => {
@@ -144,6 +152,7 @@ function notice(args: MessageArgsProps): MessageType {
       instance.notice({
         key: target,
         duration,
+        pauseOnHover,
         style: args.style || {},
         class: args.class,
         content: ({ prefixCls }) => {

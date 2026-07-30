@@ -11,6 +11,8 @@ export interface ConfigOptions {
   transitionName?: string;
   maxCount?: number;
   rtl?: boolean;
+  /** Whether to pause the timer on hover. Default true */
+  pauseOnHover?: boolean;
 }
 
 export interface ArgsProps {
@@ -23,6 +25,8 @@ export interface ArgsProps {
   style?: CSSProperties;
   class?: string;
   onClick?: (e: Event) => void;
+  /** Whether to pause the timer on hover. Default true */
+  pauseOnHover?: boolean;
 }
 
 export type JointContent = VueNode | ArgsProps;
