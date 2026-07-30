@@ -42,6 +42,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*5-ArSLl5UBsAAA
 | maxTagCount | 最多显示多少个 tag，响应式模式会对性能产生损耗 | number \| `responsive` | - | 3.0 |
 | maxTagPlaceholder | 隐藏 tag 时显示的内容 | v-slot \| function(omittedValues) | - | 3.0 |
 | multiple | 支持多选节点 | boolean | - | 3.0 |
+| autoClearSearchValue | 选中后是否清空搜索框，仅在 `multiple` 时生效。推荐使用 `showSearch.autoClearSearchValue` | boolean | true | 4.53.0 |
 | notFoundContent | 当下拉列表为空时显示的内容 | string \| slot | 'Not Found' |  |
 | open | 控制浮层显隐 | boolean | - | 3.0 |
 | options | 可选项数据源 | [Option](#option)\[] | - |  |
@@ -61,13 +62,14 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*5-ArSLl5UBsAAA
 
 `showSearch` 为对象时，其中的字段：
 
-| 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| filter | 接收 `inputValue` `path` 两个参数，当 `path` 符合筛选条件时，应返回 true，反之则返回 false。 | `function(inputValue, path): boolean` |  |
-| limit | 搜索结果展示数量 | number \| false | 50 |
-| matchInputWidth | 搜索结果列表是否与输入框同宽 | boolean |  |
-| render | 用于渲染 filter 后的选项,可使用 #showSearchRender="{inputValue, path}" | `function({inputValue, path}): VNode` |  |
-| sort | 用于排序 filter 后的选项 | `function(a, b, inputValue)` |  |
+| 参数 | 说明 | 类型 | 默认值 | 版本 |
+| --- | --- | --- | --- | --- |
+| autoClearSearchValue | 选中后是否清空搜索框（仅多选） | boolean | true | 4.53.0 |
+| filter | 接收 `inputValue` `path` 两个参数，当 `path` 符合筛选条件时，应返回 true，反之则返回 false。 | `function(inputValue, path): boolean` |  |  |
+| limit | 搜索结果展示数量 | number \| false | 50 |  |
+| matchInputWidth | 搜索结果列表是否与输入框同宽 | boolean |  |  |
+| render | 用于渲染 filter 后的选项,可使用 #showSearchRender="{inputValue, path}" | `function({inputValue, path}): VNode` |  |  |
+| sort | 用于排序 filter 后的选项 | `function(a, b, inputValue)` |  |  |
 
 ### 事件
 

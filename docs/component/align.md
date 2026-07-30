@@ -56,7 +56,7 @@
 | 分组 | 组件 | React `antd` | Vue Next | 文档链接 | 缺口备注 |
 | --- | --- | --- | --- | --- | --- |
 | Data Entry | AutoComplete | ✅ | ✅ | [auto-complete](../../components/auto-complete) | 🔄 `variant` ✅ 4.12.0（经 Select） |
-| Data Entry | Cascader | ✅ | ✅ | [cascader](../../components/cascader) | 🔄 `variant` ✅ 4.10.0 |
+| Data Entry | Cascader | ✅ | ✅ | [cascader](../../components/cascader) | 🔄 `variant` ✅ 4.10.0；🔄 `autoClearSearchValue` ✅ 4.53.0 |
 | Data Entry | Checkbox | ✅ | ✅ | [checkbox](../../components/checkbox) | — |
 | Data Entry | ColorPicker | ✅ 5.5 | 🔄 ✅ 4.3.0 | [color-picker](../../components/color-picker) | 单色/预设/清除/格式；🔄 `destroyOnHidden` ✅ 4.14.0；🔄 `panelRender` ✅ 4.15.0；🔄 `disabledFormat` ✅ 4.19.0；⏭ 渐变 mode |
 | Data Entry | DatePicker | ✅ | ✅ | [date-picker](../../components/date-picker) | 🔄 `variant` ✅ 4.9.0；🔄 `needConfirm` ✅ 4.21.0；🔄 `showTime.changeOnScroll` ✅ 4.23.0 |
@@ -179,10 +179,10 @@
 48. ~~ConfigProvider `button`（color / variant / autoInsertSpace）~~ — ✅ `4.50.0`
 49. ~~FloatButton.Group `placement` / `closeIcon` + `htmlType`~~ — ✅ `4.51.0`
 50. ~~Image preview `toolbarRender`~~ — ✅ `4.52.0`
-51. Table `virtual` 按需拆版（多日）
-52. ColorPicker 渐变 `mode`
-53. Segmented `vertical`（需 MotionThumb 竖向）
-54. Cascader `autoClearSearchValue`
+51. ~~Cascader `autoClearSearchValue`~~ — ✅ `4.53.0`
+52. Table `virtual` 按需拆版（多日）
+53. ColorPicker 渐变 `mode`
+54. Segmented `vertical`（需 MotionThumb 竖向）
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -192,4 +192,4 @@
 
 ---
 
-_上次更新：`4.52.0` Image.preview.toolbarRender。每发一版请同步改本表。_
+_上次更新：`4.53.0` Cascader.autoClearSearchValue。每发一版请同步改本表。_

@@ -8,6 +8,12 @@
 
 ---
 
+## 4.53.0
+
+`2026-07-31`
+
+- 🌟 Cascader 支持 `autoClearSearchValue` / `showSearch.autoClearSearchValue`（对齐 antd ≥ 5.9）
+
 ## 4.52.0
 
 `2026-07-31`

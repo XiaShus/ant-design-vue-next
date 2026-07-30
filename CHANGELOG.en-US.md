@@ -4,6 +4,12 @@
 
 ---
 
+## 4.53.0
+
+`2026-07-31`
+
+- 🌟 Cascader supports `autoClearSearchValue` / `showSearch.autoClearSearchValue` (antd ≥ 5.9)
+
 ## 4.52.0
 
 `2026-07-31`

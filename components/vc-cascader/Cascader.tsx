@@ -36,6 +36,8 @@ export interface ShowSearchType<OptionType extends BaseOptionType = DefaultOptio
   sort?: (a: OptionType[], b: OptionType[], inputValue: string, fieldNames: FieldNames) => number;
   matchInputWidth?: boolean;
   limit?: number | false;
+  /** Whether to clear search on select when multiple (antd ≥ 5.9) */
+  autoClearSearchValue?: boolean;
 }
 
 export interface FieldNames {
@@ -88,6 +90,11 @@ function baseCascaderProps<OptionType extends BaseOptionType = DefaultOptionType
     },
     searchValue: String,
     onSearch: Function as PropType<(value: string) => void>,
+    /**
+     * Whether to clear search text on select.
+     * Only applies when multiple/checkable. Prefer `showSearch.autoClearSearchValue`.
+     */
+    autoClearSearchValue: { type: Boolean, default: undefined },
 
     // Trigger
     expandTrigger: String as PropType<'hover' | 'click'>,
@@ -332,8 +339,16 @@ export default defineComponent({
     };
 
     // =========================== Select ===========================
+    const mergedAutoClearSearchValue = computed(() => {
+      const fromShowSearch =
+        typeof props.showSearch === 'object' ? props.showSearch?.autoClearSearchValue : undefined;
+      return fromShowSearch ?? props.autoClearSearchValue ?? true;
+    });
+
     const onInternalSelect = (valuePath: SingleValueType) => {
-      setSearchValue('');
+      if (!multiple.value || mergedAutoClearSearchValue.value) {
+        setSearchValue('');
+      }
       if (!multiple.value) {
         triggerChange(valuePath);
       } else {

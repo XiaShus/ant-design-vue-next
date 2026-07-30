@@ -12,6 +12,7 @@
     <fields-name />
     <suffix />
     <multipleVue />
+    <autoClearSearchValue />
     <tagRender />
   </demo-sort>
 </template>
@@ -28,6 +29,7 @@ import Size from './size.vue';
 import FieldsName from './fields-name.vue';
 import Suffix from './suffix.vue';
 import multipleVue from './multiple.vue';
+import autoClearSearchValue from './auto-clear-search-value.vue';
 import tagRender from './tagRender.vue';
 
 import CN from '../index.zh-CN.md';
@@ -49,6 +51,7 @@ export default defineComponent({
     FieldsName,
     Suffix,
     multipleVue,
+    autoClearSearchValue,
     tagRender,
   },
 });

@@ -40,6 +40,7 @@ Cascade selection box.
 | maxTagCount | Max tag count to show. `responsive` will cost render performance | number \| `responsive` | - | 3.0 |
 | maxTagPlaceholder | Placeholder for not showing tags | v-slot \| function(omittedValues) | - | 3.0 |
 | multiple | Support multiple or not | boolean | - | 3.0 |
+| autoClearSearchValue | Whether to clear search text on select. Only applies when `multiple`. Prefer `showSearch.autoClearSearchValue` | boolean | true | 4.53.0 |
 | notFoundContent | Specify content to show when no result matches. | string \| slot | 'Not Found' |  |
 | open | set visible of cascader popup | boolean | - | 3.0 |
 | options | data options of cascade | [Option](#option)\[] | - |  |
@@ -59,13 +60,14 @@ Cascade selection box.
 
 Fields in `showSearch`:
 
-| Property | Description | Type | Default |
-| --- | --- | --- | --- |
-| filter | The function will receive two arguments, inputValue and option, if the function returns true, the option will be included in the filtered set; Otherwise, it will be excluded. | `function(inputValue, path): boolean` |  |
-| limit | Set the count of filtered items | number \| false | 50 |
-| matchInputWidth | Whether the width of result list equals to input's | boolean |  |
-| render | Used to render filtered options, you can use #showSearchRender="{inputValue, path}" | `function({inputValue, path}): VNode` |  |
-| sort | Used to sort filtered options. | `function(a, b, inputValue)` |  |
+| Property | Description | Type | Default | Version |
+| --- | --- | --- | --- | --- |
+| autoClearSearchValue | Whether to clear search text on select (multiple only) | boolean | true | 4.53.0 |
+| filter | The function will receive two arguments, inputValue and option, if the function returns true, the option will be included in the filtered set; Otherwise, it will be excluded. | `function(inputValue, path): boolean` |  |  |
+| limit | Set the count of filtered items | number \| false | 50 |  |
+| matchInputWidth | Whether the width of result list equals to input's | boolean |  |  |
+| render | Used to render filtered options, you can use #showSearchRender="{inputValue, path}" | `function({inputValue, path}): VNode` |  |  |
+| sort | Used to sort filtered options. | `function(a, b, inputValue)` |  |  |
 
 ### events
 
