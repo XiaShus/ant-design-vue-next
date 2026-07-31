@@ -657,6 +657,7 @@ const genAffixStyle: GenerateStyle<InputToken> = (token: InputToken) => {
     componentCls,
     inputAffixPadding,
     colorTextDescription,
+    colorError,
     motionDurationSlow,
     colorIcon,
     colorIconHover,
@@ -721,6 +722,10 @@ const genAffixStyle: GenerateStyle<InputToken> = (token: InputToken) => {
 
         '&-show-count-has-suffix': {
           marginInlineEnd: token.paddingXXS,
+        },
+
+        '&-out-of-range': {
+          color: colorError,
         },
 
         '&-prefix': {

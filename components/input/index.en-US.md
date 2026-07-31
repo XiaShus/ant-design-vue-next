@@ -26,6 +26,7 @@ A basic widget for getting the user input is a text field. Keyboard and mouse ca
 | variant | Variants of Input (antd ≥ 5.13) | `outlined` \| `filled` \| `borderless` \| `underlined` | `outlined` | 4.8.0 |
 | classNames | Semantic structure className | Record&lt;SemanticDOM, string> | - | 4.70.0 |
 | styles | Semantic structure style | Record&lt;SemanticDOM, CSSProperties> | - | 4.70.0 |
+| count | Character count config | [CountConfig](#countconfig) | - | 4.71.0 |
 | clearIcon | custom clear icon when allowClear | slot | `<CloseCircleFilled />` | 3.3.0 |
 | defaultValue | The initial input content | string |  |  |
 | disabled | Whether the input is disabled. | boolean | false |  |
@@ -49,6 +50,17 @@ A basic widget for getting the user input is a text field. Keyboard and mouse ca
 
 > When `Input` is used in a `Form.Item` context, if the `Form.Item` has the `id` and `options` props defined then `value`, `defaultValue`, and `id` props of `Input` are automatically set.
 
+#### CountConfig
+
+```ts
+interface CountConfig {
+  max?: number;
+  strategy?: (value: string) => number;
+  show?: boolean | ((args: { value: string; count: number; maxLength?: number }) => VueNode);
+  exceedFormatter?: (value: string, config: { max: number }) => string;
+}
+```
+
 ### TextArea
 
 | Property | Description | Type | Default | Version |  |
@@ -56,6 +68,7 @@ A basic widget for getting the user input is a text field. Keyboard and mouse ca
 | allowClear | allow to remove input content with clear icon | boolean \| { clearIcon?: VueNode } |  | 4.70.0（object） |  |
 | classNames | Semantic structure className | Record&lt;`textarea` \| `count` \| `affixWrapper`, string> | - | 4.70.0 |  |
 | styles | Semantic structure style | Record&lt;`textarea` \| `count` \| `affixWrapper`, CSSProperties> | - | 4.70.0 |  |
+| count | Character count config | [CountConfig](#countconfig) | - | 4.71.0 |  |
 | autosize | Height autosize feature, can be set to `true | false`or an object`{ minRows: 2, maxRows: 6 }` | boolean\|object | false |  |
 | defaultValue | The initial input content | string |  |  |  |
 | showCount | Whether show text count | boolean \| { formatter: (info: { value: string, count: number, maxLength?: number }) => string | false |  |  |

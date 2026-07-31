@@ -18,6 +18,7 @@
     <statusVue />
     <Otp />
     <StyleClass />
+    <Count />
   </demo-sort>
 </template>
 
@@ -40,6 +41,7 @@ import Variant from './variant.vue';
 import statusVue from './status.vue';
 import Otp from './otp.vue';
 import StyleClass from './style-class.vue';
+import Count from './count.vue';
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
 import { defineComponent } from 'vue';
@@ -66,6 +68,7 @@ export default defineComponent({
     Variant,
     Otp,
     StyleClass,
+    Count,
   },
 });
 </script>

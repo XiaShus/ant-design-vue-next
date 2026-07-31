@@ -103,6 +103,7 @@ The following APIs are shared by DatePicker, RangePicker.
 | prevIcon | The custom prev icon | slot | - | 3.0 |
 | size | To determine the size of the input box, the height of `large` and `small`, are 40px and 24px respectively, while default size is 32px | `large` \| `middle` \| `small` | - |  |
 | status | Set validation status | 'error' \| 'warning' | - | 3.3.0 |
+| prefix | The custom prefix | VueNode \| v-slot:prefix | - | 4.71.0 |
 | suffixIcon | The custom suffix icon | v-slot:suffixIcon | - |  |
 | superNextIcon | The custom super next icon | slot | - | 3.0 |
 | superPrevIcon | The custom super prev icon | slot | - | 3.0 |

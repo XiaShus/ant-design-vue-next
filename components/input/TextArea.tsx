@@ -13,6 +13,11 @@ import ResizableTextArea from './ResizableTextArea';
 import { textAreaProps } from './inputProps';
 import type { InputFocusOptions } from '../vc-input/utils/commonUtils';
 import { fixControlledValue, resolveOnChange, triggerFocus } from '../vc-input/utils/commonUtils';
+import {
+  formatCountDisplay,
+  getCountLength,
+  resolveCountConfig,
+} from '../vc-input/utils/countUtil';
 import classNames from '../_util/classNames';
 import { FormItemInputContext, useInjectFormItemContext } from '../form/FormItemContext';
 import type { FocusEventHandler } from '../_util/EventInterface';
@@ -70,7 +75,7 @@ export default defineComponent({
     const disabled = useInjectDisabled();
 
     const showCount = computed(() => {
-      return (props.showCount as any) === '' || props.showCount || false;
+      return (props.showCount as any) === '' || props.showCount || !!props.count || false;
     });
     // Max length value
     const hasMaxLength = computed(() => Number(props.maxlength) > 0);
@@ -190,6 +195,15 @@ export default defineComponent({
           props.maxlength,
         );
       }
+      const countConfig = resolveCountConfig(props.count, props.showCount);
+      if (
+        countConfig &&
+        countConfig.max != null &&
+        countConfig.exceedFormatter &&
+        getCountLength(triggerValue, countConfig.strategy) > countConfig.max
+      ) {
+        triggerValue = countConfig.exceedFormatter(triggerValue, { max: countConfig.max });
+      }
       resolveOnChange(e.currentTarget as any, e, triggerChange, triggerValue);
       setValue(triggerValue);
     };
@@ -197,7 +211,16 @@ export default defineComponent({
       const { class: customClass } = attrs;
       const mergedVariant = variant.value;
       const resizeProps = {
-        ...omit(props, ['allowClear', 'bordered', 'variant', 'classNames', 'styles', 'onClear']),
+        ...omit(props, [
+          'allowClear',
+          'bordered',
+          'variant',
+          'classNames',
+          'styles',
+          'onClear',
+          'count',
+          'showCount',
+        ]),
         ...attrs,
         class: [
           {
@@ -284,18 +307,20 @@ export default defineComponent({
         />
       );
 
-      if (showCount.value || formItemInputContext.hasFeedback) {
-        const valueLength = [...mergedValue.value].length;
+      const countConfig = resolveCountConfig(props.count, props.showCount as any);
+      const showCountNode = !!countConfig && countConfig.show !== false;
+      if (showCountNode || formItemInputContext.hasFeedback) {
+        const valueLength = countConfig
+          ? getCountLength(mergedValue.value, countConfig.strategy)
+          : [...mergedValue.value].length;
         let dataCount: VueNode = '';
-        if (typeof showCount.value === 'object') {
-          dataCount = showCount.value.formatter({
-            value: mergedValue.value,
-            count: valueLength,
-            maxlength,
-          });
+        if (countConfig) {
+          dataCount = formatCountDisplay(countConfig, mergedValue.value, valueLength, maxlength);
         } else {
           dataCount = `${valueLength}${hasMaxLength.value ? ` / ${maxlength}` : ''}`;
         }
+        const outOfRange =
+          !!countConfig && countConfig.max != null && valueLength > countConfig.max;
         textareaNode = (
           <div
             hidden={hidden}
@@ -303,10 +328,11 @@ export default defineComponent({
               `${prefixCls.value}-textarea`,
               {
                 [`${prefixCls.value}-textarea-rtl`]: direction.value === 'rtl',
-                [`${prefixCls.value}-textarea-show-count`]: showCount.value,
+                [`${prefixCls.value}-textarea-show-count`]: showCountNode,
                 [`${prefixCls.value}-textarea-in-form-item`]: formItemInputContext.isFormItemInput,
+                [`${prefixCls.value}-out-of-range`]: outOfRange,
               },
-              `${prefixCls.value}-textarea-show-count`,
+              showCountNode && `${prefixCls.value}-textarea-show-count`,
               customClass,
               hashId.value,
               props.classNames?.count,

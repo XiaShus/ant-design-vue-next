@@ -20,6 +20,13 @@ Jump to a page directly.
     <br />
     <a-pagination
       v-model:current="current2"
+      :show-quick-jumper="{ goButton: true }"
+      :total="500"
+      @change="onChange"
+    />
+    <br />
+    <a-pagination
+      v-model:current="current3"
       show-quick-jumper
       :total="500"
       disabled
@@ -32,6 +39,7 @@ Jump to a page directly.
 import { ref } from 'vue';
 const current1 = ref<number>(1);
 const current2 = ref<number>(2);
+const current3 = ref<number>(3);
 const onChange = (pageNumber: number) => {
   console.log('Page: ', pageNumber);
 };

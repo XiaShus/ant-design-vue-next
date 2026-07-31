@@ -4,6 +4,15 @@
 
 ---
 
+## 4.71.0
+
+`2026-07-31`
+
+- 🌟 Input / TextArea support `count` config (antd ≥ 5.10)
+- 🌟 DatePicker / RangePicker / TimePicker support `prefix` (antd ≥ 5.22)
+- 🌟 InputNumber support `changeOnWheel` and `suffix` (antd ≥ 5.14 / 5.20)
+- 📖 Pagination document object `showQuickJumper` `{ goButton }`
+
 ## 4.70.0
 
 `2026-07-31`

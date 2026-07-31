@@ -53,6 +53,8 @@ export const inputNumberProps = () => ({
   disabled: booleanType(),
   autofocus: booleanType(),
   keyboard: booleanType(true),
+  /** Change value on mouse wheel (antd ≥ 5.14). */
+  changeOnWheel: booleanType(),
 
   /** Parse display value to validate number */
   parser: functionType<(displayValue: string | undefined) => ValueType>(),
@@ -427,6 +429,14 @@ export default defineComponent({
       userTypingRef.value = false;
     };
 
+    const onWheel = (event: WheelEvent) => {
+      if (!props.changeOnWheel || props.disabled || props.readonly || !focus.value) {
+        return;
+      }
+      event.preventDefault();
+      onInternalStep(event.deltaY < 0);
+    };
+
     // >>> Focus & Blur
     const onBlur = (e: FocusEvent) => {
       flushInputValue(false);
@@ -547,6 +557,7 @@ export default defineComponent({
           style={style}
           onKeydown={onKeyDown}
           onKeyup={onKeyUp}
+          onWheel={onWheel}
         >
           {controls && (
             <StepHandler

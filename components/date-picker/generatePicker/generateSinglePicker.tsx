@@ -40,6 +40,7 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
       inheritAttrs: false,
       props: comProps,
       slots: Object as CustomSlotsType<{
+        prefix?: any;
         suffixIcon?: any;
         prevIcon?: any;
         nextIcon?: any;
@@ -180,6 +181,7 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
           const {
             placeholder,
             suffixIcon = slots.suffixIcon?.(),
+            prefix = slots.prefix?.() ?? (p as any).prefix,
             showToday = true,
             transitionName,
             allowClear = true,
@@ -196,6 +198,7 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
           delete (restProps as any).bordered;
           delete (restProps as any).variant;
           delete (restProps as any).cellRender;
+          delete (restProps as any).prefix;
           const mergedVariant = variant.value;
           const showTime = (p.showTime as string) === '' ? true : p.showTime;
           const { format } = p as any;
@@ -247,6 +250,7 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
               renderExtraFooter={renderExtraFooter}
               ref={pickerRef}
               placeholder={getPlaceholder(locale, mergedPicker, placeholder)}
+              prefix={prefix}
               suffixIcon={suffixNode}
               dropdownAlign={transPlacement2DropdownAlign(direction.value, props.placement)}
               clearIcon={

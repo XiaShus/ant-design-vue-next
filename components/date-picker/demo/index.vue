@@ -19,6 +19,7 @@
     <statusVue />
     <placementVue />
     <AllowClear />
+    <Prefix />
   </demo-sort>
 </template>
 <script>
@@ -41,6 +42,7 @@ import RangePicker from './range-picker.vue';
 import placementVue from './placement.vue';
 import statusVue from './status.vue';
 import AllowClear from './allow-clear.vue';
+import Prefix from './prefix.vue';
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
 import { defineComponent } from 'vue';
@@ -68,6 +70,7 @@ export default defineComponent({
     Bordered,
     RangePicker,
     AllowClear,
+    Prefix,
   },
 });
 </script>

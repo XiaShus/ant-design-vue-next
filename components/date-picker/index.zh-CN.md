@@ -104,6 +104,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*3OpRQKcygo8AAA
 | presets | 预设时间范围快捷选择 | { label: slot, value: [dayjs](https://day.js.org/) }[] | - | 4.0 |
 | size | 输入框大小，`large` 高度为 40px，`small` 为 24px，默认是 32px | `large` \| `middle` \| `small` | - |  |
 | status | 设置校验状态 | 'error' \| 'warning' | - | 3.3.0 |
+| prefix | 自定义的选择框前缀 | VueNode \| v-slot:prefix | - | 4.71.0 |
 | suffixIcon | 自定义的选择框后缀图标 | v-slot:suffixIcon | - |  |
 | superNextIcon | 自定义 `<<` 切换图标 | slot | - | 3.0 |
 | superPrevIcon | 自定义 `>>` 切换图标 | slot | - | 3.0 |

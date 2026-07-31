@@ -14,6 +14,7 @@ import {
   resolveOnChange,
   triggerFocus,
 } from './utils/commonUtils';
+import { formatCountDisplay, getCountLength, resolveCountConfig } from './utils/countUtil';
 import BaseInput from './BaseInput';
 import BaseInputCore, { type BaseInputExpose } from '../_util/BaseInput';
 
@@ -93,7 +94,17 @@ export default defineComponent({
     const handleChange = (e: ChangeEvent) => {
       const { value } = e.target as any;
       if (stateValue.value === value) return;
-      const newVal = e.target.value;
+      let newVal = e.target.value as string;
+      const countConfig = resolveCountConfig(props.count, props.showCount);
+      if (
+        countConfig &&
+        countConfig.max != null &&
+        countConfig.exceedFormatter &&
+        getCountLength(newVal, countConfig.strategy) > countConfig.max
+      ) {
+        newVal = countConfig.exceedFormatter(newVal, { max: countConfig.max });
+        (e.target as HTMLInputElement).value = newVal;
+      }
       resolveOnChange(inputRef.value.input as HTMLInputElement, e, triggerChange);
       setValue(newVal);
     };
@@ -154,8 +165,8 @@ export default defineComponent({
         'htmlSize',
         'lazy',
         'showCount',
+        'count',
         'valueModifiers',
-        'showCount',
         'affixWrapperClassName',
         'groupClassName',
         'inputClassName',
@@ -197,24 +208,29 @@ export default defineComponent({
       return inputNode;
     };
     const getSuffix = () => {
-      const { maxlength, suffix = slots.suffix?.(), showCount, prefixCls } = props;
-      // Max length value
-      const hasMaxLength = Number(maxlength) > 0;
+      const { maxlength, suffix = slots.suffix?.(), showCount, count, prefixCls } = props;
+      const countConfig = resolveCountConfig(count, showCount);
+      const valueStr = fixControlledValue(stateValue.value);
+      const valueLength = countConfig
+        ? getCountLength(valueStr, countConfig.strategy)
+        : [...valueStr].length;
+      const showCountNode = !!countConfig && countConfig.show !== false;
+      const outOfRange = !!countConfig && countConfig.max != null && valueLength > countConfig.max;
 
-      if (suffix || showCount) {
-        const valueLength = [...fixControlledValue(stateValue.value)].length;
-        const dataCount =
-          typeof showCount === 'object'
-            ? showCount.formatter({ count: valueLength, maxlength })
-            : `${valueLength}${hasMaxLength ? ` / ${maxlength}` : ''}`;
+      if (suffix || showCountNode) {
+        const dataCount = countConfig
+          ? formatCountDisplay(countConfig, valueStr, valueLength, maxlength)
+          : `${valueLength}${Number(maxlength) > 0 ? ` / ${maxlength}` : ''}`;
 
         return (
           <>
-            {!!showCount && (
+            {showCountNode && (
               <span
                 class={classNames(`${prefixCls}-show-count-suffix`, {
                   [`${prefixCls}-show-count-has-suffix`]: !!suffix,
+                  [`${prefixCls}-out-of-range`]: outOfRange,
                 })}
+                title={typeof dataCount === 'string' ? dataCount : undefined}
               >
                 {dataCount}
               </span>
@@ -236,7 +252,7 @@ export default defineComponent({
       const { prefixCls, disabled, ...rest } = props;
       return (
         <BaseInput
-          {...rest}
+          {...omit(rest as any, ['count', 'showCount'])}
           {...attrs}
           ref={rootRef}
           prefixCls={prefixCls}

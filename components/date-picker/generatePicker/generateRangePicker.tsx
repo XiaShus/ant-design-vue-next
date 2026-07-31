@@ -41,6 +41,7 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
       ...extraProps,
     },
     slots: Object as CustomSlotsType<{
+      prefix?: any;
       suffixIcon?: any;
       prevIcon?: any;
       nextIcon?: any;
@@ -162,6 +163,7 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
           prefixCls: customizePrefixCls,
           placeholder,
           suffixIcon = slots.suffixIcon?.(),
+          prefix = slots.prefix?.() ?? (p as any).prefix,
           picker = 'date',
           transitionName,
           allowClear = true,
@@ -178,6 +180,7 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
         delete restProps.bordered;
         delete restProps.variant;
         delete (restProps as any).cellRender;
+        delete (restProps as any).prefix;
         const mergedVariant = variant.value;
         const { format, showTime } = p as any;
 
@@ -217,6 +220,7 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
             ref={pickerRef}
             dropdownAlign={transPlacement2DropdownAlign(direction.value, props.placement)}
             placeholder={getRangePlaceholder(locale, picker, placeholder as [string, string])}
+            prefix={prefix}
             suffixIcon={suffixNode}
             clearIcon={
               (typeof allowClear === 'object' && allowClear?.clearIcon) ||

@@ -40,6 +40,8 @@ export const inputNumberProps = () => ({
   addonBefore: PropTypes.any,
   addonAfter: PropTypes.any,
   prefix: PropTypes.any,
+  /** Suffix content (antd ≥ 5.20). */
+  suffix: PropTypes.any,
   'onUpdate:value': baseProps.onChange,
   valueModifiers: Object,
   status: stringType<InputStatus>(),
@@ -57,6 +59,7 @@ const InputNumber = defineComponent({
     addonBefore?: any;
     addonAfter?: any;
     prefix?: any;
+    suffix?: any;
     default?: any;
     upIcon?: any;
     downIcon?: any;
@@ -122,6 +125,7 @@ const InputNumber = defineComponent({
         addonBefore = slots.addonBefore?.(),
         addonAfter = slots.addonAfter?.(),
         prefix = slots.prefix?.(),
+        suffix = slots.suffix?.(),
         valueModifiers = {},
         ...others
       } = { ...attrs, ...props, id, disabled: mergedDisabled.value } as InputNumberProps &
@@ -171,7 +175,8 @@ const InputNumber = defineComponent({
       );
       const hasAddon = isValidValue(addonBefore) || isValidValue(addonAfter);
       const hasPrefix = isValidValue(prefix);
-      if (hasPrefix || hasFeedback) {
+      const hasSuffix = isValidValue(suffix) || hasFeedback;
+      if (hasPrefix || hasSuffix) {
         const affixWrapperCls = classNames(
           `${preCls}-affix-wrapper`,
           getStatusClassNames(`${preCls}-affix-wrapper`, mergedStatus.value, hasFeedback),
@@ -194,7 +199,12 @@ const InputNumber = defineComponent({
           <div class={affixWrapperCls} style={style} onClick={focus}>
             {hasPrefix && <span class={`${preCls}-prefix`}>{prefix}</span>}
             {element}
-            {hasFeedback && <span class={`${preCls}-suffix`}>{feedbackIcon}</span>}
+            {hasSuffix && (
+              <span class={`${preCls}-suffix`}>
+                {suffix}
+                {hasFeedback && feedbackIcon}
+              </span>
+            )}
           </div>
         );
       }

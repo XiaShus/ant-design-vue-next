@@ -27,6 +27,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*sBqqTatJ-AkAAA
 | variant | 形态变体（对齐 antd ≥ 5.13） | `outlined` \| `filled` \| `borderless` \| `underlined` | `outlined` | 4.8.0 |
 | classNames | 语义化结构 className | Record&lt;SemanticDOM, string> | - | 4.70.0 |
 | styles | 语义化结构 style | Record&lt;SemanticDOM, CSSProperties> | - | 4.70.0 |
+| count | 字符计数配置 | [CountConfig](#countconfig) | - | 4.71.0 |
 | clearIcon | 自定义清除图标 （allowClear 为 true 时生效） | slot | `<CloseCircleFilled />` | 3.3.0 |
 | defaultValue | 输入框默认内容 | string |  |  |
 | disabled | 是否禁用状态，默认为 false | boolean | false |  |
@@ -50,6 +51,17 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*sBqqTatJ-AkAAA
 
 > 如果 `Input` 在 `Form.Item` 内，并且 `Form.Item` 设置了 `id` 和 `options` 属性，则 `value` `defaultValue` 和 `id` 属性会被自动设置。
 
+#### CountConfig
+
+```ts
+interface CountConfig {
+  max?: number;
+  strategy?: (value: string) => number;
+  show?: boolean | ((args: { value: string; count: number; maxLength?: number }) => VueNode);
+  exceedFormatter?: (value: string, config: { max: number }) => string;
+}
+```
+
 ### TextArea
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |  |
@@ -57,6 +69,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*sBqqTatJ-AkAAA
 | allowClear | 可以点击清除图标删除内容 | boolean \| { clearIcon?: VueNode } |  | 4.70.0（object） |  |
 | classNames | 语义化结构 className | Record&lt;`textarea` \| `count` \| `affixWrapper`, string> | - | 4.70.0 |  |
 | styles | 语义化结构 style | Record&lt;`textarea` \| `count` \| `affixWrapper`, CSSProperties> | - | 4.70.0 |  |
+| count | 字符计数配置 | [CountConfig](#countconfig) | - | 4.71.0 |  |
 | autosize | 自适应内容高度，可设置为 `true | false` 或对象：`{ minRows: 2, maxRows: 6 }` | boolean\|object | false |  |
 | defaultValue | 输入框默认内容 | string |  |  |  |
 | \_ | showCount | 是否展示字数 | boolean \| { formatter: (info: { value: string, count: number, maxLength?: number }) => string } | false |  |  | \_ |

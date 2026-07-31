@@ -933,6 +933,7 @@ const genPickerStyle: GenerateStyle<PickerToken> = token => {
     colorBgContainerDisabled,
     colorTextDisabled,
     colorTextPlaceholder,
+    colorText,
     controlHeightLG,
     fontSizeLG,
     controlHeightSM,
@@ -990,7 +991,7 @@ const genPickerStyle: GenerateStyle<PickerToken> = token => {
           borderColor: colorBorder,
           cursor: 'not-allowed',
 
-          [`${componentCls}-suffix`]: {
+          [`${componentCls}-suffix, ${componentCls}-prefix`]: {
             color: colorTextDisabled,
           },
         },
@@ -1027,6 +1028,25 @@ const genPickerStyle: GenerateStyle<PickerToken> = token => {
           [`&${componentCls}-focused`]: {
             borderBottomColor: `${token.colorPrimary} !important`,
             boxShadow: 'none !important',
+          },
+        },
+
+        // ======================== Prefix ========================
+        [`${componentCls}-prefix`]: {
+          display: 'flex',
+          flex: 'none',
+          alignItems: 'center',
+          marginInlineEnd: inputPaddingHorizontal / 2,
+          color: colorText,
+          lineHeight: 1,
+          pointerEvents: 'none',
+
+          '> *': {
+            lineHeight: 1,
+
+            '&:not(:last-child)': {
+              marginInlineEnd: token.paddingXS,
+            },
           },
         },
 

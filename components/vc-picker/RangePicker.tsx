@@ -227,6 +227,7 @@ function RangerPicker<DateType>() {
       'ranges',
       'allowEmpty',
       'allowClear',
+      'prefix',
       'suffixIcon',
       'clearIcon',
       'pickerRef',
@@ -1029,6 +1030,7 @@ function RangerPicker<DateType>() {
           disabledDate,
           panelRender,
           allowClear,
+          prefix,
           suffixIcon,
           clearIcon,
           inputReadOnly,
@@ -1170,6 +1172,11 @@ function RangerPicker<DateType>() {
         );
 
         // ============================= Icons =============================
+        let prefixNode: VueNode;
+        if (prefix != null && prefix !== false && prefix !== '') {
+          prefixNode = <span class={`${prefixCls}-prefix`}>{prefix}</span>;
+        }
+
         let suffixNode: VueNode;
         if (suffixIcon) {
           suffixNode = <span class={`${prefixCls}-suffix`}>{suffixIcon}</span>;
@@ -1244,6 +1251,7 @@ function RangerPicker<DateType>() {
             onMouseup={onMouseup}
             {...getDataOrAriaProps(props)}
           >
+            {prefixNode}
             <div
               class={classNames(`${prefixCls}-input`, {
                 [`${prefixCls}-input-active`]: mergedActivePickerIndex.value === 0,

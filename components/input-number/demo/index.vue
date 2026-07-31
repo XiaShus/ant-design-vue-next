@@ -12,6 +12,7 @@
     <prefixVue />
     <statusVue />
     <iconVue />
+    <changeOnWheelVue />
   </demo-sort>
 </template>
 <script lang="ts">
@@ -27,6 +28,7 @@ import outOfRangeVue from './out-of-range.vue';
 import prefixVue from './prefix.vue';
 import statusVue from './status.vue';
 import iconVue from './icon.vue';
+import changeOnWheelVue from './change-on-wheel.vue';
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
 import { defineComponent } from 'vue';
@@ -47,6 +49,7 @@ export default defineComponent({
     borderlessVue,
     keyboardVue,
     outOfRangeVue,
+    changeOnWheelVue,
   },
 });
 </script>

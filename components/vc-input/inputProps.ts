@@ -101,6 +101,8 @@ export const inputProps = () => ({
     default: undefined,
   },
   showCount: { type: [Boolean, Object] as PropType<boolean | ShowCountProps> },
+  /** Character count config (antd ≥ 5.10). Prefer over `showCount`. */
+  count: objectType<CountConfig>(),
   htmlSize: Number,
   onPressEnter: Function as PropType<KeyboardEventHandler>,
   onKeydown: Function as PropType<KeyboardEventHandler>,
@@ -120,6 +122,17 @@ export type InputProps = Partial<ExtractPropTypes<ReturnType<typeof inputProps>>
 
 export interface ShowCountProps {
   formatter: (args: { count: number; maxlength?: number; value?: string }) => VueNode;
+}
+
+export interface CountConfig {
+  /** Soft max: warning when exceeded, not native truncate. */
+  max?: number;
+  /** Custom character count strategy (e.g. emoji as 1). */
+  strategy?: (value: string) => number;
+  /** Same as showCount; function customizes display. */
+  show?: boolean | ((args: { value: string; count: number; maxLength?: number }) => VueNode);
+  /** Clip value when over `max`; no clip if omitted. */
+  exceedFormatter?: (value: string, config: { max: number }) => string;
 }
 
 export interface InputRef {

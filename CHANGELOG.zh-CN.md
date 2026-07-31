@@ -8,6 +8,15 @@
 
 ---
 
+## 4.71.0
+
+`2026-07-31`
+
+- 🌟 Input / TextArea 支持 `count` 字数配置（对齐 antd ≥ 5.10）
+- 🌟 DatePicker / RangePicker / TimePicker 支持 `prefix`（对齐 antd ≥ 5.22）
+- 🌟 InputNumber 支持 `changeOnWheel` 与 `suffix`（对齐 antd ≥ 5.14 / 5.20）
+- 📖 Pagination 文档补充对象型 `showQuickJumper` `{ goButton }`
+
 ## 4.70.0
 
 `2026-07-31`

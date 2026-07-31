@@ -3,7 +3,10 @@ import omit from '../_util/omit';
 import type { VueNode } from '../_util/type';
 import { eventType, objectType } from '../_util/type';
 import type { CompositionEventHandler } from '../_util/EventInterface';
+import type { CountConfig } from '../vc-input/inputProps';
 import { inputProps as vcInputProps } from '../vc-input/inputProps';
+
+export type { CountConfig };
 
 export const inputDefaultValue = Symbol() as unknown as string;
 

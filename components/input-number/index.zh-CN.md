@@ -24,6 +24,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*1uH-R5kLAMIAAA
 | autofocus | 自动获取焦点 | boolean | false |  |
 | bordered | 是否有边框，请优先使用 `variant` | boolean | true | 3.0 |
 | variant | 形态变体（对齐 antd ≥ 5.13） | `outlined` \| `filled` \| `borderless` \| `underlined` | `outlined` | 4.9.0 |
+| changeOnWheel | 聚焦后滚轮改值 | boolean | false | 4.71.0 |
 | controls | 是否显示增减按钮 | boolean | true | 3.0 |
 | decimalSeparator | 小数点 | string | - |  |
 | defaultValue | 初始值 | number |  |  |
@@ -35,6 +36,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*1uH-R5kLAMIAAA
 | parser | 指定从 formatter 里转换回数字的方式，和 formatter 搭配使用 | function( string): number | - |  |
 | precision | 数值精度 | number | - |  |
 | prefix | 带有前缀图标的 input | slot | - | 3.0 |
+| suffix | 带有后缀内容的 input | slot | - | 4.71.0 |
 | size | 输入框大小 | string | - |  |
 | status | 设置校验状态 | 'error' \| 'warning' | - | 3.3.0 |
 | step | 每次改变步数，可以为小数 | number\|string | 1 |  |

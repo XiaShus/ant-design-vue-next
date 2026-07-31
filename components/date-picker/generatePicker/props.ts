@@ -25,6 +25,7 @@ import {
   booleanType,
   objectType,
   functionType,
+  anyType,
 } from '../../_util/type';
 import type { InputStatus } from '../../_util/statusUtils';
 
@@ -64,6 +65,8 @@ function commonProps<DateType = any>() {
     // Value
     // format:  string | CustomFormat<DateType> | (string | CustomFormat<DateType>)[];
     // Render
+    /** Custom prefix content (antd ≥ 5.22). */
+    prefix: anyType(),
     // suffixIcon?: VueNode;
     // clearIcon?: VueNode;
     // prevIcon?: VueNode;
@@ -142,6 +145,8 @@ export interface CommonProps<DateType> {
   defaultOpen?: boolean;
   inputReadOnly?: boolean;
   format?: string | CustomFormat<DateType> | (string | CustomFormat<DateType>)[];
+  /** Custom prefix content (antd ≥ 5.22). */
+  prefix?: VueNode;
   suffixIcon?: VueNode;
   clearIcon?: VueNode;
   prevIcon?: VueNode;

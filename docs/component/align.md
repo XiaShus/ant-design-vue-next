@@ -47,7 +47,7 @@
 | Navigation | Breadcrumb | ✅ | ✅ | [breadcrumb](../../components/breadcrumb) | 🔄 `items` ✅ 4.34.0 |
 | Navigation | Dropdown | ✅ | ✅ | [dropdown](../../components/dropdown) | 🔄 `destroyOnHidden` ✅ 4.14.0；🔄 `popupRender` ✅ 4.69.0 |
 | Navigation | Menu | ✅ | ✅ | [menu](../../components/menu) | — |
-| Navigation | Pagination | ✅ | ✅ | [pagination](../../components/pagination) | 🔄 `align` ✅ 4.35.0 |
+| Navigation | Pagination | ✅ | ✅ | [pagination](../../components/pagination) | 🔄 `align` ✅ 4.35.0；📖 object `showQuickJumper` ✅ 4.71.0 |
 | Navigation | Steps | ✅ | ✅ | [steps](../../components/steps) | — |
 | Navigation | Tabs | ✅ | ✅ | [tabs](../../components/tabs) | 🔄 `destroyOnHidden` ✅ 4.14.0；🔄 `indicator` ✅ 4.42.0 |
 
@@ -59,17 +59,17 @@
 | Data Entry | Cascader | ✅ | ✅ | [cascader](../../components/cascader) | 🔄 `variant` ✅ 4.10.0；🔄 `autoClearSearchValue` ✅ 4.53.0；🔄 `optionRender` ✅ 4.68.0；🔄 `prefix` ✅ 4.69.0 |
 | Data Entry | Checkbox | ✅ | ✅ | [checkbox](../../components/checkbox) | 🔄 options `className` / `style` ✅ 4.70.0 |
 | Data Entry | ColorPicker | ✅ 5.5 | 🔄 ✅ 4.3.0 | [color-picker](../../components/color-picker) | 单色/预设/清除/格式；🔄 `destroyOnHidden` ✅ 4.14.0；🔄 `panelRender` ✅ 4.15.0；🔄 `disabledFormat` ✅ 4.19.0；⏭ 渐变 mode |
-| Data Entry | DatePicker | ✅ | ✅ | [date-picker](../../components/date-picker) | 🔄 `variant` ✅ 4.9.0；🔄 `needConfirm` ✅ 4.21.0；🔄 `showTime.changeOnScroll` ✅ 4.23.0；🔄 `cellRender` ✅ 4.61.0；🔄 object `allowClear` ✅ 4.70.0 |
+| Data Entry | DatePicker | ✅ | ✅ | [date-picker](../../components/date-picker) | 🔄 `variant` ✅ 4.9.0；🔄 `needConfirm` ✅ 4.21.0；🔄 `showTime.changeOnScroll` ✅ 4.23.0；🔄 `cellRender` ✅ 4.61.0；🔄 object `allowClear` ✅ 4.70.0；🔄 `prefix` ✅ 4.71.0 |
 | Data Entry | Form | ✅ | ✅ | [form](../../components/form) | 🔄 `variant` ✅ 4.10.0；🔄 `feedbackIcons` ✅ 4.40.0；🔄 `scrollToFirstError` `{ focus }` / `focusField` ✅ 4.57.0 |
-| Data Entry | Input | ✅ | ✅ | [input](../../components/input) | 🔄 `Input.OTP` ✅ 4.5.0；`variant` ✅ 4.8.0；🔄 `underlined` ✅ 4.18.0；🔄 `classNames` / `styles` / object `allowClear` / `onClear` ✅ 4.70.0 |
-| Data Entry | InputNumber | ✅ | ✅ | [input-number](../../components/input-number) | 🔄 `variant` ✅ 4.9.0 |
+| Data Entry | Input | ✅ | ✅ | [input](../../components/input) | 🔄 `Input.OTP` ✅ 4.5.0；`variant` ✅ 4.8.0；🔄 `underlined` ✅ 4.18.0；🔄 `classNames` / `styles` / object `allowClear` / `onClear` ✅ 4.70.0；🔄 `count` ✅ 4.71.0 |
+| Data Entry | InputNumber | ✅ | ✅ | [input-number](../../components/input-number) | 🔄 `variant` ✅ 4.9.0；🔄 `changeOnWheel` / `suffix` ✅ 4.71.0 |
 | Data Entry | Mentions | ✅ | ✅ | [mentions](../../components/mentions) | 🔄 `variant` ✅ 4.12.0 |
 | Data Entry | Radio | ✅ | ✅ | [radio](../../components/radio) | 🔄 `block` + options `className` / `style` ✅ 4.70.0 |
 | Data Entry | Rate | ✅ | ✅ | [rate](../../components/rate) | — |
 | Data Entry | Select | ✅ | ✅ | [select](../../components/select) | 🔄 `variant` ✅ 4.9.0；🔄 `maxCount` ✅ 4.20.0；🔄 `labelRender` / `optionRender` ✅ 4.67.0；🔄 `prefix` ✅ 4.69.0 |
 | Data Entry | Slider | ✅ | ✅ | [slider](../../components/slider) | 🔄 nested `tooltip` ✅ 4.56.0 |
 | Data Entry | Switch | ✅ | ✅ | [switch](../../components/switch) | — |
-| Data Entry | TimePicker | ✅ | ✅ | [time-picker](../../components/time-picker) | 🔄 `needConfirm` ✅ 4.21.0；🔄 `changeOnScroll` ✅ 4.23.0；🔄 object `allowClear` ✅ 4.70.0（经 DatePicker） |
+| Data Entry | TimePicker | ✅ | ✅ | [time-picker](../../components/time-picker) | 🔄 `needConfirm` ✅ 4.21.0；🔄 `changeOnScroll` ✅ 4.23.0；🔄 object `allowClear` ✅ 4.70.0；🔄 `prefix` ✅ 4.71.0（经 DatePicker） |
 | Data Entry | Transfer | ✅ | ✅ | [transfer](../../components/transfer) | 🔄 `selectionsIcon` ✅ 4.36.0 |
 | Data Entry | TreeSelect | ✅ | ✅ | [tree-select](../../components/tree-select) | 🔄 `variant` ✅ 4.10.0；🔄 `maxCount` ✅ 4.20.0；🔄 `labelRender` ✅ 4.68.0；🔄 `prefix` ✅ 4.69.0 |
 | Data Entry | Upload | ✅ | ✅ | [upload](../../components/upload) | — |
@@ -200,9 +200,10 @@
 69. ColorPicker 渐变 `mode`
 70. Segmented `vertical`（需 MotionThumb 竖向）
 71. ~~Input / TextArea semantic + Radio `block` + Checkbox/Radio option style + DatePicker object `allowClear`~~ — ✅ `4.70.0`
-72. Input `count` 配置对象（antd ≥ 5.10）
-73. DatePicker / TimePicker `prefix`（需 vc-picker 内容区）
-74. Pagination `showQuickJumper` object 文档对齐
+72. ~~Input `count` + DatePicker/TimePicker `prefix` + InputNumber `changeOnWheel`/`suffix` + Pagination `showQuickJumper` docs~~ — ✅ `4.71.0`
+73. Upload `listType="picture-circle"`
+74. InputNumber `controls` `{ upIcon, downIcon }` 对象配置
+75. Alert / Result 小缺口或 semantic（择优）
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -212,4 +213,4 @@
 
 ---
 
-_上次更新：`4.70.0` 批次（Input 语义化 / Radio `block` / Checkbox options 样式 / DatePicker object `allowClear`）。每发一版请同步改本表；之后默认每版打包 4–6 项。_
+_上次更新：`4.71.0` 批次（Input `count` / DatePicker `prefix` / InputNumber wheel+suffix / Pagination jumper 文档）。每发一版请同步改本表；之后默认每版打包 4–6 项。_

@@ -68,6 +68,8 @@ export type PickerSharedProps<DateType> = {
   format?: string | CustomFormat<DateType> | (string | CustomFormat<DateType>)[];
 
   // Render
+  /** Custom prefix content (antd ≥ 5.22). */
+  prefix?: VueNode;
   suffixIcon?: VueNode;
   clearIcon?: VueNode;
   prevIcon?: VueNode;
@@ -169,6 +171,7 @@ function Picker<DateType>() {
       'open',
       'defaultOpen',
       'defaultOpenValue',
+      'prefix',
       'suffixIcon',
       'presets',
       'clearIcon',
@@ -456,6 +459,7 @@ function Picker<DateType>() {
           autofocus,
           picker = 'date',
           defaultOpenValue,
+          prefix,
           suffixIcon,
           clearIcon,
           disabled,
@@ -530,6 +534,11 @@ function Picker<DateType>() {
             {panelNode}
           </div>
         );
+
+        let prefixNode: VueNode;
+        if (prefix != null && prefix !== false && prefix !== '') {
+          prefixNode = <span class={`${prefixCls}-prefix`}>{prefix}</span>;
+        }
 
         let suffixNode: VueNode;
         if (suffixIcon) {
@@ -616,6 +625,7 @@ function Picker<DateType>() {
               })}
               ref={inputDivRef}
             >
+              {prefixNode}
               {inputNode}
               {suffixNode}
               {clearNode}

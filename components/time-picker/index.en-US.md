@@ -39,6 +39,7 @@ By clicking the input box, you can select a time from a popup panel.
 | renderExtraFooter | Called from time picker panel to render some addon to its bottom | v-slot:renderExtraFooter | - |  |
 | secondStep | Interval between seconds in picker | number | 1 |  |
 | showNow | Whether to show `Now` button on panel | boolean | - |  |
+| prefix | The custom prefix | VueNode \| v-slot:prefix | - | 4.71.0 |
 | suffixIcon | The custom suffix icon | v-slot:suffixIcon | - |  |
 | use12Hours | Display as 12 hours format, with default format `h:mm:ss a` | boolean | false |  |
 | value(v-model) | To set time | [dayjs](https://day.js.org/) | - |  |
