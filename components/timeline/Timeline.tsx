@@ -133,9 +133,9 @@ export default defineComponent({
         hashId.value,
       );
       return wrapSSR(
-        <ul {...attrs} class={classString}>
+        <ol {...attrs} class={classString}>
           {renderedItems}
-        </ul>,
+        </ol>,
       );
     };
   },

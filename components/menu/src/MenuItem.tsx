@@ -30,6 +30,8 @@ export const menuItemProps = () => ({
   danger: Boolean,
   title: { type: [String, Boolean], default: undefined },
   icon: PropTypes.any,
+  /** Extra content after label (antd ≥ 5.20). */
+  extra: PropTypes.any,
   onMouseenter: Function as PropType<MouseEventHandler>,
   onMouseleave: Function as PropType<MouseEventHandler>,
   onClick: Function as PropType<MouseEventHandler>,
@@ -48,6 +50,7 @@ export default defineComponent({
   props: menuItemProps(),
   slots: Object as CustomSlotsType<{
     icon?: any;
+    extra?: any;
     title?: any;
     default?: any;
   }>,
@@ -177,8 +180,19 @@ export default defineComponent({
       emit('focus', e);
     };
 
-    const renderItemChildren = (icon: any, children: any) => {
-      const wrapNode = <span class={`${prefixCls.value}-title-content`}>{children}</span>;
+    const renderItemChildren = (icon: any, children: any, extra: any) => {
+      const titleContentClass = [
+        `${prefixCls.value}-title-content`,
+        extra != null && extra !== false ? `${prefixCls.value}-title-content-with-extra` : '',
+      ];
+      const wrapNode = (
+        <span class={titleContentClass}>
+          {children}
+          {extra != null && extra !== false && (
+            <span class={`${prefixCls.value}-item-extra`}>{extra}</span>
+          )}
+        </span>
+      );
       // inline-collapsed.md demo 依赖 span 来隐藏文字,有 icon 属性，则内部包裹一个 span
       // ref: https://github.com/ant-design/ant-design/pull/23456
       if (!icon || (isValidElement(children) && children.type === 'span')) {
@@ -224,6 +238,7 @@ export default defineComponent({
       }
 
       const icon = props.icon ?? slots.icon?.(props);
+      const extra = props.extra ?? slots.extra?.();
       return (
         <Tooltip
           {...tooltipProps}
@@ -262,7 +277,7 @@ export default defineComponent({
               },
               false,
             )}
-            {renderItemChildren(icon, children)}
+            {renderItemChildren(icon, children, extra)}
           </Overflow.Item>
         </Tooltip>
       );

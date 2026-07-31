@@ -2,7 +2,7 @@ import { defineComponent, computed } from 'vue';
 import type { App as TypeApp, Plugin } from 'vue';
 import { initDefaultProps } from '../_util/props-util';
 import classNames from '../_util/classNames';
-import { objectType } from '../_util/type';
+import { objectType, someType } from '../_util/type';
 import useConfigInject from '../config-provider/hooks/useConfigInject';
 import useMessage from '../message/useMessage';
 import useModal from '../modal/useModal';
@@ -21,6 +21,8 @@ export const AppProps = () => {
     rootClassName: String,
     message: objectType<AppConfig['message']>(),
     notification: objectType<AppConfig['notification']>(),
+    /** Render tag; `false` skips wrapper (antd ≥ 5.11). */
+    component: someType<string | false>([String, Boolean] as any),
   };
 };
 
@@ -30,7 +32,9 @@ const useApp = () => {
 
 const App = defineComponent({
   name: 'AApp',
-  props: initDefaultProps(AppProps(), {}),
+  props: initDefaultProps(AppProps(), {
+    component: 'div',
+  }),
   setup(props, { slots }) {
     const { prefixCls } = useConfigInject('app', props);
     const [wrapSSR, hashId] = useStyle(prefixCls);
@@ -59,14 +63,19 @@ const App = defineComponent({
     useProvideAppContext(memoizedContextValue.value);
 
     return () => {
-      return wrapSSR(
-        <div class={customClassName.value}>
+      const holders = (
+        <>
           {ModalContextHolder()}
           {messageContextHolder()}
           {notificationContextHolder()}
           {slots.default?.()}
-        </div>,
+        </>
       );
+      if (props.component === false) {
+        return wrapSSR(<>{holders}</>);
+      }
+      const Comp = (props.component || 'div') as any;
+      return wrapSSR(<Comp class={customClassName.value}>{holders}</Comp>);
     };
   },
 });

@@ -8,6 +8,17 @@
 
 ---
 
+## 4.75.0
+
+`2026-07-31`
+
+- 🌟 Form.Item 支持 `validateDebounce`（对齐 antd ≥ 5.9）
+- 🌟 Affix 回退使用 ConfigProvider `getTargetContainer`
+- 🌟 Timeline 根节点改为 `<ol>` 以提升无障碍；文档补充 `gray`
+- 📖 Steps 文档补充 `type="inline"` 与 `items` 版本
+- 🌟 Menu.Item / `items` 支持 `extra`（对齐 antd ≥ 5.20）
+- 🌟 App 支持 `component`（对齐 antd ≥ 5.11）
+
 ## 4.74.0
 
 `2026-07-31`

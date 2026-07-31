@@ -55,7 +55,7 @@ Node of timeline
 
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
-| color | Set the circle's color to `blue`, `red`, `green` or other custom colors | string | `blue` |  |
+| color | Set the circle's color to `blue`, `red`, `green`, `gray` or other custom colors | string | `blue` | `gray`: 4.75.0 |
 | dot | Customize timeline dot | string\|slot | - |  |
 | label | Set the label | string \| slot | - | 3.0 |
 | position | Customize node position | `left` \| `right` | - |  |

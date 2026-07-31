@@ -46,9 +46,9 @@
 | Navigation | Anchor | ✅ | ✅ | [anchor](../../components/anchor) | 🔄 `replace` ✅ 4.39.0 |
 | Navigation | Breadcrumb | ✅ | ✅ | [breadcrumb](../../components/breadcrumb) | 🔄 `items` ✅ 4.34.0 |
 | Navigation | Dropdown | ✅ | ✅ | [dropdown](../../components/dropdown) | 🔄 `destroyOnHidden` ✅ 4.14.0；🔄 `popupRender` ✅ 4.69.0 |
-| Navigation | Menu | ✅ | ✅ | [menu](../../components/menu) | — |
+| Navigation | Menu | ✅ | ✅ | [menu](../../components/menu) | 🔄 Item `extra` ✅ 4.75.0 |
 | Navigation | Pagination | ✅ | ✅ | [pagination](../../components/pagination) | 🔄 `align` ✅ 4.35.0；📖 object `showQuickJumper` ✅ 4.71.0 |
-| Navigation | Steps | ✅ | ✅ | [steps](../../components/steps) | — |
+| Navigation | Steps | ✅ | ✅ | [steps](../../components/steps) | 🔄 `type="inline"` / `items` 文档 ✅ 4.75.0 |
 | Navigation | Tabs | ✅ | ✅ | [tabs](../../components/tabs) | 🔄 `destroyOnHidden` ✅ 4.14.0；🔄 `indicator` ✅ 4.42.0；🔄 `items` / `removeIcon` / `more` ✅ 4.74.0 |
 
 ## Data Entry
@@ -60,7 +60,7 @@
 | Data Entry | Checkbox | ✅ | ✅ | [checkbox](../../components/checkbox) | 🔄 options `className` / `style` ✅ 4.70.0 |
 | Data Entry | ColorPicker | ✅ 5.5 | 🔄 ✅ 4.3.0 | [color-picker](../../components/color-picker) | 单色/预设/清除/格式；🔄 `destroyOnHidden` ✅ 4.14.0；🔄 `panelRender` ✅ 4.15.0；🔄 `disabledFormat` ✅ 4.19.0；⏭ 渐变 mode |
 | Data Entry | DatePicker | ✅ | ✅ | [date-picker](../../components/date-picker) | 🔄 `variant` ✅ 4.9.0；🔄 `needConfirm` ✅ 4.21.0；🔄 `showTime.changeOnScroll` ✅ 4.23.0；🔄 `cellRender` ✅ 4.61.0；🔄 object `allowClear` ✅ 4.70.0；🔄 `prefix` ✅ 4.71.0 |
-| Data Entry | Form | ✅ | ✅ | [form](../../components/form) | 🔄 `variant` ✅ 4.10.0；🔄 `feedbackIcons` ✅ 4.40.0；🔄 `scrollToFirstError` `{ focus }` / `focusField` ✅ 4.57.0；🔄 `clearOnDestroy` ✅ 4.72.0；🔄 `requiredMark` renderProps + Item object `tooltip` ✅ 4.73.0；🔄 Item `layout` ✅ 4.74.0 |
+| Data Entry | Form | ✅ | ✅ | [form](../../components/form) | 🔄 `variant` ✅ 4.10.0；🔄 `feedbackIcons` ✅ 4.40.0；🔄 `scrollToFirstError` `{ focus }` / `focusField` ✅ 4.57.0；🔄 `clearOnDestroy` ✅ 4.72.0；🔄 `requiredMark` renderProps + Item object `tooltip` ✅ 4.73.0；🔄 Item `layout` ✅ 4.74.0；🔄 Item `validateDebounce` ✅ 4.75.0 |
 | Data Entry | Input | ✅ | ✅ | [input](../../components/input) | 🔄 `Input.OTP` ✅ 4.5.0；`variant` ✅ 4.8.0；🔄 `underlined` ✅ 4.18.0；🔄 `classNames` / `styles` / object `allowClear` / `onClear` ✅ 4.70.0；🔄 `count` ✅ 4.71.0 |
 | Data Entry | InputNumber | ✅ | ✅ | [input-number](../../components/input-number) | 🔄 `variant` ✅ 4.9.0；🔄 `changeOnWheel` / `suffix` ✅ 4.71.0；🔄 object `controls` / `changeOnBlur` ✅ 4.72.0 |
 | Data Entry | Mentions | ✅ | ✅ | [mentions](../../components/mentions) | 🔄 `variant` ✅ 4.12.0；🔄 `allowClear` / `onClear` ✅ 4.72.0 |
@@ -94,7 +94,7 @@
 | Data Display | Statistic | ✅ | ✅ | [statistic](../../components/statistic) | 🔄 `Statistic.Timer` ✅ 4.31.0 |
 | Data Display | Table | ✅ | ✅ | [table](../../components/table) | 🔄 Column `hidden` ✅ 4.13.0；🔄 `scrollTo` / `nativeElement` ✅ 4.17.0；🔄 `rowHoverable` ✅ 4.19.0；⏭ `virtual` |
 | Data Display | Tag | ✅ | ✅ | [tag](../../components/tag) | 🔄 `classNames` / `styles` ✅ 4.68.0 |
-| Data Display | Timeline | ✅ | ✅ | [timeline](../../components/timeline) | 🔄 `items` ✅ 4.33.0 |
+| Data Display | Timeline | ✅ | ✅ | [timeline](../../components/timeline) | 🔄 `items` ✅ 4.33.0；🔄 `<ol>` a11y + `gray` 文档 ✅ 4.75.0 |
 | Data Display | Tooltip | ✅ | ✅ | [tooltip](../../components/tooltip) | 🔄 `destroyOnHidden` ✅ 4.14.0；🔄 `classNames` / `styles` ✅ 4.69.0（Popover / Popconfirm 同） |
 | Data Display | Tour | ✅ 5.0 | ✅ | [tour](../../components/tour) | 🔄 `actionsRender` ✅ 4.37.0；🔄 `disabledInteraction` ✅ 4.66.0 |
 | Data Display | Tree | ✅ | ✅ | [tree](../../components/tree) | — |
@@ -119,8 +119,8 @@
 
 | 分组 | 组件 | React `antd` | Vue Next | 文档链接 | 缺口备注 |
 | --- | --- | --- | --- | --- | --- |
-| Other | Affix | ✅ | ✅ | [affix](../../components/affix) | — |
-| Other | App | ✅ 5.1 | ✅ | [app](../../components/app) | — |
+| Other | Affix | ✅ | ✅ | [affix](../../components/affix) | 🔄 ConfigProvider `getTargetContainer` ✅ 4.75.0 |
+| Other | App | ✅ 5.1 | ✅ | [app](../../components/app) | 🔄 `component` ✅ 4.75.0 |
 | Other | ConfigProvider | ✅ | ✅ | [config-provider](../../components/config-provider) | 🔄 `useConfig` / `popupMatchSelectWidth`（4.6）；`holderRender` / `warning.strict`（4.7）；`variant`（4.8）；🔄 `underlined` ✅ 4.18.0；🔄 `transfer.selectionsIcon` ✅ 4.36.0；🔄 `button`（color/variant/autoInsertSpace）✅ 4.50.0；🔄 `form.scrollToFirstError` ✅ 4.63.0 |
 | Other | BorderBeam | ✅ 6.4 | ⏭ | — | 阶段 B |
 | Other | theme / css-in-js | ✅ | ✅（沿用 antdv 混合栈） | — | 不在首周做完整重写 |
@@ -204,8 +204,9 @@
 73. ~~Upload `picture-circle` + InputNumber `controls`/`changeOnBlur` + Rate `keyboard` + Form `clearOnDestroy` + Mentions `allowClear`~~ — ✅ `4.72.0`
 74. ~~Carousel `autoplay.dotDuration` + Form `requiredMark` renderProps + Switch/Transfer 小缺口 + Notification `actions`~~ — ✅ `4.73.0`
 75. ~~Form.Item `layout` + Tabs `items`/`removeIcon`/`more` + Collapse semantic~~ — ✅ `4.74.0`
-76. Steps / Timeline / Affix 小缺口（择优）
-77. Form `validateDebounce`
+76. ~~Steps / Timeline / Affix + Form `validateDebounce` + Menu `extra` + App `component`~~ — ✅ `4.75.0`
+77. Space / Flex semantic `classNames`/`styles`（择优）
+78. Alert closable `aria-*` / action 小缺口
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -215,4 +216,4 @@
 
 ---
 
-_上次更新：`4.74.0` 批次（Form.Item layout / Tabs items·removeIcon·more / Collapse semantic）。每发一版请同步改本表；之后默认每版打包 4–6 项。_
+_上次更新：`4.75.0` 批次（validateDebounce / Affix getTargetContainer / Timeline ol / Steps docs / Menu extra / App component）。每发一版请同步改本表；之后默认每版打包 4–6 项。_

@@ -300,6 +300,19 @@ const getBaseStyle: GenerateStyle<MenuToken> = token => {
 
         [`${componentCls}-title-content`]: {
           transition: `color ${motionDurationSlow}`,
+
+          '&-with-extra': {
+            display: 'inline-flex',
+            alignItems: 'center',
+            width: '100%',
+            minWidth: 0,
+          },
+        },
+
+        [`${componentCls}-item-extra`]: {
+          flex: 'none',
+          marginInlineStart: 'auto',
+          paddingInlineStart: token.padding,
         },
 
         [`${componentCls}-item a`]: {

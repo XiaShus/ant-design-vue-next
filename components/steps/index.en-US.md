@@ -26,8 +26,8 @@ The whole of the step bar.
 | responsive | change to vertical direction when screen width smaller than `532px` | boolean | true | 3.0 |
 | size | to specify the size of the step bar, `default` and `small` are currently supported | string | `default` |  |
 | status | to specify the status of current step, can be set to one of the following values: `wait` `process` `finish` `error` | string | `process` |  |
-| type | Type of steps, can be set to one of the following values: `default`, `navigation` | string | `default` | 1.5.0 |
-| items | StepItem content | [StepItem](#stepsstep) | [] |  |
+| type | Type of steps: `default` \| `navigation` \| `inline` | string | `default` | 1.5.0；`inline`: 4.0 |
+| items | StepItem content | [StepItem](#stepsstep)[] | [] | 3.2.0 |
 
 ### `type="inline"` (4.0+)
 

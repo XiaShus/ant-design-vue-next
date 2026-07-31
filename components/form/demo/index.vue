@@ -27,6 +27,7 @@
     <UseFormTrigger />
     <UseFormMerge />
     <RequiredMark />
+    <ValidateDebounce />
   </demo-sort>
 </template>
 <script lang="ts">
@@ -56,6 +57,7 @@ import UseFormTrigger from './useForm-trigger.vue';
 import UseFormMerge from './useForm-merge.vue';
 import CustomizedFormControls from './customized-form-controls.vue';
 import RequiredMark from './required-mark.vue';
+import ValidateDebounce from './validate-debounce.vue';
 import timeRelatedControlsVue from './time-related-controls.vue';
 import validateOtherVue from './validate-other.vue';
 import validateStaticVue from './validate-static.vue';
@@ -85,6 +87,7 @@ export default defineComponent({
     LabelWidth,
     CustomizedFormControls,
     RequiredMark,
+    ValidateDebounce,
     advancedSearchVue,
     dynamicFormItemsComplexVue,
     dynamicFormItemsVue,

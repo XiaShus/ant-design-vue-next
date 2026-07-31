@@ -67,14 +67,15 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*Vn4XSqJFAxcAAA
 
 ### MenuItemType
 
-| 参数     | 说明                     | 类型                                   | 默认值 | 版本 |
-| -------- | ------------------------ | -------------------------------------- | ------ | ---- |
-| danger   | 展示错误状态样式         | boolean                                | false  |      |
-| disabled | 是否禁用                 | boolean                                | false  |      |
-| icon     | 菜单图标                 | VueNode\|(item: MenuItemType)=>VueNode | -      |      |
-| key      | item 的唯一标志          | string \| number                       | -      |      |
-| label    | 菜单项标题               | VueNode                                | -      |      |
-| title    | 设置收缩时展示的悬浮标题 | string                                 | -      |      |
+| 参数     | 说明                     | 类型                                   | 默认值 | 版本   |
+| -------- | ------------------------ | -------------------------------------- | ------ | ------ |
+| danger   | 展示错误状态样式         | boolean                                | false  |        |
+| extra    | 菜单项额外内容           | VueNode                                | -      | 4.75.0 |
+| disabled | 是否禁用                 | boolean                                | false  |        |
+| icon     | 菜单图标                 | VueNode\|(item: MenuItemType)=>VueNode | -      |        |
+| key      | item 的唯一标志          | string \| number                       | -      |        |
+| label    | 菜单项标题               | VueNode                                | -      |        |
+| title    | 设置收缩时展示的悬浮标题 | string                                 | -      |        |
 
 #### SubMenuType
 

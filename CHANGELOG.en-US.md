@@ -4,6 +4,17 @@
 
 ---
 
+## 4.75.0
+
+`2026-07-31`
+
+- 🌟 Form.Item support `validateDebounce` (antd ≥ 5.9)
+- 🌟 Affix falls back to ConfigProvider `getTargetContainer`
+- 🌟 Timeline root uses `<ol>` for a11y; document item color `gray`
+- 📖 Steps document `type="inline"` and `items` version
+- 🌟 Menu.Item / `items` support `extra` (antd ≥ 5.20)
+- 🌟 App support `component` (antd ≥ 5.11)
+
 ## 4.74.0
 
 `2026-07-31`

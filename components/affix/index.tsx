@@ -50,7 +50,7 @@ export const affixProps = () => ({
   /** 设置 Affix 需要监听其滚动事件的元素，值为一个返回对应 DOM 元素的函数 */
   target: {
     type: Function as PropType<() => Window | HTMLElement | null>,
-    default: getDefaultTarget,
+    default: undefined as (() => Window | HTMLElement | null) | undefined,
   },
   prefixCls: String,
   /** 固定状态改变时触发的回调函数 */
@@ -88,6 +88,10 @@ const Affix = defineComponent({
       timeout: null,
     });
     const currentInstance = getCurrentInstance();
+    const { prefixCls, getTargetContainer } = useConfigInject('affix', props);
+    const [wrapSSR, hashId] = useStyle(prefixCls);
+    /** Prefer prop `target`, then ConfigProvider `getTargetContainer` (antd). */
+    const getTarget = computed(() => props.target ?? getTargetContainer.value ?? getDefaultTarget);
 
     const offsetTop = computed(() => {
       return props.offsetBottom === undefined && props.offsetTop === undefined
@@ -97,7 +101,7 @@ const Affix = defineComponent({
     const offsetBottom = computed(() => props.offsetBottom);
     const measure = () => {
       const { status, lastAffix } = state;
-      const { target } = props;
+      const target = getTarget.value;
       if (status !== AffixStatus.Prepare || !fixedNode.value || !placeholderNode.value || !target) {
         return;
       }
@@ -186,7 +190,7 @@ const Affix = defineComponent({
       prepareMeasure();
     });
     const lazyUpdatePosition = throttleByAnimationFrame(() => {
-      const { target } = props;
+      const target = getTarget.value;
       const { affixStyle } = state;
 
       // Check position change before measure to make Safari smooth
@@ -213,24 +217,21 @@ const Affix = defineComponent({
       updatePosition,
       lazyUpdatePosition,
     });
-    watch(
-      () => props.target,
-      val => {
-        const newTarget = val?.() || null;
-        if (state.prevTarget !== newTarget) {
-          removeObserveTarget(currentInstance);
-          if (newTarget) {
-            addObserveTarget(newTarget, currentInstance);
-            // Mock Event object.
-            updatePosition();
-          }
-          state.prevTarget = newTarget;
+    watch(getTarget, val => {
+      const newTarget = val?.() || null;
+      if (state.prevTarget !== newTarget) {
+        removeObserveTarget(currentInstance);
+        if (newTarget) {
+          addObserveTarget(newTarget, currentInstance);
+          // Mock Event object.
+          updatePosition();
         }
-      },
-    );
+        state.prevTarget = newTarget;
+      }
+    });
     watch(() => [props.offsetTop, props.offsetBottom], updatePosition);
     onMounted(() => {
-      const { target } = props;
+      const target = getTarget.value;
       if (target) {
         // [Legacy] Wait for parent component ref has its value.
         // We should use target as directly element instead of function which makes element check hard.
@@ -251,9 +252,6 @@ const Affix = defineComponent({
       // https://github.com/ant-design/ant-design/issues/22683
       (lazyUpdatePosition as any).cancel();
     });
-
-    const { prefixCls } = useConfigInject('affix', props);
-    const [wrapSSR, hashId] = useStyle(prefixCls);
     return () => {
       const { affixStyle, placeholderStyle, status } = state;
       const className = classNames({

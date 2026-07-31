@@ -22,6 +22,7 @@ tag: New
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
+| component | 渲染标签；设为 `false` 时不包裹节点 | Component \| string \| false | `div` | 4.75.0 |
 | message | App 内 Message 的全局配置 | [MessageConfig](/components/message-cn/#messageconfig) | - | 4.x |
 | notification | App 内 Notification 的全局配置 | [NotificationConfig](/components/notification-cn/#notificationconfig) | - | 4.x |
 

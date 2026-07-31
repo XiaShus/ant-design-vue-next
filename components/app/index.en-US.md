@@ -21,6 +21,7 @@ Application wrapper for some global usages.
 
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
+| component | Render tag; set `false` to skip wrapper | Component \| string \| false | `div` | 4.75.0 |
 | message | Global config for Message | [MessageConfig](/components/message/#messageconfig) | - | 4.x |
 | notification | Global config for Notification | [NotificationConfig](/components/notification/#notificationconfig) | - | 4.x |
 

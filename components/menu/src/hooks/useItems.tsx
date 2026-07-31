@@ -18,6 +18,8 @@ export interface MenuItemType extends VcMenuItemType {
   danger?: boolean;
   icon?: VNode | ((item: MenuItemType) => VNode);
   title?: string;
+  /** Extra content after label (antd ≥ 5.20). */
+  extra?: VNode | string;
 }
 
 export interface SubMenuType extends Omit<VcSubMenuType, 'children'> {

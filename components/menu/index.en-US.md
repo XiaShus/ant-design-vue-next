@@ -70,6 +70,7 @@ More layouts with navigation: [Layout](/components/layout).
 | --- | --- | --- | --- | --- |
 | danger | Display the danger style | boolean | false |  |
 | disabled | Whether menu item is disabled | boolean | false |  |
+| extra | The extra of the menu item | VueNode | - | 4.75.0 |
 | icon | The icon of the menu item | VueNode \| (item: MenuItemType) => VNode | - |  |
 | key | Unique ID of the menu item | string \| number | - |  |
 | label | Menu label | VueNode | - |  |

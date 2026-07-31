@@ -31,8 +31,8 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*cFsBQLA0b7UAAA
 | responsive | 当屏幕宽度小于 532px 时自动变为垂直模式 | boolean | true | 3.0 |
 | size | 指定大小，目前支持普通（`default`）和迷你（`small`） | string | default |  |
 | status | 指定当前步骤的状态，可选 `wait` `process` `finish` `error` | string | process |  |
-| type | 步骤条类型，有 `default` 和 `navigation` 两种 | string | `default` | 1.5.0 |
-| items | 配置选项卡内容 | [StepItem](#stepsstep)[] | [] |  |
+| type | 步骤条类型，可选 `default` \| `navigation` \| `inline` | string | `default` | 1.5.0；`inline`: 4.0 |
+| items | 配置步骤内容 | [StepItem](#stepsstep)[] | [] | 3.2.0 |
 
 ### `type="inline"` (4.0+)
 

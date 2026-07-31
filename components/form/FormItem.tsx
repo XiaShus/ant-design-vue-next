@@ -134,6 +134,8 @@ export const formItemProps = () => ({
   tooltip: someType<string | Record<string, any>>([String, Object]),
   /** Item layout; overrides Form `layout` for this item (antd ≥ 5.18). */
   layout: stringType<'horizontal' | 'vertical'>(),
+  /** Debounce validation delay in ms for change/blur triggers (antd ≥ 5.9). */
+  validateDebounce: Number,
 });
 
 export type FormItemProps = Partial<ExtractPropTypes<ReturnType<typeof formItemProps>>>;
@@ -256,6 +258,7 @@ export default defineComponent({
       }
       return variables;
     });
+    let validateDebounceSeq = 0;
     const validateRules = (options: ValidateOptions) => {
       // no name, no value, so the validate result is incorrect
       if (namePath.value.length === 0) {
@@ -263,53 +266,73 @@ export default defineComponent({
       }
       const { validateFirst = false } = props;
       const { triggerName } = options || {};
+      const seq = ++validateDebounceSeq;
 
-      let filteredRules = rulesRef.value;
-      if (triggerName) {
-        filteredRules = filteredRules.filter(rule => {
-          const { trigger } = rule;
-          if (!trigger && !mergedValidateTrigger.value.length) {
-            return true;
-          }
-          const triggerList = toArray(trigger || mergedValidateTrigger.value);
-          return triggerList.includes(triggerName);
+      const runValidate = (): Promise<RuleError[]> => {
+        // Superseded by a newer validate call (debounce cancel)
+        if (seq !== validateDebounceSeq) {
+          return Promise.resolve([]);
+        }
+        let filteredRules = rulesRef.value;
+        if (triggerName) {
+          filteredRules = filteredRules.filter(rule => {
+            const { trigger } = rule;
+            if (!trigger && !mergedValidateTrigger.value.length) {
+              return true;
+            }
+            const triggerList = toArray(trigger || mergedValidateTrigger.value);
+            return triggerList.includes(triggerName);
+          });
+        }
+        if (!filteredRules.length) {
+          return Promise.resolve([]);
+        }
+        const promise = validateRulesUtil(
+          namePath.value,
+          fieldValue.value,
+          filteredRules as RuleObject[],
+          {
+            validateMessages: formContext.validateMessages.value,
+            ...options,
+          },
+          validateFirst,
+          messageVariables.value,
+        );
+        validateState.value = 'validating';
+        errors.value = [];
+
+        promise
+          .catch(e => e)
+          .then((results: RuleError[] = []) => {
+            if (seq !== validateDebounceSeq) {
+              return;
+            }
+            if (validateState.value === 'validating') {
+              const res = results.filter(result => result && result.errors.length);
+              validateState.value = res.length ? 'error' : 'success';
+
+              errors.value = res.map(r => r.errors);
+
+              formContext.onValidate(
+                fieldName.value,
+                !errors.value.length,
+                errors.value.length ? toRaw(errors.value[0]) : null,
+              );
+            }
+          });
+
+        return promise;
+      };
+
+      // Debounce only for field triggers, not form.validateFields (antd ≥ 5.9)
+      if (triggerName && props.validateDebounce) {
+        return new Promise<RuleError[]>(resolve => {
+          window.setTimeout(() => {
+            runValidate().then(resolve);
+          }, props.validateDebounce);
         });
       }
-      if (!filteredRules.length) {
-        return Promise.resolve();
-      }
-      const promise = validateRulesUtil(
-        namePath.value,
-        fieldValue.value,
-        filteredRules as RuleObject[],
-        {
-          validateMessages: formContext.validateMessages.value,
-          ...options,
-        },
-        validateFirst,
-        messageVariables.value,
-      );
-      validateState.value = 'validating';
-      errors.value = [];
-
-      promise
-        .catch(e => e)
-        .then((results: RuleError[] = []) => {
-          if (validateState.value === 'validating') {
-            const res = results.filter(result => result && result.errors.length);
-            validateState.value = res.length ? 'error' : 'success';
-
-            errors.value = res.map(r => r.errors);
-
-            formContext.onValidate(
-              fieldName.value,
-              !errors.value.length,
-              errors.value.length ? toRaw(errors.value[0]) : null,
-            );
-          }
-        });
-
-      return promise;
+      return runValidate();
     };
 
     const onFieldBlur = () => {
@@ -323,6 +346,7 @@ export default defineComponent({
       validateRules({ triggerName: 'change' });
     };
     const clearValidate = () => {
+      validateDebounceSeq += 1;
       validateState.value = props.validateStatus;
       validateDisabled.value = false;
       errors.value = [];
