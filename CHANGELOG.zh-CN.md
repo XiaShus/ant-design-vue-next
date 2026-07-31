@@ -8,6 +8,15 @@
 
 ---
 
+## 4.69.0
+
+`2026-07-31`
+
+- 🌟 Tooltip / Popover / Popconfirm 支持语义化 `classNames` / `styles`（对齐 antd ≥ 5.23）
+- 🌟 Select / Cascader / TreeSelect 支持 `prefix`（对齐 antd ≥ 5.22）
+- 🌟 Button 支持 `loading.icon` 自定义加载图标（对齐 antd ≥ 5.23）
+- 🌟 Dropdown 支持 `popupRender`（对齐 antd ≥ 5.25）
+
 ## 4.68.0
 
 `2026-07-31`

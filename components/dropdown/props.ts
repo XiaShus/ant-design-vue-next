@@ -4,7 +4,7 @@ import PropTypes from '../_util/vue-types';
 import buttonTypes from '../button/buttonTypes';
 import type { MouseEventHandler } from '../_util/EventInterface';
 import type { MenuProps } from '../menu';
-import { booleanType, eventType, objectType, someType } from '../_util/type';
+import { booleanType, eventType, functionType, objectType, someType } from '../_util/type';
 
 export type Align = {
   points?: [string, string];
@@ -31,6 +31,10 @@ const dropdownProps = () => ({
   },
   menu: objectType<MenuProps>(),
   overlay: PropTypes.any,
+  /** Custom dropdown content (antd ≥ 5.25). Prefer over `overlay` slot wrapping. */
+  popupRender: functionType<(menus: any) => any>(),
+  /** @deprecated Please use `popupRender` instead */
+  dropdownRender: functionType<(menus: any) => any>(),
   /** @deprecated Please use `open` instead */
   visible: booleanType(),
   open: booleanType(),

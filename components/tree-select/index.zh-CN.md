@@ -38,6 +38,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*Y5pcQLplFu4AAA
 | multiple | 支持多选（当设置 treeCheckable 时自动变为 true） | boolean | false |  |  |
 | notFoundContent | 当下拉列表为空时显示的内容 | slot | `Not Found` |  |  |
 | placeholder | 选择框默认文字 | string\|slot | - |  |  |
+| prefix | 自定义前缀 | VNode \| slot | - | 4.69.0 |  |
 | placement | 选择框弹出的位置 | `bottomLeft` `bottomRight` `topLeft` `topRight` | bottomLeft | 3.3.0 |
 | replaceFields | 替换 treeNode 中 label,value,key,children 字段为 treeData 中对应的字段 | object | {children:'children', label:'title', key:'key', value: 'value' } |  | 1.6.1 (3.0.0 废弃) |
 | searchPlaceholder | 搜索框默认文字 | string\|slot | - |  |  |

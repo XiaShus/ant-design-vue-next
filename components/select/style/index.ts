@@ -157,6 +157,26 @@ const genBaseStyle: GenerateStyle<SelectToken> = token => {
         pointerEvents: 'none',
       },
 
+      // ========================== Prefix ==========================
+      [`&${componentCls}-show-prefix`]: {
+        display: 'inline-flex',
+        alignItems: 'center',
+      },
+
+      [`${componentCls}-prefix`]: {
+        display: 'flex',
+        flex: 'none',
+        alignItems: 'center',
+        marginInlineStart: inputPaddingHorizontalBase,
+        marginInlineEnd: token.paddingXXS,
+        color: token.colorTextQuaternary,
+        pointerEvents: 'none',
+      },
+
+      [`&${componentCls}-show-prefix ${componentCls}-selector`]: {
+        paddingInlineStart: token.paddingXXS,
+      },
+
       // ========================== Arrow ==========================
       [`${componentCls}-arrow`]: {
         ...resetIcon(),

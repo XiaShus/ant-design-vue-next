@@ -116,6 +116,7 @@ const TreeSelect = defineComponent({
     leafIcon?: any;
     tagRender?: any;
     suffixIcon?: any;
+    prefix?: any;
     optionLabel?: any;
   }>,
   setup(props, { attrs, slots, expose, emit }) {
@@ -367,6 +368,7 @@ const TreeSelect = defineComponent({
             showArrow={hasFeedback || showArrow}
             placeholder={placeholder}
             optionLabelRender={props.labelRender || slots.optionLabel}
+            prefix={props.prefix ?? slots.prefix?.()}
           />,
         ),
       );

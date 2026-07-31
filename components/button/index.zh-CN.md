@@ -47,7 +47,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*Lp1kTYmSsgoAAA
 | icon | 设置按钮的图标类型 | v-slot | - |  |
 | iconPlacement | 设置按钮图标位置 | `start` \| `end` | `start` | 4.47.0 |
 | ~~iconPosition~~ | 设置按钮图标位置，请使用 `iconPlacement` | `start` \| `end` | `start` | 4.47.0 |
-| loading | 设置按钮载入状态 | boolean \| { delay: number } | `false` |  |
+| loading | 设置按钮载入状态 | boolean \| { delay?: number; icon?: VNode } | `false` | `icon`: 4.69.0 |
 | shape | 设置按钮形状 | `default` \| `circle` \| `round` | `default` |  |
 | size | 设置按钮大小 | `large` \| `middle` \| `small` | `middle` |  |
 | target | 相当于 a 链接的 target 属性，href 存在时生效 | string | - |  |

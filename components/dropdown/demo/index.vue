@@ -12,6 +12,7 @@
     <sub-menu />
     <trigger />
     <loadingVue />
+    <popupRenderVue />
   </demo-sort>
 </template>
 
@@ -31,6 +32,7 @@ import Trigger from './trigger.vue';
 import loadingVue from './loading.vue';
 import arrowVue from './arrow.vue';
 import arrowCenterVue from './arrow-center.vue';
+import popupRenderVue from './popup-render.vue';
 export default defineComponent({
   CN,
   US,
@@ -38,6 +40,7 @@ export default defineComponent({
     arrowCenterVue,
     arrowVue,
     loadingVue,
+    popupRenderVue,
     Basic,
     ContextMenu,
     DropdownButton,

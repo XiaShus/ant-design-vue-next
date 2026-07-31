@@ -62,6 +62,7 @@ Select component to select value from options.
 | optionRender | Custom render dropdown option content | (oriOption) => any | - | 4.67.0 |
 | options | Data of the selectOption, manual construction work is no longer needed if this property has been set | Array&lt;{value, label, [disabled, key, title]}> | \[] |  |
 | placeholder | Placeholder of select | string\|slot | - |  |
+| prefix | The custom prefix | VNode \| slot | - | 4.69.0 |
 | placement | The position where the selection box pops up | `bottomLeft` `bottomRight` `topLeft` `topRight` | bottomLeft | 3.3.0 |
 | removeIcon | The custom remove icon | VNode \| slot | - |  |
 | searchValue | The current input "search" text | string | - |  |

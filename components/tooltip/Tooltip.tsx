@@ -251,7 +251,14 @@ export default defineComponent({
       computed(() => !injectFromPopover.value),
     );
     return () => {
-      const { openClassName, overlayClassName, overlayStyle, overlayInnerStyle } = props;
+      const {
+        openClassName,
+        overlayClassName,
+        overlayStyle,
+        overlayInnerStyle,
+        classNames: tooltipClassNames,
+        styles: tooltipStyles,
+      } = props;
       let children = filterEmpty(slots.default?.()) ?? null;
       children = children.length === 1 ? children[0] : children;
 
@@ -272,6 +279,7 @@ export default defineComponent({
       });
       const customOverlayClassName = classNames(
         overlayClassName,
+        tooltipClassNames?.root,
         {
           [`${prefixCls.value}-rtl`]: direction.value === 'rtl',
         },
@@ -282,11 +290,14 @@ export default defineComponent({
       const formattedOverlayInnerStyle = {
         ...colorInfo.value.overlayStyle,
         ...overlayInnerStyle,
+        ...tooltipStyles?.body,
       };
       const arrowContentStyle = colorInfo.value.arrowStyle;
       const {
         destroyOnHidden: _destroyOnHidden,
         destroyTooltipOnHide: _destroyTooltipOnHide,
+        classNames: _classNames,
+        styles: _styles,
         ...restTooltipProps
       } = props as TooltipProps;
       const vcTooltipProps = {
@@ -299,7 +310,7 @@ export default defineComponent({
         visible: tempVisible,
         ref: tooltip,
         overlayClassName: customOverlayClassName,
-        overlayStyle: { ...arrowContentStyle, ...overlayStyle },
+        overlayStyle: { ...arrowContentStyle, ...overlayStyle, ...tooltipStyles?.root },
         overlayInnerStyle: formattedOverlayInnerStyle,
         destroyTooltipOnHide: props.destroyOnHidden ?? props.destroyTooltipOnHide,
         onVisibleChange: handleVisibleChange,
@@ -314,7 +325,12 @@ export default defineComponent({
         <VcTooltip
           {...vcTooltipProps}
           v-slots={{
-            arrowContent: () => <span class={`${prefixCls.value}-arrow-content`}></span>,
+            arrowContent: () => (
+              <span
+                class={classNames(`${prefixCls.value}-arrow-content`, tooltipClassNames?.arrow)}
+                style={tooltipStyles?.arrow}
+              ></span>
+            ),
             overlay: getOverlay,
           }}
         >

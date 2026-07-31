@@ -22,7 +22,7 @@
 
 | 分组 | 组件 | React `antd` | Vue Next | 文档链接 | 缺口备注 |
 | --- | --- | --- | --- | --- | --- |
-| General | Button | ✅ | ✅ | [button](../../components/button) | 🔄 `autoInsertSpace` ✅ 4.46.0；🔄 `iconPlacement` ✅ 4.47.0；🔄 `color` / `variant` ✅ 4.49.0 |
+| General | Button | ✅ | ✅ | [button](../../components/button) | 🔄 `autoInsertSpace` ✅ 4.46.0；🔄 `iconPlacement` ✅ 4.47.0；🔄 `color` / `variant` ✅ 4.49.0；🔄 `loading.icon` ✅ 4.69.0 |
 | General | FloatButton | ✅ 5.0 | ✅ | [float-button](../../components/float-button) | 🔄 Group `placement` / `closeIcon`、`htmlType` ✅ 4.51.0 |
 | General | Icon | ✅ | ✅（`@ant-design/icons-vue`） | — | 图标包独立 |
 | General | Typography | ✅ | ✅ | [typography](../../components/typography) | 🔄 `copyable.format` / `tabIndex`、`editable.tabIndex` ✅ 4.54.0 |
@@ -45,7 +45,7 @@
 | --- | --- | --- | --- | --- | --- |
 | Navigation | Anchor | ✅ | ✅ | [anchor](../../components/anchor) | 🔄 `replace` ✅ 4.39.0 |
 | Navigation | Breadcrumb | ✅ | ✅ | [breadcrumb](../../components/breadcrumb) | 🔄 `items` ✅ 4.34.0 |
-| Navigation | Dropdown | ✅ | ✅ | [dropdown](../../components/dropdown) | 🔄 `destroyOnHidden` ✅ 4.14.0 |
+| Navigation | Dropdown | ✅ | ✅ | [dropdown](../../components/dropdown) | 🔄 `destroyOnHidden` ✅ 4.14.0；🔄 `popupRender` ✅ 4.69.0 |
 | Navigation | Menu | ✅ | ✅ | [menu](../../components/menu) | — |
 | Navigation | Pagination | ✅ | ✅ | [pagination](../../components/pagination) | 🔄 `align` ✅ 4.35.0 |
 | Navigation | Steps | ✅ | ✅ | [steps](../../components/steps) | — |
@@ -56,7 +56,7 @@
 | 分组 | 组件 | React `antd` | Vue Next | 文档链接 | 缺口备注 |
 | --- | --- | --- | --- | --- | --- |
 | Data Entry | AutoComplete | ✅ | ✅ | [auto-complete](../../components/auto-complete) | 🔄 `variant` ✅ 4.12.0（经 Select） |
-| Data Entry | Cascader | ✅ | ✅ | [cascader](../../components/cascader) | 🔄 `variant` ✅ 4.10.0；🔄 `autoClearSearchValue` ✅ 4.53.0；🔄 `optionRender` ✅ 4.68.0 |
+| Data Entry | Cascader | ✅ | ✅ | [cascader](../../components/cascader) | 🔄 `variant` ✅ 4.10.0；🔄 `autoClearSearchValue` ✅ 4.53.0；🔄 `optionRender` ✅ 4.68.0；🔄 `prefix` ✅ 4.69.0 |
 | Data Entry | Checkbox | ✅ | ✅ | [checkbox](../../components/checkbox) | — |
 | Data Entry | ColorPicker | ✅ 5.5 | 🔄 ✅ 4.3.0 | [color-picker](../../components/color-picker) | 单色/预设/清除/格式；🔄 `destroyOnHidden` ✅ 4.14.0；🔄 `panelRender` ✅ 4.15.0；🔄 `disabledFormat` ✅ 4.19.0；⏭ 渐变 mode |
 | Data Entry | DatePicker | ✅ | ✅ | [date-picker](../../components/date-picker) | 🔄 `variant` ✅ 4.9.0；🔄 `needConfirm` ✅ 4.21.0；🔄 `showTime.changeOnScroll` ✅ 4.23.0；🔄 `cellRender` ✅ 4.61.0 |
@@ -66,12 +66,12 @@
 | Data Entry | Mentions | ✅ | ✅ | [mentions](../../components/mentions) | 🔄 `variant` ✅ 4.12.0 |
 | Data Entry | Radio | ✅ | ✅ | [radio](../../components/radio) | — |
 | Data Entry | Rate | ✅ | ✅ | [rate](../../components/rate) | — |
-| Data Entry | Select | ✅ | ✅ | [select](../../components/select) | 🔄 `variant` ✅ 4.9.0；🔄 `maxCount` ✅ 4.20.0；🔄 `labelRender` / `optionRender` ✅ 4.67.0 |
+| Data Entry | Select | ✅ | ✅ | [select](../../components/select) | 🔄 `variant` ✅ 4.9.0；🔄 `maxCount` ✅ 4.20.0；🔄 `labelRender` / `optionRender` ✅ 4.67.0；🔄 `prefix` ✅ 4.69.0 |
 | Data Entry | Slider | ✅ | ✅ | [slider](../../components/slider) | 🔄 nested `tooltip` ✅ 4.56.0 |
 | Data Entry | Switch | ✅ | ✅ | [switch](../../components/switch) | — |
 | Data Entry | TimePicker | ✅ | ✅ | [time-picker](../../components/time-picker) | 🔄 `needConfirm` ✅ 4.21.0；🔄 `changeOnScroll` ✅ 4.23.0 |
 | Data Entry | Transfer | ✅ | ✅ | [transfer](../../components/transfer) | 🔄 `selectionsIcon` ✅ 4.36.0 |
-| Data Entry | TreeSelect | ✅ | ✅ | [tree-select](../../components/tree-select) | 🔄 `variant` ✅ 4.10.0；🔄 `maxCount` ✅ 4.20.0；🔄 `labelRender` ✅ 4.68.0 |
+| Data Entry | TreeSelect | ✅ | ✅ | [tree-select](../../components/tree-select) | 🔄 `variant` ✅ 4.10.0；🔄 `maxCount` ✅ 4.20.0；🔄 `labelRender` ✅ 4.68.0；🔄 `prefix` ✅ 4.69.0 |
 | Data Entry | Upload | ✅ | ✅ | [upload](../../components/upload) | — |
 
 ## Data Display
@@ -88,14 +88,14 @@
 | Data Display | Empty | ✅ | ✅ | [empty](../../components/empty) | 🔄 `classNames` / `styles` ✅ 4.65.0 |
 | Data Display | Image | ✅ | ✅ | [image](../../components/image) | 🔄 preview `toolbarRender` ✅ 4.52.0；🔄 `movable` / `imageRender` ✅ 4.67.0 |
 | Data Display | List | ✅ | ✅ | [list](../../components/list) | React 6 标 DEPRECATED；阶段 B 再议 |
-| Data Display | Popover | ✅ | ✅ | [popover](../../components/popover) | — |
+| Data Display | Popover | ✅ | ✅ | [popover](../../components/popover) | 🔄 `classNames` / `styles` ✅ 4.69.0（经 Tooltip） |
 | Data Display | QRCode | ✅ 5.1 | ✅ | [qrcode](../../components/qrcode) | 🔄 `statusRender` / object `iconSize` ✅ 4.26.0 |
 | Data Display | Segmented | ✅ | ✅ | [segmented](../../components/segmented) | 🔄 `shape="round"` ✅ 4.45.0；⏭ `vertical` |
 | Data Display | Statistic | ✅ | ✅ | [statistic](../../components/statistic) | 🔄 `Statistic.Timer` ✅ 4.31.0 |
 | Data Display | Table | ✅ | ✅ | [table](../../components/table) | 🔄 Column `hidden` ✅ 4.13.0；🔄 `scrollTo` / `nativeElement` ✅ 4.17.0；🔄 `rowHoverable` ✅ 4.19.0；⏭ `virtual` |
 | Data Display | Tag | ✅ | ✅ | [tag](../../components/tag) | 🔄 `classNames` / `styles` ✅ 4.68.0 |
 | Data Display | Timeline | ✅ | ✅ | [timeline](../../components/timeline) | 🔄 `items` ✅ 4.33.0 |
-| Data Display | Tooltip | ✅ | ✅ | [tooltip](../../components/tooltip) | 🔄 `destroyOnHidden` ✅ 4.14.0（Popover / Popconfirm 同） |
+| Data Display | Tooltip | ✅ | ✅ | [tooltip](../../components/tooltip) | 🔄 `destroyOnHidden` ✅ 4.14.0；🔄 `classNames` / `styles` ✅ 4.69.0（Popover / Popconfirm 同） |
 | Data Display | Tour | ✅ 5.0 | ✅ | [tour](../../components/tour) | 🔄 `actionsRender` ✅ 4.37.0；🔄 `disabledInteraction` ✅ 4.66.0 |
 | Data Display | Tree | ✅ | ✅ | [tree](../../components/tree) | — |
 
@@ -108,7 +108,7 @@
 | Feedback | Message | ✅ | ✅ | [message](../../components/message) | 🔄 `pauseOnHover` ✅ 4.44.0 |
 | Feedback | Modal | ✅ | ✅ | [modal](../../components/modal) | 🔄 `destroyOnHidden` ✅ 4.11.0；🔄 `afterOpenChange` ✅ 4.22.0；🔄 `loading` ✅ 4.64.0 |
 | Feedback | Notification | ✅ | ✅ | [notification](../../components/notification) | 🔄 `showProgress` / `pauseOnHover` ✅ 4.43.0 |
-| Feedback | Popconfirm | ✅ | ✅ | [popconfirm](../../components/popconfirm) | — |
+| Feedback | Popconfirm | ✅ | ✅ | [popconfirm](../../components/popconfirm) | 🔄 `classNames` / `styles` ✅ 4.69.0（经 Tooltip） |
 | Feedback | Progress | ✅ | ✅ | [progress](../../components/progress) | 🔄 object `size` ✅ 4.38.0；🔄 `steps` object `{ count, gap }` ✅ 4.55.0；🔄 `percentPosition` ✅ 4.58.0；🔄 `rounding` ✅ 4.59.0 |
 | Feedback | Result | ✅ | ✅ | [result](../../components/result) | — |
 | Feedback | Skeleton | ✅ | ✅ | [skeleton](../../components/skeleton) | 🔄 `Skeleton.Node` ✅ 4.41.0 |
@@ -195,11 +195,11 @@
 64. ~~Tour `disabledInteraction` + Badge `size` 文档 + Watermark `font.textAlign` + Drawer `drawerRender` + Spin `percent`~~ — ✅ `4.66.0`
 65. ~~Badge / Descriptions `classNames`/`styles` + Image `movable`/`imageRender` + Select `labelRender`/`optionRender`~~ — ✅ `4.67.0`
 66. ~~TreeSelect `labelRender` + Card/Tag/Spin semantic + Collapse `items` + Cascader `optionRender`~~ — ✅ `4.68.0`
-67. Table `virtual` 按需拆版（多日）
-68. ColorPicker 渐变 `mode`
-69. Segmented `vertical`（需 MotionThumb 竖向）
-70. Tooltip / Popover / Popconfirm semantic `classNames` / `styles`
-71. Select / Cascader `prefix`
+67. ~~Tooltip/Popover/Popconfirm semantic + Select/Cascader/TreeSelect `prefix` + Button `loading.icon` + Dropdown `popupRender`~~ — ✅ `4.69.0`
+68. Table `virtual` 按需拆版（多日）
+69. ColorPicker 渐变 `mode`
+70. Segmented `vertical`（需 MotionThumb 竖向）
+71. Input / TextArea semantic `classNames` / `styles`
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -209,4 +209,4 @@
 
 ---
 
-_上次更新：`4.68.0` 批次（TreeSelect / Card / Tag / Spin / Collapse / Cascader）。每发一版请同步改本表；之后默认每版打包 4–6 项。_
+_上次更新：`4.69.0` 批次（Tooltip 语义化 / Select `prefix` / Button `loading.icon` / Dropdown `popupRender`）。每发一版请同步改本表；之后默认每版打包 4–6 项。_

@@ -345,6 +345,7 @@ const Cascader = defineComponent({
             showArrow={formItemInputContext.hasFeedback || props.showArrow}
             onChange={handleChange}
             onBlur={handleBlur}
+            prefix={props.prefix ?? slots.prefix?.()}
             v-slots={slots}
             ref={selectRef}
           />,

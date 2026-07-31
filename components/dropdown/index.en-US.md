@@ -25,6 +25,7 @@ When there are more than a few options to choose from, you can wrap them in a `D
 | disabled | whether the dropdown menu is disabled | boolean | - |  |
 | getPopupContainer | to set the container of the dropdown menu. The default is to create a `div` element in `body`, you can reset it to the scrolling area and make a relative reposition. [example](https://codepen.io/afc163/pen/zEjNOy?editors=0010) | Function(triggerNode) | `() => document.body` |  |
 | overlay(v-slot) | the dropdown menu | [Menu](/components/menu) | - |  |
+| popupRender | Customize dropdown content; receives the menu node | (menus) => VNode | - | 4.69.0 |
 | overlayClassName | Class name of the dropdown root element | string | - |  |
 | overlayStyle | Style of the dropdown root element | object | - |  |
 | placement | placement of pop menu: `bottomLeft` `bottom` `bottomRight` `topLeft` `top` `topRight` | String | `bottomLeft` |  |

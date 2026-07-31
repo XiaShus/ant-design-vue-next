@@ -272,6 +272,10 @@ export default defineComponent({
       if (!mergedDisabled.value) {
         delete buttonProps.disabled;
       }
+      const loadingIcon =
+        typeof props.loading === 'object' && props.loading
+          ? (props.loading as { icon?: any }).icon
+          : undefined;
       const iconNode =
         icon && !innerLoading.value ? (
           icon
@@ -280,6 +284,7 @@ export default defineComponent({
             existIcon={!!icon}
             prefixCls={prefixCls.value}
             loading={!!innerLoading.value}
+            icon={loadingIcon}
           />
         );
 

@@ -37,6 +37,7 @@ Tree selection control.
 | multiple | Support multiple or not, will be `true` when enable `treeCheckable`. | boolean | false |  |  |
 | notFoundContent | Specify content to show when no result matches | slot | `Not Found` |  |  |
 | placeholder | Placeholder of the select input | string\|slot | - |  |  |
+| prefix | The custom prefix | VNode \| slot | - | 4.69.0 |  |
 | placement | The position where the selection box pops up | `bottomLeft` `bottomRight` `topLeft` `topRight` | bottomLeft | 3.3.0 |
 | replaceFields | Replace the label,value, key and children fields in treeNode with the corresponding fields in treeData | object | { children:'children', label:'title', value: 'value' } |  | 1.6.1 (3.0.0 deprecated) |
 | searchPlaceholder | Placeholder of the search input | string\|slot | - |  |  |

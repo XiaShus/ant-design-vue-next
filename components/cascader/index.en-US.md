@@ -46,6 +46,7 @@ Cascade selection box.
 | open | set visible of cascader popup | boolean | - | 3.0 |
 | options | data options of cascade | [Option](#option)\[] | - |  |
 | placeholder | input placeholder | string | 'Please select' |  |
+| prefix | The custom prefix | VNode \| slot | - | 4.69.0 |
 | placement | Use preset popup align config from builtinPlacements | `bottomLeft` \| `bottomRight` \| `topLeft` \| `topRight` | `bottomLeft` | 3.0 |
 | removeIcon | The custom remove icon | slot | - | 3.2 |
 | searchValue | Set search value, Need work with `showSearch` | string | - | 3.0 |

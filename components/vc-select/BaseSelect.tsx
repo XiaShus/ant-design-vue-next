@@ -204,6 +204,8 @@ export const baseSelectPropsWithoutPrivate = () => {
     clearIcon: PropTypes.any,
     /** Selector remove icon */
     removeIcon: PropTypes.any,
+    /** Custom prefix content (antd ≥ 5.22). */
+    prefix: PropTypes.any,
 
     // >>> Dropdown
     animation: String,
@@ -665,6 +667,7 @@ export default defineComponent({
         clearIcon,
         showArrow,
         inputIcon,
+        prefix,
 
         // Others
         disabled,
@@ -794,18 +797,21 @@ export default defineComponent({
       );
 
       // ============================= Select =============================
+      const hasPrefix = prefix != null && prefix !== false && prefix !== '';
       const mergedClassName = classNames(prefixCls, attrs.class, {
         [`${prefixCls}-focused`]: mockFocused.value,
         [`${prefixCls}-multiple`]: multiple.value,
         [`${prefixCls}-single`]: !multiple.value,
         [`${prefixCls}-allow-clear`]: allowClear,
         [`${prefixCls}-show-arrow`]: mergedShowArrow,
+        [`${prefixCls}-show-prefix`]: hasPrefix,
         [`${prefixCls}-disabled`]: disabled,
         [`${prefixCls}-loading`]: loading,
         [`${prefixCls}-open`]: mergedOpen.value,
         [`${prefixCls}-customize-input`]: customizeInputElement,
         [`${prefixCls}-show-search`]: mergedShowSearch.value,
       });
+      const prefixNode = hasPrefix ? <span class={`${prefixCls}-prefix`}>{prefix}</span> : null;
 
       // >>> Selector
       const selectorNode = (
@@ -914,6 +920,7 @@ export default defineComponent({
                   .join(', ')}`}
               </span>
             )}
+            {prefixNode}
             {selectorNode}
 
             {arrowNode}

@@ -5,6 +5,7 @@
     <ghost />
     <icon />
     <loading />
+    <loadingIcon />
     <multiple />
     <size />
     <block />
@@ -17,6 +18,7 @@ import Disabled from './disabled.vue';
 import Ghost from './ghost.vue';
 import Icon from './icon.vue';
 import Loading from './loading.vue';
+import LoadingIcon from './loading-icon.vue';
 import Multiple from './multiple.vue';
 import Size from './size.vue';
 import Block from './block.vue';
@@ -34,6 +36,7 @@ export default defineComponent({
     Ghost,
     Icon,
     Loading,
+    LoadingIcon,
     Multiple,
     Size,
     Block,

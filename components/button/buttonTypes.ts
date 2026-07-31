@@ -31,8 +31,8 @@ export const buttonProps = () => ({
     type: String as PropType<SizeType>,
   },
   loading: {
-    type: [Boolean, Object] as PropType<boolean | { delay?: number }>,
-    default: (): boolean | { delay?: number } => false,
+    type: [Boolean, Object] as PropType<boolean | { delay?: number; icon?: any }>,
+    default: (): boolean | { delay?: number; icon?: any } => false,
   },
   disabled: { type: Boolean, default: undefined },
   ghost: { type: Boolean, default: undefined },

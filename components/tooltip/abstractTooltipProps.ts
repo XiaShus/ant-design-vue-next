@@ -5,6 +5,11 @@ export type TriggerType = 'hover' | 'focus' | 'click' | 'contextmenu';
 import type { PresetColorType } from '../_util/colors';
 import type { LiteralUnion } from '../_util/type';
 import { objectType } from '../_util/type';
+
+export type TooltipSemanticName = 'root' | 'body' | 'arrow';
+export type TooltipClassNamesType = Partial<Record<TooltipSemanticName, string>>;
+export type TooltipStylesType = Partial<Record<TooltipSemanticName, CSSProperties>>;
+
 export type TooltipPlacement =
   | 'top'
   | 'left'
@@ -27,10 +32,17 @@ export default () => ({
   placement: String as PropType<TooltipPlacement>,
   color: String as PropType<LiteralUnion<PresetColorType>>,
   transitionName: String,
+  /** @deprecated Please use `styles.root` instead. */
   overlayStyle: objectType<CSSProperties>(),
+  /** @deprecated Please use `styles.body` instead. */
   overlayInnerStyle: objectType<CSSProperties>(),
+  /** @deprecated Please use `classNames.root` instead. */
   overlayClassName: String,
   openClassName: String,
+  /** Semantic structure className (antd ≥ 5.23). */
+  classNames: objectType<TooltipClassNamesType>(),
+  /** Semantic structure style (antd ≥ 5.23). */
+  styles: objectType<TooltipStylesType>(),
   prefixCls: String,
   mouseEnterDelay: Number,
   mouseLeaveDelay: Number,

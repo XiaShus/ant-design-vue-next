@@ -32,6 +32,8 @@ const Dropdown = defineComponent({
   slots: Object as CustomSlotsType<{
     default?: any;
     overlay?: any;
+    popupRender?: any;
+    dropdownRender?: any;
   }>,
   setup(props, { slots, attrs, emit }) {
     const { prefixCls, rootPrefixCls, direction, getPopupContainer } = useConfigInject(
@@ -122,7 +124,9 @@ const Dropdown = defineComponent({
           })
         : overlayNode;
 
-      return fixedModeOverlay;
+      const popupRender =
+        props.popupRender || slots.popupRender || props.dropdownRender || slots.dropdownRender;
+      return popupRender ? popupRender(fixedModeOverlay) : fixedModeOverlay;
     };
 
     const placement = computed(() => {
@@ -204,7 +208,7 @@ const Dropdown = defineComponent({
           placement: placement.value,
           destroyPopupOnHide: props.destroyOnHidden ?? props.destroyPopupOnHide,
         },
-        ['overlay', 'onUpdate:visible', 'destroyOnHidden'],
+        ['overlay', 'onUpdate:visible', 'destroyOnHidden', 'popupRender', 'dropdownRender'],
       );
       return wrapSSR(
         <RcDropdown {...dropdownProps} v-slots={{ overlay: renderOverlay }}>

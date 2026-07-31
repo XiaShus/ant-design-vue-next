@@ -18,6 +18,7 @@
     <CustomDropdownMenu />
     <OptionLabelProp />
     <LabelRender />
+    <Prefix />
     <BigData />
     <fieldNamesVue />
     <placementVue />
@@ -42,6 +43,7 @@ import HideSelected from './hide-selected.vue';
 import CustomDropdownMenu from './custom-dropdown-menu.vue';
 import OptionLabelProp from './option-label-prop.vue';
 import LabelRender from './label-render.vue';
+import Prefix from './prefix.vue';
 import BigData from './big-data.vue';
 import Responsive from './responsive.vue';
 import fieldNamesVue from './field-names.vue';
@@ -74,6 +76,7 @@ export default defineComponent({
     CustomDropdownMenu,
     OptionLabelProp,
     LabelRender,
+    Prefix,
     BigData,
     Responsive,
   },

@@ -89,6 +89,7 @@ const Select = defineComponent({
   slots: Object as CustomSlotsType<{
     notFoundContent: any;
     suffixIcon: any;
+    prefix: any;
     itemIcon: any;
     removeIcon: any;
     clearIcon: any;
@@ -319,6 +320,7 @@ const Select = defineComponent({
           maxCount={isMultiple.value ? props.maxCount : undefined}
           showArrow={hasFeedback || showArrow}
           disabled={mergedDisabled.value}
+          prefix={props.prefix ?? slots.prefix?.()}
         ></RcSelect>,
       );
     };

@@ -4,6 +4,15 @@
 
 ---
 
+## 4.69.0
+
+`2026-07-31`
+
+- 🌟 Tooltip / Popover / Popconfirm support semantic `classNames` / `styles` (antd ≥ 5.23)
+- 🌟 Select / Cascader / TreeSelect support `prefix` (antd ≥ 5.22)
+- 🌟 Button `loading.icon` custom loading icon (antd ≥ 5.23)
+- 🌟 Dropdown support `popupRender` (antd ≥ 5.25)
+
 ## 4.68.0
 
 `2026-07-31`
