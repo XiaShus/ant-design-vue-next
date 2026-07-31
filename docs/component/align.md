@@ -32,10 +32,10 @@
 | 分组 | 组件 | React `antd` | Vue Next | 文档链接 | 缺口备注 |
 | --- | --- | --- | --- | --- | --- |
 | Layout | Divider | ✅ | ✅ | [divider](../../components/divider) | 🔄 `variant` / `size` ✅ 4.25.0 |
-| Layout | Flex | ✅ 5.10 | ✅ | [flex](../../components/flex) | — |
+| Layout | Flex | ✅ 5.10 | ✅ | [flex](../../components/flex) | 🔄 `wrap` boolean ✅ 4.76.0 |
 | Layout | Grid | ✅ | ✅ | [grid](../../components/grid) | — |
 | Layout | Layout | ✅ | ✅ | [layout](../../components/layout) | — |
-| Layout | Space | ✅ | ✅ | [space](../../components/space) | 🔄 `orientation` / `vertical` / `separator` ✅ 4.48.0 |
+| Layout | Space | ✅ | ✅ | [space](../../components/space) | 🔄 `orientation` / `vertical` / `separator` ✅ 4.48.0；🔄 `classNames` / `styles` + Compact `orientation`/`vertical` ✅ 4.76.0 |
 | Layout | Splitter | ✅ 5.21 | 🔄 ✅ 4.4.0 | [splitter](../../components/splitter) | 拖拽/min/max/受控；🔄 collapsible / lazy ✅ 4.16.0 |
 | Layout | Masonry | ✅ 6.0 | ⏭ | — | 阶段 B（antd 6） |
 
@@ -93,7 +93,7 @@
 | Data Display | Segmented | ✅ | ✅ | [segmented](../../components/segmented) | 🔄 `shape="round"` ✅ 4.45.0；⏭ `vertical` |
 | Data Display | Statistic | ✅ | ✅ | [statistic](../../components/statistic) | 🔄 `Statistic.Timer` ✅ 4.31.0 |
 | Data Display | Table | ✅ | ✅ | [table](../../components/table) | 🔄 Column `hidden` ✅ 4.13.0；🔄 `scrollTo` / `nativeElement` ✅ 4.17.0；🔄 `rowHoverable` ✅ 4.19.0；⏭ `virtual` |
-| Data Display | Tag | ✅ | ✅ | [tag](../../components/tag) | 🔄 `classNames` / `styles` ✅ 4.68.0 |
+| Data Display | Tag | ✅ | ✅ | [tag](../../components/tag) | 🔄 `classNames` / `styles` ✅ 4.68.0；🔄 CheckableTag `icon` ✅ 4.76.0 |
 | Data Display | Timeline | ✅ | ✅ | [timeline](../../components/timeline) | 🔄 `items` ✅ 4.33.0；🔄 `<ol>` a11y + `gray` 文档 ✅ 4.75.0 |
 | Data Display | Tooltip | ✅ | ✅ | [tooltip](../../components/tooltip) | 🔄 `destroyOnHidden` ✅ 4.14.0；🔄 `classNames` / `styles` ✅ 4.69.0（Popover / Popconfirm 同） |
 | Data Display | Tour | ✅ 5.0 | ✅ | [tour](../../components/tour) | 🔄 `actionsRender` ✅ 4.37.0；🔄 `disabledInteraction` ✅ 4.66.0 |
@@ -103,7 +103,7 @@
 
 | 分组 | 组件 | React `antd` | Vue Next | 文档链接 | 缺口备注 |
 | --- | --- | --- | --- | --- | --- |
-| Feedback | Alert | ✅ | ✅ | [alert](../../components/alert) | 🔄 object `closable` ✅ 4.27.0 |
+| Feedback | Alert | ✅ | ✅ | [alert](../../components/alert) | 🔄 object `closable` ✅ 4.27.0；🔄 closable `aria-*`/`data-*` + `action` prop ✅ 4.76.0 |
 | Feedback | Drawer | ✅ | ✅ | [drawer](../../components/drawer) | 🔄 `destroyOnHidden` ✅ 4.11.0；🔄 `loading` ✅ 4.64.0；🔄 `drawerRender` ✅ 4.66.0 |
 | Feedback | Message | ✅ | ✅ | [message](../../components/message) | 🔄 `pauseOnHover` ✅ 4.44.0 |
 | Feedback | Modal | ✅ | ✅ | [modal](../../components/modal) | 🔄 `destroyOnHidden` ✅ 4.11.0；🔄 `afterOpenChange` ✅ 4.22.0；🔄 `loading` ✅ 4.64.0 |
@@ -205,8 +205,9 @@
 74. ~~Carousel `autoplay.dotDuration` + Form `requiredMark` renderProps + Switch/Transfer 小缺口 + Notification `actions`~~ — ✅ `4.73.0`
 75. ~~Form.Item `layout` + Tabs `items`/`removeIcon`/`more` + Collapse semantic~~ — ✅ `4.74.0`
 76. ~~Steps / Timeline / Affix + Form `validateDebounce` + Menu `extra` + App `component`~~ — ✅ `4.75.0`
-77. Space / Flex semantic `classNames`/`styles`（择优）
-78. Alert closable `aria-*` / action 小缺口
+77. ~~Space semantic + Alert aria/action + Flex wrap boolean + Compact orientation + CheckableTag icon~~ — ✅ `4.76.0`
+78. Space.Addon（Compact 附属单元）
+79. FloatButton / Tour 小缺口（择优）
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -216,4 +217,4 @@
 
 ---
 
-_上次更新：`4.75.0` 批次（validateDebounce / Affix getTargetContainer / Timeline ol / Steps docs / Menu extra / App component）。每发一版请同步改本表；之后默认每版打包 4–6 项。_
+_上次更新：`4.76.0` 批次（Space semantic / Alert aria·action / Flex wrap / Compact orientation / CheckableTag icon）。每发一版请同步改本表；之后默认每版打包 4–6 项。_

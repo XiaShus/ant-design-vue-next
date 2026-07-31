@@ -64,6 +64,10 @@ export const spaceCompactProps = () => ({
     type: String as PropType<SizeType>,
   },
   direction: PropTypes.oneOf(tuple('horizontal', 'vertical')).def('horizontal'),
+  /** Preferred alias of `direction` (antd). */
+  orientation: PropTypes.oneOf(tuple('horizontal', 'vertical')),
+  /** Syntactic sugar for `orientation="vertical"`. */
+  vertical: booleanType(),
   align: PropTypes.oneOf(tuple('start', 'end', 'center', 'baseline')),
   block: { type: Boolean, default: undefined },
 });
@@ -90,11 +94,21 @@ const Compact = defineComponent({
 
     const [wrapSSR, hashId] = useStyle(prefixCls);
 
+    const mergedDirection = computed(() => {
+      if (props.orientation === 'vertical' || props.orientation === 'horizontal') {
+        return props.orientation;
+      }
+      if (props.vertical) {
+        return 'vertical';
+      }
+      return props.direction === 'vertical' ? 'vertical' : 'horizontal';
+    });
+
     const clx = computed(() => {
       return classNames(prefixCls.value, hashId.value, {
         [`${prefixCls.value}-rtl`]: directionConfig.value === 'rtl',
         [`${prefixCls.value}-block`]: props.block,
-        [`${prefixCls.value}-vertical`]: props.direction === 'vertical',
+        [`${prefixCls.value}-vertical`]: mergedDirection.value === 'vertical',
       });
     });
 
@@ -104,6 +118,7 @@ const Compact = defineComponent({
       if (childNodes.length === 0) {
         return null;
       }
+      const compactDirection = mergedDirection.value;
 
       return wrapSSR(
         <div {...attrs} class={[clx.value, attrs.class]}>
@@ -115,7 +130,7 @@ const Compact = defineComponent({
               <CompactItem
                 key={key}
                 compactSize={props.size ?? 'middle'}
-                compactDirection={props.direction}
+                compactDirection={compactDirection}
                 isFirstItem={i === 0 && (noCompactItemContext || compactItemContext?.isFirstItem)}
                 isLastItem={
                   i === childNodes.length - 1 &&

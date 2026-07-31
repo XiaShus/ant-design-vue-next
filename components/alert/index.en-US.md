@@ -17,7 +17,7 @@ Alert component for feedback.
 
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
-| action | The action of Alert | slot | - | 4.0.0 |
+| action | The action of Alert | VueNode \| slot | - | 4.0.0；prop: 4.76.0 |
 | afterClose | Called when close animation is finished. Prefer `closable.afterClose` when using object form | () => void | - |  |
 | banner | Whether to show as banner | boolean | false |  |
 | closable | Whether Alert can be closed | boolean \| [AlertClosableType](#alertclosabletype) | - | object: 4.27.0 |
@@ -36,6 +36,9 @@ type AlertClosableType = {
   closeIcon?: VNodeChild;
   onClose?: (e: MouseEvent) => void;
   afterClose?: () => void;
+  // aria-* / data-* are passed to the close button (4.76.0)
+  [key: `aria-${string}`]: string;
+  [key: `data-${string}`]: string;
 };
 ```
 

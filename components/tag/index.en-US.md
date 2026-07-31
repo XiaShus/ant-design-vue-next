@@ -35,9 +35,10 @@ Tag for categorizing or markup.
 
 ### Tag.CheckableTag
 
-| Property         | Description           | Type    | Default |
-| ---------------- | --------------------- | ------- | ------- |
-| checked(v-model) | Checked status of Tag | boolean | `false` |
+| Property         | Description                   | Type            | Default | Version |
+| ---------------- | ----------------------------- | --------------- | ------- | ------- |
+| checked(v-model) | Checked status of Tag         | boolean         | `false` |         |
+| icon             | Set the icon of checkable tag | VueNode \| slot | -       | 4.76.0  |
 
 ### Tag.CheckableTag Events
 

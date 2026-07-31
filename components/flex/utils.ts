@@ -34,6 +34,15 @@ export const alignItemsValues = [
 
 const genClsWrap = (prefixCls: string, props: FlexProps) => {
   const wrapCls: Record<PropertyKey, boolean> = {};
+  // Boolean shortcut (antd ≥ 5.17): true → wrap, false → nowrap
+  if (props.wrap === true) {
+    wrapCls[`${prefixCls}-wrap-wrap`] = true;
+    return wrapCls;
+  }
+  if (props.wrap === false) {
+    wrapCls[`${prefixCls}-wrap-nowrap`] = true;
+    return wrapCls;
+  }
   flexWrapValues.forEach(cssKey => {
     wrapCls[`${prefixCls}-wrap-${cssKey}`] = props.wrap === cssKey;
   });

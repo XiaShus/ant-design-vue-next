@@ -36,9 +36,10 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*JPNAQYrVkYkAAA
 
 ### Tag.CheckableTag
 
-| 参数             | 说明               | 类型    | 默认值 |
-| ---------------- | ------------------ | ------- | ------ |
-| checked(v-model) | 设置标签的选中状态 | boolean | false  |
+| 参数             | 说明               | 类型            | 默认值 | 版本   |
+| ---------------- | ------------------ | --------------- | ------ | ------ |
+| checked(v-model) | 设置标签的选中状态 | boolean         | false  |        |
+| icon             | 设置图标           | VueNode \| slot | -      | 4.76.0 |
 
 ### 事件
 

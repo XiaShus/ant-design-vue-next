@@ -4,7 +4,7 @@ import PropTypes from '../_util/vue-types';
 import { filterEmpty } from '../_util/props-util';
 import type { SizeType } from '../config-provider';
 import type { CustomSlotsType, VueNode } from '../_util/type';
-import { booleanType, someType, tuple } from '../_util/type';
+import { booleanType, objectType, someType, tuple } from '../_util/type';
 import useConfigInject from '../config-provider/hooks/useConfigInject';
 import useFlexGapSupport from '../_util/hooks/useFlexGapSupport';
 import classNames from '../_util/classNames';
@@ -14,6 +14,9 @@ import useStyle from './style';
 
 export type SpaceSize = SizeType | number;
 export type SpaceOrientation = 'horizontal' | 'vertical';
+export type SpaceSemanticName = 'root' | 'item' | 'separator';
+export type SpaceClassNamesType = Partial<Record<SpaceSemanticName, string>>;
+export type SpaceStylesType = Partial<Record<SpaceSemanticName, CSSProperties>>;
 const spaceSize = {
   small: 8,
   middle: 16,
@@ -34,6 +37,10 @@ export const spaceProps = () => ({
   split: someType<VueNode>([Object, String, Number, Boolean]),
   /** Set separator between items (preferred alias of split) */
   separator: someType<VueNode>([Object, String, Number, Boolean]),
+  /** Semantic structure className (antd ≥ 5.x). */
+  classNames: objectType<SpaceClassNamesType>(),
+  /** Semantic structure style (antd ≥ 5.x). */
+  styles: objectType<SpaceStylesType>(),
 });
 
 export type SpaceProps = Partial<ExtractPropTypes<ReturnType<typeof spaceProps>>>;
@@ -96,6 +103,7 @@ const Space = defineComponent({
           [`${prefixCls.value}-rtl`]: directionConfig.value === 'rtl',
           [`${prefixCls.value}-align-${mergedAlign.value}`]: mergedAlign.value,
         },
+        props.classNames?.root,
       );
     });
 
@@ -111,10 +119,11 @@ const Space = defineComponent({
       return {
         ...gapStyle,
         ...(props.wrap && { flexWrap: 'wrap', marginBottom: `${-verticalSize.value}px` }),
+        ...props.styles?.root,
       } as CSSProperties;
     });
     return () => {
-      const { wrap } = props;
+      const { wrap, classNames: semanticClassNames, styles: semanticStyles } = props;
       const direction = mergedOrientation.value;
       const children = slots.default?.();
       const items = filterEmpty(children);
@@ -156,11 +165,17 @@ const Space = defineComponent({
 
             return wrapSSR(
               <Fragment key={originIndex}>
-                <div class={itemClassName} style={itemStyle}>
+                <div
+                  class={classNames(itemClassName, semanticClassNames?.item)}
+                  style={{ ...itemStyle, ...semanticStyles?.item }}
+                >
                   {child}
                 </div>
                 {index < latestIndex && split && (
-                  <span class={`${itemClassName}-split`} style={itemStyle}>
+                  <span
+                    class={classNames(`${itemClassName}-split`, semanticClassNames?.separator)}
+                    style={{ ...itemStyle, ...semanticStyles?.separator }}
+                  >
                     {split}
                   </span>
                 )}

@@ -7,6 +7,7 @@
     <Align />
     <Wrap />
     <Split />
+    <StyleClass />
     <Compact />
     <CompactButtons />
     <CompactButtonVertical />
@@ -19,6 +20,7 @@ import Vertical from './vertical.vue';
 import Align from './align.vue';
 import Wrap from './wrap.vue';
 import Split from './split.vue';
+import StyleClass from './style-class.vue';
 import Compact from './compact.vue';
 import CompactButtons from './compact-buttons.vue';
 import CompactButtonVertical from './compact-button-vertical.vue';
@@ -37,6 +39,7 @@ export default defineComponent({
     Align,
     Wrap,
     Split,
+    StyleClass,
     Compact,
     CompactButtons,
     CompactButtonVertical,

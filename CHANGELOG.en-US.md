@@ -4,6 +4,16 @@
 
 ---
 
+## 4.76.0
+
+`2026-07-31`
+
+- 🌟 Space support semantic `classNames` / `styles`
+- 🌟 Alert `closable` object supports `aria-*` / `data-*`; `action` as prop
+- 🌟 Flex `wrap` boolean shortcut (antd ≥ 5.17)
+- 🌟 Space.Compact support `orientation` / `vertical`
+- 🌟 Tag.CheckableTag support `icon` (antd ≥ 5.27)
+
 ## 4.75.0
 
 `2026-07-31`

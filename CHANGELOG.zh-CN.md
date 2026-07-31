@@ -8,6 +8,16 @@
 
 ---
 
+## 4.76.0
+
+`2026-07-31`
+
+- 🌟 Space 支持语义化 `classNames` / `styles`
+- 🌟 Alert `closable` 对象支持 `aria-*` / `data-*`；`action` 支持 prop
+- 🌟 Flex `wrap` 支持布尔快捷写法（对齐 antd ≥ 5.17）
+- 🌟 Space.Compact 支持 `orientation` / `vertical`
+- 🌟 Tag.CheckableTag 支持 `icon`（对齐 antd ≥ 5.27）
+
 ## 4.75.0
 
 `2026-07-31`

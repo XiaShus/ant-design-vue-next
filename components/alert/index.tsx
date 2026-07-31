@@ -15,6 +15,7 @@ import { getTransitionProps } from '../_util/transition';
 import { isValidElement } from '../_util/props-util';
 import { anyType, tuple, withInstall } from '../_util/type';
 import { cloneElement } from '../_util/vnode';
+import pickAttrs from '../_util/pickAttrs';
 import type { NodeMouseEventHandler } from '../vc-tree/contextTypes';
 import useConfigInject from '../config-provider/hooks/useConfigInject';
 import useStyle from './style';
@@ -37,11 +38,13 @@ const AlertTypes = tuple('success', 'info', 'warning', 'error');
 
 export type AlertType = (typeof AlertTypes)[number];
 
-/** Closable config object (antd ≥ 5.15). */
+/** Closable config object (antd ≥ 5.15); supports aria-* / data-* on close button. */
 export type AlertClosableType = {
   closeIcon?: any;
   onClose?: (e: MouseEvent) => void;
   afterClose?: () => void;
+  [key: `aria-${string}`]: string | undefined;
+  [key: `data-${string}`]: string | undefined;
 };
 
 export type AlertClosable = boolean | AlertClosableType;
@@ -59,6 +62,8 @@ export const alertProps = () => ({
   message: PropTypes.any,
   /** Additional content of Alert */
   description: PropTypes.any,
+  /** Custom action node (antd ≥ 4.9). */
+  action: PropTypes.any,
   /** Trigger when animation ending of Alert */
   afterClose: Function as PropType<() => void>,
   /** Whether to show icon */
@@ -135,7 +140,10 @@ const Alert = defineComponent({
       const description = props.description ?? slots.description?.();
       const message = props.message ?? slots.message?.();
       const icon = props.icon ?? slots.icon?.();
-      const action = slots.action?.();
+      const action = props.action ?? slots.action?.();
+      const closeAriaProps = closableConfig
+        ? pickAttrs(closableConfig, { aria: true, data: true })
+        : {};
 
       // banner模式默认有 Icon
       showIcon = banner && showIcon === undefined ? true : showIcon;
@@ -176,6 +184,7 @@ const Alert = defineComponent({
           onClick={handleClose}
           class={`${prefixClsValue}-close-icon`}
           tabindex={0}
+          {...closeAriaProps}
         >
           {closeText ? (
             <span class={`${prefixClsValue}-close-text`}>{closeText}</span>

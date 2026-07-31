@@ -18,7 +18,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*-U3XQqYN7VsAAA
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
-| action | 自定义操作项 | slot | - | 4.0.0 |
+| action | 自定义操作项 | VueNode \| slot | - | 4.0.0；prop: 4.76.0 |
 | afterClose | 关闭动画结束后触发的回调函数。使用对象形式时优先配置 `closable.afterClose` | () => void | - |  |
 | banner | 是否用作顶部公告 | boolean | false |  |
 | closable | 是否显示关闭按钮 | boolean \| [AlertClosableType](#alertclosabletype) | - | object: 4.27.0 |
@@ -37,6 +37,9 @@ type AlertClosableType = {
   closeIcon?: VNodeChild;
   onClose?: (e: MouseEvent) => void;
   afterClose?: () => void;
+  // aria-* / data-* 会透传到关闭按钮（4.76.0）
+  [key: `aria-${string}`]: string;
+  [key: `data-${string}`]: string;
 };
 ```
 

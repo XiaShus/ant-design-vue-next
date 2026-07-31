@@ -5,7 +5,8 @@ import { anyType, booleanType, someType, stringType } from '../_util/type';
 export const flexProps = () => ({
   prefixCls: stringType(),
   vertical: booleanType(),
-  wrap: stringType<CSSProperties['flex-wrap']>(),
+  /** flex-wrap CSS value, or boolean shortcut (antd ≥ 5.17). */
+  wrap: someType<boolean | CSSProperties['flex-wrap']>([Boolean, String]),
   justify: stringType<CSSProperties['justify-content']>(),
   align: stringType<CSSProperties['align-items']>(),
   flex: someType<CSSProperties['flex']>([Number, String]),

@@ -21,11 +21,13 @@ Set components spacing.
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
 | align | Align items | `start` \| `end` \|`center` \|`baseline` | - | 1.6.5 |
+| classNames | Semantic structure className | { root?: string; item?: string; separator?: string } | - | 4.76.0 |
 | direction | The space direction (also accepts `orientation`) | `vertical` \| `horizontal` | `horizontal` | 1.6.5 |
 | orientation | The space direction | `vertical` \| `horizontal` | `horizontal` | 4.48.0 |
 | separator | Set separator | VueNode \| v-slot:separator | - | 4.48.0 |
 | size | The space size | `small` \| `middle` \| `large` \| `number` | `small` | 1.6.5 |
 | split | Set split (also accepts `separator`) | VueNode \| v-slot:split | - | 2.2.0 |
+| styles | Semantic structure style | { root?: CSSProperties; item?: CSSProperties; separator?: CSSProperties } | - | 4.76.0 |
 | vertical | Syntactic sugar for `orientation="vertical"` | boolean | `false` | 4.48.0 |
 | wrap | Auto wrap line, when `horizontal` effective | boolean | false | 2.2.0 |
 
@@ -46,4 +48,6 @@ Use Space.Compact when child form components are compactly connected and the bor
 | --- | --- | --- | --- | --- |
 | block | Option to fit width to its parent\'s width | boolean | false | 4.0.0 |
 | direction | Set direction of layout | `vertical` \| `horizontal` | `horizontal` | 4.0.0 |
+| orientation | Alias of `direction` | `vertical` \| `horizontal` | `horizontal` | 4.76.0 |
 | size | Set child component size | `large` \| `middle` \| `small` | `middle` | 4.0.0 |
+| vertical | Syntactic sugar for `orientation="vertical"` | boolean | `false` | 4.76.0 |
