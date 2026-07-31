@@ -4,6 +4,15 @@
 
 ---
 
+## 4.77.0
+
+`2026-07-31`
+
+- 🌟 Space.Addon for Compact custom cells (antd ≥ 5.29)
+- 🌟 Tour support `closeIcon` / `gap` (tuple offset) / `getPopupContainer`
+- 🌟 FloatButton `tooltip` accepts TooltipProps (antd ≥ 5.25)
+- 📖 Space.Compact docs list InputNumber as supported
+
 ## 4.76.0
 
 `2026-07-31`

@@ -6,6 +6,7 @@
     <Mask />
     <indicator />
     <disabledInteraction />
+    <Gap />
   </demo-sort>
 </template>
 <script lang="ts">
@@ -15,6 +16,7 @@ import Placement from './placement.vue';
 import Mask from './mask.vue';
 import Indicator from './indicator.vue';
 import DisabledInteraction from './disabled-interaction.vue';
+import Gap from './gap.vue';
 
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
@@ -30,6 +32,7 @@ export default defineComponent({
     Mask,
     Indicator,
     DisabledInteraction,
+    Gap,
   },
   setup() {
     return {};

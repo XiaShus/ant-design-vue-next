@@ -185,6 +185,8 @@ declare module 'vue' {
 
     ASpaceCompact: typeof import('ant-design-vue')['Compact'];
 
+    ASpaceAddon: typeof import('ant-design-vue')['Addon'];
+
     ASpin: typeof import('ant-design-vue')['Spin'];
 
     AStatistic: typeof import('ant-design-vue')['Statistic'];

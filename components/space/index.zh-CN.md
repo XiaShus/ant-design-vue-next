@@ -46,6 +46,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*37T2R6O9oi0AAA
 - Cascader
 - DatePicker
 - Input/Input.Search
+- InputNumber
 - Select
 - TimePicker
 - TreeSelect
@@ -57,3 +58,11 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*37T2R6O9oi0AAA
 | orientation | `direction` 别名 | `vertical` \| `horizontal` | `horizontal` | 4.76.0 |
 | size | 子组件大小 | `large` \| `middle` \| `small` | `middle` | 4.0.0 |
 | vertical | `orientation="vertical"` 的语法糖 | boolean | `false` | 4.76.0 |
+
+### Space.Addon
+
+在 Compact 中创建自定义附属单元。自 `4.77.0` 起提供。
+
+| 参数 | 说明                       | 类型    | 默认值 | 版本   |
+| ---- | -------------------------- | ------- | ------ | ------ |
+| -    | 通过默认插槽传入自定义内容 | VueNode | -      | 4.77.0 |

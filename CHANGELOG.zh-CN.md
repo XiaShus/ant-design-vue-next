@@ -8,6 +8,15 @@
 
 ---
 
+## 4.77.0
+
+`2026-07-31`
+
+- 🌟 Space.Addon Compact 自定义附属单元（对齐 antd ≥ 5.29）
+- 🌟 Tour 支持 `closeIcon` / `gap`（含元组 offset）/ `getPopupContainer`
+- 🌟 FloatButton `tooltip` 支持 TooltipProps（对齐 antd ≥ 5.25）
+- 📖 Space.Compact 文档补充 InputNumber
+
 ## 4.76.0
 
 `2026-07-31`

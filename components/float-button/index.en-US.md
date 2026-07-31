@@ -24,7 +24,7 @@ FloatButton. Available since `4.0.0`.
 | --- | --- | --- | --- | --- |
 | icon | Set the icon component of button | slot | - |  |
 | description | Text and other | string \| slot | - |  |
-| tooltip | The text shown in the tooltip | string \| slot |  |  |
+| tooltip | The text shown in the tooltip | string \| slot \| [TooltipProps](/components/tooltip/#api) | - | TooltipProps: 4.77.0 |
 | type | Setting button type | `default` \| `primary` | `default` |  |
 | shape | Setting button shape | `circle` \| `square` | `circle` |  |
 | href | The target of hyperlink | string | - |  |

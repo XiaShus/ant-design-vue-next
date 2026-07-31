@@ -46,10 +46,21 @@ const panelRender = defineComponent({
     };
 
     return () => {
-      const { prefixCls, title, onClose, cover, description, type: stepType, arrow } = props;
+      const {
+        prefixCls,
+        title,
+        onClose,
+        cover,
+        description,
+        type: stepType,
+        arrow,
+        closeIcon,
+      } = props;
 
       const prevButtonProps = props.prevButtonProps as TourBtnProps;
       const nextButtonProps = props.nextButtonProps as TourBtnProps;
+      const mergedClosable = closeIcon !== false && closeIcon !== null;
+      const useDefaultCloseIcon = closeIcon === true || closeIcon === undefined;
 
       let headerNode: VueNode;
       if (title) {
@@ -155,7 +166,14 @@ const panelRender = defineComponent({
               >
                 {arrow && <div class={`${prefixCls}-arrow`} key="arrow" />}
                 <div class={`${prefixCls}-inner`}>
-                  <CloseOutlined class={`${prefixCls}-close`} onClick={onClose} />
+                  {mergedClosable &&
+                    (useDefaultCloseIcon ? (
+                      <CloseOutlined class={`${prefixCls}-close`} onClick={onClose} />
+                    ) : (
+                      <span class={`${prefixCls}-close`} onClick={onClose}>
+                        {closeIcon}
+                      </span>
+                    ))}
                   {coverNode}
                   {headerNode}
                   {descriptionNode}

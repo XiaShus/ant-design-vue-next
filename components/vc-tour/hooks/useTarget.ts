@@ -6,7 +6,8 @@ import type { TourStepInfo } from '..';
 import useState from '../../_util/hooks/useState';
 
 export interface Gap {
-  offset?: number;
+  /** Offset around target; tuple is [horizontal, vertical] (antd ≥ 5.9). */
+  offset?: number | [number, number];
   radius?: number;
 }
 
@@ -85,14 +86,15 @@ export default function useTarget(
       return posInfo.value;
     }
 
-    const gapOffset = gap.value?.offset || 6;
+    const rawOffset = gap.value?.offset ?? 6;
+    const [offsetX, offsetY] = Array.isArray(rawOffset) ? rawOffset : [rawOffset, rawOffset];
     const gapRadius = gap.value?.radius || 2;
 
     return {
-      left: posInfo.value.left - gapOffset,
-      top: posInfo.value.top - gapOffset,
-      width: posInfo.value.width + gapOffset * 2,
-      height: posInfo.value.height + gapOffset * 2,
+      left: posInfo.value.left - offsetX,
+      top: posInfo.value.top - offsetY,
+      width: posInfo.value.width + offsetX * 2,
+      height: posInfo.value.height + offsetY * 2,
       radius: gapRadius,
     };
   });

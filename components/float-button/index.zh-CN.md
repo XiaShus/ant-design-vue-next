@@ -25,7 +25,7 @@ tag: New
 | --- | --- | --- | --- | --- |
 | icon | 自定义图标 | slot | - |  |
 | description | 文字及其它内容 | string \| slot | - |  |
-| tooltip | 气泡卡片的内容 | string \| slot | - |  |
+| tooltip | 气泡卡片的内容 | string \| slot \| [TooltipProps](/components/tooltip-cn/#api) | - | TooltipProps: 4.77.0 |
 | type | 设置按钮类型 | `default` \| `primary` | `default` |  |
 | shape | 设置按钮形状 | `circle` \| `square` | `circle` |  |
 | onClick | 点击按钮时的回调 | (event) => void | - |  |

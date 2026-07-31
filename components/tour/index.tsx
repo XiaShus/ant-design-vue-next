@@ -50,6 +50,7 @@ const Tour = defineComponent({
             {...stepProps}
             type={type}
             current={stepCurrent}
+            closeIcon={stepProps.closeIcon ?? props.closeIcon ?? slots.closeIcon?.()}
             actionsRender={stepProps.actionsRender ?? props.actionsRender}
             v-slots={{
               indicatorsRender: slots.indicatorsRender,

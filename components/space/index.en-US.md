@@ -40,6 +40,7 @@ Use Space.Compact when child form components are compactly connected and the bor
 - Cascader
 - DatePicker
 - Input/Input.Search
+- InputNumber
 - Select
 - TimePicker
 - TreeSelect
@@ -51,3 +52,11 @@ Use Space.Compact when child form components are compactly connected and the bor
 | orientation | Alias of `direction` | `vertical` \| `horizontal` | `horizontal` | 4.76.0 |
 | size | Set child component size | `large` \| `middle` \| `small` | `middle` | 4.0.0 |
 | vertical | Syntactic sugar for `orientation="vertical"` | boolean | `false` | 4.76.0 |
+
+### Space.Addon
+
+Create a custom cell in Compact layout. Available since `4.77.0`.
+
+| Property | Description                     | Type    | Default | Version |
+| -------- | ------------------------------- | ------- | ------- | ------- |
+| -        | Custom content via default slot | VueNode | -       | 4.77.0  |

@@ -54,6 +54,8 @@ export const tourProps = () => {
     zIndex: { type: Number, default: 1001 },
     /** Disable interaction on highlighted area (antd ≥ 5.13). */
     disabledInteraction: booleanType(),
+    /** Set the rendering node of Tour floating layer (antd ≥ 5.12). */
+    getPopupContainer: functionType<(node: HTMLElement) => HTMLElement>(),
   };
 };
 

@@ -9,6 +9,7 @@
     <Split />
     <StyleClass />
     <Compact />
+    <Addon />
     <CompactButtons />
     <CompactButtonVertical />
   </demo-sort>
@@ -22,6 +23,7 @@ import Wrap from './wrap.vue';
 import Split from './split.vue';
 import StyleClass from './style-class.vue';
 import Compact from './compact.vue';
+import Addon from './addon.vue';
 import CompactButtons from './compact-buttons.vue';
 import CompactButtonVertical from './compact-button-vertical.vue';
 import CN from '../index.zh-CN.md';
@@ -41,6 +43,7 @@ export default defineComponent({
     Split,
     StyleClass,
     Compact,
+    Addon,
     CompactButtons,
     CompactButtonVertical,
     Size,

@@ -21,7 +21,10 @@ tag: New
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
 | arrow | 是否显示箭头，包含是否指向元素中心的配置 | `boolean` \| `{ pointAtCenter: boolean}` | `true` |  |
+| closeIcon | 自定义关闭图标；`false` / `null` 时隐藏 | VueNode \| boolean \| `v-slot:closeIcon` | `true` | 4.77.0 |
 | disabledInteraction | 禁用高亮区域交互 | `boolean` | `false` | 4.66.0 |
+| gap | 控制高亮区域与目标的间距和圆角 | `{ offset?: number \| [number, number]; radius?: number }` | `{ offset: 6, radius: 2 }` | 4.77.0 |
+| getPopupContainer | 设置 Tour 浮层的渲染节点 | `(node: HTMLElement) => HTMLElement` | `body` | 4.77.0 |
 | placement | 引导卡片相对于目标元素的位置 | `left` `leftTop` `leftBottom` `right` `rightTop` `rightBottom` `top` `topLeft` `topRight` `bottom` `bottomLeft` `bottomRight` | `bottom` |  |
 | mask | 是否启用蒙层，也可传入配置改变蒙层样式和填充色 | `boolean` \| `{ style?: CSSProperties; color?: string; }` | `true` |  |
 | type | 类型，影响底色与文字颜色 | `default` \| `primary` | `default` |  |
@@ -46,6 +49,7 @@ tag: New
 | --- | --- | --- | --- | --- |
 | target | 获取引导卡片指向的元素，为空时居中于屏幕 | `() => HTMLElement` \| `HTMLElement` | - |  |
 | arrow | 是否显示箭头，包含是否指向元素中心的配置 | `boolean` \| `{ pointAtCenter: boolean}` | `true` |  |
+| closeIcon | 本步骤自定义关闭图标 | VueNode \| boolean | - | 4.77.0 |
 | cover | 展示的图片或者视频 | `VueNode` | - |  |
 | title | 标题 | `VueNode` | - |  |
 | description | 主要描述部分 | `VueNode` | - |  |

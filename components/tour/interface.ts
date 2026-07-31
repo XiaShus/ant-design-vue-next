@@ -1,7 +1,8 @@
 import type { CSSProperties, ExtractPropTypes, PropType } from 'vue';
 import { tourProps as VCTourProps, tourStepProps as VCTourStepProps } from '../vc-tour';
 import type { VueNode } from '../_util/type';
-import { functionType } from '../_util/type';
+import { functionType, someType } from '../_util/type';
+import PropTypes from '../_util/vue-types';
 
 export type TourActionsRender = (
   originNode: VueNode,
@@ -16,6 +17,8 @@ export const tourProps = () => ({
   type: { type: String as PropType<'default' | 'primary'> }, //	default	类型，影响底色与文字颜色
   /** Custom action buttons (antd ≥ 5.25). */
   actionsRender: functionType<TourActionsRender>(),
+  /** Customize close icon; `false` / `null` hides it (antd ≥ 5.9). */
+  closeIcon: someType<VueNode | boolean>([Boolean, Object, String, Number, Function]),
   'onUpdate:current': Function as PropType<(val: number) => void>,
 });
 
@@ -41,6 +44,8 @@ export const tourStepProps = () => ({
   type: { type: String as PropType<'default' | 'primary'> }, //	default	类型，影响底色与文字颜色
   /** Custom action buttons (antd ≥ 5.25). */
   actionsRender: functionType<TourActionsRender>(),
+  /** Customize close icon; `false` / `null` hides it (antd ≥ 5.9). */
+  closeIcon: PropTypes.any,
 });
 
 export type TourStepProps = Partial<ExtractPropTypes<ReturnType<typeof tourStepProps>>>;

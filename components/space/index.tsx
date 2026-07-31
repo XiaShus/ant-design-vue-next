@@ -9,6 +9,7 @@ import useConfigInject from '../config-provider/hooks/useConfigInject';
 import useFlexGapSupport from '../_util/hooks/useFlexGapSupport';
 import classNames from '../_util/classNames';
 import Compact from './Compact';
+import Addon from './Addon';
 
 import useStyle from './style';
 
@@ -189,16 +190,19 @@ const Space = defineComponent({
 });
 
 Space.Compact = Compact;
+Space.Addon = Addon;
 
 Space.install = function (app: App) {
   app.component(Space.name, Space);
   app.component(Compact.name, Compact);
+  app.component(Addon.name, Addon);
   return app;
 };
 
-export { Compact };
+export { Compact, Addon };
 
 export default Space as typeof Space &
   Plugin & {
     readonly Compact: typeof Compact;
+    readonly Addon: typeof Addon;
   };

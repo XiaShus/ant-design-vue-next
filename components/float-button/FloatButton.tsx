@@ -8,7 +8,7 @@ import { useInjectFloatButtonGroupContext } from './context';
 import warning from '../_util/warning';
 import { initDefaultProps } from '../_util/props-util';
 import { floatButtonProps } from './interface';
-// import { useCompactItemContext } from '../space/Compact';
+import convertToTooltipProps from '../_util/convertToTooltipProps';
 
 // CSSINJS
 import useStyle from './style';
@@ -54,29 +54,38 @@ const FloatButton = defineComponent({
         hashId.value,
       );
 
-      const buttonNode = (
+      const tooltipProps = convertToTooltipProps(tooltip);
+      const hasTooltip = !!slots.tooltip || !!tooltipProps;
+
+      const badgeNode = (
+        <Badge {...badge}>
+          <div class={`${prefixCls.value}-body`}>
+            <Content
+              prefixCls={prefixCls.value}
+              v-slots={{
+                icon: slots.icon,
+                description: () => description,
+              }}
+            ></Content>
+          </div>
+        </Badge>
+      );
+
+      const buttonNode = hasTooltip ? (
         <Tooltip
           placement="left"
+          {...tooltipProps}
           v-slots={{
-            title:
-              slots.tooltip || tooltip
-                ? () => (slots.tooltip && slots.tooltip()) || tooltip
-                : undefined,
-            default: () => (
-              <Badge {...badge}>
-                <div class={`${prefixCls.value}-body`}>
-                  <Content
-                    prefixCls={prefixCls.value}
-                    v-slots={{
-                      icon: slots.icon,
-                      description: () => description,
-                    }}
-                  ></Content>
-                </div>
-              </Badge>
-            ),
+            title: slots.tooltip
+              ? () => slots.tooltip!()
+              : tooltipProps?.title !== undefined
+              ? () => tooltipProps.title
+              : undefined,
+            default: () => badgeNode,
           }}
         ></Tooltip>
+      ) : (
+        badgeNode
       );
 
       if (process.env.NODE_ENV !== 'production') {

@@ -26,6 +26,18 @@ Setting `tooltip` prop to show FloatButton with tooltip.
   ></a-float-button>
 
   <a-float-button
+    :tooltip="{
+      title: 'Since 4.77.0+',
+      color: 'blue',
+      placement: 'top',
+    }"
+    :style="{
+      right: '24px',
+      bottom: '108px',
+    }"
+  ></a-float-button>
+
+  <a-float-button
     :style="{
       right: '94px',
     }"

@@ -20,7 +20,10 @@ Use when you want to guide users through a product.
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
 | arrow | Whether to show the arrow, including the configuration whether to point to the center of the element | `boolean`\|`{ pointAtCenter: boolean}` | `true` |  |
+| closeIcon | Customize close icon; `false` / `null` hides it | VueNode \| boolean \| `v-slot:closeIcon` | `true` | 4.77.0 |
 | disabledInteraction | Disable interaction on highlighted area | `boolean` | `false` | 4.66.0 |
+| gap | Control highlighted area offset and radius | `{ offset?: number \| [number, number]; radius?: number }` | `{ offset: 6, radius: 2 }` | 4.77.0 |
+| getPopupContainer | Set the rendering node of Tour floating layer | `(node: HTMLElement) => HTMLElement` | `body` | 4.77.0 |
 | placement | Position of the guide card relative to the target element | `left` `leftTop` `leftBottom` `right` `rightTop` `rightBottom` `top` `topLeft` `topRight` `bottom` `bottomLeft` `bottomRight` | `bottom` |  |
 | mask | Whether to enable masking, change mask style and fill color by pass custom props | `boolean` \| `{ style?: CSSProperties; color?: string; }` | `true` |  |
 | type | Type, affects the background color and text color | `default` `primary` | `default` |  |
@@ -45,6 +48,7 @@ Use when you want to guide users through a product.
 | --- | --- | --- | --- | --- |
 | target | Get the element the guide card points to. Empty makes it show in center of screen | `() => HTMLElement` `HTMLElement` | - |  |
 | arrow | Whether to show the arrow, including the configuration whether to point to the center of the element | `boolean` `{ pointAtCenter: boolean}` | `true` |  |
+| closeIcon | Customize close icon for this step | VueNode \| boolean | - | 4.77.0 |
 | cover | Displayed pictures or videos | `VueNode` | - |  |
 | title | title | `VueNode` | - |  |
 | description | description | `VueNode` | - |  |
