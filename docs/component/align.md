@@ -209,7 +209,8 @@
 78. ~~Space.Addon（Compact 附属单元）~~ — ✅ `4.77.0`
 79. ~~FloatButton / Tour 小缺口（择优）~~ — ✅ `4.77.0`（Tour `closeIcon`/`gap`/`getPopupContainer` + FloatButton TooltipProps）
 80. ~~Modal/Drawer closable 对象 + ConfigProvider flex + Dropdown menu + Statistic loading + Notification role~~ — ✅ `4.78.0`
-81. 下一轮：扫 antd 5.x 剩余小缺口 / 文档补齐（择优 4–6 项）
+81. ~~Image preview scale/close/destroy + Dropdown autoAdjustOverflow + ConfigProvider alert/breadcrumb/space + Notification closeIcon + Popconfirm open docs~~ — ✅ `4.79.0`
+82. 下一轮：扫 antd 5.x 剩余小缺口（含 Notification stack 等）（择优 4–6 项）
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -219,4 +220,4 @@
 
 ---
 
-_上次更新：`4.78.0` 批次（Modal/Drawer closable 对象 / ConfigProvider flex / Dropdown menu / Statistic loading / Notification role）。每发一版请同步改本表；之后默认每版打包 4–6 项。_
+_上次更新：`4.79.0` 批次（Image preview scale·close·destroy / Dropdown autoAdjustOverflow / ConfigProvider alert·breadcrumb·space / Notification closeIcon）。每发一版请同步改本表；之后默认每版打包 4–6 项。_

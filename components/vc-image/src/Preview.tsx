@@ -93,6 +93,12 @@ export interface PreviewProps extends Omit<IDialogChildProps, 'onClose' | 'mask'
     originalNode: any,
     info: { transform: Record<string, any>; image: Record<string, any> },
   ) => any;
+  /** Zoom step (antd ≥ 5.7). Default 0.5. */
+  scaleStep?: number;
+  /** Min scale (antd ≥ 5.7). Default 1. */
+  minScale?: number;
+  /** Max scale (antd ≥ 5.7). Default 50. */
+  maxScale?: number;
 }
 
 const initialPosition = {
@@ -111,6 +117,9 @@ export const previewProps = {
   toolbarRender: Function as PropType<ToolbarRender>,
   movable: { type: Boolean, default: true },
   imageRender: Function as PropType<PreviewProps['imageRender']>,
+  scaleStep: { type: Number, default: 0.5 },
+  minScale: { type: Number, default: 1 },
+  maxScale: { type: Number, default: 50 },
 };
 const Preview = defineComponent({
   compatConfig: { MODE: 3 },
@@ -159,7 +168,7 @@ const Preview = defineComponent({
     const lastWheelZoomDirection = shallowRef({ wheelDirection: 0 });
 
     const onAfterClose = () => {
-      scale.value = 1;
+      scale.value = props.minScale ?? 1;
       rotate.value = 0;
       flip.x = 1;
       flip.y = 1;
@@ -167,23 +176,20 @@ const Preview = defineComponent({
       emit('afterClose');
     };
 
-    const onZoomIn = (isWheel?: boolean) => {
-      if (!isWheel) {
-        scale.value++;
-      } else {
-        scale.value += 0.5;
-      }
+    const clampScale = (next: number) => {
+      const min = props.minScale ?? 1;
+      const max = props.maxScale ?? 50;
+      return Math.min(max, Math.max(min, next));
+    };
 
+    const onZoomIn = () => {
+      const step = props.scaleStep ?? 0.5;
+      scale.value = clampScale(scale.value + step);
       setPosition(initialPosition);
     };
-    const onZoomOut = (isWheel?: boolean) => {
-      if (scale.value > 1) {
-        if (!isWheel) {
-          scale.value--;
-        } else {
-          scale.value -= 0.5;
-        }
-      }
+    const onZoomOut = () => {
+      const step = props.scaleStep ?? 0.5;
+      scale.value = clampScale(scale.value - step);
       setPosition(initialPosition);
     };
 
@@ -253,12 +259,13 @@ const Preview = defineComponent({
         icon: zoomIn,
         onClick: () => onZoomIn(),
         type: 'zoomIn',
+        disabled: computed(() => scale.value >= (props.maxScale ?? 50)),
       },
       {
         icon: zoomOut,
         onClick: () => onZoomOut(),
         type: 'zoomOut',
-        disabled: computed(() => scale.value === 1),
+        disabled: computed(() => scale.value <= (props.minScale ?? 1)),
       },
       {
         icon: rotateRight,
@@ -350,8 +357,9 @@ const Preview = defineComponent({
 
     const onDoubleClick = () => {
       if (props.visible) {
-        if (scale.value !== 1) {
-          scale.value = 1;
+        const resetScale = props.minScale ?? 1;
+        if (scale.value !== resetScale) {
+          scale.value = resetScale;
         }
         if (position.x !== initialPosition.x || position.y !== initialPosition.y) {
           setPosition(initialPosition);
@@ -409,9 +417,9 @@ const Preview = defineComponent({
       watch([lastWheelZoomDirection], () => {
         const { wheelDirection } = lastWheelZoomDirection.value;
         if (wheelDirection > 0) {
-          onZoomOut(true);
+          onZoomOut();
         } else if (wheelDirection < 0) {
-          onZoomIn(true);
+          onZoomIn();
         }
       });
     });

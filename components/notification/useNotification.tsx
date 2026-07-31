@@ -52,6 +52,7 @@ const Holder = defineComponent({
     'duration',
     'showProgress',
     'pauseOnHover',
+    'closeIcon',
   ],
   setup(props: HolderProps, { expose }) {
     const { getPrefixCls, getPopupContainer } = useConfigInject('notification', props);
@@ -75,7 +76,10 @@ const Holder = defineComponent({
       getClassName,
       motion: getNotificationMotion,
       closable: true,
-      closeIcon: getCloseIcon(prefixCls.value),
+      closeIcon: getCloseIcon(
+        prefixCls.value,
+        typeof props.closeIcon === 'function' ? props.closeIcon() : props.closeIcon,
+      ),
       duration: props.duration ?? DEFAULT_DURATION,
       showProgress: props.showProgress,
       pauseOnHover: props.pauseOnHover,

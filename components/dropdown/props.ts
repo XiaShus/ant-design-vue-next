@@ -58,6 +58,8 @@ const dropdownProps = () => ({
   overlayClassName: String,
   overlayStyle: objectType<CSSProperties>(),
   forceRender: booleanType(),
+  /** Automatically adjust placement when off screen (antd ≥ 5.2). */
+  autoAdjustOverflow: booleanType(true),
   mouseEnterDelay: Number,
   mouseLeaveDelay: Number,
   openClassName: String,

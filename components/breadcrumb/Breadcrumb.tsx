@@ -9,10 +9,13 @@ import BreadcrumbSeparator from './BreadcrumbSeparator';
 import Menu from '../menu';
 import type { MenuProps } from '../menu';
 import useConfigInject from '../config-provider/hooks/useConfigInject';
+import { useConfigContextInject } from '../config-provider/context';
 import useStyle from './style';
 import type { CustomSlotsType, VueNode } from '../_util/type';
 import { arrayType } from '../_util/type';
 import type { DropdownProps } from '../dropdown';
+import classNames from '../_util/classNames';
+import type { CSSProperties } from 'vue';
 
 /** @deprecated Prefer `BreadcrumbItemType` with `title`. */
 export interface Route {
@@ -128,6 +131,7 @@ export default defineComponent({
   }>,
   setup(props, { slots, attrs }) {
     const { prefixCls, direction } = useConfigInject('breadcrumb', props);
+    const { breadcrumb: ctxBreadcrumb } = useConfigContextInject();
     const [wrapSSR, hashId] = useStyle(prefixCls);
     const getPath = (path: string, params: unknown) => {
       path = (path || '').replace(/^\//, '');
@@ -219,7 +223,8 @@ export default defineComponent({
       const { routes, params = {}, items } = props;
 
       const children = flattenChildren(getPropsSlot(slots, props));
-      const separator = getPropsSlot(slots, props, 'separator') ?? '/';
+      const breadcrumbCfg = ctxBreadcrumb?.value;
+      const separator = getPropsSlot(slots, props, 'separator') ?? breadcrumbCfg?.separator ?? '/';
 
       const itemRender = props.itemRender || slots.itemRender || defaultItemRender;
       const mergedItems = items?.length ? items : routes?.length ? normalizeRoutes(routes) : null;
@@ -243,15 +248,22 @@ export default defineComponent({
         });
       }
 
-      const breadcrumbClassName = {
-        [prefixCls.value]: true,
-        [`${prefixCls.value}-rtl`]: direction.value === 'rtl',
-        [`${attrs.class}`]: !!attrs.class,
-        [hashId.value]: true,
-      };
+      const breadcrumbClassName = classNames(
+        prefixCls.value,
+        {
+          [`${prefixCls.value}-rtl`]: direction.value === 'rtl',
+          [hashId.value]: true,
+        },
+        breadcrumbCfg?.className,
+        attrs.class,
+      );
 
       return wrapSSR(
-        <nav {...attrs} class={breadcrumbClassName}>
+        <nav
+          {...attrs}
+          class={breadcrumbClassName}
+          style={[breadcrumbCfg?.style, attrs.style as CSSProperties]}
+        >
           <ol>{crumbs}</ol>
         </nav>,
       );

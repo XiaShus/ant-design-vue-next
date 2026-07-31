@@ -72,7 +72,7 @@ notification.config({
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
 | bottom | Distance from the bottom of the viewport, when `placement` is `bottomRight` or `bottomLeft` (unit: pixels). | string | `24px` |  |
-| closeIcon | custom close icon | VNode \| () => VNode | - |  |
+| closeIcon | custom close icon (also for `useNotification` / App `notification` config) | VNode \| () => VNode | - | hook/App: 4.79.0 |
 | duration | Time in seconds before Notification is closed. When set to 0 or null, it will never be closed automatically | number | 4.5 |  |
 | getContainer | Return the mount node for Notification | () => HTMLNode | () => document.body |  |
 | maxCount | Max Notification show, drop oldest if exceed limit | number | - | 3.0 |

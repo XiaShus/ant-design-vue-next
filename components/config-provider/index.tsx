@@ -186,6 +186,8 @@ const ConfigProvider = defineComponent({
     );
     const direction = computed(() => props.direction || parentContext.direction?.value);
     const space = computed(() => props.space ?? parentContext.space?.value);
+    const alert = computed(() => props.alert ?? parentContext.alert?.value);
+    const breadcrumb = computed(() => props.breadcrumb ?? parentContext.breadcrumb?.value);
     const virtual = computed(() => props.virtual ?? parentContext.virtual?.value);
     // antd ≥ 5.5 prefers popupMatchSelectWidth; keep dropdownMatchSelectWidth as alias
     const popupMatchSelectWidth = computed(
@@ -243,6 +245,8 @@ const ConfigProvider = defineComponent({
       locale,
       direction,
       space,
+      alert,
+      breadcrumb,
       virtual,
       dropdownMatchSelectWidth,
       popupMatchSelectWidth,

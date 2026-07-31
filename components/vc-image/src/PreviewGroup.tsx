@@ -184,7 +184,16 @@ const Group = defineComponent({
     });
 
     return () => {
-      const { ...dialogProps } = preview.value;
+      const {
+        closeIcon,
+        destroyOnHidden,
+        destroyOnClose,
+        minScale,
+        maxScale,
+        scaleStep,
+        ...dialogProps
+      } = preview.value;
+      const mergedIcons = closeIcon ? { ...props.icons, close: closeIcon } : props.icons;
       return (
         <>
           {slots.default && slots.default()}
@@ -196,8 +205,12 @@ const Group = defineComponent({
             onClose={onPreviewClose}
             mousePosition={mousePosition.value}
             src={canPreviewUrls.value.get(current.value)}
-            icons={props.icons}
+            icons={mergedIcons}
             getContainer={getPreviewContainer.value}
+            minScale={minScale}
+            maxScale={maxScale}
+            scaleStep={scaleStep}
+            destroyOnClose={destroyOnHidden ?? destroyOnClose}
           />
         </>
       );

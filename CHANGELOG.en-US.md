@@ -4,6 +4,16 @@
 
 ---
 
+## 4.79.0
+
+`2026-07-31`
+
+- 🌟 Image preview `minScale` / `maxScale` / `scaleStep` / `closeIcon` / `destroyOnHidden`
+- 🌟 Dropdown support `autoAdjustOverflow` (antd ≥ 5.2)
+- 🌟 ConfigProvider `alert` / `breadcrumb` / Space `className`·`style`
+- 🌟 Notification hook / App config support `closeIcon`
+- 📖 Popconfirm EN docs prefer `open` over `visible`
+
 ## 4.78.0
 
 `2026-07-31`

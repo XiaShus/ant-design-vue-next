@@ -29,6 +29,18 @@ export type ImagePreviewType = Omit<
   movable?: boolean;
   /** Custom preview image node (antd ≥ 5.7). */
   imageRender?: PreviewProps['imageRender'];
+  /** Zoom step (antd ≥ 5.7). */
+  scaleStep?: number;
+  /** Min scale (antd ≥ 5.7). */
+  minScale?: number;
+  /** Max scale (antd ≥ 5.7). */
+  maxScale?: number;
+  /** Custom close icon (antd ≥ 5.7). */
+  closeIcon?: any;
+  /** @deprecated Please use `destroyOnHidden` */
+  destroyOnClose?: boolean;
+  /** Destroy preview DOM when hidden (antd ≥ 5.25). */
+  destroyOnHidden?: boolean;
 };
 
 export const imageProps = () => ({
@@ -220,7 +232,19 @@ const ImageInternal = defineComponent({
         class: cls,
         style,
       } = { ...props, ...attrs } as any;
-      const { icons, maskClassName, ...dialogProps } = preview.value;
+      const {
+        icons,
+        maskClassName,
+        closeIcon,
+        destroyOnHidden,
+        destroyOnClose,
+        minScale,
+        maxScale,
+        scaleStep,
+        ...dialogProps
+      } = preview.value;
+      const mergedIcons = closeIcon ? { ...icons, close: closeIcon } : icons;
+      const mergedDestroyOnClose = destroyOnHidden ?? destroyOnClose;
 
       const wrappperClass = cn(prefixCls, wrapperClassName, rootClassName, {
         [`${prefixCls}-error`]: isError.value,
@@ -296,8 +320,12 @@ const ImageInternal = defineComponent({
               src={mergedSrc}
               alt={alt}
               getContainer={getPreviewContainer.value}
-              icons={icons}
+              icons={mergedIcons}
               rootClassName={rootClassName}
+              minScale={minScale}
+              maxScale={maxScale}
+              scaleStep={scaleStep}
+              destroyOnClose={mergedDestroyOnClose}
             />
           )}
         </>

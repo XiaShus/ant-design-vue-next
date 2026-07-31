@@ -63,7 +63,9 @@ Some components use dynamic style to support wave effect. You can config `csp` p
 | pageHeader | Unify the ghost of pageHeader ,Ref [pageHeader]\(&lt;(/components/page-header)> | { ghost:boolean } | 'true' | 1.5.0 |
 | prefixCls | set prefix class | string | ant |  |
 | renderEmpty | set empty content of components. Ref [Empty](/components/empty/) | slot-scope \| Function(componentName: string): VNode | - |  |
-| space | Set Space `size`, ref [Space](/components/space) | { size: `small` \| `middle` \| `large` \| `number` } | - | 3.0 |
+| alert | Set Alert common props | { className?: string, style?: CSSProperties, closeIcon?: VueNode, closable?: boolean \| object } | - | 4.79.0 |
+| breadcrumb | Set Breadcrumb common props | { className?: string, style?: CSSProperties, separator?: VueNode } | - | 4.79.0 |
+| space | Set Space common props | { size?: SizeType \| number, className?: string, style?: CSSProperties } | - | 3.0 / className·style: 4.79.0 |
 | transfer | Set Transfer common props | { selectionsIcon?: VueNode } | - | 4.36.0 |
 | transformCellText | Table data can be changed again before rendering. The default configuration of general user empty data. | Function({ text, column, record, index }) => any | - | 1.5.4 |
 | variant | Set variant of data entry components (antd ≥ 5.19) | `outlined` \| `filled` \| `borderless` \| `underlined` | - | 4.8.0 |

@@ -104,6 +104,7 @@ const Space = defineComponent({
           [`${prefixCls.value}-rtl`]: directionConfig.value === 'rtl',
           [`${prefixCls.value}-align-${mergedAlign.value}`]: mergedAlign.value,
         },
+        space?.value?.className,
         props.classNames?.root,
       );
     });
@@ -120,6 +121,7 @@ const Space = defineComponent({
       return {
         ...gapStyle,
         ...(props.wrap && { flexWrap: 'wrap', marginBottom: `${-verticalSize.value}px` }),
+        ...space?.value?.style,
         ...props.styles?.root,
       } as CSSProperties;
     });

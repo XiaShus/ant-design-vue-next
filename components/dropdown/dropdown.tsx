@@ -190,7 +190,7 @@ const Dropdown = defineComponent({
 
       const builtinPlacements = getPlacements({
         arrowPointAtCenter: typeof arrow === 'object' && arrow.pointAtCenter,
-        autoAdjustOverflow: true,
+        autoAdjustOverflow: props.autoAdjustOverflow !== false,
       });
       const dropdownProps = omit(
         {

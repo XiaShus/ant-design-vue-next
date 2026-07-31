@@ -30,7 +30,8 @@ The difference with the 'confirm' modal dialog is that it's more lightweight tha
 | showCancel | Show cancel button | boolean | true | 3.0 |
 | title | title of the confirmation box | string\|slot | - |  |
 | description | The description of the confirmation box title | string\|slot | - | 4.0 |
-| visible (v-model) | hide or show | boolean | - |  |
+| open (v-model) | Whether the popconfirm is open | boolean | - | 4.0 |
+| visible (v-model) | hide or show. Please use `open` instead | boolean | - |  |
 
 ### events
 

@@ -69,4 +69,6 @@ export interface NotificationConfig {
   duration?: number;
   showProgress?: boolean;
   pauseOnHover?: boolean;
+  /** Custom close icon for hook / App (antd ≥ 5.7). */
+  closeIcon?: (() => VueNode) | VueNode;
 }

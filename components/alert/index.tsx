@@ -18,6 +18,7 @@ import { cloneElement } from '../_util/vnode';
 import pickAttrs from '../_util/pickAttrs';
 import type { NodeMouseEventHandler } from '../vc-tree/contextTypes';
 import useConfigInject from '../config-provider/hooks/useConfigInject';
+import { useConfigContextInject } from '../config-provider/context';
 import useStyle from './style';
 
 const iconMapFilled = {
@@ -88,6 +89,7 @@ const Alert = defineComponent({
   props: alertProps(),
   setup(props, { slots, emit, attrs, expose }) {
     const { prefixCls, direction } = useConfigInject('alert', props);
+    const { alert: ctxAlert } = useConfigContextInject();
     const [wrapSSR, hashId] = useStyle(prefixCls);
     const closing = shallowRef(false);
     const closed = shallowRef(false);
@@ -130,9 +132,14 @@ const Alert = defineComponent({
     const motionStyle = shallowRef<CSSProperties>({});
     return () => {
       const { banner } = props;
-      const closableConfig = isClosableObject(props.closable) ? props.closable : null;
+      const alertCfg = ctxAlert?.value;
+      const mergedClosableProp = (
+        props.closable !== undefined ? props.closable : alertCfg?.closable
+      ) as AlertClosable | undefined;
+      const closableConfig = isClosableObject(mergedClosableProp) ? mergedClosableProp : null;
 
-      const customCloseIcon = closableConfig?.closeIcon ?? props.closeIcon ?? slots.closeIcon?.();
+      const customCloseIcon =
+        closableConfig?.closeIcon ?? props.closeIcon ?? slots.closeIcon?.() ?? alertCfg?.closeIcon;
 
       let showIcon = props.showIcon;
 
@@ -154,9 +161,11 @@ const Alert = defineComponent({
       let closable: boolean;
       if (closableConfig) {
         closable = true;
-      } else if (typeof props.closable === 'boolean') {
-        closable = props.closable;
+      } else if (typeof mergedClosableProp === 'boolean') {
+        closable = mergedClosableProp;
       } else if (closeText) {
+        closable = true;
+      } else if (customCloseIcon !== undefined && customCloseIcon !== null) {
         closable = true;
       } else {
         closable = false;
@@ -167,16 +176,20 @@ const Alert = defineComponent({
       }
 
       const prefixClsValue = prefixCls.value;
-      const alertCls = classNames(prefixClsValue, {
-        [`${prefixClsValue}-${mergedType.value}`]: true,
-        [`${prefixClsValue}-closing`]: closing.value,
-        [`${prefixClsValue}-with-description`]: !!description,
-        [`${prefixClsValue}-no-icon`]: !showIcon,
-        [`${prefixClsValue}-banner`]: !!banner,
-        [`${prefixClsValue}-closable`]: closable,
-        [`${prefixClsValue}-rtl`]: direction.value === 'rtl',
-        [hashId.value]: true,
-      });
+      const alertCls = classNames(
+        prefixClsValue,
+        {
+          [`${prefixClsValue}-${mergedType.value}`]: true,
+          [`${prefixClsValue}-closing`]: closing.value,
+          [`${prefixClsValue}-with-description`]: !!description,
+          [`${prefixClsValue}-no-icon`]: !showIcon,
+          [`${prefixClsValue}-banner`]: !!banner,
+          [`${prefixClsValue}-closable`]: closable,
+          [`${prefixClsValue}-rtl`]: direction.value === 'rtl',
+          [hashId.value]: true,
+        },
+        alertCfg?.className,
+      );
 
       const closeIcon = closable ? (
         <button
@@ -222,7 +235,7 @@ const Alert = defineComponent({
             <div
               role="alert"
               {...attrs}
-              style={[attrs.style as CSSProperties, motionStyle.value]}
+              style={[alertCfg?.style, attrs.style as CSSProperties, motionStyle.value]}
               v-show={!closing.value}
               class={[attrs.class, alertCls]}
               data-show={!closing.value}

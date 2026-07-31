@@ -28,6 +28,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*5qm4S4Zgh2QAAA
 | destroyOnHidden | 关闭后是否销毁 Dropdown（对齐 antd ≥ 5.25） | boolean | false | 4.14.0 |
 | disabled | 菜单是否禁用 | boolean | - |  |
 | getPopupContainer | 菜单渲染父节点。默认渲染到 body 上，如果你遇到菜单滚动定位问题，试试修改为滚动的区域，并相对其定位。 | Function(triggerNode) | `() => document.body` |  |
+| autoAdjustOverflow | 浮层被遮挡时自动调整位置 | boolean | true | 4.79.0 |
 | menu | 菜单配置项 | [MenuProps](/components/menu-cn/#api) | - | 4.78.0 |
 | overlay(v-slot) | 菜单（推荐使用 `menu`） | [Menu](/components/menu-cn) | - |  |
 | popupRender | 自定义下拉内容，参数为菜单节点 | (menus) => VNode | - | 4.69.0 |

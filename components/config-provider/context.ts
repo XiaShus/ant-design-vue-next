@@ -1,4 +1,11 @@
-import type { ComputedRef, ExtractPropTypes, InjectionKey, PropType, Ref } from 'vue';
+import type {
+  ComputedRef,
+  CSSProperties,
+  ExtractPropTypes,
+  InjectionKey,
+  PropType,
+  Ref,
+} from 'vue';
 import { computed, inject, provide } from 'vue';
 import type { ScrollFocusOptions, ValidateMessages } from '../form/interface';
 import type { RequiredMark } from '../form/Form';
@@ -90,7 +97,24 @@ export const configProviderProps = () => ({
     type: String as PropType<'ltr' | 'rtl'>,
     default: 'ltr',
   },
-  space: objectType<{ size?: SizeType | number }>(),
+  space: objectType<{
+    size?: SizeType | number;
+    className?: string;
+    style?: CSSProperties;
+  }>(),
+  /** Alert common props (antd ≥ 5.7 / 5.14). */
+  alert: objectType<{
+    className?: string;
+    style?: CSSProperties;
+    closeIcon?: VueNode;
+    closable?: boolean | Record<string, any>;
+  }>(),
+  /** Breadcrumb common props (antd ≥ 5.6). */
+  breadcrumb: objectType<{
+    className?: string;
+    style?: CSSProperties;
+    separator?: VueNode;
+  }>(),
   virtual: { type: Boolean, default: undefined },
   dropdownMatchSelectWidth: { type: [Number, Boolean], default: undefined },
   /** Prefer this over `dropdownMatchSelectWidth` (antd ≥ 5.5 rename). */
@@ -146,6 +170,19 @@ export interface ConfigProviderInnerProps {
   direction?: ComputedRef<'ltr' | 'rtl'>;
   space?: ComputedRef<{
     size?: number | SizeType;
+    className?: string;
+    style?: CSSProperties;
+  }>;
+  alert?: ComputedRef<{
+    className?: string;
+    style?: CSSProperties;
+    closeIcon?: VueNode;
+    closable?: boolean | object;
+  }>;
+  breadcrumb?: ComputedRef<{
+    className?: string;
+    style?: CSSProperties;
+    separator?: VueNode;
   }>;
   virtual?: ComputedRef<boolean>;
   dropdownMatchSelectWidth?: ComputedRef<number | boolean>;

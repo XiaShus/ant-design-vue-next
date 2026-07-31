@@ -95,6 +95,16 @@ Previewable image.
       image: { url: string; alt?: string; width?: number | string; height?: number | string };
     },
   ) => any;
+  /** Zoom step. `4.79.0+` (antd ≥ 5.7) */
+  scaleStep?: number; // default 0.5
+  /** Min scale. `4.79.0+` (antd ≥ 5.7) */
+  minScale?: number; // default 1
+  /** Max scale. `4.79.0+` (antd ≥ 5.7) */
+  maxScale?: number; // default 50
+  /** Custom close icon. `4.79.0+` (antd ≥ 5.7) */
+  closeIcon?: VNode;
+  /** Destroy preview DOM when hidden. `4.79.0+` (antd ≥ 5.25) */
+  destroyOnHidden?: boolean;
 }
 ```
 

@@ -8,6 +8,16 @@
 
 ---
 
+## 4.79.0
+
+`2026-07-31`
+
+- 🌟 Image 预览支持 `minScale` / `maxScale` / `scaleStep` / `closeIcon` / `destroyOnHidden`
+- 🌟 Dropdown 支持 `autoAdjustOverflow`（对齐 antd ≥ 5.2）
+- 🌟 ConfigProvider 支持 `alert` / `breadcrumb` / Space `className`·`style`
+- 🌟 Notification hook / App 配置支持 `closeIcon`
+- 📖 Popconfirm 英文文档优先 `open`
+
 ## 4.78.0
 
 `2026-07-31`
