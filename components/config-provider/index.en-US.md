@@ -64,7 +64,11 @@ Some components use dynamic style to support wave effect. You can config `csp` p
 | prefixCls | set prefix class | string | ant |  |
 | renderEmpty | set empty content of components. Ref [Empty](/components/empty/) | slot-scope \| Function(componentName: string): VNode | - |  |
 | alert | Set Alert common props | { className?: string, style?: CSSProperties, closeIcon?: VueNode, closable?: boolean \| object } | - | 4.79.0 |
+| avatar | Set Avatar common props | { className?: string, style?: CSSProperties } | - | 4.80.0 |
 | breadcrumb | Set Breadcrumb common props | { className?: string, style?: CSSProperties, separator?: VueNode } | - | 4.79.0 |
+| card | Set Card common props | { className?: string, style?: CSSProperties } | - | 4.80.0 |
+| empty | Set Empty common props | { className?: string, style?: CSSProperties } | - | 4.80.0 |
+| progress | Set Progress common props | { className?: string, style?: CSSProperties } | - | 4.80.0 |
 | space | Set Space common props | { size?: SizeType \| number, className?: string, style?: CSSProperties } | - | 3.0 / className·style: 4.79.0 |
 | transfer | Set Transfer common props | { selectionsIcon?: VueNode } | - | 4.36.0 |
 | transformCellText | Table data can be changed again before rendering. The default configuration of general user empty data. | Function({ text, column, record, index }) => any | - | 1.5.4 |

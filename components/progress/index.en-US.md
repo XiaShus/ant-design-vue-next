@@ -30,6 +30,7 @@ Properties that shared by all types.
 | success | Configs of successfully progress bar | { percent: number, strokeColor: string } | - |  |
 | title | html dom title | string | - | 3.0 |
 | trailColor | The color of unfilled part | string | - |  |
+| railColor | Alias of `trailColor` | string | - | 4.80.0 |
 | type | To set the type, options: `line` `circle` `dashboard` | string | `line` |  |
 | size | Progress size | number \| \[number, number] \| { width?: number; height?: number } \| "small" \| "default" | "default" | object: 4.38.0 |
 
@@ -52,7 +53,8 @@ Properties that shared by all types.
 ### `type="dashboard"`
 
 | Property | Description | Type | Default |
-| --- | --- | --- | --- |
+| --- | --- | --- | --- | --- |
 | gapDegree | The gap degree of half circle, 0 ~ 295 | number | 75 |
 | gapPosition | The gap position, options: `top` `bottom` `left` `right` | string | `bottom` |
+| gapPlacement | Alias of `gapPosition` | string | `bottom` | 4.80.0 |
 | strokeWidth | To set the width of the dashboard progress, unit: percentage of the canvas width | number | 6 |

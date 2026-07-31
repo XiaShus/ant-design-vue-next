@@ -8,8 +8,10 @@ import useBreakpoint from '../_util/hooks/useBreakpoint';
 import type { Breakpoint, ScreenSizeMap } from '../_util/responsiveObserve';
 import { responsiveArray } from '../_util/responsiveObserve';
 import useConfigInject from '../config-provider/hooks/useConfigInject';
+import { useConfigContextInject } from '../config-provider/context';
 import ResizeObserver from '../vc-resize-observer';
 import eagerComputed from '../_util/eagerComputed';
+import classNames from '../_util/classNames';
 import useStyle from './style';
 import { useAvatarInjectContext } from './AvatarContext';
 
@@ -25,6 +27,8 @@ export const avatarProps = () => ({
   src: String,
   /** Srcset of image avatar */
   srcset: String,
+  /** CamelCase alias of `srcset` (antd ≥ 5.x). */
+  srcSet: String,
   icon: PropTypes.any,
   alt: String,
   gap: Number,
@@ -55,6 +59,7 @@ const Avatar = defineComponent({
     const avatarNodeRef = shallowRef<HTMLElement>(null);
 
     const { prefixCls } = useConfigInject('avatar', props);
+    const { avatar: ctxAvatar } = useConfigContextInject();
     const [wrapSSR, hashId] = useStyle(prefixCls);
     const avatarCtx = useAvatarInjectContext();
     const size = computed(() => {
@@ -134,20 +139,25 @@ const Avatar = defineComponent({
     });
 
     return () => {
-      const { shape, src, alt, srcset, draggable, crossOrigin } = props;
+      const { shape, src, alt, srcset, srcSet, draggable, crossOrigin } = props;
+      const avatarCfg = ctxAvatar?.value;
       const mergeShape = avatarCtx.shape ?? shape;
+      const mergedSrcSet = srcSet ?? srcset;
       const icon = getPropsSlot(slots, props, 'icon');
       const pre = prefixCls.value;
-      const classString = {
-        [`${attrs.class}`]: !!attrs.class,
-        [pre]: true,
-        [`${pre}-lg`]: size.value === 'large',
-        [`${pre}-sm`]: size.value === 'small',
-        [`${pre}-${mergeShape}`]: true,
-        [`${pre}-image`]: src && isImgExist.value,
-        [`${pre}-icon`]: icon,
-        [hashId.value]: true,
-      };
+      const classString = classNames(
+        {
+          [pre]: true,
+          [`${pre}-lg`]: size.value === 'large',
+          [`${pre}-sm`]: size.value === 'small',
+          [`${pre}-${mergeShape}`]: true,
+          [`${pre}-image`]: src && isImgExist.value,
+          [`${pre}-icon`]: icon,
+          [hashId.value]: true,
+        },
+        avatarCfg?.className,
+        attrs.class,
+      );
 
       const sizeStyle: CSSProperties =
         typeof size.value === 'number'
@@ -166,7 +176,7 @@ const Avatar = defineComponent({
           <img
             draggable={draggable}
             src={src}
-            srcset={srcset}
+            srcset={mergedSrcSet}
             onError={handleImgLoadError}
             alt={alt}
             crossorigin={crossOrigin}
@@ -210,7 +220,12 @@ const Avatar = defineComponent({
           {...attrs}
           ref={avatarNodeRef}
           class={classString}
-          style={[sizeStyle, responsiveSizeStyle(!!icon), attrs.style as CSSProperties]}
+          style={[
+            avatarCfg?.style,
+            sizeStyle,
+            responsiveSizeStyle(!!icon),
+            attrs.style as CSSProperties,
+          ]}
         >
           {childrenToRender}
         </span>,

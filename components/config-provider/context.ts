@@ -115,6 +115,26 @@ export const configProviderProps = () => ({
     style?: CSSProperties;
     separator?: VueNode;
   }>(),
+  /** Card common props (antd ≥ 5.7). */
+  card: objectType<{
+    className?: string;
+    style?: CSSProperties;
+  }>(),
+  /** Empty common props (antd ≥ 5.7). */
+  empty: objectType<{
+    className?: string;
+    style?: CSSProperties;
+  }>(),
+  /** Avatar common props (antd ≥ 5.7). */
+  avatar: objectType<{
+    className?: string;
+    style?: CSSProperties;
+  }>(),
+  /** Progress common props (antd ≥ 5.10). */
+  progress: objectType<{
+    className?: string;
+    style?: CSSProperties;
+  }>(),
   virtual: { type: Boolean, default: undefined },
   dropdownMatchSelectWidth: { type: [Number, Boolean], default: undefined },
   /** Prefer this over `dropdownMatchSelectWidth` (antd ≥ 5.5 rename). */
@@ -183,6 +203,22 @@ export interface ConfigProviderInnerProps {
     className?: string;
     style?: CSSProperties;
     separator?: VueNode;
+  }>;
+  card?: ComputedRef<{
+    className?: string;
+    style?: CSSProperties;
+  }>;
+  empty?: ComputedRef<{
+    className?: string;
+    style?: CSSProperties;
+  }>;
+  avatar?: ComputedRef<{
+    className?: string;
+    style?: CSSProperties;
+  }>;
+  progress?: ComputedRef<{
+    className?: string;
+    style?: CSSProperties;
   }>;
   virtual?: ComputedRef<boolean>;
   dropdownMatchSelectWidth?: ComputedRef<number | boolean>;

@@ -6,6 +6,7 @@ import { flattenChildren, isEmptyElement, filterEmptyWithUndefined } from '../_u
 import type { SizeType } from '../config-provider';
 import isPlainObject from 'lodash-es/isPlainObject';
 import useConfigInject from '../config-provider/hooks/useConfigInject';
+import { useConfigContextInject } from '../config-provider/context';
 import devWarning from '../vc-util/devWarning';
 import useStyle from './style';
 import Skeleton from '../skeleton';
@@ -81,6 +82,7 @@ const Card = defineComponent({
   }>,
   setup(props, { slots, attrs }) {
     const { prefixCls, direction, size } = useConfigInject('card', props);
+    const { card: ctxCard } = useConfigContextInject();
     const [wrapSSR, hashId] = useStyle(prefixCls);
     const mergedVariant = computed<CardVariant>(() => {
       if (props.variant) {
@@ -132,6 +134,7 @@ const Card = defineComponent({
         classNames: cardClassNames,
         styles: cardStyles,
       } = props;
+      const cardCfg = ctxCard?.value;
       const children = flattenChildren(slots.default?.());
       const pre = prefixCls.value;
       const mergedHeadStyle = { ...headStyle, ...cardStyles?.header };
@@ -226,8 +229,12 @@ const Card = defineComponent({
         <div
           ref="cardContainerRef"
           {...attrs}
-          class={[classString, cardClassNames?.root, attrs.class]}
-          style={{ ...cardStyles?.root, ...(attrs.style as CSSProperties) }}
+          class={[classString, cardCfg?.className, cardClassNames?.root, attrs.class]}
+          style={{
+            ...cardCfg?.style,
+            ...cardStyles?.root,
+            ...(attrs.style as CSSProperties),
+          }}
         >
           {head}
           {coverDom}

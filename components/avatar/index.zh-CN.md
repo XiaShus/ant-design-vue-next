@@ -29,6 +29,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*YbgyQaRGz-UAAA
 | size | 设置头像的大小 | number \| `large` \| `small` \| `default` \| { xs: number, sm: number, ...} | `default` | 2.2.0 |
 | src | 图片类头像的资源地址 | string | - |  |
 | srcset | 设置图片类头像响应式资源地址 | string | - |  |
+| srcSet | `srcset` 的驼峰别名 | string | - | 4.80.0 |
 
 ### Avatar.Group (2.2.0)
 

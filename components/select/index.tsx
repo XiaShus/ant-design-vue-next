@@ -70,6 +70,8 @@ export const selectProps = () => ({
   labelRender: functionType<(props: Record<string, any>) => any>(),
   /** Custom option content render (antd ≥ 5.11). */
   optionRender: functionType<(oriOption: Record<string, any>) => any>(),
+  /** Customize dropdown content; preferred alias of `dropdownRender` (antd ≥ 5.25). */
+  popupRender: functionType<(opt: { menuNode: any; props: Record<string, any> }) => any>(),
 });
 
 export type SelectProps = Partial<ExtractPropTypes<ReturnType<typeof selectProps>>>;
@@ -94,6 +96,7 @@ const Select = defineComponent({
     removeIcon: any;
     clearIcon: any;
     dropdownRender: any;
+    popupRender: any;
     option: any;
     placeholder: any;
     tagRender: any;
@@ -271,6 +274,7 @@ const Select = defineComponent({
         'status',
         'labelRender',
         'optionRender',
+        'popupRender',
       ]);
 
       const rcSelectRtlDropdownClassName = classNames(
@@ -306,7 +310,12 @@ const Select = defineComponent({
           onChange={triggerChange}
           onBlur={handleBlur}
           id={id}
-          dropdownRender={selectProps.dropdownRender || slots.dropdownRender}
+          dropdownRender={
+            props.popupRender ||
+            selectProps.dropdownRender ||
+            slots.popupRender ||
+            slots.dropdownRender
+          }
           v-slots={{
             option: props.optionRender
               ? (oriOption: Record<string, any>) => props.optionRender!(oriOption)

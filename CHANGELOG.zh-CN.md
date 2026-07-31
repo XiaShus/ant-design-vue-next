@@ -8,6 +8,16 @@
 
 ---
 
+## 4.80.0
+
+`2026-07-31`
+
+- 🌟 ConfigProvider 支持 `card` / `empty` / `avatar` / `progress`（`className` / `style`）
+- 🌟 Progress 支持 `railColor` / `gapPlacement` 别名
+- 🌟 Avatar 支持 `srcSet` 驼峰别名
+- 🌟 Select 支持 `popupRender`（`dropdownRender` 别名）
+- 📖 Descriptions 文档优先 `styles.label` / `styles.content`
+
 ## 4.79.0
 
 `2026-07-31`

@@ -51,11 +51,15 @@ export const progressProps = () => ({
   strokeLinecap: stringType<'butt' | 'square' | 'round'>(),
   strokeColor: anyType<string | string[] | ProgressGradient>(),
   trailColor: String,
+  /** Alias of `trailColor` (antd ≥ 5.23). */
+  railColor: String,
   /** @deprecated Use `size` instead */
   width: Number,
   success: objectType<SuccessProps>(),
   gapDegree: Number,
   gapPosition: stringType<'top' | 'bottom' | 'left' | 'right'>(),
+  /** Alias of `gapPosition` (antd ≥ 5.23). */
+  gapPlacement: stringType<'top' | 'bottom' | 'left' | 'right'>(),
   size: someType<ProgressSize>([String, Number, Array, Object]),
   steps: someType<ProgressSteps>([Number, Object]),
   /** Line progress value position (antd ≥ 5.18). */

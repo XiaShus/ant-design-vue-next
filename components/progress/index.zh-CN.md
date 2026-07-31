@@ -31,6 +31,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*HJH8Tb1lcYAAAA
 | success | 成功进度条相关配置 | { percent: number, strokeColor: string } | - |  |
 | title | html 标签 title | string | - | 3.0 |
 | trailColor | 未完成的分段的颜色 | string | - |  |
+| railColor | `trailColor` 的别名 | string | - | 4.80.0 |
 | type | 类型，可选 `line` `circle` `dashboard` | string | `line` |  |
 | size | 进度条的尺寸 | number \| \[number, number] \| { width?: number; height?: number } \| "small" \| "default" | "default" | object: 4.38.0 |
 
@@ -56,4 +57,5 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*HJH8Tb1lcYAAAA
 | --- | --- | --- | --- | --- |
 | gapDegree | 仪表盘进度条缺口角度，可取值 0 ~ 295 | number | 75 | - |
 | gapPosition | 仪表盘进度条缺口位置 | `top` \| `bottom` \| `left` \| `right` | `bottom` | - |
+| gapPlacement | `gapPosition` 的别名 | `top` \| `bottom` \| `left` \| `right` | `bottom` | 4.80.0 |
 | strokeWidth | 仪表盘进度条线的宽度，单位是进度条画布宽度的百分比 | number | 6 | - |

@@ -1,4 +1,5 @@
 import { computed, defineComponent } from 'vue';
+import type { CSSProperties } from 'vue';
 import { TinyColor } from '@ctrl/tinycolor';
 import initDefaultProps from '../_util/props-util/initDefaultProps';
 import CloseOutlined from '@ant-design/icons-vue/CloseOutlined';
@@ -11,6 +12,7 @@ import Circle from './Circle';
 import Steps from './Steps';
 import { getSize, getSuccessPercent, validProgress } from './utils';
 import useConfigInject from '../config-provider/hooks/useConfigInject';
+import { useConfigContextInject } from '../config-provider/context';
 import devWarning from '../vc-util/devWarning';
 import { progressProps, progressStatuses } from './props';
 import type { VueNode, CustomSlotsType } from '../_util/type';
@@ -35,7 +37,10 @@ export default defineComponent({
   }>,
   setup(props, { slots, attrs }) {
     const { prefixCls, direction } = useConfigInject('progress', props);
+    const { progress: ctxProgress } = useConfigContextInject();
     const [wrapSSR, hashId] = useStyle(prefixCls);
+    const mergedTrailColor = computed(() => props.railColor ?? props.trailColor);
+    const mergedGapPosition = computed(() => props.gapPlacement ?? props.gapPosition);
     if (process.env.NODE_ENV !== 'production') {
       devWarning(
         'successPercent' in props,
@@ -155,9 +160,12 @@ export default defineComponent({
 
     return () => {
       const { type, title } = props;
-      const { class: cls, ...restAttrs } = attrs;
+      const { class: cls, style: attrStyle, ...restAttrs } = attrs;
+      const progressCfg = ctxProgress?.value;
       const progressInfo = renderProcessInfo();
       const stepsInfo = mergedSteps.value;
+      const trailColor = mergedTrailColor.value;
+      const gapPosition = mergedGapPosition.value;
       let progress: VueNode;
       // Render progress shape
       if (type === 'line') {
@@ -168,6 +176,7 @@ export default defineComponent({
             prefixCls={prefixCls.value}
             steps={stepsInfo.count}
             stepGap={stepsInfo.gap}
+            trailColor={trailColor}
           >
             {progressInfo}
           </Steps>
@@ -181,6 +190,7 @@ export default defineComponent({
               align: infoAlign.value,
               type: infoPosition.value,
             }}
+            trailColor={trailColor}
           >
             {progressInfo}
           </Line>
@@ -192,13 +202,21 @@ export default defineComponent({
             prefixCls={prefixCls.value}
             strokeColor={strokeColorNotArray.value}
             progressStatus={progressStatus.value}
+            trailColor={trailColor}
+            gapPosition={gapPosition}
           >
             {progressInfo}
           </Circle>
         );
       }
       return wrapSSR(
-        <div role="progressbar" {...restAttrs} class={[classString.value, cls]} title={title}>
+        <div
+          role="progressbar"
+          {...restAttrs}
+          class={[classString.value, progressCfg?.className, cls]}
+          style={[progressCfg?.style, attrStyle as CSSProperties]}
+          title={title}
+        >
           {progress}
         </div>,
       );

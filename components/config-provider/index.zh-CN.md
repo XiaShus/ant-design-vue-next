@@ -65,7 +65,11 @@ ConfigProvider 使用 Vue 的 [provide / inject](https://vuejs.org/v2/api/#provi
 | prefixCls | 设置统一样式前缀。注意：需要配合 `less` 变量 `@ant-prefix` 使用 | string | `ant` |  |
 | renderEmpty | 自定义组件空状态。参考 [空状态](/components/empty/) | slot \| Function(componentName: string): VNode | - |  |
 | alert | 设置 Alert 通用属性 | { className?: string, style?: CSSProperties, closeIcon?: VueNode, closable?: boolean \| object } | - | 4.79.0 |
+| avatar | 设置 Avatar 通用属性 | { className?: string, style?: CSSProperties } | - | 4.80.0 |
 | breadcrumb | 设置 Breadcrumb 通用属性 | { className?: string, style?: CSSProperties, separator?: VueNode } | - | 4.79.0 |
+| card | 设置 Card 通用属性 | { className?: string, style?: CSSProperties } | - | 4.80.0 |
+| empty | 设置 Empty 通用属性 | { className?: string, style?: CSSProperties } | - | 4.80.0 |
+| progress | 设置 Progress 通用属性 | { className?: string, style?: CSSProperties } | - | 4.80.0 |
 | space | 设置 Space 通用属性 | { size?: SizeType \| number, className?: string, style?: CSSProperties } | - | 3.0 / className·style: 4.79.0 |
 | transfer | 设置 Transfer 组件的通用属性 | { selectionsIcon?: VueNode } | - | 4.36.0 |
 | transformCellText | Table 数据渲染前可以再次改变，一般用户空数据的默认配置 | Function({ text, column, record, index }) => any | - | 1.5.4 |

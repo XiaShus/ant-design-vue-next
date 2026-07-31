@@ -188,6 +188,10 @@ const ConfigProvider = defineComponent({
     const space = computed(() => props.space ?? parentContext.space?.value);
     const alert = computed(() => props.alert ?? parentContext.alert?.value);
     const breadcrumb = computed(() => props.breadcrumb ?? parentContext.breadcrumb?.value);
+    const card = computed(() => props.card ?? parentContext.card?.value);
+    const empty = computed(() => props.empty ?? parentContext.empty?.value);
+    const avatar = computed(() => props.avatar ?? parentContext.avatar?.value);
+    const progress = computed(() => props.progress ?? parentContext.progress?.value);
     const virtual = computed(() => props.virtual ?? parentContext.virtual?.value);
     // antd ≥ 5.5 prefers popupMatchSelectWidth; keep dropdownMatchSelectWidth as alias
     const popupMatchSelectWidth = computed(
@@ -247,6 +251,10 @@ const ConfigProvider = defineComponent({
       space,
       alert,
       breadcrumb,
+      card,
+      empty,
+      avatar,
+      progress,
       virtual,
       dropdownMatchSelectWidth,
       popupMatchSelectWidth,

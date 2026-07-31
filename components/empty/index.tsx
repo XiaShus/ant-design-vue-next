@@ -8,6 +8,7 @@ import { filterEmpty } from '../_util/props-util';
 import type { VueNode } from '../_util/type';
 import { anyType, objectType, withInstall } from '../_util/type';
 import useConfigInject from '../config-provider/hooks/useConfigInject';
+import { useConfigContextInject } from '../config-provider/context';
 import warning from '../_util/warning';
 
 import useStyle from './style';
@@ -42,6 +43,7 @@ const Empty = defineComponent({
   props: emptyProps(),
   setup(props, { slots = {}, attrs }) {
     const { direction, prefixCls: prefixClsRef } = useConfigInject('empty', props);
+    const { empty: ctxEmpty } = useConfigContextInject();
 
     const [wrapSSR, hashId] = useStyle(prefixClsRef);
 
@@ -53,6 +55,7 @@ const Empty = defineComponent({
 
     return () => {
       const prefixCls = prefixClsRef.value;
+      const emptyCfg = ctxEmpty?.value;
       const {
         image: mergedImage = slots.image?.() || h(DefaultEmptyImg),
         description = slots.description?.() || undefined,
@@ -86,11 +89,18 @@ const Empty = defineComponent({
 
             return (
               <div
-                class={classNames(prefixCls, className, hashId.value, emptyClassNames?.root, {
-                  [`${prefixCls}-normal`]: isNormal,
-                  [`${prefixCls}-rtl`]: direction.value === 'rtl',
-                })}
-                style={{ ...emptyStyles?.root, ...(style as CSSProperties) }}
+                class={classNames(
+                  prefixCls,
+                  className,
+                  hashId.value,
+                  emptyCfg?.className,
+                  emptyClassNames?.root,
+                  {
+                    [`${prefixCls}-normal`]: isNormal,
+                    [`${prefixCls}-rtl`]: direction.value === 'rtl',
+                  },
+                )}
+                style={{ ...emptyCfg?.style, ...emptyStyles?.root, ...(style as CSSProperties) }}
                 {...restProps}
               >
                 <div

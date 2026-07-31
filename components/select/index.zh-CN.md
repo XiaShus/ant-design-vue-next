@@ -38,7 +38,8 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*5oPiTqPxGAUAAA
 | popupClassName | 下拉菜单的 className 属性 | string | - | 4.0 |
 | dropdownMatchSelectWidth | 下拉菜单和选择器同宽。默认将设置 `min-width`，当值小于选择框宽度时会被忽略。false 时会关闭虚拟滚动 | boolean \| number | true |  |
 | dropdownMenuStyle | dropdown 菜单自定义样式 | object | - |  |
-| dropdownRender | 自定义下拉框内容 | ({menuNode: VNode, props}) => VNode \| v-slot | - |  |
+| dropdownRender | 自定义下拉框内容，请优先使用 `popupRender` | ({menuNode: VNode, props}) => VNode \| v-slot | - |  |
+| popupRender | 自定义下拉框内容（`dropdownRender` 的推荐别名） | ({menuNode: VNode, props}) => VNode \| v-slot | - | 4.80.0 |
 | dropdownStyle | 下拉菜单的 style 属性 | object | - |  |
 | fieldNames | 自定义节点 label、value、options 的字段 | object | { label: `label`, value: `value`, options: `options` } | 3.0 |
 | filterOption | 是否根据输入项进行筛选。当其为一个函数时，会接收 `inputValue` `option` 两个参数，当 `option` 符合筛选条件时，应返回 `true`，反之则返回 `false`。 | `boolean` \| `function(inputValue, option)` | true |  |

@@ -4,6 +4,16 @@
 
 ---
 
+## 4.80.0
+
+`2026-07-31`
+
+- 🌟 ConfigProvider `card` / `empty` / `avatar` / `progress` (`className` / `style`)
+- 🌟 Progress `railColor` / `gapPlacement` aliases
+- 🌟 Avatar support `srcSet` camelCase alias
+- 🌟 Select support `popupRender` (alias of `dropdownRender`)
+- 📖 Descriptions docs prefer `styles.label` / `styles.content`
+
 ## 4.79.0
 
 `2026-07-31`

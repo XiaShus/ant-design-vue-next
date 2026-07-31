@@ -66,7 +66,7 @@
 | Data Entry | Mentions | ✅ | ✅ | [mentions](../../components/mentions) | 🔄 `variant` ✅ 4.12.0；🔄 `allowClear` / `onClear` ✅ 4.72.0 |
 | Data Entry | Radio | ✅ | ✅ | [radio](../../components/radio) | 🔄 `block` + options `className` / `style` ✅ 4.70.0 |
 | Data Entry | Rate | ✅ | ✅ | [rate](../../components/rate) | 🔄 `keyboard` ✅ 4.72.0 |
-| Data Entry | Select | ✅ | ✅ | [select](../../components/select) | 🔄 `variant` ✅ 4.9.0；🔄 `maxCount` ✅ 4.20.0；🔄 `labelRender` / `optionRender` ✅ 4.67.0；🔄 `prefix` ✅ 4.69.0 |
+| Data Entry | Select | ✅ | ✅ | [select](../../components/select) | 🔄 `variant` ✅ 4.9.0；🔄 `maxCount` ✅ 4.20.0；🔄 `labelRender` / `optionRender` ✅ 4.67.0；🔄 `prefix` ✅ 4.69.0；🔄 `popupRender` ✅ 4.80.0 |
 | Data Entry | Slider | ✅ | ✅ | [slider](../../components/slider) | 🔄 nested `tooltip` ✅ 4.56.0 |
 | Data Entry | Switch | ✅ | ✅ | [switch](../../components/switch) | 🔄 `value` / `defaultValue` ✅ 4.73.0 |
 | Data Entry | TimePicker | ✅ | ✅ | [time-picker](../../components/time-picker) | 🔄 `needConfirm` ✅ 4.21.0；🔄 `changeOnScroll` ✅ 4.23.0；🔄 object `allowClear` ✅ 4.70.0；🔄 `prefix` ✅ 4.71.0（经 DatePicker） |
@@ -78,7 +78,7 @@
 
 | 分组 | 组件 | React `antd` | Vue Next | 文档链接 | 缺口备注 |
 | --- | --- | --- | --- | --- | --- |
-| Data Display | Avatar | ✅ | ✅ | [avatar](../../components/avatar) | 🔄 Group `max` ✅ 4.28.0 |
+| Data Display | Avatar | ✅ | ✅ | [avatar](../../components/avatar) | 🔄 Group `max` ✅ 4.28.0；🔄 `srcSet` ✅ 4.80.0 |
 | Data Display | Badge | ✅ | ✅ | [badge](../../components/badge) | 🔄 `size` 文档/demo ✅ 4.66.0；🔄 `classNames` / `styles` ✅ 4.67.0 |
 | Data Display | Calendar | ✅ | ✅ | [calendar](../../components/calendar) | 🔄 `cellRender` / `fullCellRender` ✅ 4.60.0；🔄 `showWeek` ✅ 4.62.0 |
 | Data Display | Card | ✅ | ✅ | [card](../../components/card) | 🔄 `variant` ✅ 4.29.0；🔄 `classNames` / `styles` ✅ 4.68.0 |
@@ -109,7 +109,7 @@
 | Feedback | Modal | ✅ | ✅ | [modal](../../components/modal) | 🔄 `destroyOnHidden` ✅ 4.11.0；🔄 `afterOpenChange` ✅ 4.22.0；🔄 `loading` ✅ 4.64.0 |
 | Feedback | Notification | ✅ | ✅ | [notification](../../components/notification) | 🔄 `showProgress` / `pauseOnHover` ✅ 4.43.0；🔄 `actions` ✅ 4.73.0 |
 | Feedback | Popconfirm | ✅ | ✅ | [popconfirm](../../components/popconfirm) | 🔄 `classNames` / `styles` ✅ 4.69.0（经 Tooltip） |
-| Feedback | Progress | ✅ | ✅ | [progress](../../components/progress) | 🔄 object `size` ✅ 4.38.0；🔄 `steps` object `{ count, gap }` ✅ 4.55.0；🔄 `percentPosition` ✅ 4.58.0；🔄 `rounding` ✅ 4.59.0 |
+| Feedback | Progress | ✅ | ✅ | [progress](../../components/progress) | 🔄 object `size` ✅ 4.38.0；🔄 `steps` object `{ count, gap }` ✅ 4.55.0；🔄 `percentPosition` ✅ 4.58.0；🔄 `rounding` ✅ 4.59.0；🔄 `railColor` / `gapPlacement` ✅ 4.80.0 |
 | Feedback | Result | ✅ | ✅ | [result](../../components/result) | — |
 | Feedback | Skeleton | ✅ | ✅ | [skeleton](../../components/skeleton) | 🔄 `Skeleton.Node` ✅ 4.41.0 |
 | Feedback | Spin | ✅ | ✅ | [spin](../../components/spin) | 🔄 `fullscreen` ✅ 4.24.0；🔄 `percent` / `auto` ✅ 4.66.0；🔄 `classNames` / `styles` ✅ 4.68.0 |
@@ -121,7 +121,7 @@
 | --- | --- | --- | --- | --- | --- |
 | Other | Affix | ✅ | ✅ | [affix](../../components/affix) | 🔄 ConfigProvider `getTargetContainer` ✅ 4.75.0 |
 | Other | App | ✅ 5.1 | ✅ | [app](../../components/app) | 🔄 `component` ✅ 4.75.0 |
-| Other | ConfigProvider | ✅ | ✅ | [config-provider](../../components/config-provider) | 🔄 `useConfig` / `popupMatchSelectWidth`（4.6）；`holderRender` / `warning.strict`（4.7）；`variant`（4.8）；🔄 `underlined` ✅ 4.18.0；🔄 `transfer.selectionsIcon` ✅ 4.36.0；🔄 `button`（color/variant/autoInsertSpace）✅ 4.50.0；🔄 `form.scrollToFirstError` ✅ 4.63.0 |
+| Other | ConfigProvider | ✅ | ✅ | [config-provider](../../components/config-provider) | 🔄 `useConfig` / `popupMatchSelectWidth`（4.6）；`holderRender` / `warning.strict`（4.7）；`variant`（4.8）；🔄 `underlined` ✅ 4.18.0；🔄 `transfer.selectionsIcon` ✅ 4.36.0；🔄 `button`（color/variant/autoInsertSpace）✅ 4.50.0；🔄 `form.scrollToFirstError` ✅ 4.63.0；🔄 `alert`/`breadcrumb`/`space` ✅ 4.79.0；🔄 `card`/`empty`/`avatar`/`progress` ✅ 4.80.0 |
 | Other | BorderBeam | ✅ 6.4 | ⏭ | — | 阶段 B |
 | Other | theme / css-in-js | ✅ | ✅（沿用 antdv 混合栈） | — | 不在首周做完整重写 |
 
@@ -210,7 +210,8 @@
 79. ~~FloatButton / Tour 小缺口（择优）~~ — ✅ `4.77.0`（Tour `closeIcon`/`gap`/`getPopupContainer` + FloatButton TooltipProps）
 80. ~~Modal/Drawer closable 对象 + ConfigProvider flex + Dropdown menu + Statistic loading + Notification role~~ — ✅ `4.78.0`
 81. ~~Image preview scale/close/destroy + Dropdown autoAdjustOverflow + ConfigProvider alert/breadcrumb/space + Notification closeIcon + Popconfirm open docs~~ — ✅ `4.79.0`
-82. 下一轮：扫 antd 5.x 剩余小缺口（含 Notification stack 等）（择优 4–6 项）
+82. ~~ConfigProvider card/empty/avatar/progress + Progress aliases + Avatar srcSet + Select popupRender + Descriptions docs~~ — ✅ `4.80.0`
+83. 下一轮：扫 antd 5.x 剩余小缺口（含 Notification stack 等）（择优 4–6 项）
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -220,4 +221,4 @@
 
 ---
 
-_上次更新：`4.79.0` 批次（Image preview scale·close·destroy / Dropdown autoAdjustOverflow / ConfigProvider alert·breadcrumb·space / Notification closeIcon）。每发一版请同步改本表；之后默认每版打包 4–6 项。_
+_上次更新：`4.80.0` 批次（ConfigProvider card·empty·avatar·progress / Progress railColor·gapPlacement / Avatar srcSet / Select popupRender / Descriptions styles docs）。每发一版请同步改本表；之后默认每版打包 4–6 项。_

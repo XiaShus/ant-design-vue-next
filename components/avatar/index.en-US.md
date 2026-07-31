@@ -24,6 +24,7 @@ Avatars can be used to represent people or objects. It supports images, `Icon`s,
 | size | The size of the avatar | number \| `large` \| `small` \| `default` \| { xs: number, sm: number, ...} | `default` | 2.2.0 |
 | src | the address of the image for an image avatar | string | - |  |
 | srcset | a list of sources to use for different screen resolutions | string | - |  |
+| srcSet | CamelCase alias of `srcset` | string | - | 4.80.0 |
 
 ### Avatar.Group (2.2.0)
 
