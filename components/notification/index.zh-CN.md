@@ -34,7 +34,8 @@ config 参数如下：
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
 | bottom | 消息从底部弹出时，距离底部的位置，单位像素。 | string | `24px` |  |
-| btn | 自定义关闭按钮 | VNode \| () => VNode | - |  |
+| actions | 自定义操作区（`btn` 别名） | VNode \| () => VNode | - | 4.73.0 |
+| btn | 自定义关闭按钮，推荐使用 `actions` | VNode \| () => VNode | - |  |
 | class | 自定义 CSS class | string | - |  |
 | closeIcon | 自定义关闭图标 | VNode \| () => VNode | - |  |
 | description | 通知提醒内容，必选 | string \| VNode \| () => VNode | - |  |

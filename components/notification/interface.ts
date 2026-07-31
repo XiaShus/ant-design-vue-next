@@ -15,6 +15,8 @@ export interface ArgsProps {
   message: (() => VueNode) | VueNode;
   description?: (() => VueNode) | VueNode;
   btn?: (() => VueNode) | VueNode;
+  /** Alias of `btn` (antd ≥ 5.24). */
+  actions?: (() => VueNode) | VueNode;
   key?: Key;
   onClose?: () => void;
   duration?: number | null;

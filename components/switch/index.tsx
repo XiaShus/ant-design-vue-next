@@ -1,10 +1,9 @@
 import type { ExtractPropTypes, PropType } from 'vue';
-import { defineComponent, onBeforeMount, ref, computed, onMounted, nextTick, watch } from 'vue';
+import { defineComponent, ref, computed, onMounted, nextTick, watch } from 'vue';
 import LoadingOutlined from '@ant-design/icons-vue/LoadingOutlined';
 import PropTypes from '../_util/vue-types';
 import KeyCode from '../_util/KeyCode';
 import Wave from '../_util/wave';
-import warning from '../_util/warning';
 import type { CustomSlotsType } from '../_util/type';
 import { tuple, withInstall } from '../_util/type';
 import { getPropsSlot } from '../_util/props-util';
@@ -27,6 +26,11 @@ export const switchProps = () => ({
   autofocus: { type: Boolean, default: undefined },
   loading: { type: Boolean, default: undefined },
   checked: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.looseBool]),
+  /** Alias of `checked` (antd ≥ 5.12). */
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.looseBool]),
+  /** Alias of uncontrolled default checked (antd ≥ 5.12). */
+  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.looseBool]),
+  defaultChecked: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.looseBool]),
   checkedValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.looseBool]).def(
     true,
   ),
@@ -48,6 +52,9 @@ export const switchProps = () => ({
     type: Function as PropType<(e: Event) => void>,
   },
   'onUpdate:checked': {
+    type: Function as PropType<(checked: CheckedType) => void>,
+  },
+  'onUpdate:value': {
     type: Function as PropType<(checked: CheckedType) => void>,
   },
   onBlur: Function as PropType<FocusEventHandler>,
@@ -73,27 +80,21 @@ const Switch = defineComponent({
     const disabledContext = useInjectDisabled();
     const mergedDisabled = computed(() => props.disabled ?? disabledContext.value);
 
-    onBeforeMount(() => {
-      warning(
-        !('defaultChecked' in attrs),
-        'Switch',
-        `'defaultChecked' is deprecated, please use 'v-model:checked'`,
-      );
-      warning(
-        !('value' in attrs),
-        'Switch',
-        '`value` is not validate prop, do you mean `checked`?',
-      );
-    });
+    const getControlledChecked = () => (props.checked !== undefined ? props.checked : props.value);
     const checked = ref<string | number | boolean>(
-      props.checked !== undefined ? props.checked : (attrs.defaultChecked as boolean),
+      getControlledChecked() !== undefined
+        ? (getControlledChecked() as CheckedType)
+        : ((props.defaultValue ?? props.defaultChecked ?? attrs.defaultChecked) as CheckedType),
     );
     const checkedStatus = computed(() => checked.value === props.checkedValue);
 
     watch(
-      () => props.checked,
+      () => [props.checked, props.value] as const,
       () => {
-        checked.value = props.checked;
+        const next = getControlledChecked();
+        if (next !== undefined) {
+          checked.value = next as CheckedType;
+        }
       },
     );
 
@@ -121,7 +122,11 @@ const Switch = defineComponent({
       if (mergedDisabled.value) {
         return;
       }
+      if (props.checked === undefined && props.value === undefined) {
+        checked.value = check;
+      }
       emit('update:checked', check);
+      emit('update:value', check);
       emit('change', check, e);
       formItemContext.onFieldChange();
     };
@@ -170,12 +175,16 @@ const Switch = defineComponent({
               'checkedChildren',
               'unCheckedChildren',
               'checked',
+              'value',
+              'defaultValue',
+              'defaultChecked',
               'autofocus',
               'checkedValue',
               'unCheckedValue',
               'id',
               'onChange',
               'onUpdate:checked',
+              'onUpdate:value',
             ])}
             {...attrs}
             id={props.id ?? formItemContext.id.value}

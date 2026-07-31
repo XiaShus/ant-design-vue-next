@@ -130,7 +130,8 @@ export const formItemProps = () => ({
   messageVariables: { type: Object as PropType<Record<string, string>> },
   hidden: Boolean,
   noStyle: Boolean,
-  tooltip: String,
+  /** Label tooltip; string or object with `title` / `icon` (antd ≥ 4.7). */
+  tooltip: someType<string | Record<string, any>>([String, Object]),
 });
 
 export type FormItemProps = Partial<ExtractPropTypes<ReturnType<typeof formItemProps>>>;

@@ -22,11 +22,13 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*al07RK8SGf4AAA
 | checked(v-model) | 指定当前是否选中 | checkedValue \| unCheckedValue | false |  |
 | checkedChildren | 选中时的内容 | string\|slot |  |  |
 | checkedValue | 选中时的值 | boolean \| string \| number | true | 2.2.1 |
+| defaultValue | `defaultChecked` 的别名 | checkedValue \| unCheckedValue | - | 4.73.0 |
 | disabled | 是否禁用 | boolean | false |  |
 | loading | 加载中的开关 | boolean | false |  |
 | size | 开关大小，可选值：`default` `small` | string | default |  |
 | unCheckedChildren | 非选中时的内容 | string\|slot |  |  |
 | unCheckedValue | 非选中时的值 | boolean \| string \| number | false | 2.2.1 |
+| value(v-model) | `checked` 的别名 | checkedValue \| unCheckedValue | - | 4.73.0 |
 
 ### 事件
 

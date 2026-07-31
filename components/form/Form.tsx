@@ -45,7 +45,10 @@ import { useProviderSize } from '../config-provider/SizeContext';
 import { useProviderDisabled } from '../config-provider/DisabledContext';
 import { useProviderVariant } from '../config-provider/VariantContext';
 import type { VariantType } from '../config-provider/VariantContext';
-export type RequiredMark = boolean | 'optional';
+export type RequiredMark =
+  | boolean
+  | 'optional'
+  | ((labelNode: any, info: { required: boolean }) => any);
 export type FormLayout = 'horizontal' | 'inline' | 'vertical';
 
 export const formProps = () => ({
@@ -56,7 +59,7 @@ export const formProps = () => ({
   labelAlign: stringType<FormLabelAlign>(),
   labelWrap: booleanType(),
   prefixCls: String,
-  requiredMark: someType<RequiredMark | ''>([String, Boolean]),
+  requiredMark: someType<RequiredMark | ''>([String, Boolean, Function]),
   /** @deprecated Will warning in future branch. Pls use `requiredMark` instead. */
   hideRequiredMark: booleanType(),
   model: PropTypes.object,

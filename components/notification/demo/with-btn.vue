@@ -2,17 +2,17 @@
 ---
 order: 4
 title:
-  zh-CN: 自定义按钮
-  en-US: Custom close button
+  zh-CN: 自定义操作区
+  en-US: Custom actions
 ---
 
 ## zh-CN
 
-自定义关闭按钮的样式和文字。
+通过 `actions`（`btn` 别名）自定义操作区。
 
 ## en-US
 
-To customize the style or font of the close button.
+Customize the action area with `actions` (alias of `btn`).
 
 </docs>
 
@@ -35,7 +35,7 @@ const openNotification = () => {
     message: 'Notification Title',
     description:
       'A function will be be called after the notification is closed (automatically after the "duration" time of manually).',
-    btn: () =>
+    actions: () =>
       h(
         Button,
         {

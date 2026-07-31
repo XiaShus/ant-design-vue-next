@@ -4,6 +4,16 @@
 
 ---
 
+## 4.73.0
+
+`2026-07-31`
+
+- 🌟 Notification support `actions` (alias of `btn`) (antd ≥ 5.24)
+- 🌟 Switch support `value` / `defaultValue` aliases (antd ≥ 5.12)
+- 🌟 Transfer support object `showSearch` and `filterOption` `direction` (antd ≥ 5.x)
+- 🌟 Form support `requiredMark` renderProps and Form.Item object `tooltip` (antd ≥ 5.9 / 4.7)
+- 🌟 Carousel support `autoplay.dotDuration` (antd ≥ 5.24)
+
 ## 4.72.0
 
 `2026-07-31`

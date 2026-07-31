@@ -8,8 +8,11 @@ import defaultLocale from '../locale/en_US';
 import classNames from '../_util/classNames';
 import type { VueNode } from '../_util/type';
 import type { FunctionalComponent, HTMLAttributes } from 'vue';
+import type { TooltipProps } from '../tooltip';
 import Tooltip from '../tooltip';
 import QuestionCircleOutlined from '@ant-design/icons-vue/QuestionCircleOutlined';
+
+export type FormItemTooltipType = string | (TooltipProps & { icon?: VueNode });
 
 export interface FormItemLabelProps {
   colon?: boolean;
@@ -21,7 +24,7 @@ export interface FormItemLabelProps {
   required?: boolean;
   prefixCls: string;
   onClick: Function;
-  tooltip: string;
+  tooltip?: FormItemTooltipType;
 }
 
 const FormItemLabel: FunctionalComponent<FormItemLabelProps> = (props, { slots, emit, attrs }) => {
@@ -53,7 +56,7 @@ const FormItemLabel: FunctionalComponent<FormItemLabelProps> = (props, { slots, 
     },
   );
 
-  let labelChildren = label;
+  let labelChildren: VueNode = label;
   // Keep label is original where there should have no colon
   const computedColon = colon === true || (contextColon?.value !== false && colon !== false);
   const haveColon = computedColon && !vertical.value;
@@ -64,11 +67,20 @@ const FormItemLabel: FunctionalComponent<FormItemLabelProps> = (props, { slots, 
 
   // Tooltip
   if (props.tooltip || slots.tooltip) {
+    let tooltipProps: TooltipProps = {};
+    let tooltipIcon: VueNode = <QuestionCircleOutlined />;
+    if (typeof props.tooltip === 'object' && props.tooltip) {
+      const { icon, ...rest } = props.tooltip as TooltipProps & { icon?: VueNode };
+      tooltipProps = rest;
+      if (icon) {
+        tooltipIcon = icon;
+      }
+    } else if (props.tooltip) {
+      tooltipProps = { title: props.tooltip as string };
+    }
     const tooltipNode = (
       <span class={`${prefixCls}-item-tooltip`}>
-        <Tooltip title={props.tooltip}>
-          <QuestionCircleOutlined />
-        </Tooltip>
+        <Tooltip {...tooltipProps}>{tooltipIcon}</Tooltip>
       </span>
     );
 
@@ -80,8 +92,11 @@ const FormItemLabel: FunctionalComponent<FormItemLabelProps> = (props, { slots, 
     );
   }
 
-  // Add required mark if optional
-  if (requiredMark === 'optional' && !required) {
+  // requiredMark as render function (antd ≥ 5.9)
+  if (typeof requiredMark === 'function') {
+    labelChildren = requiredMark(labelChildren, { required: !!required });
+  } else if (requiredMark === 'optional' && !required) {
+    // Add required mark if optional
     labelChildren = (
       <>
         {labelChildren}
@@ -93,7 +108,8 @@ const FormItemLabel: FunctionalComponent<FormItemLabelProps> = (props, { slots, 
   }
   const labelClassName = classNames({
     [`${prefixCls}-item-required`]: required,
-    [`${prefixCls}-item-required-mark-optional`]: requiredMark === 'optional',
+    [`${prefixCls}-item-required-mark-optional`]:
+      requiredMark === 'optional' || typeof requiredMark === 'function',
     [`${prefixCls}-item-no-colon`]: !computedColon,
   });
   return (

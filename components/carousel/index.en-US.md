@@ -18,7 +18,7 @@ A carousel component. Scales with its container.
 
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
-| autoplay | Whether to scroll automatically | boolean | `false` |  |
+| autoplay | Whether to scroll automatically. Object form can show dot progress | boolean \| { dotDuration?: boolean } | `false` | `dotDuration`: 4.73.0 |
 | dotPosition | The position of the dots, which can be one of `top` `bottom` `left` `right` | string | `bottom` | 1.5.0 |
 | dots | Whether to show the dots at the bottom of the gallery | boolean | `true` |  |
 | dotsClass | Class name of the dots | string | `slick-dots` |  |

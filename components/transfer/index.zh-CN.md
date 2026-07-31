@@ -24,7 +24,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*yv12S4sSRAEAAA
 | --- | --- | --- | --- | --- |
 | dataSource | 数据源，其中的数据将会被渲染到左边一栏中，`targetKeys` 中指定的除外。 | \[{key: string.isRequired,title: string.isRequired,description: string,disabled: bool}]\[] | \[] |  |
 | disabled | 是否禁用 | boolean | false |  |
-| filterOption | 接收 `inputValue` `option` 两个参数，当 `option` 符合筛选条件时，应返回 `true`，反之则返回 `false`。 | (inputValue, option): boolean |  |  |
+| filterOption | 接收 `inputValue` `option`，可选第三参 `direction`；当 `option` 符合筛选条件时，应返回 `true` | (inputValue, option, direction?): boolean |  | `direction`: 4.73.0 |
 | footer | 可以设置为一个 作用域插槽 | slot="footer" slot-scope="props" |  |  |
 | listStyle | 两个穿梭框的自定义样式 | CSSProperties |  |  |
 | locale | 各种语言 | object | `{ itemUnit: '项', itemsUnit: '项', notFoundContent: '列表为空', searchPlaceholder: '请输入搜索内容' }` |  |
@@ -36,7 +36,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*yv12S4sSRAEAAA
 | selectAllLabels | 自定义顶部多选框标题的集合 | VueNode \| ((info: { selectedCount: number; totalCount: number }) => VueNode); | - | 3.0.0 |
 | selectedKeys(v-model) | 设置哪些项应该被选中 | string\[] | \[] |  |
 | selectionsIcon | 自定义全选区域下拉图标 | VueNode \| slot | - | 4.36.0 |
-| showSearch | 是否显示搜索框 | boolean | false |  |
+| showSearch | 是否显示搜索框；对象形式可配置 `placeholder` | boolean \| { placeholder?: string } | false | 对象形式: 4.73.0 |
 | showSelectAll | 是否展示全选勾选框 | boolean | true |  |
 | status | 设置校验状态 | 'error' \| 'warning' | - | 3.3.0 |
 | targetKeys(v-model) | 显示在右侧框数据的 key 集合 | string\[] | \[] |  |

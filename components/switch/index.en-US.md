@@ -21,11 +21,13 @@ Switching Selector.
 | checked(v-model) | determine whether the `Switch` is checked | checkedValue \| unCheckedValue | false |  |
 | checkedChildren | content to be shown when the state is checked | string\|slot |  |  |
 | checkedValue | value for checked state | boolean \| string \| number | true | 2.2.1 |
+| defaultValue | Alias of `defaultChecked` | checkedValue \| unCheckedValue | - | 4.73.0 |
 | disabled | Disable switch | boolean | false |  |
 | loading | loading state of switch | boolean | false |  |
 | size | the size of the `Switch`, options: `default` `small` | string | default |  |
 | unCheckedChildren | content to be shown when the state is unchecked | string\|slot |  |  |
 | unCheckedValue | value for unchecked state | boolean \| string \| number | false | 2.2.1 |
+| value(v-model) | Alias of `checked` | checkedValue \| unCheckedValue | - | 4.73.0 |
 
 ### Events
 

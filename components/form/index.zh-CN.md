@@ -36,7 +36,8 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*ylFATY6w-ygAAA
 | colon | 配置 Form.Item 的 colon 的默认值 (只有在属性 layout 为 horizontal 时有效) | boolean | true |  |
 | disabled | 设置表单组件禁用，仅对 antdv 组件有效 | boolean | false | 4.0 |
 | variant | 设置表单内数据录入组件形态（对齐 antd ≥ 5.13） | `outlined` \| `filled` \| `borderless` \| `underlined` | - | 4.10.0 |
-| hideRequiredMark | 隐藏所有表单项的必选标记 | Boolean | false |  |
+| hideRequiredMark | 隐藏所有表单项的必选标记。已废弃，请使用 `requiredMark={false}` | Boolean | false |  |
+| requiredMark | 必选样式，可设为自定义渲染函数 | boolean \| `optional` \| ((labelNode, info: { required: boolean }) => any) | true | renderProps: 4.73.0 |
 | labelAlign | label 标签的文本对齐方式 | 'left' \| 'right' | 'right' |  |
 | labelCol | label 标签布局，同 `<Col>` 组件，设置 `span` `offset` 值，如 `{span: 3, offset: 12}` 或 `sm: {span: 3, offset: 12}` | [object](/components/grid-cn/#col) |  |  |
 | labelWrap | label 标签的文本换行方式 | boolean | false | 3.0 |
@@ -106,7 +107,7 @@ type FeedbackIcons = (info: {
 | name | 表单域 model 字段，在使用 validate、resetFields 方法的情况下，该属性是必填的 | [NamePath](#namepath) |  |  |
 | required | 是否必填，如不设置，则会根据校验规则自动生成 | boolean | false |  |
 | rules | 表单验证规则 | object \| array |  |  |
-| tooltip | 配置提示信息 | string \| slot |  | 4.0.4 |
+| tooltip | 配置提示信息 | string \| slot \| ([TooltipProps](/components/tooltip-cn/#api) & { icon?: any }) |  | 4.0.4；对象形式: 4.73.0 |
 | validateFirst | 当某一规则校验不通过时，是否停止剩下的规则的校验。 | boolean | false | 2.0.0 |
 | validateStatus | 校验状态，如不设置，则会根据校验规则自动生成，可选：'success' 'warning' 'error' 'validating' | string |  |  |
 | validateTrigger | 设置字段校验的时机 | string \| string\[] | `change` | 2.0.0 |

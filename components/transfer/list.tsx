@@ -11,7 +11,7 @@ import type { VNode, VNodeTypes, ExtractPropTypes, CSSProperties } from 'vue';
 import { watchEffect, computed, defineComponent, ref } from 'vue';
 import type { RadioChangeEvent } from '../radio/interface';
 import type { TransferDirection, TransferItem } from './index';
-import { stringType, arrayType, booleanType } from '../_util/type';
+import { stringType, arrayType, booleanType, someType } from '../_util/type';
 import { groupKeysMap } from '../_util/transKeys';
 import type { CustomSlotsType } from '../_util/type';
 
@@ -38,7 +38,7 @@ export const transferListProps = {
   handleFilter: Function,
   handleClear: Function,
   renderItem: Function,
-  showSearch: booleanType(false),
+  showSearch: someType<boolean | { placeholder?: string }>([Boolean, Object], false),
   searchPlaceholder: String,
   notFoundContent: PropTypes.any,
   itemUnit: String,
@@ -184,9 +184,9 @@ export default defineComponent({
       props.handleClear?.(e);
     };
     const matchFilter = (text: string, item: TransferItem) => {
-      const { filterOption } = props;
+      const { filterOption, direction } = props;
       if (filterOption) {
-        return filterOption(filterValue.value, item);
+        return filterOption(filterValue.value, item, direction);
       }
       return text.includes(filterValue.value);
     };
@@ -216,16 +216,19 @@ export default defineComponent({
       searchPlaceholder: string,
       checkedKeys: string[],
       renderList: Function,
-      showSearch: boolean,
+      showSearch: boolean | { placeholder?: string },
       disabled: boolean,
     ) => {
-      const search = showSearch ? (
+      const searchEnabled = !!showSearch;
+      const searchPlaceholderMerged =
+        (typeof showSearch === 'object' && showSearch?.placeholder) || searchPlaceholder;
+      const search = searchEnabled ? (
         <div class={`${prefixCls}-body-search-wrapper`}>
           <Search
             prefixCls={`${prefixCls}-search`}
             onChange={handleFilter}
             handleClear={handleClear}
-            placeholder={searchPlaceholder}
+            placeholder={searchPlaceholderMerged}
             value={filterValue.value}
             disabled={disabled}
           />
@@ -256,7 +259,7 @@ export default defineComponent({
       return (
         <div
           class={
-            showSearch ? `${prefixCls}-body ${prefixCls}-body-with-search` : `${prefixCls}-body`
+            searchEnabled ? `${prefixCls}-body ${prefixCls}-body-with-search` : `${prefixCls}-body`
           }
           ref={transferNode}
         >

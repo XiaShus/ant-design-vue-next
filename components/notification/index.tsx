@@ -153,6 +153,8 @@ export interface NotificationArgsProps {
   message: VueNode | (() => VueNode);
   description?: VueNode | (() => VueNode);
   btn?: VueNode | (() => VueNode);
+  /** Alias of `btn` (antd ≥ 5.24). */
+  actions?: VueNode | (() => VueNode);
   key?: string;
   onClose?: () => void;
   duration?: number | null;
@@ -174,7 +176,8 @@ export interface NotificationArgsProps {
 }
 
 function notice(args: NotificationArgsProps) {
-  const { icon, type, description, message, btn } = args;
+  const { icon, type, description, message, btn, actions } = args;
+  const actionNode = actions ?? btn;
   const duration = args.duration === undefined ? defaultDuration : args.duration;
   const showProgress = args.showProgress === undefined ? defaultShowProgress : args.showProgress;
   const pauseOnHover = args.pauseOnHover === undefined ? defaultPauseOnHover : args.pauseOnHover;
@@ -199,7 +202,7 @@ function notice(args: NotificationArgsProps) {
               {renderHelper(message)}
             </div>
             <div class={`${prefixCls}-description`}>{renderHelper(description)}</div>
-            {btn ? <span class={`${prefixCls}-btn`}>{renderHelper(btn)}</span> : null}
+            {actionNode ? <span class={`${prefixCls}-btn`}>{renderHelper(actionNode)}</span> : null}
           </div>
         );
       },

@@ -60,7 +60,7 @@
 | Data Entry | Checkbox | ✅ | ✅ | [checkbox](../../components/checkbox) | 🔄 options `className` / `style` ✅ 4.70.0 |
 | Data Entry | ColorPicker | ✅ 5.5 | 🔄 ✅ 4.3.0 | [color-picker](../../components/color-picker) | 单色/预设/清除/格式；🔄 `destroyOnHidden` ✅ 4.14.0；🔄 `panelRender` ✅ 4.15.0；🔄 `disabledFormat` ✅ 4.19.0；⏭ 渐变 mode |
 | Data Entry | DatePicker | ✅ | ✅ | [date-picker](../../components/date-picker) | 🔄 `variant` ✅ 4.9.0；🔄 `needConfirm` ✅ 4.21.0；🔄 `showTime.changeOnScroll` ✅ 4.23.0；🔄 `cellRender` ✅ 4.61.0；🔄 object `allowClear` ✅ 4.70.0；🔄 `prefix` ✅ 4.71.0 |
-| Data Entry | Form | ✅ | ✅ | [form](../../components/form) | 🔄 `variant` ✅ 4.10.0；🔄 `feedbackIcons` ✅ 4.40.0；🔄 `scrollToFirstError` `{ focus }` / `focusField` ✅ 4.57.0；🔄 `clearOnDestroy` ✅ 4.72.0 |
+| Data Entry | Form | ✅ | ✅ | [form](../../components/form) | 🔄 `variant` ✅ 4.10.0；🔄 `feedbackIcons` ✅ 4.40.0；🔄 `scrollToFirstError` `{ focus }` / `focusField` ✅ 4.57.0；🔄 `clearOnDestroy` ✅ 4.72.0；🔄 `requiredMark` renderProps + Item object `tooltip` ✅ 4.73.0 |
 | Data Entry | Input | ✅ | ✅ | [input](../../components/input) | 🔄 `Input.OTP` ✅ 4.5.0；`variant` ✅ 4.8.0；🔄 `underlined` ✅ 4.18.0；🔄 `classNames` / `styles` / object `allowClear` / `onClear` ✅ 4.70.0；🔄 `count` ✅ 4.71.0 |
 | Data Entry | InputNumber | ✅ | ✅ | [input-number](../../components/input-number) | 🔄 `variant` ✅ 4.9.0；🔄 `changeOnWheel` / `suffix` ✅ 4.71.0；🔄 object `controls` / `changeOnBlur` ✅ 4.72.0 |
 | Data Entry | Mentions | ✅ | ✅ | [mentions](../../components/mentions) | 🔄 `variant` ✅ 4.12.0；🔄 `allowClear` / `onClear` ✅ 4.72.0 |
@@ -68,9 +68,9 @@
 | Data Entry | Rate | ✅ | ✅ | [rate](../../components/rate) | 🔄 `keyboard` ✅ 4.72.0 |
 | Data Entry | Select | ✅ | ✅ | [select](../../components/select) | 🔄 `variant` ✅ 4.9.0；🔄 `maxCount` ✅ 4.20.0；🔄 `labelRender` / `optionRender` ✅ 4.67.0；🔄 `prefix` ✅ 4.69.0 |
 | Data Entry | Slider | ✅ | ✅ | [slider](../../components/slider) | 🔄 nested `tooltip` ✅ 4.56.0 |
-| Data Entry | Switch | ✅ | ✅ | [switch](../../components/switch) | — |
+| Data Entry | Switch | ✅ | ✅ | [switch](../../components/switch) | 🔄 `value` / `defaultValue` ✅ 4.73.0 |
 | Data Entry | TimePicker | ✅ | ✅ | [time-picker](../../components/time-picker) | 🔄 `needConfirm` ✅ 4.21.0；🔄 `changeOnScroll` ✅ 4.23.0；🔄 object `allowClear` ✅ 4.70.0；🔄 `prefix` ✅ 4.71.0（经 DatePicker） |
-| Data Entry | Transfer | ✅ | ✅ | [transfer](../../components/transfer) | 🔄 `selectionsIcon` ✅ 4.36.0 |
+| Data Entry | Transfer | ✅ | ✅ | [transfer](../../components/transfer) | 🔄 `selectionsIcon` ✅ 4.36.0；🔄 object `showSearch` / `filterOption` `direction` ✅ 4.73.0 |
 | Data Entry | TreeSelect | ✅ | ✅ | [tree-select](../../components/tree-select) | 🔄 `variant` ✅ 4.10.0；🔄 `maxCount` ✅ 4.20.0；🔄 `labelRender` ✅ 4.68.0；🔄 `prefix` ✅ 4.69.0 |
 | Data Entry | Upload | ✅ | ✅ | [upload](../../components/upload) | 🔄 `listType="picture-circle"` ✅ 4.72.0 |
 
@@ -82,7 +82,7 @@
 | Data Display | Badge | ✅ | ✅ | [badge](../../components/badge) | 🔄 `size` 文档/demo ✅ 4.66.0；🔄 `classNames` / `styles` ✅ 4.67.0 |
 | Data Display | Calendar | ✅ | ✅ | [calendar](../../components/calendar) | 🔄 `cellRender` / `fullCellRender` ✅ 4.60.0；🔄 `showWeek` ✅ 4.62.0 |
 | Data Display | Card | ✅ | ✅ | [card](../../components/card) | 🔄 `variant` ✅ 4.29.0；🔄 `classNames` / `styles` ✅ 4.68.0 |
-| Data Display | Carousel | ✅ | ✅ | [carousel](../../components/carousel) | — |
+| Data Display | Carousel | ✅ | ✅ | [carousel](../../components/carousel) | 🔄 `autoplay.dotDuration` ✅ 4.73.0 |
 | Data Display | Collapse | ✅ | ✅ | [collapse](../../components/collapse) | 🔄 `destroyOnHidden` ✅ 4.14.0；🔄 `size` ✅ 4.30.0；🔄 `items` ✅ 4.68.0 |
 | Data Display | Descriptions | ✅ | ✅ | [descriptions](../../components/descriptions) | 🔄 `items` ✅ 4.32.0；🔄 `classNames` / `styles` ✅ 4.67.0 |
 | Data Display | Empty | ✅ | ✅ | [empty](../../components/empty) | 🔄 `classNames` / `styles` ✅ 4.65.0 |
@@ -107,7 +107,7 @@
 | Feedback | Drawer | ✅ | ✅ | [drawer](../../components/drawer) | 🔄 `destroyOnHidden` ✅ 4.11.0；🔄 `loading` ✅ 4.64.0；🔄 `drawerRender` ✅ 4.66.0 |
 | Feedback | Message | ✅ | ✅ | [message](../../components/message) | 🔄 `pauseOnHover` ✅ 4.44.0 |
 | Feedback | Modal | ✅ | ✅ | [modal](../../components/modal) | 🔄 `destroyOnHidden` ✅ 4.11.0；🔄 `afterOpenChange` ✅ 4.22.0；🔄 `loading` ✅ 4.64.0 |
-| Feedback | Notification | ✅ | ✅ | [notification](../../components/notification) | 🔄 `showProgress` / `pauseOnHover` ✅ 4.43.0 |
+| Feedback | Notification | ✅ | ✅ | [notification](../../components/notification) | 🔄 `showProgress` / `pauseOnHover` ✅ 4.43.0；🔄 `actions` ✅ 4.73.0 |
 | Feedback | Popconfirm | ✅ | ✅ | [popconfirm](../../components/popconfirm) | 🔄 `classNames` / `styles` ✅ 4.69.0（经 Tooltip） |
 | Feedback | Progress | ✅ | ✅ | [progress](../../components/progress) | 🔄 object `size` ✅ 4.38.0；🔄 `steps` object `{ count, gap }` ✅ 4.55.0；🔄 `percentPosition` ✅ 4.58.0；🔄 `rounding` ✅ 4.59.0 |
 | Feedback | Result | ✅ | ✅ | [result](../../components/result) | — |
@@ -202,9 +202,9 @@
 71. ~~Input / TextArea semantic + Radio `block` + Checkbox/Radio option style + DatePicker object `allowClear`~~ — ✅ `4.70.0`
 72. ~~Input `count` + DatePicker/TimePicker `prefix` + InputNumber `changeOnWheel`/`suffix` + Pagination `showQuickJumper` docs~~ — ✅ `4.71.0`
 73. ~~Upload `picture-circle` + InputNumber `controls`/`changeOnBlur` + Rate `keyboard` + Form `clearOnDestroy` + Mentions `allowClear`~~ — ✅ `4.72.0`
-74. Carousel `autoplay.dotDuration`
-75. Form `requiredMark` renderProps
-76. Switch / Transfer 小缺口（择优）
+74. ~~Carousel `autoplay.dotDuration` + Form `requiredMark` renderProps + Switch/Transfer 小缺口 + Notification `actions`~~ — ✅ `4.73.0`
+75. Form.Item `layout`
+76. Collapse / Tabs / Steps 小缺口（择优）
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -214,4 +214,4 @@
 
 ---
 
-_上次更新：`4.72.0` 批次（Upload picture-circle / InputNumber controls / Rate keyboard / Form clearOnDestroy / Mentions allowClear）。每发一版请同步改本表；之后默认每版打包 4–6 项。_
+_上次更新：`4.73.0` 批次（Notification actions / Switch value / Transfer showSearch / Form requiredMark / Carousel dotDuration）。每发一版请同步改本表；之后默认每版打包 4–6 项。_

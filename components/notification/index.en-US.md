@@ -33,7 +33,8 @@ The properties of config are as follows:
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
 | bottom | Distance from the bottom of the viewport, when `placement` is `bottomRight` or `bottomLeft` (unit: pixels). | string | `24px` |  |
-| btn | Customized close button | VNode \| () => VNode | - |  |
+| actions | Customized action area (alias of `btn`) | VNode \| () => VNode | - | 4.73.0 |
+| btn | Customized close button. Prefer `actions` | VNode \| () => VNode | - |  |
 | class | Customized CSS class | string | - |  |
 | closeIcon | custom close icon | VNode \| () => VNode | - |  |
 | description | The content of notification box (required) | string\| VNode \| () => VNode | - |  |

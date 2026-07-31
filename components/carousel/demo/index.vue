@@ -4,6 +4,7 @@
     <Position />
     <Fade />
     <Autoplay />
+    <DotDuration />
     <CustomPaging />
     <CustomArrows />
   </demo-sort>
@@ -13,6 +14,7 @@
 import Basic from './basic.vue';
 import Fade from './fade.vue';
 import Autoplay from './autoplay.vue';
+import DotDuration from './dot-duration.vue';
 import Position from './position.vue';
 import CustomPaging from './customPaging.vue';
 import CustomArrows from './customArrows.vue';
@@ -28,6 +30,7 @@ export default defineComponent({
     Basic,
     Fade,
     Autoplay,
+    DotDuration,
     Position,
     CustomPaging,
     CustomArrows,

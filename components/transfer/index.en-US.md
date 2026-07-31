@@ -23,7 +23,7 @@ One or more elements can be selected from either column, one click on the proper
 | --- | --- | --- | --- | --- |
 | dataSource | Used for setting the source data. The elements that are part of this array will be present the left column. Except the elements whose keys are included in `targetKeys` prop. | \[{key: string.isRequired,title: string.isRequired,description: string,disabled: bool}] | \[] |  |
 | disabled | Whether disabled transfer | boolean | false |  |
-| filterOption | A function to determine whether an item should show in search result list | (inputValue, option): boolean |  |  |
+| filterOption | A function to determine whether an item should show in search result list | (inputValue, option, direction?): boolean |  | `direction`: 4.73.0 |
 | footer | customize the progress dot by setting a scoped slot | slot="footer" slot-scope="props" |  |  |
 | listStyle | A custom CSS style used for rendering the transfer columns. | CSSProperties |  |  |
 | locale | i18n text including filter, empty text, item unit, etc | object | `{ itemUnit: 'item', itemsUnit: 'items', notFoundContent: 'The list is empty', searchPlaceholder: 'Search here' }` |  |
@@ -35,7 +35,7 @@ One or more elements can be selected from either column, one click on the proper
 | selectAllLabels | A set of customized labels for select all checkboxes on the header | VueNode \| ((info: { selectedCount: number; totalCount: number }) => VueNode); | - | 3.0.0 |
 | selectedKeys(v-model) | A set of keys of selected items. | string\[] | \[] |  |
 | selectionsIcon | Custom icon for the header selections dropdown | VueNode \| slot | - | 4.36.0 |
-| showSearch | If included, a search box is shown on each column. | boolean | false |  |
+| showSearch | If included, a search box is shown on each column. Object form can set `placeholder` | boolean \| { placeholder?: string } | false | object: 4.73.0 |
 | showSelectAll | Show select all checkbox on the header | boolean | true |  |
 | status | Set validation status | 'error' \| 'warning' | - | 3.3.0 |
 | targetKeys(v-model) | A set of keys of elements that are listed on the right column. | string\[] | \[] |  |

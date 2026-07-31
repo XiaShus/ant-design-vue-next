@@ -25,6 +25,7 @@
     <UseFormNested />
     <UseFormTrigger />
     <UseFormMerge />
+    <RequiredMark />
   </demo-sort>
 </template>
 <script lang="ts">
@@ -52,6 +53,7 @@ import UseFormNested from './useForm-nested.vue';
 import UseFormTrigger from './useForm-trigger.vue';
 import UseFormMerge from './useForm-merge.vue';
 import CustomizedFormControls from './customized-form-controls.vue';
+import RequiredMark from './required-mark.vue';
 import timeRelatedControlsVue from './time-related-controls.vue';
 import validateOtherVue from './validate-other.vue';
 import validateStaticVue from './validate-static.vue';
@@ -79,6 +81,7 @@ export default defineComponent({
     UseFormMerge,
     LabelWidth,
     CustomizedFormControls,
+    RequiredMark,
     advancedSearchVue,
     dynamicFormItemsComplexVue,
     dynamicFormItemsVue,

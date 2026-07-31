@@ -4,7 +4,7 @@ import PropTypes from '../_util/vue-types';
 import warning from '../_util/warning';
 import classNames from '../_util/classNames';
 import SlickCarousel from '../vc-slick';
-import { withInstall, booleanType, functionType, stringType } from '../_util/type';
+import { withInstall, booleanType, functionType, stringType, someType } from '../_util/type';
 import useConfigInject from '../config-provider/hooks/useConfigInject';
 
 // CSSINJS
@@ -30,7 +30,8 @@ export const carouselProps = () => ({
   effect: stringType<CarouselEffect>(),
   dots: booleanType(true),
   vertical: booleanType(),
-  autoplay: booleanType(),
+  /** Auto play; object enables dot progress (antd ≥ 5.24). */
+  autoplay: someType<boolean | { dotDuration?: boolean }>([Boolean, Object]),
   easing: String,
   beforeChange: functionType<(currentSlide: number, nextSlide: number) => void>(),
   afterChange: functionType<(currentSlide: number) => void>(),
@@ -126,9 +127,12 @@ const Carousel = defineComponent({
       });
     });
     return () => {
-      const { dots, arrows, draggable, effect } = props;
+      const { dots, arrows, draggable, effect, autoplay } = props;
       const { class: cls, style, ...restAttrs } = attrs;
       const fade = effect === 'fade' ? true : props.fade;
+      const autoplayEnabled = !!autoplay;
+      const dotDuration = typeof autoplay === 'object' && autoplay ? !!autoplay.dotDuration : false;
+      const autoplaySpeed = props.autoplaySpeed ?? 3000;
       const className = classNames(
         prefixCls.value,
         {
@@ -138,12 +142,17 @@ const Carousel = defineComponent({
         },
         hashId.value,
       );
+      const mergedStyle: CSSProperties = {
+        ...(style as CSSProperties),
+        ...(dotDuration ? { ['--dot-duration' as any]: `${autoplaySpeed}ms` } : {}),
+      };
       return wrapSSR(
-        <div class={className} style={style as CSSProperties}>
+        <div class={className} style={mergedStyle}>
           <SlickCarousel
             ref={slickRef}
             {...props}
             {...restAttrs}
+            autoplay={autoplayEnabled}
             dots={!!dots}
             dotsClass={dsClass.value}
             arrows={arrows}

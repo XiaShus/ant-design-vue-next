@@ -8,11 +8,11 @@ title:
 
 ## zh-CN
 
-带搜索框的穿梭框，可以自定义搜索函数。
+带搜索框的穿梭框；`showSearch` 支持对象配置 `placeholder`，`filterOption` 可接收 `direction`。
 
 ## en-US
 
-Transfer with a search box.
+Transfer with a search box. `showSearch` accepts `{ placeholder }`, and `filterOption` receives `direction`.
 
 </docs>
 
@@ -20,7 +20,7 @@ Transfer with a search box.
   <a-transfer
     v-model:target-keys="targetKeys"
     :data-source="mockData"
-    show-search
+    :show-search="{ placeholder: 'Search here' }"
     :filter-option="filterOption"
     :render="item => item.title"
     @change="handleChange"
@@ -59,7 +59,8 @@ const getMock = () => {
   mockData.value = mData;
   targetKeys.value = keys;
 };
-const filterOption = (inputValue: string, option: MockData) => {
+const filterOption = (inputValue: string, option: MockData, direction?: string) => {
+  console.log('filter direction:', direction);
   return option.description.indexOf(inputValue) > -1;
 };
 const handleChange = (keys: string[], direction: string, moveKeys: string[]) => {

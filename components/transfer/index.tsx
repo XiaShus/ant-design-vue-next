@@ -94,8 +94,12 @@ export const transferProps = () => ({
   operationStyle: objectType<CSSProperties>(undefined as CSSProperties),
   titles: arrayType<string[]>(),
   operations: arrayType<string[]>(),
-  showSearch: booleanType(false),
-  filterOption: functionType<(inputValue: string, item: TransferItem) => boolean>(),
+  /** Show search box; object may set placeholder (antd ≥ 5.x). */
+  showSearch: someType<boolean | { placeholder?: string }>([Boolean, Object], false),
+  filterOption:
+    functionType<
+      (inputValue: string, item: TransferItem, direction?: TransferDirection) => boolean
+    >(),
   searchPlaceholder: String,
   notFoundContent: PropTypes.any,
   locale: objectType(),

@@ -204,6 +204,26 @@ const genCarouselStyle: GenerateStyle<CarouselToken> = token => {
           textIndent: -999,
           verticalAlign: 'top',
           transition: `all ${token.motionDurationSlow}`,
+          borderRadius: token.dotHeight,
+          overflow: 'hidden',
+
+          // Progress fill for autoplay.dotDuration (antd ≥ 5.24)
+          '&::after': {
+            display: 'block',
+            position: 'absolute',
+            top: 0,
+            insetInlineStart: 0,
+            width: '100%',
+            height: token.dotHeight,
+            content: '""',
+            background: token.colorBgContainer,
+            borderRadius: token.dotHeight,
+            opacity: 1,
+            outline: 'none',
+            cursor: 'pointer',
+            overflow: 'hidden',
+            transform: 'translate3d(-100%, 0, 0)',
+          },
 
           button: {
             position: 'relative',
@@ -215,11 +235,12 @@ const genCarouselStyle: GenerateStyle<CarouselToken> = token => {
             fontSize: 0,
             background: token.colorBgContainer,
             border: 0,
-            borderRadius: 1,
+            borderRadius: token.dotHeight,
             outline: 'none',
             cursor: 'pointer',
             opacity: 0.3,
             transition: `all ${token.motionDurationSlow}`,
+            overflow: 'hidden',
 
             '&: hover, &:focus': {
               opacity: 0.75,
@@ -242,6 +263,11 @@ const genCarouselStyle: GenerateStyle<CarouselToken> = token => {
 
             '&: hover, &:focus': {
               opacity: 1,
+            },
+
+            '&::after': {
+              transform: 'translate3d(0, 0, 0)',
+              transition: 'transform var(--dot-duration, 0ms) ease-out',
             },
           },
         },
@@ -287,10 +313,20 @@ const genCarouselVerticalStyle: GenerateStyle<CarouselToken> = token => {
 
           button: reverseSizeOfDot,
 
+          '&::after': {
+            ...reverseSizeOfDot,
+            height: 0,
+          },
+
           '&.slick-active': {
             ...reverseSizeOfDot,
 
             button: reverseSizeOfDot,
+
+            '&::after': {
+              ...reverseSizeOfDot,
+              transition: 'height var(--dot-duration, 0ms) ease-out',
+            },
           },
         },
       },

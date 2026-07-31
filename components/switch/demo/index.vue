@@ -1,6 +1,7 @@
 <template>
   <demo-sort>
     <basic />
+    <value />
     <disabled />
     <text-and-icon />
     <size />
@@ -11,6 +12,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import Basic from './basic.vue';
+import Value from './value.vue';
 import Disabled from './disabled.vue';
 import Text from './text.vue';
 import Size from './size.vue';
@@ -23,6 +25,7 @@ export default defineComponent({
   US,
   components: {
     Basic,
+    Value,
     Disabled,
     TextAndIcon: Text, // text 无法识别
     Size,

@@ -19,7 +19,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*a-58QpYnqOsAAA
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
-| autoplay | 是否自动切换 | boolean | false |  |
+| autoplay | 是否自动切换；对象形式可展示指示点进度 | boolean \| { dotDuration?: boolean } | false | `dotDuration`: 4.73.0 |
 | dotPosition | 面板指示点位置，可选 `top` `bottom` `left` `right` | string | `bottom` | 1.5.0 |
 | dots | 是否显示面板指示点 | boolean | true |  |
 | dotsClass | 面板指示点类名 | string | `slick-dots` |  |

@@ -8,6 +8,16 @@
 
 ---
 
+## 4.73.0
+
+`2026-07-31`
+
+- 🌟 Notification 支持 `actions`（`btn` 别名）（对齐 antd ≥ 5.24）
+- 🌟 Switch 支持 `value` / `defaultValue` 别名（对齐 antd ≥ 5.12）
+- 🌟 Transfer 支持对象型 `showSearch` 与 `filterOption` 的 `direction`（对齐 antd ≥ 5.x）
+- 🌟 Form 支持 `requiredMark` 渲染函数与 Form.Item 对象型 `tooltip`（对齐 antd ≥ 5.9 / 4.7）
+- 🌟 Carousel 支持 `autoplay.dotDuration`（对齐 antd ≥ 5.24）
+
 ## 4.72.0
 
 `2026-07-31`
