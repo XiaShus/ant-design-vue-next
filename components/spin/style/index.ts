@@ -35,7 +35,7 @@ const genSpinStyle: GenerateStyle<SpinToken> = (token: SpinToken): CSSObject => 
     transition: `transform ${token.motionDurationSlow} ${token.motionEaseInOutCirc}`,
 
     '&-spinning': {
-      position: 'static',
+      position: 'relative',
       display: 'inline-block',
       opacity: 1,
     },
@@ -136,6 +136,31 @@ const genSpinStyle: GenerateStyle<SpinToken> = (token: SpinToken): CSSObject => 
       color: token.spinDotDefault,
     },
 
+    // holder
+    // ------------------------------
+    [`${token.componentCls}-dot-holder`]: {
+      width: '1em',
+      height: '1em',
+      fontSize: token.spinDotSize,
+      display: 'inline-block',
+      transition: `transform ${token.motionDurationSlow} ease, opacity ${token.motionDurationSlow} ease`,
+      transformOrigin: '50% 50%',
+      lineHeight: 1,
+      color: token.colorPrimary,
+
+      '&-hidden': {
+        transform: 'scale(0.3)',
+        opacity: 0,
+      },
+    },
+
+    // progress
+    // ------------------------------
+    [`${token.componentCls}-dot-progress`]: {
+      position: 'absolute',
+      inset: 0,
+    },
+
     // dots
     // ------------------------------
     [`${token.componentCls}-dot`]: {
@@ -150,7 +175,7 @@ const genSpinStyle: GenerateStyle<SpinToken> = (token: SpinToken): CSSObject => 
         display: 'block',
         width: (token.spinDotSize - token.marginXXS / 2) / 2,
         height: (token.spinDotSize - token.marginXXS / 2) / 2,
-        backgroundColor: token.colorPrimary,
+        background: 'currentColor',
         borderRadius: '100%',
         transform: 'scale(0.75)',
         transformOrigin: '50% 50%',
@@ -192,6 +217,19 @@ const genSpinStyle: GenerateStyle<SpinToken> = (token: SpinToken): CSSObject => 
         animationIterationCount: 'infinite',
         animationTimingFunction: 'linear',
       },
+
+      '&-circle': {
+        strokeLinecap: 'round',
+        transition: ['stroke-dashoffset', 'stroke-dasharray', 'stroke', 'stroke-width', 'opacity']
+          .map(item => `${item} ${token.motionDurationSlow} ease`)
+          .join(','),
+        fillOpacity: 0,
+        stroke: 'currentcolor',
+      },
+
+      '&-circle-bg': {
+        stroke: token.colorFillSecondary,
+      },
     },
 
     // Sizes
@@ -200,7 +238,9 @@ const genSpinStyle: GenerateStyle<SpinToken> = (token: SpinToken): CSSObject => 
     // small
     [`&-sm ${token.componentCls}-dot`]: {
       fontSize: token.spinDotSizeSM,
-
+    },
+    [`&-sm ${token.componentCls}-dot-holder`]: {
+      fontSize: token.spinDotSizeSM,
       i: {
         width: (token.spinDotSizeSM - token.marginXXS / 2) / 2,
         height: (token.spinDotSizeSM - token.marginXXS / 2) / 2,
@@ -210,7 +250,9 @@ const genSpinStyle: GenerateStyle<SpinToken> = (token: SpinToken): CSSObject => 
     // large
     [`&-lg ${token.componentCls}-dot`]: {
       fontSize: token.spinDotSizeLG,
-
+    },
+    [`&-lg ${token.componentCls}-dot-holder`]: {
+      fontSize: token.spinDotSizeLG,
       i: {
         width: (token.spinDotSizeLG - token.marginXXS) / 2,
         height: (token.spinDotSizeLG - token.marginXXS) / 2,
@@ -244,8 +286,8 @@ const genSpinStyle: GenerateStyle<SpinToken> = (token: SpinToken): CSSObject => 
         pointerEvents: 'auto',
       },
 
-      [`${token.componentCls}-dot ${token.componentCls}-dot-item`]: {
-        backgroundColor: token.colorWhite,
+      [`${token.componentCls}-dot-holder`]: {
+        color: token.colorWhite,
       },
 
       [`${token.componentCls}-text`]: {

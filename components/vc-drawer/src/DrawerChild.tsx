@@ -238,9 +238,14 @@ const DrawerChild = defineComponent({
               style={[contentWrapperStyle]}
               ref={contentWrapper}
             >
-              <div class={[`${prefixCls}-content`, className]} style={style} ref={contentDom}>
-                {slots.default?.()}
-              </div>
+              {(() => {
+                const contentNode = (
+                  <div class={[`${prefixCls}-content`, className]} style={style} ref={contentDom}>
+                    {slots.default?.()}
+                  </div>
+                );
+                return props.drawerRender ? props.drawerRender(contentNode) : contentNode;
+              })()}
               {slots.handler ? (
                 <div onClick={onHandleClick} ref={handlerDom}>
                   {slots.handler?.()}

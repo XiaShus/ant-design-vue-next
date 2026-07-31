@@ -79,7 +79,7 @@
 | 分组 | 组件 | React `antd` | Vue Next | 文档链接 | 缺口备注 |
 | --- | --- | --- | --- | --- | --- |
 | Data Display | Avatar | ✅ | ✅ | [avatar](../../components/avatar) | 🔄 Group `max` ✅ 4.28.0 |
-| Data Display | Badge | ✅ | ✅ | [badge](../../components/badge) | — |
+| Data Display | Badge | ✅ | ✅ | [badge](../../components/badge) | 🔄 `size` 文档/demo ✅ 4.66.0 |
 | Data Display | Calendar | ✅ | ✅ | [calendar](../../components/calendar) | 🔄 `cellRender` / `fullCellRender` ✅ 4.60.0；🔄 `showWeek` ✅ 4.62.0 |
 | Data Display | Card | ✅ | ✅ | [card](../../components/card) | 🔄 `variant` ✅ 4.29.0 |
 | Data Display | Carousel | ✅ | ✅ | [carousel](../../components/carousel) | — |
@@ -96,7 +96,7 @@
 | Data Display | Tag | ✅ | ✅ | [tag](../../components/tag) | — |
 | Data Display | Timeline | ✅ | ✅ | [timeline](../../components/timeline) | 🔄 `items` ✅ 4.33.0 |
 | Data Display | Tooltip | ✅ | ✅ | [tooltip](../../components/tooltip) | 🔄 `destroyOnHidden` ✅ 4.14.0（Popover / Popconfirm 同） |
-| Data Display | Tour | ✅ 5.0 | ✅ | [tour](../../components/tour) | 🔄 `actionsRender` ✅ 4.37.0 |
+| Data Display | Tour | ✅ 5.0 | ✅ | [tour](../../components/tour) | 🔄 `actionsRender` ✅ 4.37.0；🔄 `disabledInteraction` ✅ 4.66.0 |
 | Data Display | Tree | ✅ | ✅ | [tree](../../components/tree) | — |
 
 ## Feedback
@@ -104,7 +104,7 @@
 | 分组 | 组件 | React `antd` | Vue Next | 文档链接 | 缺口备注 |
 | --- | --- | --- | --- | --- | --- |
 | Feedback | Alert | ✅ | ✅ | [alert](../../components/alert) | 🔄 object `closable` ✅ 4.27.0 |
-| Feedback | Drawer | ✅ | ✅ | [drawer](../../components/drawer) | 🔄 `destroyOnHidden` ✅ 4.11.0；🔄 `loading` ✅ 4.64.0 |
+| Feedback | Drawer | ✅ | ✅ | [drawer](../../components/drawer) | 🔄 `destroyOnHidden` ✅ 4.11.0；🔄 `loading` ✅ 4.64.0；🔄 `drawerRender` ✅ 4.66.0 |
 | Feedback | Message | ✅ | ✅ | [message](../../components/message) | 🔄 `pauseOnHover` ✅ 4.44.0 |
 | Feedback | Modal | ✅ | ✅ | [modal](../../components/modal) | 🔄 `destroyOnHidden` ✅ 4.11.0；🔄 `afterOpenChange` ✅ 4.22.0；🔄 `loading` ✅ 4.64.0 |
 | Feedback | Notification | ✅ | ✅ | [notification](../../components/notification) | 🔄 `showProgress` / `pauseOnHover` ✅ 4.43.0 |
@@ -112,8 +112,8 @@
 | Feedback | Progress | ✅ | ✅ | [progress](../../components/progress) | 🔄 object `size` ✅ 4.38.0；🔄 `steps` object `{ count, gap }` ✅ 4.55.0；🔄 `percentPosition` ✅ 4.58.0；🔄 `rounding` ✅ 4.59.0 |
 | Feedback | Result | ✅ | ✅ | [result](../../components/result) | — |
 | Feedback | Skeleton | ✅ | ✅ | [skeleton](../../components/skeleton) | 🔄 `Skeleton.Node` ✅ 4.41.0 |
-| Feedback | Spin | ✅ | ✅ | [spin](../../components/spin) | 🔄 `fullscreen` ✅ 4.24.0 |
-| Feedback | Watermark | ✅ 5.1 | ✅ | [watermark](../../components/watermark) | — |
+| Feedback | Spin | ✅ | ✅ | [spin](../../components/spin) | 🔄 `fullscreen` ✅ 4.24.0；🔄 `percent` / `auto` ✅ 4.66.0 |
+| Feedback | Watermark | ✅ 5.1 | ✅ | [watermark](../../components/watermark) | 🔄 `font.textAlign` ✅ 4.66.0 |
 
 ## Other
 
@@ -192,9 +192,10 @@
 61. ~~ConfigProvider `form.scrollToFirstError`~~ — ✅ `4.63.0`
 62. ~~Modal / Drawer `loading`~~ — ✅ `4.64.0`
 63. ~~Empty `classNames` / `styles`~~ — ✅ `4.65.0`
-64. Table `virtual` 按需拆版（多日）
-65. ColorPicker 渐变 `mode`
-66. Segmented `vertical`（需 MotionThumb 竖向）
+64. ~~Tour `disabledInteraction` + Badge `size` 文档 + Watermark `font.textAlign` + Drawer `drawerRender` + Spin `percent`~~ — ✅ `4.66.0`
+65. Table `virtual` 按需拆版（多日）
+66. ColorPicker 渐变 `mode`
+67. Segmented `vertical`（需 MotionThumb 竖向）
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -204,4 +205,4 @@
 
 ---
 
-_上次更新：`4.65.0` Empty `classNames` / `styles`。每发一版请同步改本表。_
+_上次更新：`4.66.0` 加大批次（Tour / Badge / Watermark / Drawer / Spin）。每发一版请同步改本表；之后默认每版打包 4–6 项。_

@@ -34,6 +34,7 @@ Badge normally appears in proximity to notifications or user avatars with eye-ca
 | offset | set offset of the badge dot, like [x, y] | [number\|string, number\|string] | - |  |
 | overflowCount | Max count to show | number | 99 |  |
 | showZero | Whether to show badge when `count` is zero | boolean | `false` |  |
+| size | If `count` is set, set size of badge | `default` \| `small` | `default` | 4.66.0 |
 | status | Set Badge as a status dot | `success` \| `processing` \| `default` \| `error` \| `warning` | `''` |  |
 | text | If `status` is set, `text` sets the display text of the status `dot` | string | `''` |  |
 | numberStyle | sets the display style of the status `dot` | object | '' |  |

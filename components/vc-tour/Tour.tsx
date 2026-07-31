@@ -52,6 +52,8 @@ export const tourProps = () => {
     animated: someType<boolean | { placeholder: boolean }>([Boolean, Object]),
     scrollIntoViewOptions: someType<boolean | ScrollIntoViewOptions>([Boolean, Object], true),
     zIndex: { type: Number, default: 1001 },
+    /** Disable interaction on highlighted area (antd ≥ 5.13). */
+    disabledInteraction: booleanType(),
   };
 };
 
@@ -207,6 +209,7 @@ const Tour = defineComponent({
             open={mergedOpen.value}
             animated={animated}
             rootClassName={rootClassName}
+            disabledInteraction={props.disabledInteraction}
           />
           <Trigger
             {...restProps}

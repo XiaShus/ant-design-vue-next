@@ -4,6 +4,7 @@
     <NoWapper />
     <Overflow />
     <Dot />
+    <Size />
     <Status />
     <Change />
     <Title />
@@ -18,6 +19,7 @@ import NoWapper from './no-wrapper.vue';
 import Dot from './dot.vue';
 import Change from './change.vue';
 import Overflow from './overflow.vue';
+import Size from './size.vue';
 import Status from './status.vue';
 import Title from './title.vue';
 import Colors from './colors.vue';
@@ -35,6 +37,7 @@ export default defineComponent({
     NoWapper,
     Overflow,
     Dot,
+    Size,
     Status,
     Change,
     Title,

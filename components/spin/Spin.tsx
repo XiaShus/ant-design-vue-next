@@ -7,15 +7,18 @@ import {
   defineComponent,
   shallowRef,
   watch,
+  computed,
 } from 'vue';
 import { debounce } from 'throttle-debounce';
 import classNames from '../_util/classNames';
 import PropTypes from '../_util/vue-types';
 import { filterEmpty, getPropsSlot } from '../_util/props-util';
 import initDefaultProps from '../_util/props-util/initDefaultProps';
-import { booleanType } from '../_util/type';
+import { booleanType, someType } from '../_util/type';
 import useStyle from './style';
 import useConfigInject from '../config-provider/hooks/useConfigInject';
+import Indicator from './Indicator';
+import usePercent from './usePercent';
 
 export type SpinSize = 'small' | 'default' | 'large';
 export const spinProps = () => ({
@@ -28,6 +31,8 @@ export const spinProps = () => ({
   indicator: PropTypes.any,
   /** Display a fullscreen backdrop with Spin (antd ≥ 5.11). */
   fullscreen: booleanType(),
+  /** Progress percent; `auto` shows indeterminate mock progress (antd ≥ 5.18). */
+  percent: someType<number | 'auto'>([Number, String]),
 });
 
 export type SpinProps = Partial<ExtractPropTypes<ReturnType<typeof spinProps>>>;
@@ -40,8 +45,8 @@ function shouldDelay(spinning?: boolean, delay?: number): boolean {
 }
 
 export function setDefaultIndicator(Content: any) {
-  const Indicator = Content.indicator;
-  defaultIndicator = typeof Indicator === 'function' ? Indicator : () => <Indicator />;
+  const IndicatorComp = Content.indicator;
+  defaultIndicator = typeof IndicatorComp === 'function' ? IndicatorComp : () => <IndicatorComp />;
 }
 
 export default defineComponent({
@@ -75,6 +80,10 @@ export default defineComponent({
     onBeforeUnmount(() => {
       updateSpinning?.cancel();
     });
+
+    const percentRef = computed(() => props.percent as number | 'auto' | undefined);
+    const mergedPercent = usePercent(sSpinning, percentRef);
+
     return () => {
       const { class: cls, ...divProps } = attrs;
       const { tip = slots.tip?.() } = props;
@@ -90,8 +99,8 @@ export default defineComponent({
         [cls as string]: !!cls,
       };
 
-      function renderIndicator(prefixCls: string) {
-        const dotClassName = `${prefixCls}-dot`;
+      function renderIndicator(prefixClsName: string) {
+        const dotClassName = `${prefixClsName}-dot`;
         let indicator = getPropsSlot(slots, props, 'indicator');
         // should not be render default indicator when indicator value is null
         if (indicator === null) {
@@ -108,14 +117,7 @@ export default defineComponent({
           return cloneVNode(defaultIndicator(), { class: dotClassName });
         }
 
-        return (
-          <span class={`${dotClassName} ${prefixCls}-dot-spin`}>
-            <i class={`${prefixCls}-dot-item`} />
-            <i class={`${prefixCls}-dot-item`} />
-            <i class={`${prefixCls}-dot-item`} />
-            <i class={`${prefixCls}-dot-item`} />
-          </span>
-        );
+        return <Indicator prefixCls={prefixClsName} percent={mergedPercent.value} />;
       }
       const spinElement = (
         <div {...divProps} class={spinClassName} aria-live="polite" aria-busy={sSpinning.value}>

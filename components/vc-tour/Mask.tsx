@@ -21,6 +21,8 @@ export interface MaskProps {
   open?: boolean;
   animated?: boolean | { placeholder: boolean };
   zIndex?: number;
+  /** Disable interaction on highlighted area (antd ≥ 5.13). */
+  disabledInteraction?: boolean;
 }
 const Mask = defineComponent({
   name: 'TourMask',
@@ -33,11 +35,22 @@ const Mask = defineComponent({
     open: booleanType(),
     animated: someType<boolean | { placeholder: boolean }>([Boolean, Object]),
     zIndex: { type: Number },
+    disabledInteraction: booleanType(),
   },
   setup(props, { attrs }) {
     const id = useId();
     return () => {
-      const { prefixCls, open, rootClassName, pos, showMask, fill, animated, zIndex } = props;
+      const {
+        prefixCls,
+        open,
+        rootClassName,
+        pos,
+        showMask,
+        fill,
+        animated,
+        zIndex,
+        disabledInteraction,
+      } = props;
 
       const maskId = `${prefixCls}-mask-${id}`;
       const mergedAnimated = typeof animated === 'object' ? animated?.placeholder : animated;
@@ -59,7 +72,8 @@ const Mask = defineComponent({
                       top: 0,
                       bottom: 0,
                       zIndex,
-                      pointerEvents: 'none',
+                      // When interaction is allowed, only COVER rects capture events.
+                      pointerEvents: pos && !disabledInteraction ? 'none' : 'auto',
                     },
                     attrs.style as CSSProperties,
                   ]}

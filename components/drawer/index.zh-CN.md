@@ -30,6 +30,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*4wzwRIBLuqEAAA
 | contentWrapperStyle | 可用于设置 Drawer 包裹内容部分的样式 | CSSProperties | - | 3.0.0 |
 | destroyOnClose | 关闭时销毁 Drawer 里的子元素（请优先使用 `destroyOnHidden`） | boolean | false |  |
 | destroyOnHidden | 关闭时销毁 Drawer 里的子元素（对齐 antd ≥ 5.25） | boolean | false | 4.11.0 |
+| drawerRender | 自定义抽屉面板渲染 | `({ originVNode }) => VueNode` \| `v-slot:drawerRender="{ originVNode }"` | - | 4.66.0 |
 | extra | 抽屉右上角的操作区域 | VNode \| slot | - | 3.0.0 |
 | footer | 抽屉的页脚 | VNode \| slot | - | 3.0.0 |
 | footerStyle | 抽屉页脚部件的样式 | CSSProperties | - | 3.0.0 |

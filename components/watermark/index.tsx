@@ -19,6 +19,8 @@ export interface WatermarkFontType {
   fontWeight?: 'normal' | 'light' | 'weight' | number;
   fontStyle?: 'none' | 'normal' | 'italic' | 'oblique';
   fontFamily?: string;
+  /** Text align (antd ≥ 5.10). */
+  textAlign?: 'left' | 'right' | 'center';
 }
 export const watermarkProps = () => ({
   zIndex: Number,
@@ -57,6 +59,7 @@ const Watermark = defineComponent({
     const fontWeight = computed(() => props.font?.fontWeight ?? 'normal');
     const fontStyle = computed(() => props.font?.fontStyle ?? 'normal');
     const fontFamily = computed(() => props.font?.fontFamily ?? 'sans-serif');
+    const textAlign = computed(() => props.font?.textAlign ?? 'center');
     const color = computed(() => props.font?.color ?? token.value.colorFill);
     const markStyle = computed(() => {
       const markStyle: CSSProperties = {
@@ -144,7 +147,7 @@ const Watermark = defineComponent({
       const mergedFontSize = Number(fontSize.value) * ratio;
       ctx.font = `${fontStyle.value} normal ${fontWeight.value} ${mergedFontSize}px/${drawHeight}px ${fontFamily.value}`;
       ctx.fillStyle = color.value;
-      ctx.textAlign = 'center';
+      ctx.textAlign = textAlign.value;
       ctx.textBaseline = 'top';
       ctx.translate(drawWidth / 2, 0);
       const contents = Array.isArray(content) ? content : [content];

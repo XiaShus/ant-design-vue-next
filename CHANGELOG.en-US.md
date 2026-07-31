@@ -4,6 +4,16 @@
 
 ---
 
+## 4.66.0
+
+`2026-07-31`
+
+- 🌟 Tour support `disabledInteraction` (antd ≥ 5.13)
+- 🌟 Badge document `size` (`default` \| `small`)
+- 🌟 Watermark `font.textAlign` (antd ≥ 5.10)
+- 🌟 Drawer support `drawerRender` (antd ≥ 5.18)
+- 🌟 Spin support `percent` / `auto` progress (antd ≥ 5.18)
+
 ## 4.65.0
 
 `2026-07-31`

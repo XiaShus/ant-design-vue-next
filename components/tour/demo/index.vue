@@ -5,6 +5,7 @@
     <placement />
     <Mask />
     <indicator />
+    <disabledInteraction />
   </demo-sort>
 </template>
 <script lang="ts">
@@ -13,6 +14,7 @@ import NonModal from './non-modal.vue';
 import Placement from './placement.vue';
 import Mask from './mask.vue';
 import Indicator from './indicator.vue';
+import DisabledInteraction from './disabled-interaction.vue';
 
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
@@ -27,6 +29,7 @@ export default defineComponent({
     Placement,
     Mask,
     Indicator,
+    DisabledInteraction,
   },
   setup() {
     return {};

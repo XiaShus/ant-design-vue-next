@@ -41,3 +41,4 @@ tag: New
 | fontWeight | 字体粗细 | `normal` \| `light` \| `weight` \| number | normal |  |
 | fontFamily | 字体类型 | string | sans-serif |  |
 | fontStyle | 字体样式 | `none` \| `normal` \| `italic` \| `oblique` | normal |  |
+| textAlign | 文本对齐 | `left` \| `right` \| `center` | `center` | 4.66.0 |

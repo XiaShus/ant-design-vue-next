@@ -1,5 +1,5 @@
 import PropTypes from '../../_util/vue-types';
-import type { CSSProperties, PropType, TransitionProps } from 'vue';
+import type { CSSProperties, PropType, TransitionProps, VNodeChild } from 'vue';
 import { arrayType, objectType, functionType } from '../../_util/type';
 
 export type IPlacement = 'left' | 'top' | 'right' | 'bottom';
@@ -36,6 +36,8 @@ const props = () => ({
   // Motion
   motion: functionType<(placement: IPlacement) => TransitionProps>(),
   maskMotion: objectType<TransitionProps>(),
+  /** Custom content panel render (antd ≥ 5.18). */
+  drawerRender: functionType<(node: VNodeChild) => VNodeChild>(),
 });
 
 const drawerProps = () => ({

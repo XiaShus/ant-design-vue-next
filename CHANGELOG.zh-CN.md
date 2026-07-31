@@ -8,6 +8,16 @@
 
 ---
 
+## 4.66.0
+
+`2026-07-31`
+
+- 🌟 Tour 支持 `disabledInteraction`（对齐 antd ≥ 5.13）
+- 🌟 Badge 文档补充 `size`（`default` \| `small`）
+- 🌟 Watermark 支持 `font.textAlign`（对齐 antd ≥ 5.10）
+- 🌟 Drawer 支持 `drawerRender`（对齐 antd ≥ 5.18）
+- 🌟 Spin 支持 `percent` / `auto` 进度（对齐 antd ≥ 5.18）
+
 ## 4.65.0
 
 `2026-07-31`

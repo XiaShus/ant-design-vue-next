@@ -40,3 +40,4 @@ Add specific text or patterns to the page.
 | fontWeight | font weight | `normal` \| `light` \| `weight` \| number | normal |  |
 | fontFamily | font family | string | sans-serif |  |
 | fontStyle | font style  | `none` \| `normal` \| `italic` \| `oblique` | normal |  |
+| textAlign | text align | `left` \| `right` \| `center` | `center` | 4.66.0 |

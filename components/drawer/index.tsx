@@ -17,7 +17,7 @@ import PropTypes from '../_util/vue-types';
 import CloseOutlined from '@ant-design/icons-vue/CloseOutlined';
 import useConfigInject from '../config-provider/hooks/useConfigInject';
 import { objectType, withInstall } from '../_util/type';
-import type { CustomSlotsType } from '../_util/type';
+import type { CustomSlotsType, VueNode } from '../_util/type';
 import omit from '../_util/omit';
 import devWarning from '../vc-util/devWarning';
 import type { KeyboardEventHandler, MouseEventHandler } from '../_util/EventInterface';
@@ -88,6 +88,8 @@ export const drawerProps = () => ({
   footerStyle: objectType<CSSProperties>(),
   /** Show body skeleton while loading (antd ≥ 5.17). */
   loading: { type: Boolean, default: undefined },
+  /** Custom drawer content panel render (antd ≥ 5.18). */
+  drawerRender: Function as PropType<(arg: { originVNode: VueNode }) => VueNode>,
   level: PropTypes.any,
   levelMove: {
     type: [Number, Array, Function] as PropType<
@@ -127,6 +129,7 @@ const Drawer = defineComponent({
     extra: any;
     footer: any;
     handle: any;
+    drawerRender: any;
     default: any;
   }>,
   // emits: ['update:visible', 'close', 'afterVisibleChange'],
@@ -418,6 +421,7 @@ const Drawer = defineComponent({
           'title',
           'push',
           'loading',
+          'drawerRender',
           'onAfterVisibleChange',
           'onClose',
           'onUpdate:visible',
@@ -433,6 +437,15 @@ const Drawer = defineComponent({
         showMask: mask,
         placement,
         ref: vcDrawer,
+        drawerRender:
+          props.drawerRender || slots.drawerRender
+            ? (node: VueNode) => {
+                if (typeof props.drawerRender === 'function') {
+                  return props.drawerRender({ originVNode: node });
+                }
+                return slots.drawerRender?.({ originVNode: node });
+              }
+            : undefined,
       };
       return wrapSSR(
         <NoCompactStyle>

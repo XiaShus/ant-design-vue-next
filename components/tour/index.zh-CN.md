@@ -21,6 +21,7 @@ tag: New
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
 | arrow | 是否显示箭头，包含是否指向元素中心的配置 | `boolean` \| `{ pointAtCenter: boolean}` | `true` |  |
+| disabledInteraction | 禁用高亮区域交互 | `boolean` | `false` | 4.66.0 |
 | placement | 引导卡片相对于目标元素的位置 | `left` `leftTop` `leftBottom` `right` `rightTop` `rightBottom` `top` `topLeft` `topRight` `bottom` `bottomLeft` `bottomRight` | `bottom` |  |
 | mask | 是否启用蒙层，也可传入配置改变蒙层样式和填充色 | `boolean` \| `{ style?: CSSProperties; color?: string; }` | `true` |  |
 | type | 类型，影响底色与文字颜色 | `default` \| `primary` | `default` |  |

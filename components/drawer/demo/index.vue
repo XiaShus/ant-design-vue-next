@@ -9,6 +9,7 @@
     <user-profile />
     <size />
     <loading />
+    <drawerRender />
   </demo-sort>
 </template>
 <script lang="ts">
@@ -21,6 +22,7 @@ import FormInDrawer from './form-in-drawer.vue';
 import RenderInCurrent from './render-in-current.vue';
 import Size from './size.vue';
 import Loading from './loading.vue';
+import DrawerRender from './drawer-render.vue';
 
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
@@ -39,6 +41,7 @@ export default defineComponent({
     RenderInCurrent,
     Size,
     Loading,
+    DrawerRender,
   },
   setup() {
     return {};

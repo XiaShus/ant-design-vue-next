@@ -30,6 +30,7 @@ A Drawer is a panel that is typically overlaid on top of a page and slides in fr
 | contentWrapperStyle | Style of the drawer wrapper of content part | CSSProperties | - | 3.0.0 |
 | destroyOnClose | Whether to unmount child components on closing; prefer `destroyOnHidden` | boolean | false |  |
 | destroyOnHidden | Whether to unmount child components on closing (antd ≥ 5.25) | boolean | false | 4.11.0 |
+| drawerRender | Custom drawer content panel render | `({ originVNode }) => VueNode` \| `v-slot:drawerRender="{ originVNode }"` | - | 4.66.0 |
 | extra | Extra actions area at corner | VNode \| slot | - | 3.0.0 |
 | footer | The footer for Drawer | VNode \| slot | - | 3.0.0 |
 | footerStyle | Style of the drawer footer part | CSSProperties | - | 3.0.0 |
