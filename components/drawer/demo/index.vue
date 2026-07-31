@@ -8,6 +8,7 @@
     <multi-level-drawer />
     <user-profile />
     <size />
+    <loading />
   </demo-sort>
 </template>
 <script lang="ts">
@@ -19,6 +20,7 @@ import MultiLevelDrawer from './multi-level-drawer.vue';
 import FormInDrawer from './form-in-drawer.vue';
 import RenderInCurrent from './render-in-current.vue';
 import Size from './size.vue';
+import Loading from './loading.vue';
 
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
@@ -36,6 +38,7 @@ export default defineComponent({
     FormInDrawer,
     RenderInCurrent,
     Size,
+    Loading,
   },
   setup() {
     return {};

@@ -17,6 +17,7 @@ import { canUseDocElement } from '../_util/styleChecker';
 import useConfigInject from '../config-provider/hooks/useConfigInject';
 import { getTransitionName } from '../_util/transition';
 import warning from '../_util/warning';
+import Skeleton from '../skeleton';
 import useStyle from './style';
 
 type MousePosition = { x: number; y: number } | null;
@@ -45,6 +46,8 @@ export const modalProps = () => ({
   visible: { type: Boolean, default: undefined },
   open: { type: Boolean, default: undefined },
   confirmLoading: { type: Boolean, default: undefined },
+  /** Show body skeleton while loading (antd ≥ 5.18). */
+  loading: { type: Boolean, default: undefined },
   title: PropTypes.any,
   closable: { type: Boolean, default: undefined },
   closeIcon: PropTypes.any,
@@ -234,6 +237,8 @@ export default defineComponent({
         focusTriggerAfterClose = true,
         destroyOnClose,
         destroyOnHidden,
+        loading,
+        footer,
         ...restProps
       } = props;
       const mergedDestroyOnClose = destroyOnHidden ?? destroyOnClose;
@@ -246,6 +251,7 @@ export default defineComponent({
         <Dialog
           {...restProps}
           {...attrs}
+          footer={loading ? null : footer}
           destroyOnClose={mergedDestroyOnClose}
           rootClassName={hashId.value}
           class={classNames(hashId.value, attrs.class)}
@@ -265,7 +271,18 @@ export default defineComponent({
           mousePosition={restProps.mousePosition ?? mousePosition}
           v-slots={{
             ...slots,
-            footer: slots.footer || renderFooter,
+            default: () =>
+              loading ? (
+                <Skeleton
+                  active
+                  title={false}
+                  paragraph={{ rows: 4 }}
+                  class={`${prefixCls.value}-body-skeleton`}
+                />
+              ) : (
+                slots.default?.()
+              ),
+            footer: loading ? undefined : slots.footer || renderFooter,
             closeIcon: () => {
               return (
                 <span class={`${prefixCls.value}-close-x`}>

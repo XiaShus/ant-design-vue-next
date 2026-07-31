@@ -30,6 +30,7 @@ When requiring users to interact with the application, but without jumping to a 
 | footer | Footer content, set as `:footer="null"` when you don't need default buttons | string\|slot | OK and Cancel buttons |  |
 | forceRender | Force render Modal | boolean | false |  |
 | getContainer | Return the mount node for Modal | (instance): HTMLElement | () => document.body |  |
+| loading | Show skeleton in Modal body | boolean | false | 4.64.0 |
 | mask | Whether show mask or not. | boolean | true |  |
 | maskClosable | Whether to close the modal dialog when the mask (area outside the modal) is clicked | boolean | true |  |
 | maskStyle | Style for modal's mask element. | object | {} |  |

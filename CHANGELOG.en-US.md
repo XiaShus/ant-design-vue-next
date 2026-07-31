@@ -4,6 +4,12 @@
 
 ---
 
+## 4.64.0
+
+`2026-07-31`
+
+- 🌟 Modal / Drawer support `loading` skeleton body (antd ≥ 5.17 / 5.18)
+
 ## 4.63.0
 
 `2026-07-31`

@@ -38,6 +38,7 @@ A Drawer is a panel that is typically overlaid on top of a page and slides in fr
 | headerStyle | Style of the drawer header part | CSSProperties | - | 3.0.0 |
 | height | Placement is `top` or `bottom`, height of the Drawer dialog | string \| number | 378 |  |
 | keyboard | Whether support press esc to close | boolean | true |  |
+| loading | Show skeleton in Drawer body | boolean | false | 4.64.0 |
 | mask | Whether to show mask or not | Boolean | true |  |
 | maskClosable | Clicking on the mask (area outside the Drawer) to close the Drawer or not | boolean | true |  |
 | maskStyle | Style for Drawer's mask element | CSSProperties | {} |  |

@@ -38,6 +38,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*4wzwRIBLuqEAAA
 | headerStyle | 用于设置 Drawer 头部的样式 | CSSProperties | - | 3.0.0 |
 | height | 高度, 在 `placement` 为 `top` 或 `bottom` 时使用 | string \| number | 378 |  |
 | keyboard | 是否支持键盘 esc 关闭 | boolean | true |  |
+| loading | 显示加载中的骨架屏 | boolean | false | 4.64.0 |
 | mask | 是否展示遮罩 | Boolean | true |  |
 | maskClosable | 点击蒙层是否允许关闭 | boolean | true |  |
 | maskStyle | 遮罩样式 | CSSProperties | {} |  |

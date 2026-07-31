@@ -26,6 +26,7 @@ import { NoCompactStyle } from '../space/Compact';
 
 import isNumeric from '../_util/isNumeric';
 import { getTransitionName, getTransitionProps } from '../_util/transition';
+import Skeleton from '../skeleton';
 
 type ILevelMove = number | [number, number];
 
@@ -85,6 +86,8 @@ export const drawerProps = () => ({
   extra: PropTypes.any,
   footer: PropTypes.any,
   footerStyle: objectType<CSSProperties>(),
+  /** Show body skeleton while loading (antd ≥ 5.17). */
+  loading: { type: Boolean, default: undefined },
   level: PropTypes.any,
   levelMove: {
     type: [Number, Array, Function] as PropType<
@@ -349,7 +352,16 @@ const Drawer = defineComponent({
         <div class={`${prefixCls}-wrapper-body`} style={drawerStyle}>
           {renderHeader(prefixCls)}
           <div key="body" class={`${prefixCls}-body`} style={bodyStyle}>
-            {slots.default?.()}
+            {props.loading ? (
+              <Skeleton
+                active
+                title={false}
+                paragraph={{ rows: 5 }}
+                class={`${prefixCls}-body-skeleton`}
+              />
+            ) : (
+              slots.default?.()
+            )}
           </div>
           {renderFooter(prefixCls)}
         </div>
@@ -405,6 +417,7 @@ const Drawer = defineComponent({
           'bodyStyle',
           'title',
           'push',
+          'loading',
           'onAfterVisibleChange',
           'onClose',
           'onUpdate:visible',

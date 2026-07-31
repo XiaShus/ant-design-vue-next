@@ -104,9 +104,9 @@
 | 分组 | 组件 | React `antd` | Vue Next | 文档链接 | 缺口备注 |
 | --- | --- | --- | --- | --- | --- |
 | Feedback | Alert | ✅ | ✅ | [alert](../../components/alert) | 🔄 object `closable` ✅ 4.27.0 |
-| Feedback | Drawer | ✅ | ✅ | [drawer](../../components/drawer) | 🔄 `destroyOnHidden` ✅ 4.11.0 |
+| Feedback | Drawer | ✅ | ✅ | [drawer](../../components/drawer) | 🔄 `destroyOnHidden` ✅ 4.11.0；🔄 `loading` ✅ 4.64.0 |
 | Feedback | Message | ✅ | ✅ | [message](../../components/message) | 🔄 `pauseOnHover` ✅ 4.44.0 |
-| Feedback | Modal | ✅ | ✅ | [modal](../../components/modal) | 🔄 `destroyOnHidden` ✅ 4.11.0；🔄 `afterOpenChange` ✅ 4.22.0 |
+| Feedback | Modal | ✅ | ✅ | [modal](../../components/modal) | 🔄 `destroyOnHidden` ✅ 4.11.0；🔄 `afterOpenChange` ✅ 4.22.0；🔄 `loading` ✅ 4.64.0 |
 | Feedback | Notification | ✅ | ✅ | [notification](../../components/notification) | 🔄 `showProgress` / `pauseOnHover` ✅ 4.43.0 |
 | Feedback | Popconfirm | ✅ | ✅ | [popconfirm](../../components/popconfirm) | — |
 | Feedback | Progress | ✅ | ✅ | [progress](../../components/progress) | 🔄 object `size` ✅ 4.38.0；🔄 `steps` object `{ count, gap }` ✅ 4.55.0；🔄 `percentPosition` ✅ 4.58.0；🔄 `rounding` ✅ 4.59.0 |
@@ -190,9 +190,10 @@
 59. ~~DatePicker `cellRender`~~ — ✅ `4.61.0`
 60. ~~Calendar `showWeek`~~ — ✅ `4.62.0`
 61. ~~ConfigProvider `form.scrollToFirstError`~~ — ✅ `4.63.0`
-62. Table `virtual` 按需拆版（多日）
-63. ColorPicker 渐变 `mode`
-64. Segmented `vertical`（需 MotionThumb 竖向）
+62. ~~Modal / Drawer `loading`~~ — ✅ `4.64.0`
+63. Table `virtual` 按需拆版（多日）
+64. ColorPicker 渐变 `mode`
+65. Segmented `vertical`（需 MotionThumb 竖向）
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -202,4 +203,4 @@
 
 ---
 
-_上次更新：`4.63.0` ConfigProvider.form.scrollToFirstError。每发一版请同步改本表。_
+_上次更新：`4.64.0` Modal / Drawer `loading`。每发一版请同步改本表。_
