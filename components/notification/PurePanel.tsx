@@ -31,6 +31,8 @@ export interface PureContentProps {
   description?: VueNode;
   btn?: VueNode;
   type?: IconType;
+  /** Accessibility role (antd ≥ 5.6). */
+  role?: 'alert' | 'status';
 }
 
 export const TypeIcon = {
@@ -55,6 +57,7 @@ export function PureContent({
   message,
   description,
   btn,
+  role = 'alert',
 }: PureContentProps) {
   let iconNode = null;
   if (icon) {
@@ -69,7 +72,7 @@ export function PureContent({
       class={classNames({
         [`${prefixCls}-with-icon`]: iconNode,
       })}
-      role="alert"
+      role={role}
     >
       {iconNode}
       <div class={`${prefixCls}-message`}>{message}</div>

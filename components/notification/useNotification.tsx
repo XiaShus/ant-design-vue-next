@@ -122,6 +122,7 @@ export function useInternalNotification(
       type,
       btn,
       actions,
+      role,
       class: className,
       ...restConfig
     } = config;
@@ -137,6 +138,7 @@ export function useInternalNotification(
           message={typeof message === 'function' ? message() : message}
           description={typeof description === 'function' ? description() : description}
           btn={typeof actionNode === 'function' ? actionNode() : actionNode}
+          role={role}
         />
       ),
       // @ts-ignore

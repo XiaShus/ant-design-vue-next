@@ -25,7 +25,7 @@ A Drawer is a panel that is typically overlaid on top of a page and slides in fr
 | autofocus | Whether Drawer should get focused after open | boolean | true | 3.0.0 |
 | bodyStyle | Style of the drawer content part | CSSProperties | - |  |
 | class | Config Drawer Panel className. Use `rootClassName` if want to config top dom style | string | - |  |
-| closable | Whether a close (x) button is visible on top left of the Drawer dialog or not | boolean | true |  |
+| closable | Whether a close (x) button is visible on top left of the Drawer dialog or not | boolean \| `{ closeIcon?: VueNode; disabled?: boolean }` \& aria-\* / data-\* | true | object: 4.78.0 |
 | closeIcon | Custom close icon | VNode \| slot | `<CloseOutlined />` | 3.0.0 |
 | contentWrapperStyle | Style of the drawer wrapper of content part | CSSProperties | - | 3.0.0 |
 | destroyOnClose | Whether to unmount child components on closing; prefer `destroyOnHidden` | boolean | false |  |

@@ -38,6 +38,8 @@ export function dialogPropTypes() {
     dialogStyle: { type: Object as PropType<CSSProperties>, default: undefined as CSSProperties },
     dialogClass: String,
     closeIcon: PropTypes.any,
+    /** Extra attrs for the close button (aria-*, data-*, disabled). */
+    closeIconProps: { type: Object as PropType<Record<string, any>>, default: undefined },
     forceRender: { type: Boolean, default: undefined },
     getOpenCount: Function as PropType<() => number>,
     // https://github.com/ant-design/ant-design/issues/19771

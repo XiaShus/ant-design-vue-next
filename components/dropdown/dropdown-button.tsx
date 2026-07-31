@@ -53,6 +53,7 @@ export default defineComponent({
         htmlType,
         class: className = '',
         overlay = slots.overlay?.(),
+        menu,
         trigger,
         align,
         open,
@@ -85,6 +86,7 @@ export default defineComponent({
         overlayClassName,
         overlayStyle,
         destroyPopupOnHide,
+        menu,
       };
 
       const leftButton = (
@@ -109,7 +111,10 @@ export default defineComponent({
           class={classNames(buttonPrefixCls.value, className, hashId.value)}
         >
           {slots.leftButton ? slots.leftButton({ button: leftButton }) : leftButton}
-          <Dropdown {...dropdownProps} v-slots={{ overlay: () => overlay }}>
+          <Dropdown
+            {...dropdownProps}
+            v-slots={overlay != null || slots.overlay ? { overlay: () => overlay } : undefined}
+          >
             {slots.rightButton ? slots.rightButton({ button: rightButton }) : rightButton}
           </Dropdown>
         </ButtonGroup>,

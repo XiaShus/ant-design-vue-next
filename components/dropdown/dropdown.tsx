@@ -15,6 +15,7 @@ import warning from '../_util/warning';
 import useStyle from './style';
 import { useProvideOverride } from '../menu/src/OverrideContext';
 import type { CustomSlotsType } from '../_util/type';
+import Menu from '../menu';
 
 export type DropdownProps = Partial<ExtractPropTypes<ReturnType<typeof dropdownProps>>>;
 
@@ -88,9 +89,9 @@ const Dropdown = defineComponent({
       },
     });
     const renderOverlay = () => {
-      // rc-dropdown already can process the function of overlay, but we have check logic here.
-      // So we need render the element to check and pass back to rc-dropdown.
-      const overlay = props.overlay || slots.overlay?.();
+      // Prefer `menu` items config (antd ≥ 4.24); fall back to overlay slot/prop.
+      const overlay =
+        props.menu != null ? <Menu {...props.menu} /> : props.overlay || slots.overlay?.();
       const overlayNode = Array.isArray(overlay) ? overlay[0] : overlay;
 
       if (!overlayNode) return null;
@@ -208,7 +209,7 @@ const Dropdown = defineComponent({
           placement: placement.value,
           destroyPopupOnHide: props.destroyOnHidden ?? props.destroyPopupOnHide,
         },
-        ['overlay', 'onUpdate:visible', 'destroyOnHidden', 'popupRender', 'dropdownRender'],
+        ['overlay', 'menu', 'onUpdate:visible', 'destroyOnHidden', 'popupRender', 'dropdownRender'],
       );
       return wrapSSR(
         <RcDropdown {...dropdownProps} v-slots={{ overlay: renderOverlay }}>

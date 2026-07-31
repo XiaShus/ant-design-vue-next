@@ -70,6 +70,7 @@ ConfigProvider 使用 Vue 的 [provide / inject](https://vuejs.org/v2/api/#provi
 | variant | 设置数据录入类组件的形态（对齐 antd ≥ 5.19） | `outlined` \| `filled` \| `borderless` \| `underlined` | - | 4.8.0 |
 | virtual | 设置 `false` 时关闭虚拟滚动 | boolean | - | 3.0 |
 | warning | 设置警告等级；`strict: false` 时降级为 warn | { strict?: boolean } | - | 4.7.0 |
+| flex | 设置 Flex 组件通用属性 | { vertical?: boolean } | - | 4.78.0 |
 | wave | 设置水波纹特效 | { disabled?: boolean } | - | 4.0.7 |
 
 ### ConfigProvider.config() `3.0.0+`

@@ -18,17 +18,18 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*BPWDRbSYxJ4AAA
 
 ### Statistic
 
-| 参数             | 说明             | 类型                         | 默认值 |
-| ---------------- | ---------------- | ---------------------------- | ------ |
-| decimalSeparator | 设置小数点       | string                       | .      |
-| formatter        | 自定义数值展示   | v-slot \| ({value}) => VNode | -      |
-| groupSeparator   | 设置千分位标识符 | string                       | ,      |
-| precision        | 数值精度         | number                       | -      |
-| prefix           | 设置数值的前缀   | string \| v-slot             | -      |
-| suffix           | 设置数值的后缀   | string \| v-slot             | -      |
-| title            | 数值的标题       | string \| v-slot             | -      |
-| value            | 数值内容         | string \| number             | -      |
-| valueStyle       | 设置数值的样式   | style                        | -      |
+| 参数             | 说明             | 类型                         | 默认值 | 版本   |
+| ---------------- | ---------------- | ---------------------------- | ------ | ------ |
+| decimalSeparator | 设置小数点       | string                       | .      |        |
+| formatter        | 自定义数值展示   | v-slot \| ({value}) => VNode | -      |        |
+| groupSeparator   | 设置千分位标识符 | string                       | ,      |        |
+| loading          | 数值是否加载中   | boolean                      | false  | 4.78.0 |
+| precision        | 数值精度         | number                       | -      |        |
+| prefix           | 设置数值的前缀   | string \| v-slot             | -      |        |
+| suffix           | 设置数值的后缀   | string \| v-slot             | -      |        |
+| title            | 数值的标题       | string \| v-slot             | -      |        |
+| value            | 数值内容         | string \| number             | -      |        |
+| valueStyle       | 设置数值的样式   | style                        | -      |        |
 
 ### Statistic.Timer
 

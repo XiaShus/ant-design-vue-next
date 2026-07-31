@@ -25,7 +25,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*fBrgSJBmavgAAA
 | cancelButtonProps | cancel 按钮 props | [ButtonProps](/components/button/#api) | - |  |
 | cancelText | 取消按钮文字 | string\| slot | 取消 |  |
 | centered | 垂直居中展示 Modal | boolean | `false` |  |
-| closable | 是否显示右上角的关闭按钮 | boolean | true |  |
+| closable | 是否显示右上角的关闭按钮 | boolean \| `{ closeIcon?: VueNode; disabled?: boolean }` \& aria-\* / data-\* | true | object: 4.78.0 |
 | closeIcon | 自定义关闭图标 | VNode \| slot | - |  |
 | confirmLoading | 确定按钮 loading | boolean | - |  |
 | destroyOnClose | 关闭时销毁 Modal 里的子元素（请优先使用 `destroyOnHidden`） | boolean | false |  |

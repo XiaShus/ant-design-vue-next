@@ -27,6 +27,7 @@ import { NoCompactStyle } from '../space/Compact';
 import isNumeric from '../_util/isNumeric';
 import { getTransitionName, getTransitionProps } from '../_util/transition';
 import Skeleton from '../skeleton';
+import getClosable from '../_util/getClosable';
 
 type ILevelMove = number | [number, number];
 
@@ -44,7 +45,8 @@ const defaultPushState: PushState = { distance: 180 };
 type getContainerFunc = () => HTMLElement;
 export const drawerProps = () => ({
   autofocus: { type: Boolean, default: undefined },
-  closable: { type: Boolean, default: undefined },
+  /** Whether show close button; object form supports closeIcon / disabled / aria-* (antd ≥ 5.17). */
+  closable: PropTypes.any,
   closeIcon: PropTypes.any,
   /** @deprecated Please use `destroyOnHidden` instead (antd ≥ 5.25). */
   destroyOnClose: { type: Boolean, default: undefined },
@@ -308,18 +310,28 @@ const Drawer = defineComponent({
       ];
     });
 
+    const resolveClosable = () => {
+      const slotCloseIcon = slots.closeIcon?.();
+      return getClosable(
+        props.closable,
+        slotCloseIcon !== undefined ? slotCloseIcon : props.closeIcon,
+        true,
+      );
+    };
+
     const renderHeader = (prefixCls: string) => {
-      const { closable, headerStyle } = props;
+      const { headerStyle } = props;
+      const { closable: mergedClosable } = resolveClosable();
       const extra = getPropsSlot(slots, props, 'extra');
       const title = getPropsSlot(slots, props, 'title');
-      if (!title && !closable) {
+      if (!title && !mergedClosable) {
         return null;
       }
 
       return (
         <div
           class={classnames(`${prefixCls}-header`, {
-            [`${prefixCls}-header-close-only`]: closable && !title && !extra,
+            [`${prefixCls}-header-close-only`]: mergedClosable && !title && !extra,
           })}
           style={headerStyle}
         >
@@ -333,12 +345,23 @@ const Drawer = defineComponent({
     };
 
     const renderCloseIcon = (prefixCls: string) => {
-      const { closable } = props;
-      const $closeIcon = slots.closeIcon ? slots.closeIcon?.() : props.closeIcon;
+      const {
+        closable: mergedClosable,
+        closeIcon: mergedCloseIcon,
+        disabled,
+        closeBtnProps,
+      } = resolveClosable();
       return (
-        closable && (
-          <button key="closer" onClick={close} aria-label="Close" class={`${prefixCls}-close`}>
-            {$closeIcon === undefined ? <CloseOutlined></CloseOutlined> : $closeIcon}
+        mergedClosable && (
+          <button
+            key="closer"
+            onClick={close}
+            aria-label="Close"
+            class={`${prefixCls}-close`}
+            disabled={disabled || undefined}
+            {...closeBtnProps}
+          >
+            {mergedCloseIcon === undefined ? <CloseOutlined></CloseOutlined> : mergedCloseIcon}
           </button>
         )
       );

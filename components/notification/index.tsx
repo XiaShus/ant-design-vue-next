@@ -172,11 +172,13 @@ export interface NotificationArgsProps {
   bottom?: string | number;
   getContainer?: () => HTMLElement;
   closeIcon?: VueNode | (() => VueNode);
+  /** Accessibility role (antd ≥ 5.6). */
+  role?: 'alert' | 'status';
   appContext?: any;
 }
 
 function notice(args: NotificationArgsProps) {
-  const { icon, type, description, message, btn, actions } = args;
+  const { icon, type, description, message, btn, actions, role = 'alert' } = args;
   const actionNode = actions ?? btn;
   const duration = args.duration === undefined ? defaultDuration : args.duration;
   const showProgress = args.showProgress === undefined ? defaultShowProgress : args.showProgress;
@@ -193,7 +195,7 @@ function notice(args: NotificationArgsProps) {
           iconNode = () => <Icon class={`${prefixCls}-icon ${prefixCls}-icon-${type}`} />;
         }
         return (
-          <div class={iconNode ? `${prefixCls}-with-icon` : ''}>
+          <div class={iconNode ? `${prefixCls}-with-icon` : ''} role={role}>
             {iconNode && iconNode()}
             <div class={`${prefixCls}-message`}>
               {!description && iconNode ? (

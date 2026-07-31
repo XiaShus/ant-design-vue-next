@@ -8,6 +8,16 @@
 
 ---
 
+## 4.78.0
+
+`2026-07-31`
+
+- 🌟 Modal / Drawer `closable` 支持对象形式（`closeIcon` / `disabled` / aria-\* / data-\*）
+- 🌟 ConfigProvider 支持 `flex`（对齐 antd ≥ 5.10）
+- 🌟 Dropdown 支持 `menu` 菜单配置（对齐 antd ≥ 4.24）
+- 📖 Statistic 文档补齐 `loading` + demo
+- 🌟 Notification 支持 `role`（`alert` \| `status`）（对齐 antd ≥ 5.6）
+
 ## 4.77.0
 
 `2026-07-31`

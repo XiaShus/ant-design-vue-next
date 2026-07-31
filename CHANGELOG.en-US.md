@@ -4,6 +4,16 @@
 
 ---
 
+## 4.78.0
+
+`2026-07-31`
+
+- 🌟 Modal / Drawer `closable` object (`closeIcon` / `disabled` / aria-\* / data-\*)
+- 🌟 ConfigProvider support `flex` (antd ≥ 5.10)
+- 🌟 Dropdown support `menu` items config (antd ≥ 4.24)
+- 📖 Statistic document `loading` + demo
+- 🌟 Notification support `role` (`alert` \| `status`) (antd ≥ 5.6)
+
 ## 4.77.0
 
 `2026-07-31`

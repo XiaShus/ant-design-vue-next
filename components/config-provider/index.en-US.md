@@ -69,6 +69,7 @@ Some components use dynamic style to support wave effect. You can config `csp` p
 | variant | Set variant of data entry components (antd ≥ 5.19) | `outlined` \| `filled` \| `borderless` \| `underlined` | - | 4.8.0 |
 | virtual | Disable virtual scroll when set to false | boolean | true | 3.0 |
 | warning | Config warning level; `strict: false` softens to warn | { strict?: boolean } | - | 4.7.0 |
+| flex | Set Flex common props | { vertical?: boolean } | - | 4.78.0 |
 | wave | Config wave effect | { disabled?: boolean } | - | 4.0.7 |
 
 ### ConfigProvider.config() `3.0.0+`

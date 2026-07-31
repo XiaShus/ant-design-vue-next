@@ -25,7 +25,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*4wzwRIBLuqEAAA
 | autofocus | 抽屉展开后是否将焦点切换至其 Dom 节点 | boolean | true | 3.0.0 |
 | bodyStyle | 可用于设置 Drawer 内容部分的样式 | CSSProperties | - |  |
 | class | Drawer 容器外层 className 设置，如果需要设置最外层，请使用 rootClassName | string | - |  |
-| closable | 是否显示左上角的关闭按钮 | boolean | true |  |
+| closable | 是否显示左上角的关闭按钮 | boolean \| `{ closeIcon?: VueNode; disabled?: boolean }` \& aria-\* / data-\* | true | object: 4.78.0 |
 | closeIcon | 自定义关闭图标 | VNode \| slot | `<CloseOutlined />` | 3.0.0 |
 | contentWrapperStyle | 可用于设置 Drawer 包裹内容部分的样式 | CSSProperties | - | 3.0.0 |
 | destroyOnClose | 关闭时销毁 Drawer 里的子元素（请优先使用 `destroyOnHidden`） | boolean | false |  |

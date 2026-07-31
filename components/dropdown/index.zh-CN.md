@@ -28,7 +28,8 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*5qm4S4Zgh2QAAA
 | destroyOnHidden | 关闭后是否销毁 Dropdown（对齐 antd ≥ 5.25） | boolean | false | 4.14.0 |
 | disabled | 菜单是否禁用 | boolean | - |  |
 | getPopupContainer | 菜单渲染父节点。默认渲染到 body 上，如果你遇到菜单滚动定位问题，试试修改为滚动的区域，并相对其定位。 | Function(triggerNode) | `() => document.body` |  |
-| overlay(v-slot) | 菜单 | [Menu](/components/menu-cn) | - |  |
+| menu | 菜单配置项 | [MenuProps](/components/menu-cn/#api) | - | 4.78.0 |
+| overlay(v-slot) | 菜单（推荐使用 `menu`） | [Menu](/components/menu-cn) | - |  |
 | popupRender | 自定义下拉内容，参数为菜单节点 | (menus) => VNode | - | 4.69.0 |
 | overlayClassName | 下拉根元素的类名称 | string | - |  |
 | overlayStyle | 下拉根元素的样式 | object | - |  |
@@ -55,7 +56,8 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*5qm4S4Zgh2QAAA
 | disabled | 菜单是否禁用 | boolean | - |  |
 | icon | 右侧的 icon | VNode \| slot | - | 1.5.0 |
 | loading | 设置按钮载入状态 | boolean \| { delay: number } | false | 3.0 |
-| overlay(v-slot) | 菜单 | [Menu](/components/menu-cn/) | - |  |
+| menu | 菜单配置项 | [MenuProps](/components/menu-cn/#api) | - | 4.78.0 |
+| overlay(v-slot) | 菜单（推荐使用 `menu`） | [Menu](/components/menu-cn/) | - |  |
 | placement | 菜单弹出位置 | `bottomLeft` \| `bottom` \| `bottomRight` \| `topLeft` \| `top` \| `topRight` | `bottomLeft` |  |
 | size | 按钮大小，和 [Button](/components/button-cn/) 一致 | string | 'default' |  |
 | trigger | 触发下拉的行为 | Array&lt;`click`\|`hover`\|`contextmenu`> | `['hover']` |  |

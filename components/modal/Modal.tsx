@@ -12,12 +12,14 @@ import { useLocaleReceiver } from '../locale-provider/LocaleReceiver';
 import initDefaultProps from '../_util/props-util/initDefaultProps';
 import type { Direction } from '../config-provider';
 import type { VueNode } from '../_util/type';
-import { objectType } from '../_util/type';
+import { anyType, objectType } from '../_util/type';
 import { canUseDocElement } from '../_util/styleChecker';
 import useConfigInject from '../config-provider/hooks/useConfigInject';
 import { getTransitionName } from '../_util/transition';
 import warning from '../_util/warning';
 import Skeleton from '../skeleton';
+import getClosable from '../_util/getClosable';
+import type { ClosableType } from '../_util/getClosable';
 import useStyle from './style';
 
 type MousePosition = { x: number; y: number } | null;
@@ -49,7 +51,8 @@ export const modalProps = () => ({
   /** Show body skeleton while loading (antd ≥ 5.18). */
   loading: { type: Boolean, default: undefined },
   title: PropTypes.any,
-  closable: { type: Boolean, default: undefined },
+  /** Whether show close button; object form supports closeIcon / disabled / aria-* (antd ≥ 5.16). */
+  closable: anyType<ClosableType>(),
   closeIcon: PropTypes.any,
   onOk: Function as PropType<(e: MouseEvent) => void>,
   onCancel: Function as PropType<(e: MouseEvent) => void>,
@@ -102,7 +105,7 @@ export interface ModalFuncProps {
   open?: boolean;
   title?: string | (() => VueNode) | VueNode;
   footer?: string | (() => VueNode) | VueNode;
-  closable?: boolean;
+  closable?: ClosableType;
   content?: string | (() => VueNode) | VueNode;
   // TODO: find out exact types
   onOk?: (...args: any[]) => any;
@@ -234,6 +237,7 @@ export default defineComponent({
         centered,
         getContainer,
         closeIcon = slots.closeIcon?.(),
+        closable,
         focusTriggerAfterClose = true,
         destroyOnClose,
         destroyOnHidden,
@@ -242,6 +246,12 @@ export default defineComponent({
         ...restProps
       } = props;
       const mergedDestroyOnClose = destroyOnHidden ?? destroyOnClose;
+      const {
+        closable: mergedClosable,
+        closeIcon: mergedCloseIcon,
+        disabled: closeDisabled,
+        closeBtnProps,
+      } = getClosable(closable, closeIcon, true);
 
       const wrapClassNameExtended = classNames(wrapClassName, {
         [`${prefixCls.value}-centered`]: !!centered,
@@ -259,6 +269,8 @@ export default defineComponent({
           prefixCls={prefixCls.value}
           wrapClassName={wrapClassNameExtended}
           visible={open ?? visible}
+          closable={mergedClosable}
+          closeIconProps={{ disabled: closeDisabled || undefined, ...closeBtnProps }}
           onClose={handleCancel}
           afterOpenChange={handleAfterOpenChange}
           focusTriggerAfterClose={focusTriggerAfterClose}
@@ -286,7 +298,7 @@ export default defineComponent({
             closeIcon: () => {
               return (
                 <span class={`${prefixCls.value}-close-x`}>
-                  {closeIcon || <CloseOutlined class={`${prefixCls.value}-close-icon`} />}
+                  {mergedCloseIcon || <CloseOutlined class={`${prefixCls.value}-close-icon`} />}
                 </span>
               );
             },

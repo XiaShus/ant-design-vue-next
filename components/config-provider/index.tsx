@@ -231,6 +231,7 @@ const ConfigProvider = defineComponent({
     const componentDisabled = computed(() => props.componentDisabled);
     const variant = computed(() => props.variant ?? parentContext.variant?.value);
     const wave = computed(() => props.wave ?? parentContext.wave?.value);
+    const flex = computed(() => props.flex ?? parentContext.flex?.value);
     watchEffect(() => {
       if (props.warning) {
         setWarningConfig(props.warning);
@@ -265,6 +266,7 @@ const ConfigProvider = defineComponent({
       variant,
       transformCellText: computed(() => props.transformCellText),
       wave,
+      flex,
     };
 
     // ================================ Dynamic theme ================================

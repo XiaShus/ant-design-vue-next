@@ -22,7 +22,7 @@ When requiring users to interact with the application, but without jumping to a 
 | cancelButtonProps | The cancel button props | [ButtonProps](/components/button/#api) | - |  |
 | cancelText | Text of the Cancel button | string\|slot | `Cancel` |  |
 | centered | Centered Modal | boolean | `false` |  |
-| closable | Whether a close (x) button is visible on top right of the modal dialog or not | boolean | true |  |
+| closable | Whether a close (x) button is visible on top right of the modal dialog or not | boolean \| `{ closeIcon?: VueNode; disabled?: boolean }` \& aria-\* / data-\* | true | object: 4.78.0 |
 | closeIcon | custom close icon | VNode \| slot | - |  |
 | confirmLoading | Whether to apply loading visual effect for OK button or not | boolean | false |  |
 | destroyOnClose | Whether to unmount child components on close; prefer `destroyOnHidden` | boolean | false |  |

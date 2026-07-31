@@ -122,6 +122,10 @@ export const configProviderProps = () => ({
   wave: objectType<{
     disabled?: boolean;
   }>(),
+  /** Flex common props (antd ≥ 5.10). */
+  flex: objectType<{
+    vertical?: boolean;
+  }>(),
   /** Warning level; `strict: false` softens console output (antd ≥ 5.10). */
   warning: objectType<{
     strict?: boolean;

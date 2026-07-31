@@ -24,7 +24,8 @@ When there are more than a few options to choose from, you can wrap them in a `D
 | destroyOnHidden | Whether destroy dropdown when hidden (antd ≥ 5.25) | boolean | false | 4.14.0 |
 | disabled | whether the dropdown menu is disabled | boolean | - |  |
 | getPopupContainer | to set the container of the dropdown menu. The default is to create a `div` element in `body`, you can reset it to the scrolling area and make a relative reposition. [example](https://codepen.io/afc163/pen/zEjNOy?editors=0010) | Function(triggerNode) | `() => document.body` |  |
-| overlay(v-slot) | the dropdown menu | [Menu](/components/menu) | - |  |
+| menu | The dropdown menu config | [MenuProps](/components/menu/#api) | - | 4.78.0 |
+| overlay(v-slot) | the dropdown menu (prefer `menu`) | [Menu](/components/menu) | - |  |
 | popupRender | Customize dropdown content; receives the menu node | (menus) => VNode | - | 4.69.0 |
 | overlayClassName | Class name of the dropdown root element | string | - |  |
 | overlayStyle | Style of the dropdown root element | object | - |  |
@@ -51,7 +52,8 @@ You should use [Menu](/components/menu/) as `overlay`. The menu items and divide
 | disabled | whether the dropdown menu is disabled | boolean | - |  |
 | icon | Icon (appears on the right) | vNode \| slot | - | 1.5.0 |
 | loading | Set the loading status of button | boolean \| { delay: number } | false | 3.0 |
-| overlay(v-slot) | the dropdown menu | [Menu](/components/menu) | - |  |
+| menu | The dropdown menu config | [MenuProps](/components/menu/#api) | - | 4.78.0 |
+| overlay(v-slot) | the dropdown menu (prefer `menu`) | [Menu](/components/menu) | - |  |
 | placement | placement of pop menu: `bottomLeft` `bottom` `bottomRight` `topLeft` `top` `topRight` | String | `bottomLeft` |  |
 | size | size of the button, the same as [Button](/components/button) | string | `default` |  |
 | trigger | the trigger mode which executes the drop-down action | Array&lt;`click`\|`hover`\|`contextmenu`> | `['hover']` |  |

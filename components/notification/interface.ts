@@ -29,6 +29,8 @@ export interface ArgsProps {
   readonly type?: IconType;
   onClick?: () => void;
   closeIcon?: (() => VueNode) | VueNode;
+  /** Accessibility role (antd ≥ 5.6). */
+  role?: 'alert' | 'status';
 }
 
 type StaticFn = (args: ArgsProps) => void;

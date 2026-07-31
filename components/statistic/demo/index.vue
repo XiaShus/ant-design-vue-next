@@ -3,6 +3,7 @@
     <basic />
     <unit />
     <card />
+    <Loading />
     <countdown />
     <countdown-slot />
     <timer />
@@ -12,6 +13,7 @@
 import Basic from './basic.vue';
 import Unit from './unit.vue';
 import Card from './card.vue';
+import Loading from './loading.vue';
 import Countdown from './countdown.vue';
 import CountdownSlot from './countdown-slot.vue';
 import Timer from './timer.vue';
@@ -25,6 +27,7 @@ export default defineComponent({
     Basic,
     Unit,
     Card,
+    Loading,
     Countdown,
     CountdownSlot,
     Timer,

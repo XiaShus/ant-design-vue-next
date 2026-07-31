@@ -17,17 +17,18 @@ Display statistic number.
 
 ### Statistic
 
-| Property         | Description                   | Type                        | Default |
-| ---------------- | ----------------------------- | --------------------------- | ------- |
-| decimalSeparator | decimal separator             | string                      | .       |
-| formatter        | customize value display logic | v-slot \|({value}) => VNode | -       |
-| groupSeparator   | group separator               | string                      | ,       |
-| precision        | precision of input value      | number                      | -       |
-| prefix           | prefix node of value          | string \| v-slot            | -       |
-| suffix           | suffix node of value          | string \| v-slot            | -       |
-| title            | Display title                 | string \| v-slot            | -       |
-| value            | Display value                 | string \| number            | -       |
-| valueStyle       | Set value css style           | style                       | -       |
+| Property | Description | Type | Default | Version |
+| --- | --- | --- | --- | --- |
+| decimalSeparator | decimal separator | string | . |  |
+| formatter | customize value display logic | v-slot \|({value}) => VNode | - |  |
+| groupSeparator | group separator | string | , |  |
+| loading | Show loading skeleton | boolean | false | 4.78.0 |
+| precision | precision of input value | number | - |  |
+| prefix | prefix node of value | string \| v-slot | - |  |
+| suffix | suffix node of value | string \| v-slot | - |  |
+| title | Display title | string \| v-slot | - |  |
+| value | Display value | string \| number | - |  |
+| valueStyle | Set value css style | style | - |  |
 
 ### Statistic.Timer
 

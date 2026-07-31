@@ -5,6 +5,7 @@
     <dropdown-button />
     <event />
     <item />
+    <MenuDemo />
     <overlay-visible />
     <placement />
     <arrow-vue />
@@ -25,6 +26,7 @@ import ContextMenu from './context-menu.vue';
 import DropdownButton from './dropdown-button.vue';
 import Event from './event.vue';
 import Item from './item.vue';
+import MenuDemo from './menu.vue';
 import OverlayVisible from './overlay-visible.vue';
 import Placement from './placement.vue';
 import SubMenu from './sub-menu.vue';
@@ -46,6 +48,7 @@ export default defineComponent({
     DropdownButton,
     Event,
     Item,
+    MenuDemo,
     OverlayVisible,
     Placement,
     SubMenu,

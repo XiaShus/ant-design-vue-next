@@ -45,6 +45,7 @@ The properties of config are as follows:
 | message | The title of notification box (required) | string\| VNode \| () => VNode | - |  |
 | pauseOnHover | Whether to pause the timer on hover | boolean | true | 4.43.0 |
 | placement | Position of Notification, can be one of `top` `topLeft` `topRight` `bottom` `bottomLeft` `bottomRight` | string | `topRight` | `top` `bottom` 3.3.0 |
+| role | Accessibility role | `alert` \| `status` | `alert` | 4.78.0 |
 | showProgress | Show progress bar for auto-closing notification | boolean | - | 4.43.0 |
 | style | Customized inline style | Object \| string | - |  |
 | top | Distance from the top of the viewport, when `placement` is `topRight` or `topLeft` (unit: pixels). | string | `24px` |  |
