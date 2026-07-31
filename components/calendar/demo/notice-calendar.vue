@@ -8,25 +8,23 @@ title:
 
 ## zh-CN
 
-一个复杂的应用示例，用 `dateCellRender` 和 `monthCellRender` 函数来自定义需要渲染的数据。
+一个复杂的应用示例，用 `cellRender` 按面板类型自定义单元格内容。
 
 ## en-US
 
-This component can be rendered by using `dateCellRender` and `monthCellRender` with the data you need.
+This component can be rendered by using `cellRender` with the data you need for each panel type.
 
 </docs>
 
 <template>
   <a-calendar v-model:value="value">
-    <template #dateCellRender="{ current }">
-      <ul class="events">
+    <template #cellRender="{ current, type }">
+      <ul v-if="type === 'date'" class="events">
         <li v-for="item in getListData(current)" :key="item.content">
           <a-badge :status="item.type" :text="item.content" />
         </li>
       </ul>
-    </template>
-    <template #monthCellRender="{ current }">
-      <div v-if="getMonthData(current)" class="notes-month">
+      <div v-else-if="type === 'month' && getMonthData(current)" class="notes-month">
         <section>{{ getMonthData(current) }}</section>
         <span>Backlog number</span>
       </div>

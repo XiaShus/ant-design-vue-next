@@ -4,6 +4,12 @@
 
 ---
 
+## 4.60.0
+
+`2026-07-31`
+
+- 🌟 Calendar supports `cellRender` / `fullCellRender` (antd ≥ 5.4); legacy date/month cell render APIs deprecated
+
 ## 4.59.0
 
 `2026-07-31`

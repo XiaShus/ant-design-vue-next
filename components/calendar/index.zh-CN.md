@@ -28,15 +28,17 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*-p-wQLik200AAA
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
-| dateCellRender | 作用域插槽，用来自定义渲染日期单元格，返回内容会被追加到单元格, | v-slot:dateCellRender="{current: dayjs}" | - |  |
-| dateFullCellRender | 作用域插槽，自定义渲染日期单元格，返回内容覆盖单元格 | v-slot:dateFullCellRender="{current: dayjs}" | - |  |
+| cellRender | 按面板类型（`date` / `month`）自定义追加到单元格的内容 | (current, info: { type }) => VueNode \| v-slot:cellRender="{ current, type }" | - | 4.60.0 |
+| fullCellRender | 按面板类型（`date` / `month`）自定义覆盖单元格内容 | (current, info: { type }) => VueNode \| v-slot:fullCellRender="{ current, type }" | - | 4.60.0 |
+| ~~dateCellRender~~ | 作用域插槽，用来自定义渲染日期单元格，返回内容会被追加到单元格。请使用 `cellRender` 替代 | v-slot:dateCellRender="{current: dayjs}" | - |  |
+| ~~dateFullCellRender~~ | 作用域插槽，自定义渲染日期单元格，返回内容覆盖单元格。请使用 `fullCellRender` 替代 | v-slot:dateFullCellRender="{current: dayjs}" | - |  |
 | disabledDate | 不可选择的日期 | (currentDate: dayjs) => boolean | - |  |
 | fullscreen | 是否全屏显示 | boolean | true |  |
 | headerRender | 自定义头部内容 | v-slot:headerRender="{value: dayjs, type: string, onChange: f(), onTypeChange: f()}" | - |  |
 | locale | 国际化配置 | object | [默认配置](https://github.com/vueComponent/ant-design-vue/blob/main/components/date-picker/locale/example.json) |  |
 | mode | 初始模式，`month/year` | string | month |  |
-| monthCellRender | 作用域插槽，自定义渲染月单元格，返回内容会被追加到单元格 | v-slot:monthCellRender="{current: dayjs}" | - |  |
-| monthFullCellRender | 作用域插槽，自定义渲染月单元格，返回内容覆盖单元格 | v-slot:monthFullCellRender="{current: dayjs}" | - |  |
+| ~~monthCellRender~~ | 作用域插槽，自定义渲染月单元格，返回内容会被追加到单元格。请使用 `cellRender` 替代 | v-slot:monthCellRender="{current: dayjs}" | - |  |
+| ~~monthFullCellRender~~ | 作用域插槽，自定义渲染月单元格，返回内容覆盖单元格。请使用 `fullCellRender` 替代 | v-slot:monthFullCellRender="{current: dayjs}" | - |  |
 | validRange | 设置可以显示的日期 | \[[dayjs](https://day.js.org/), [dayjs](https://day.js.org/)] | - |  |
 | value(v-model) | 展示日期 | [dayjs](https://day.js.org/) | 当前日期 |  |
 | valueFormat | 可选，绑定值的格式，对 value、defaultValue 起作用。不指定则绑定值为 dayjs 对象 | string，[具体格式](https://day.js.org/docs/zh-CN/display/format) | - |  |

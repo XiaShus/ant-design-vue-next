@@ -15,6 +15,7 @@ import type { App, PropType } from 'vue';
 import { computed, defineComponent, toRef } from 'vue';
 import useConfigInject from '../config-provider/hooks/useConfigInject';
 import classNames from '../_util/classNames';
+import warning from '../_util/warning';
 
 // CSSINJS
 import useStyle from './style';
@@ -51,15 +52,32 @@ export type HeaderRender<DateType> = (config: {
 
 type CustomRenderType<DateType> = (config: { current: DateType }) => VueNode;
 
+/** antd ≥ 5.4 — unified cell render info. */
+export type CellRenderInfo<DateType> = {
+  type: 'date' | 'month';
+  today?: DateType;
+  locale?: Locale;
+};
+
+export type CellRender<DateType> = (current: DateType, info: CellRenderInfo<DateType>) => VueNode;
+
 export interface CalendarProps<DateType> {
   prefixCls?: string;
   locale?: typeof enUS;
   validRange?: [DateType, DateType];
   disabledDate?: (date: DateType) => boolean;
+  /** @deprecated Please use `fullCellRender` instead */
   dateFullCellRender?: CustomRenderType<DateType>;
+  /** @deprecated Please use `cellRender` instead */
   dateCellRender?: CustomRenderType<DateType>;
+  /** @deprecated Please use `fullCellRender` instead */
   monthFullCellRender?: CustomRenderType<DateType>;
+  /** @deprecated Please use `cellRender` instead */
   monthCellRender?: CustomRenderType<DateType>;
+  /** Customize appended cell content by panel type (antd ≥ 5.4). */
+  cellRender?: CellRender<DateType>;
+  /** Customize full cell content by panel type (antd ≥ 5.4). */
+  fullCellRender?: CellRender<DateType>;
   headerRender?: HeaderRender<DateType>;
   value?: DateType | string;
   defaultValue?: DateType | string;
@@ -110,6 +128,8 @@ function generateCalendar<
         default: undefined,
       },
       monthCellRender: { type: Function as PropType<Props['monthCellRender']>, default: undefined },
+      cellRender: { type: Function as PropType<Props['cellRender']>, default: undefined },
+      fullCellRender: { type: Function as PropType<Props['fullCellRender']>, default: undefined },
       headerRender: { type: Function as PropType<Props['headerRender']>, default: undefined },
       value: {
         type: [Object, String] as PropType<Props['value']>,
@@ -132,6 +152,8 @@ function generateCalendar<
       dateCellRender?: { current: DateType };
       monthFullCellRender?: { current: DateType };
       monthCellRender?: { current: DateType };
+      cellRender?: CellRenderInfo<DateType> & { current: DateType };
+      fullCellRender?: CellRenderInfo<DateType> & { current: DateType };
       headerRender?: {
         value: DateType;
         type: CalendarMode;
@@ -143,6 +165,25 @@ function generateCalendar<
     setup(p, { emit, slots, attrs }) {
       const props = p as unknown as Props;
       const { prefixCls, direction } = useConfigInject('picker', props);
+
+      if (process.env.NODE_ENV !== 'production') {
+        (
+          [
+            ['dateFullCellRender', 'fullCellRender'],
+            ['dateCellRender', 'cellRender'],
+            ['monthFullCellRender', 'fullCellRender'],
+            ['monthCellRender', 'cellRender'],
+          ] as const
+        ).forEach(([deprecatedName, newName]) => {
+          const used =
+            props[deprecatedName] != null || !!(slots as Record<string, unknown>)[deprecatedName];
+          warning(
+            !used,
+            'Calendar',
+            `\`${deprecatedName}\` is deprecated. Please use \`${newName}\` instead.`,
+          );
+        });
+      }
 
       // style
       const [wrapSSR, hashId] = useStyle(prefixCls);
@@ -248,15 +289,44 @@ function generateCalendar<
           dateCellRender = slots?.dateCellRender,
           monthFullCellRender = slots?.monthFullCellRender,
           monthCellRender = slots?.monthCellRender,
+          cellRender,
+          fullCellRender,
           headerRender = slots?.headerRender,
           fullscreen = true,
           validRange,
         } = props;
+
+        const hasFullCellRender = typeof fullCellRender === 'function' || !!slots.fullCellRender;
+        const hasCellRender = typeof cellRender === 'function' || !!slots.cellRender;
+
+        const renderCellContent = (current: DateType, info: CellRenderInfo<DateType>) => {
+          if (typeof cellRender === 'function') {
+            return cellRender(current, info);
+          }
+          return slots.cellRender?.({ current, ...info });
+        };
+
+        const renderFullCell = (current: DateType, info: CellRenderInfo<DateType>) => {
+          if (typeof fullCellRender === 'function') {
+            return fullCellRender(current, info);
+          }
+          return slots.fullCellRender?.({ current, ...info });
+        };
+
         // ====================== Render ======================
         const dateRender = ({ current: date }) => {
+          const info: CellRenderInfo<DateType> = { type: 'date', today };
+          if (hasFullCellRender) {
+            return renderFullCell(date, info);
+          }
           if (dateFullCellRender) {
             return dateFullCellRender({ current: date });
           }
+          const cellContent = hasCellRender
+            ? renderCellContent(date, info)
+            : dateCellRender
+            ? dateCellRender({ current: date })
+            : undefined;
           return (
             <div
               class={classNames(
@@ -270,19 +340,26 @@ function generateCalendar<
               <div class={`${calendarPrefixCls.value}-date-value`}>
                 {String(generateConfig.getDate(date)).padStart(2, '0')}
               </div>
-              <div class={`${calendarPrefixCls.value}-date-content`}>
-                {dateCellRender && dateCellRender({ current: date })}
-              </div>
+              <div class={`${calendarPrefixCls.value}-date-content`}>{cellContent}</div>
             </div>
           );
         };
 
         const monthRender = ({ current: date }, locale: Locale) => {
+          const info: CellRenderInfo<DateType> = { type: 'month', today, locale };
+          if (hasFullCellRender) {
+            return renderFullCell(date, info);
+          }
           if (monthFullCellRender) {
             return monthFullCellRender({ current: date });
           }
 
           const months = locale.shortMonths || generateConfig.locale.getShortMonths!(locale.locale);
+          const cellContent = hasCellRender
+            ? renderCellContent(date, info)
+            : monthCellRender
+            ? monthCellRender({ current: date })
+            : undefined;
 
           return (
             <div
@@ -297,9 +374,7 @@ function generateCalendar<
               <div class={`${calendarPrefixCls.value}-date-value`}>
                 {months[generateConfig.getMonth(date)]}
               </div>
-              <div class={`${calendarPrefixCls.value}-date-content`}>
-                {monthCellRender && monthCellRender({ current: date })}
-              </div>
+              <div class={`${calendarPrefixCls.value}-date-content`}>{cellContent}</div>
             </div>
           );
         };
