@@ -22,7 +22,10 @@ export default defineComponent({
   name: 'Steps',
   props: stepsProps(),
   setup(props, { slots }) {
-    const current = computed(() => Math.round((props.steps || 0) * ((props.percent || 0) / 100)));
+    const current = computed(() => {
+      const rounding = props.rounding || Math.round;
+      return rounding((props.steps || 0) * ((props.percent || 0) / 100));
+    });
     const mergedSize = computed(
       () => props.size ?? [props.size === 'small' ? 2 : 14, props.strokeWidth || 8],
     );

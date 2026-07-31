@@ -4,6 +4,12 @@
 
 ---
 
+## 4.59.0
+
+`2026-07-31`
+
+- 🌟 Progress `steps` supports custom `rounding` (antd ≥ 5.24)
+
 ## 4.58.0
 
 `2026-07-31`

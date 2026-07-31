@@ -39,6 +39,7 @@ Properties that shared by all types.
 | --- | --- | --- | --- | --- |
 | steps | The total step count. Object form sets `count` and step `gap` (px) | number \| { count: number; gap?: number } | - | object: 4.55.0 |
 | percentPosition | Progress value position. `align` is horizontal placement; `type` is inside or outside the bar | { align?: `start` \| `center` \| `end`; type?: `inner` \| `outer` } | { align: `end`, type: `outer` } | 4.58.0 |
+| rounding | Custom function to round the active step count | (step: number) => number | `Math.round` | 4.59.0 |
 | strokeColor | The color of progress bar, render `linear-gradient` when passing an object, could accept `string[]` when has `steps`. | string \| string[] \| { from: string; to: string; direction: string } | - | - |
 
 ### `type="circle"`

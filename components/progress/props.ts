@@ -60,6 +60,8 @@ export const progressProps = () => ({
   steps: someType<ProgressSteps>([Number, Object]),
   /** Line progress value position (antd ≥ 5.18). */
   percentPosition: objectType<PercentPositionType>(),
+  /** Custom rounding for step count (antd ≥ 5.24). Default `Math.round`. */
+  rounding: functionType<(step: number) => number>(),
   /** @deprecated Use `success` instead */
   successPercent: Number,
   title: String,

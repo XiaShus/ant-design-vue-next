@@ -109,7 +109,7 @@
 | Feedback | Modal | ✅ | ✅ | [modal](../../components/modal) | 🔄 `destroyOnHidden` ✅ 4.11.0；🔄 `afterOpenChange` ✅ 4.22.0 |
 | Feedback | Notification | ✅ | ✅ | [notification](../../components/notification) | 🔄 `showProgress` / `pauseOnHover` ✅ 4.43.0 |
 | Feedback | Popconfirm | ✅ | ✅ | [popconfirm](../../components/popconfirm) | — |
-| Feedback | Progress | ✅ | ✅ | [progress](../../components/progress) | 🔄 object `size` ✅ 4.38.0；🔄 `steps` object `{ count, gap }` ✅ 4.55.0；🔄 `percentPosition` ✅ 4.58.0 |
+| Feedback | Progress | ✅ | ✅ | [progress](../../components/progress) | 🔄 object `size` ✅ 4.38.0；🔄 `steps` object `{ count, gap }` ✅ 4.55.0；🔄 `percentPosition` ✅ 4.58.0；🔄 `rounding` ✅ 4.59.0 |
 | Feedback | Result | ✅ | ✅ | [result](../../components/result) | — |
 | Feedback | Skeleton | ✅ | ✅ | [skeleton](../../components/skeleton) | 🔄 `Skeleton.Node` ✅ 4.41.0 |
 | Feedback | Spin | ✅ | ✅ | [spin](../../components/spin) | 🔄 `fullscreen` ✅ 4.24.0 |
@@ -185,9 +185,10 @@
 54. ~~Slider nested `tooltip`~~ — ✅ `4.56.0`
 55. ~~Form `scrollToFirstError` `{ focus }` / `focusField`~~ — ✅ `4.57.0`
 56. ~~Progress `percentPosition`~~ — ✅ `4.58.0`
-57. Table `virtual` 按需拆版（多日）
-58. ColorPicker 渐变 `mode`
-59. Segmented `vertical`（需 MotionThumb 竖向）
+57. ~~Progress `rounding`~~ — ✅ `4.59.0`
+58. Table `virtual` 按需拆版（多日）
+59. ColorPicker 渐变 `mode`
+60. Segmented `vertical`（需 MotionThumb 竖向）
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -197,4 +198,4 @@
 
 ---
 
-_上次更新：`4.58.0` Progress.percentPosition。每发一版请同步改本表。_
+_上次更新：`4.59.0` Progress.rounding。每发一版请同步改本表。_
