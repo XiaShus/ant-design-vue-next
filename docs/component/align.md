@@ -85,7 +85,7 @@
 | Data Display | Carousel | ✅ | ✅ | [carousel](../../components/carousel) | — |
 | Data Display | Collapse | ✅ | ✅ | [collapse](../../components/collapse) | 🔄 `destroyOnHidden` ✅ 4.14.0；🔄 `size` ✅ 4.30.0 |
 | Data Display | Descriptions | ✅ | ✅ | [descriptions](../../components/descriptions) | 🔄 `items` ✅ 4.32.0 |
-| Data Display | Empty | ✅ | ✅ | [empty](../../components/empty) | — |
+| Data Display | Empty | ✅ | ✅ | [empty](../../components/empty) | 🔄 `classNames` / `styles` ✅ 4.65.0 |
 | Data Display | Image | ✅ | ✅ | [image](../../components/image) | 🔄 preview `toolbarRender` ✅ 4.52.0 |
 | Data Display | List | ✅ | ✅ | [list](../../components/list) | React 6 标 DEPRECATED；阶段 B 再议 |
 | Data Display | Popover | ✅ | ✅ | [popover](../../components/popover) | — |
@@ -191,9 +191,10 @@
 60. ~~Calendar `showWeek`~~ — ✅ `4.62.0`
 61. ~~ConfigProvider `form.scrollToFirstError`~~ — ✅ `4.63.0`
 62. ~~Modal / Drawer `loading`~~ — ✅ `4.64.0`
-63. Table `virtual` 按需拆版（多日）
-64. ColorPicker 渐变 `mode`
-65. Segmented `vertical`（需 MotionThumb 竖向）
+63. ~~Empty `classNames` / `styles`~~ — ✅ `4.65.0`
+64. Table `virtual` 按需拆版（多日）
+65. ColorPicker 渐变 `mode`
+66. Segmented `vertical`（需 MotionThumb 竖向）
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -203,4 +204,4 @@
 
 ---
 
-_上次更新：`4.64.0` Modal / Drawer `loading`。每发一版请同步改本表。_
+_上次更新：`4.65.0` Empty `classNames` / `styles`。每发一版请同步改本表。_

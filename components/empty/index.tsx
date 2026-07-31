@@ -8,6 +8,7 @@ import { filterEmpty } from '../_util/props-util';
 import type { VueNode } from '../_util/type';
 import { anyType, objectType, withInstall } from '../_util/type';
 import useConfigInject from '../config-provider/hooks/useConfigInject';
+import warning from '../_util/warning';
 
 import useStyle from './style';
 
@@ -15,11 +16,21 @@ interface Locale {
   description?: string;
 }
 
+export type EmptySemanticName = 'root' | 'image' | 'description' | 'footer';
+
+export type EmptyClassNamesType = Partial<Record<EmptySemanticName, string>>;
+export type EmptyStylesType = Partial<Record<EmptySemanticName, CSSProperties>>;
+
 export const emptyProps = () => ({
   prefixCls: String,
+  /** @deprecated Please use `styles.image` instead */
   imageStyle: objectType<CSSProperties>(),
   image: anyType<VueNode>(),
   description: anyType<VueNode>(),
+  /** Semantic structure className (antd ≥ 5.23). */
+  classNames: objectType<EmptyClassNamesType>(),
+  /** Semantic structure style (antd ≥ 5.23). */
+  styles: objectType<EmptyStylesType>(),
 });
 
 export type EmptyProps = Partial<ExtractPropTypes<ReturnType<typeof emptyProps>>>;
@@ -34,15 +45,27 @@ const Empty = defineComponent({
 
     const [wrapSSR, hashId] = useStyle(prefixClsRef);
 
+    warning(
+      props.imageStyle === undefined,
+      'Empty',
+      '`imageStyle` is deprecated. Please use `styles.image` instead.',
+    );
+
     return () => {
       const prefixCls = prefixClsRef.value;
       const {
         image: mergedImage = slots.image?.() || h(DefaultEmptyImg),
         description = slots.description?.() || undefined,
         imageStyle,
+        classNames: emptyClassNames,
+        styles: emptyStyles,
         class: className = '',
+        style,
         ...restProps
-      } = { ...props, ...attrs };
+      } = { ...props, ...attrs } as EmptyProps & {
+        class?: any;
+        style?: CSSProperties;
+      };
       const image =
         typeof mergedImage === 'function' ? (mergedImage as () => VueNode)() : mergedImage;
       const isNormal =
@@ -63,18 +86,34 @@ const Empty = defineComponent({
 
             return (
               <div
-                class={classNames(prefixCls, className, hashId.value, {
+                class={classNames(prefixCls, className, hashId.value, emptyClassNames?.root, {
                   [`${prefixCls}-normal`]: isNormal,
                   [`${prefixCls}-rtl`]: direction.value === 'rtl',
                 })}
+                style={{ ...emptyStyles?.root, ...(style as CSSProperties) }}
                 {...restProps}
               >
-                <div class={`${prefixCls}-image`} style={imageStyle}>
+                <div
+                  class={classNames(`${prefixCls}-image`, emptyClassNames?.image)}
+                  style={{ ...imageStyle, ...emptyStyles?.image }}
+                >
                   {imageNode}
                 </div>
-                {des && <p class={`${prefixCls}-description`}>{des}</p>}
+                {des && (
+                  <p
+                    class={classNames(`${prefixCls}-description`, emptyClassNames?.description)}
+                    style={emptyStyles?.description}
+                  >
+                    {des}
+                  </p>
+                )}
                 {slots.default && (
-                  <div class={`${prefixCls}-footer`}>{filterEmpty(slots.default())}</div>
+                  <div
+                    class={classNames(`${prefixCls}-footer`, emptyClassNames?.footer)}
+                    style={emptyStyles?.footer}
+                  >
+                    {filterEmpty(slots.default())}
+                  </div>
                 )}
               </div>
             );

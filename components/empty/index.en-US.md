@@ -23,9 +23,11 @@ Empty state placeholder.
 
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
+| classNames | Customize class for each semantic structure | { root?: string; image?: string; description?: string; footer?: string } | - | 4.65.0 |
 | description | Customize description | string \| v-slot | - |  |
 | image | Customize image. Will tread as image url when string provided | string \| v-slot | false |  |
-| imageStyle | style of image | CSSProperties | - |  |
+| imageStyle | style of image; prefer `styles.image` | CSSProperties | - |  |
+| styles | Customize inline style for each semantic structure | { root?: CSSProperties; image?: CSSProperties; description?: CSSProperties; footer?: CSSProperties } | - | 4.65.0 |
 
 ## Built-in images
 

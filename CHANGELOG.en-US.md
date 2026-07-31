@@ -4,6 +4,12 @@
 
 ---
 
+## 4.65.0
+
+`2026-07-31`
+
+- 🌟 Empty support semantic `classNames` / `styles` (antd ≥ 5.23)
+
 ## 4.64.0
 
 `2026-07-31`

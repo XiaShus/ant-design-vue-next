@@ -22,11 +22,13 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*obM7S5lIxeMAAA
 </Empty>
 ```
 
-| 参数        | 说明                                         | 类型             | 默认值 | 版本 |
-| ----------- | -------------------------------------------- | ---------------- | ------ | ---- |
-| description | 自定义描述内容                               | string \| v-slot | -      |      |
-| image       | 设置显示图片，为 string 时表示自定义图片地址 | string \| v-slot | false  |      |
-| imageStyle  | 图片样式                                     | CSSProperties    | -      |      |
+| 参数 | 说明 | 类型 | 默认值 | 版本 |
+| --- | --- | --- | --- | --- |
+| classNames | 语义化结构 className | { root?: string; image?: string; description?: string; footer?: string } | - | 4.65.0 |
+| description | 自定义描述内容 | string \| v-slot | - |  |
+| image | 设置显示图片，为 string 时表示自定义图片地址 | string \| v-slot | false |  |
+| imageStyle | 图片样式；请优先使用 `styles.image` | CSSProperties | - |  |
+| styles | 语义化结构 style | { root?: CSSProperties; image?: CSSProperties; description?: CSSProperties; footer?: CSSProperties } | - | 4.65.0 |
 
 ## 内置图片
 
