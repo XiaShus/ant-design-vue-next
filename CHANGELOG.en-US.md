@@ -4,6 +4,12 @@
 
 ---
 
+## 4.63.0
+
+`2026-07-31`
+
+- 🌟 ConfigProvider `form.scrollToFirstError` global Form scroll/focus config (antd ≥ 5)
+
 ## 4.62.0
 
 `2026-07-31`

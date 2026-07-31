@@ -211,7 +211,7 @@ const Form = defineComponent({
       });
     };
     const handleFinishFailed = (errorInfo: ValidateErrorEntity) => {
-      const { scrollToFirstError } = props;
+      const scrollToFirstError = props.scrollToFirstError ?? contextForm.value?.scrollToFirstError;
       emit('finishFailed', errorInfo);
       if (scrollToFirstError && errorInfo.errorFields.length) {
         let scrollToFieldOptions: ScrollFocusOptions = {};

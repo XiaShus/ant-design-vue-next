@@ -1,6 +1,6 @@
 import type { ComputedRef, ExtractPropTypes, InjectionKey, PropType, Ref } from 'vue';
 import { computed, inject, provide } from 'vue';
-import type { ValidateMessages } from '../form/interface';
+import type { ScrollFocusOptions, ValidateMessages } from '../form/interface';
 import type { RequiredMark } from '../form/Form';
 import type { RenderEmptyHandler } from './renderEmpty';
 import type { TransformCellTextProps } from '../table/interface';
@@ -99,6 +99,8 @@ export const configProviderProps = () => ({
     validateMessages?: ValidateMessages;
     requiredMark?: RequiredMark;
     colon?: boolean;
+    /** Auto scroll (and optional focus) to first failed field (antd ≥ 5). */
+    scrollToFirstError?: boolean | ScrollFocusOptions;
   }>(),
   pagination: objectType<{
     showSizeChanger?: boolean;
@@ -171,6 +173,7 @@ export interface ConfigProviderInnerProps {
     validateMessages?: ValidateMessages;
     requiredMark?: RequiredMark;
     colon?: boolean;
+    scrollToFirstError?: boolean | ScrollFocusOptions;
   }>;
   select?: ComputedRef<{
     showSearch?: boolean;

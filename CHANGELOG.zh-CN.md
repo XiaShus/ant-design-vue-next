@@ -8,6 +8,12 @@
 
 ---
 
+## 4.63.0
+
+`2026-07-31`
+
+- 🌟 ConfigProvider `form.scrollToFirstError` 全局表单滚动/聚焦配置（对齐 antd ≥ 5）
+
 ## 4.62.0
 
 `2026-07-31`
