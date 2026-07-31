@@ -59,7 +59,7 @@
 | Data Entry | Cascader | ✅ | ✅ | [cascader](../../components/cascader) | 🔄 `variant` ✅ 4.10.0；🔄 `autoClearSearchValue` ✅ 4.53.0 |
 | Data Entry | Checkbox | ✅ | ✅ | [checkbox](../../components/checkbox) | — |
 | Data Entry | ColorPicker | ✅ 5.5 | 🔄 ✅ 4.3.0 | [color-picker](../../components/color-picker) | 单色/预设/清除/格式；🔄 `destroyOnHidden` ✅ 4.14.0；🔄 `panelRender` ✅ 4.15.0；🔄 `disabledFormat` ✅ 4.19.0；⏭ 渐变 mode |
-| Data Entry | DatePicker | ✅ | ✅ | [date-picker](../../components/date-picker) | 🔄 `variant` ✅ 4.9.0；🔄 `needConfirm` ✅ 4.21.0；🔄 `showTime.changeOnScroll` ✅ 4.23.0 |
+| Data Entry | DatePicker | ✅ | ✅ | [date-picker](../../components/date-picker) | 🔄 `variant` ✅ 4.9.0；🔄 `needConfirm` ✅ 4.21.0；🔄 `showTime.changeOnScroll` ✅ 4.23.0；🔄 `cellRender` ✅ 4.61.0 |
 | Data Entry | Form | ✅ | ✅ | [form](../../components/form) | 🔄 `variant` ✅ 4.10.0；🔄 `feedbackIcons` ✅ 4.40.0；🔄 `scrollToFirstError` `{ focus }` / `focusField` ✅ 4.57.0 |
 | Data Entry | Input | ✅ | ✅ | [input](../../components/input) | 🔄 `Input.OTP` ✅ 4.5.0；`variant` ✅ 4.8.0；🔄 `underlined` ✅ 4.18.0 |
 | Data Entry | InputNumber | ✅ | ✅ | [input-number](../../components/input-number) | 🔄 `variant` ✅ 4.9.0 |
@@ -187,9 +187,10 @@
 56. ~~Progress `percentPosition`~~ — ✅ `4.58.0`
 57. ~~Progress `rounding`~~ — ✅ `4.59.0`
 58. ~~Calendar `cellRender` / `fullCellRender`~~ — ✅ `4.60.0`
-59. Table `virtual` 按需拆版（多日）
-60. ColorPicker 渐变 `mode`
-61. Segmented `vertical`（需 MotionThumb 竖向）
+59. ~~DatePicker `cellRender`~~ — ✅ `4.61.0`
+60. Table `virtual` 按需拆版（多日）
+61. ColorPicker 渐变 `mode`
+62. Segmented `vertical`（需 MotionThumb 竖向）
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -199,4 +200,4 @@
 
 ---
 
-_上次更新：`4.60.0` Calendar.cellRender / fullCellRender。每发一版请同步改本表。_
+_上次更新：`4.61.0` DatePicker.cellRender。每发一版请同步改本表。_

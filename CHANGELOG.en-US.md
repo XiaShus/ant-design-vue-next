@@ -4,6 +4,12 @@
 
 ---
 
+## 4.61.0
+
+`2026-07-31`
+
+- 🌟 DatePicker / RangePicker support `cellRender` (antd ≥ 5.4); `dateRender` / `monthCellRender` deprecated
+
 ## 4.60.0
 
 `2026-07-31`

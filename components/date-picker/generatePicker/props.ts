@@ -17,6 +17,7 @@ import type { MonthCellRender } from '../../vc-picker/panels/MonthPanel/MonthBod
 import type { SharedTimeProps } from '../../vc-picker/panels/TimePanel';
 import type { RangeDateRender, RangeInfo, RangeType } from '../../vc-picker/RangePicker';
 import type { VueNode } from '../../_util/type';
+import type { DatePickerCellRender } from './cellRender';
 import {
   stringType,
   arrayType,
@@ -99,7 +100,10 @@ function commonProps<DateType = any>() {
     bordered: booleanType(),
     /** Prefer over `bordered` (antd ≥ 5.13). */
     variant: stringType<'outlined' | 'borderless' | 'filled' | 'underlined'>(),
+    /** @deprecated Please use `cellRender` instead */
     dateRender: functionType<DateRender<DateType>>(),
+    /** Customize picker cells (antd ≥ 5.4). Date/month adapted via vc-picker. */
+    cellRender: functionType<DatePickerCellRender<DateType>>(),
     disabledDate: functionType<(date: DateType) => boolean>(),
     mode: stringType<PanelMode>(),
     picker: stringType<PickerMode>(),
@@ -171,7 +175,9 @@ export interface CommonProps<DateType> {
   size?: SizeType;
   bordered?: boolean;
   variant?: 'outlined' | 'borderless' | 'filled' | 'underlined';
+  /** @deprecated Please use `cellRender` instead */
   dateRender?: DateRender<DateType>;
+  cellRender?: DatePickerCellRender<DateType>;
   disabledDate?: (date: DateType) => boolean;
   mode?: PanelMode;
   picker?: PickerMode;
@@ -203,6 +209,7 @@ export interface DatePickerProps<DateType> {
   disabledTime?: DisabledTime<DateType>;
   renderExtraFooter?: (mode: PanelMode) => VueNode;
   showNow?: boolean;
+  /** @deprecated Please use `cellRender` instead */
   monthCellRender?: MonthCellRender<DateType>;
   // deprecated  Please use `monthCellRender"` instead.',
   monthCellContentRender?: MonthCellRender<DateType>;

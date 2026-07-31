@@ -8,6 +8,12 @@
 
 ---
 
+## 4.61.0
+
+`2026-07-31`
+
+- 🌟 DatePicker / RangePicker 支持 `cellRender`（对齐 antd ≥ 5.4）；`dateRender` / `monthCellRender` 标记废弃
+
 ## 4.60.0
 
 `2026-07-31`

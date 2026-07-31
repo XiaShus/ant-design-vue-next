@@ -83,7 +83,8 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*3OpRQKcygo8AAA
 | autofocus | 自动获取焦点 | boolean | false |  |
 | bordered | 是否有边框，请优先使用 `variant` | boolean | true |  |
 | variant | 形态变体（对齐 antd ≥ 5.13） | `outlined` \| `filled` \| `borderless` \| `underlined` | `outlined` | 4.9.0 |
-| dateRender | 自定义日期单元格的内容 | v-slot:dateRender="{current, today}" | - |  |
+| cellRender | 自定义选择器单元格（`date` / `month` 经适配层支持） | (current, info: { originNode, today, type, locale?, range? }) => VueNode \| v-slot:cellRender | - | 4.61.0 |
+| ~~dateRender~~ | 自定义日期单元格的内容。请使用 `cellRender` 替代 | v-slot:dateRender="{current, today}" | - |  |
 | disabled | 禁用 | boolean | false |  |
 | disabledDate | 不可选择的日期 | (currentDate: dayjs) => boolean | - |  |
 | format | 设置日期格式，为数组时支持多格式匹配，展示以第一个为准。配置参考 [dayjs](https://day.js.org/docs/zh-CN/display/format)，支持[自定义格式](#components-date-picker-demo-format) | [formatType](#formattype) | `YYYY-MM-DD` |  |
@@ -161,7 +162,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*3OpRQKcygo8AAA
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
 | format | 展示的日期格式，配置参考 [dayjs](https://day.js.org/docs/zh-CN/display/format) | [formatType](#formattype) | `YYYY-MM` |  |
-| monthCellRender | 自定义的月份内容渲染方法 | v-slot:monthCellRender="{current, locale}" | - |  |
+| ~~monthCellRender~~ | 自定义的月份内容渲染方法。请使用 `cellRender` 替代 | v-slot:monthCellRender="{current, locale}" | - |  |
 
 ### DatePicker\[picker=week]
 
@@ -174,7 +175,8 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*3OpRQKcygo8AAA
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
 | allowEmpty | 允许起始项部分为空 | \[boolean, boolean] | \[false, false] |  |
-| dateRender | 自定义日期单元格的内容。 | v-slot:dateRender="{current: dayjs, today: dayjs, info: { range: `start` \| `end` }}" | - |  |
+| cellRender | 自定义选择器单元格 | (current, info) => VueNode \| v-slot:cellRender | - | 4.61.0 |
+| ~~dateRender~~ | 自定义日期单元格的内容。请使用 `cellRender` 替代 | v-slot:dateRender="{current: dayjs, today: dayjs, info: { range: `start` \| `end` }}" | - |  |
 | defaultPickerValue | 默认面板日期 | [dayjs](https://day.js.org/)\[] | - |  |
 | disabled | 禁用起始项 | \[boolean, boolean] | - |  |
 | disabledTime | 不可选择的时间 | function(date: dayjs, partial: `start` \| `end`) | - |  |

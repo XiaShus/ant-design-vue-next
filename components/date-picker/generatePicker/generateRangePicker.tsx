@@ -25,6 +25,7 @@ import { useCompactItemContext } from '../../space/Compact';
 import useVariant from '../../config-provider/hooks/useVariant';
 import devWarning from '../../vc-util/devWarning';
 import type { CustomSlotsType } from '../../_util/type';
+import { mergeRangeDateCellRender } from './cellRender';
 
 export default function generateRangePicker<DateType, ExtraProps = {}>(
   generateConfig: GenerateConfig<DateType>,
@@ -46,6 +47,7 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
       superPrevIcon?: any;
       superNextIcon?: any;
       dateRender?: any;
+      cellRender?: any;
       renderExtraFooter?: any;
       default?: any;
       separator?: any;
@@ -67,6 +69,11 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
           !attrs.getCalendarContainer,
           'DatePicker',
           '`getCalendarContainer` is deprecated. Please use `getPopupContainer"` instead.',
+        );
+        devWarning(
+          !(props.dateRender || slots.dateRender),
+          'RangePicker',
+          '`dateRender` is deprecated. Please use `cellRender` instead.',
         );
       }
 
@@ -159,6 +166,7 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
           transitionName,
           allowClear = true,
           dateRender = slots.dateRender,
+          cellRender,
           renderExtraFooter = slots.renderExtraFooter,
           separator = slots.separator?.(),
           clearIcon = slots.clearIcon?.(),
@@ -169,6 +177,7 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
         delete restProps['onUpdate:open'];
         delete restProps.bordered;
         delete restProps.variant;
+        delete (restProps as any).cellRender;
         const mergedVariant = variant.value;
         const { format, showTime } = p as any;
 
@@ -181,6 +190,13 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
             : {}),
         };
         const pre = prefixCls.value;
+        const mergedDateRender = mergeRangeDateCellRender({
+          prefixCls: pre,
+          generateConfig,
+          dateRender,
+          cellRender,
+          cellRenderSlot: slots.cellRender,
+        });
         const suffixNode = (
           <>
             {suffixIcon || (picker === 'time' ? <ClockCircleOutlined /> : <CalendarOutlined />)}
@@ -189,7 +205,7 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
         );
         return wrapSSR(
           <VCRangePicker
-            dateRender={dateRender}
+            dateRender={mergedDateRender}
             renderExtraFooter={renderExtraFooter}
             separator={
               separator || (

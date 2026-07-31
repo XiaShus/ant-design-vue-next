@@ -82,7 +82,8 @@ The following APIs are shared by DatePicker, RangePicker.
 | autofocus | If get focus when component mounted | boolean | false |  |
 | bordered | Whether has border style; prefer `variant` | boolean | true |  |
 | variant | Variants of picker (antd ≥ 5.13) | `outlined` \| `filled` \| `borderless` \| `underlined` | `outlined` | 4.9.0 |
-| dateRender | Custom rendering function for date cells | v-slot:dateRender="{current, today}" | - |  |
+| cellRender | Custom rendering function for picker cells (`date` / `month` via adapter) | (current, info: { originNode, today, type, locale?, range? }) => VueNode \| v-slot:cellRender | - | 4.61.0 |
+| ~~dateRender~~ | Custom rendering function for date cells. Please use `cellRender` instead | v-slot:dateRender="{current, today}" | - |  |
 | disabled | Determine whether the DatePicker is disabled | boolean | false |  |
 | disabledDate | Specify the date that cannot be selected | (currentDate: dayjs) => boolean | - |  |
 | format | To set the date format, refer to [dayjs](https://day.js.org/). When an array is provided, all values are used for parsing and first value is used for formatting, support [Custom Format](#components-date-picker-demo-format) | [formatType](#formattype) | `YYYY-MM-DD` |  |
@@ -160,7 +161,7 @@ The following APIs are shared by DatePicker, RangePicker.
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
 | format | To set the date format, refer to [dayjs](https://day.js.org/) | [formatType](#formattype) | `YYYY-MM` |  |
-| monthCellRender | Custom month cell content render method | v-slot:monthCellRender="{current, locale}" | - |  |
+| ~~monthCellRender~~ | Custom month cell content render method. Please use `cellRender` instead | v-slot:monthCellRender="{current, locale}" | - |  |
 
 ### DatePicker\[picker=week]
 
@@ -173,7 +174,8 @@ The following APIs are shared by DatePicker, RangePicker.
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
 | allowEmpty | Allow start or end input leave empty | \[boolean, boolean] | \[false, false] |  |
-| dateRender | Customize date cell. | v-slot:dateRender="{current: dayjs, today: dayjs, info: { range: `start` \| `end` }}" | - |  |
+| cellRender | Customize picker cells | (current, info) => VueNode \| v-slot:cellRender | - | 4.61.0 |
+| ~~dateRender~~ | Customize date cell. Please use `cellRender` instead | v-slot:dateRender="{current: dayjs, today: dayjs, info: { range: `start` \| `end` }}" | - |  |
 | defaultPickerValue | To set default picker date | \[[dayjs](https://day.js.org/), [dayjs](https://day.js.org/)] | - |  |
 | disabled | If disable start or end | \[boolean, boolean] | - |  |
 | disabledTime | To specify the time that cannot be selected | function(date: dayjs, partial: `start` \| `end`) | - |  |

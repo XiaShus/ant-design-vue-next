@@ -22,6 +22,7 @@ import type { CustomSlotsType } from '../../_util/type';
 //CSSINJS
 import useStyle from '../style';
 import useVariant from '../../config-provider/hooks/useVariant';
+import { mergeDateCellRender, mergeMonthCellRender } from './cellRender';
 
 export default function generateSinglePicker<DateType, ExtraProps = {}>(
   generateConfig: GenerateConfig<DateType>,
@@ -45,6 +46,7 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
         superPrevIcon?: any;
         superNextIcon?: any;
         dateRender?: any;
+        cellRender?: any;
         renderExtraFooter?: any;
         monthCellRender?: any;
         monthCellContentRender?: any;
@@ -75,6 +77,16 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
             !(props.monthCellContentRender || slots.monthCellContentRender),
             displayName || 'DatePicker',
             '`monthCellContentRender` is deprecated. Please use `monthCellRender"` instead.',
+          );
+          devWarning(
+            !(props.dateRender || slots.dateRender),
+            displayName || 'DatePicker',
+            '`dateRender` is deprecated. Please use `cellRender` instead.',
+          );
+          devWarning(
+            !(props.monthCellRender || slots.monthCellRender),
+            displayName || 'DatePicker',
+            '`monthCellRender` is deprecated. Please use `cellRender` instead.',
           );
 
           devWarning(
@@ -172,6 +184,7 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
             transitionName,
             allowClear = true,
             dateRender = slots.dateRender,
+            cellRender,
             renderExtraFooter = slots.renderExtraFooter,
             monthCellRender = slots.monthCellRender ||
               (props as any).monthCellContentRender ||
@@ -182,6 +195,7 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
           } = p;
           delete (restProps as any).bordered;
           delete (restProps as any).variant;
+          delete (restProps as any).cellRender;
           const mergedVariant = variant.value;
           const showTime = (p.showTime as string) === '' ? true : p.showTime;
           const { format } = p as any;
@@ -206,6 +220,20 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
               : {}),
           };
           const pre = prefixCls.value;
+          const mergedDateRender = mergeDateCellRender({
+            prefixCls: pre,
+            generateConfig,
+            dateRender,
+            cellRender,
+            cellRenderSlot: slots.cellRender,
+          });
+          const mergedMonthCellRender = mergeMonthCellRender({
+            prefixCls: pre,
+            generateConfig,
+            monthCellRender,
+            cellRender,
+            cellRenderSlot: slots.cellRender,
+          });
           const suffixNode = (
             <>
               {suffixIcon || (picker === 'time' ? <ClockCircleOutlined /> : <CalendarOutlined />)}
@@ -214,8 +242,8 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
           );
           return wrapSSR(
             <RCPicker
-              monthCellRender={monthCellRender}
-              dateRender={dateRender}
+              monthCellRender={mergedMonthCellRender}
+              dateRender={mergedDateRender}
               renderExtraFooter={renderExtraFooter}
               ref={pickerRef}
               placeholder={getPlaceholder(locale, mergedPicker, placeholder)}

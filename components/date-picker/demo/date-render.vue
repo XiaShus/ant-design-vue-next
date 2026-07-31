@@ -2,31 +2,31 @@
 ---
 order: 9
 title:
-  zh-CN: 定制日期单元格
-  en-US: Customized Date Rendering
+  zh-CN: 定制单元格
+  en-US: Customized Cell Rendering
 ---
 
 ## zh-CN
 
-使用 `dateRender` 可以自定义日期单元格的内容和样式。
+使用 `cellRender` 自定义日期单元格的内容和样式（`dateRender` 已废弃）。
 
 ## en-US
 
-We can customize the rendering of date cells in the calendar by providing a `dateRender` function to `DatePicker`.
+Customize picker cells with `cellRender` (`dateRender` is deprecated).
 
 </docs>
 <template>
   <a-space direction="vertical" :size="12">
     <a-date-picker v-model:value="value1">
-      <template #dateRender="{ current }">
-        <div class="ant-picker-cell-inner" :style="getCurrentStyle(current)">
+      <template #cellRender="{ current, type }">
+        <div v-if="type === 'date'" class="ant-picker-cell-inner" :style="getCurrentStyle(current)">
           {{ current.date() }}
         </div>
       </template>
     </a-date-picker>
     <a-range-picker v-model:value="value2">
-      <template #dateRender="{ current }">
-        <div class="ant-picker-cell-inner" :style="getCurrentStyle(current)">
+      <template #cellRender="{ current, type }">
+        <div v-if="type === 'date'" class="ant-picker-cell-inner" :style="getCurrentStyle(current)">
           {{ current.date() }}
         </div>
       </template>
