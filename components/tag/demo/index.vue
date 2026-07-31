@@ -8,6 +8,7 @@
     <Icon />
     <Status />
     <BorderLess />
+    <StyleClass />
   </demo-sort>
 </template>
 
@@ -20,6 +21,7 @@ import HotTags from './hot-tags.vue';
 import Icon from './icon.vue';
 import Status from './status.vue';
 import BorderLess from './border-less.vue';
+import StyleClass from './style-class.vue';
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
 import { defineComponent } from 'vue';
@@ -36,6 +38,7 @@ export default defineComponent({
     Icon,
     Status,
     BorderLess,
+    StyleClass,
   },
 });
 </script>

@@ -1,4 +1,4 @@
-import type { VNode, ExtractPropTypes, PropType } from 'vue';
+import type { VNode, ExtractPropTypes, PropType, CSSProperties } from 'vue';
 import {
   Teleport,
   onBeforeUnmount,
@@ -14,17 +14,22 @@ import classNames from '../_util/classNames';
 import PropTypes from '../_util/vue-types';
 import { filterEmpty, getPropsSlot } from '../_util/props-util';
 import initDefaultProps from '../_util/props-util/initDefaultProps';
-import { booleanType, someType } from '../_util/type';
+import { booleanType, objectType, someType } from '../_util/type';
 import useStyle from './style';
 import useConfigInject from '../config-provider/hooks/useConfigInject';
 import Indicator from './Indicator';
 import usePercent from './usePercent';
 
 export type SpinSize = 'small' | 'default' | 'large';
+export type SpinSemanticName = 'root' | 'indicator' | 'tip' | 'fullscreen';
+export type SpinClassNamesType = Partial<Record<SpinSemanticName, string>>;
+export type SpinStylesType = Partial<Record<SpinSemanticName, CSSProperties>>;
+
 export const spinProps = () => ({
   prefixCls: String,
   spinning: { type: Boolean, default: undefined },
   size: String as PropType<SpinSize>,
+  /** @deprecated Please use `classNames.root` instead. */
   wrapperClassName: String,
   tip: PropTypes.any,
   delay: Number,
@@ -33,6 +38,10 @@ export const spinProps = () => ({
   fullscreen: booleanType(),
   /** Progress percent; `auto` shows indeterminate mock progress (antd ≥ 5.18). */
   percent: someType<number | 'auto'>([Number, String]),
+  /** Semantic structure className (antd ≥ 5.23). */
+  classNames: objectType<SpinClassNamesType>(),
+  /** Semantic structure style (antd ≥ 5.23). */
+  styles: objectType<SpinStylesType>(),
 });
 
 export type SpinProps = Partial<ExtractPropTypes<ReturnType<typeof spinProps>>>;
@@ -119,10 +128,28 @@ export default defineComponent({
 
         return <Indicator prefixCls={prefixClsName} percent={mergedPercent.value} />;
       }
-      const spinElement = (
-        <div {...divProps} class={spinClassName} aria-live="polite" aria-busy={sSpinning.value}>
+      const indicatorNode = (
+        <span class={props.classNames?.indicator} style={props.styles?.indicator}>
           {renderIndicator(prefixCls.value)}
-          {tip ? <div class={`${prefixCls.value}-text`}>{tip}</div> : null}
+        </span>
+      );
+      const spinElement = (withRootSemantic = true) => (
+        <div
+          {...divProps}
+          class={[spinClassName, withRootSemantic ? props.classNames?.root : undefined]}
+          style={withRootSemantic ? props.styles?.root : undefined}
+          aria-live="polite"
+          aria-busy={sSpinning.value}
+        >
+          {indicatorNode}
+          {tip ? (
+            <div
+              class={[`${prefixCls.value}-text`, props.classNames?.tip]}
+              style={props.styles?.tip}
+            >
+              {tip}
+            </div>
+          ) : null}
         </div>
       );
 
@@ -130,11 +157,17 @@ export default defineComponent({
         return wrapSSR(
           <Teleport to="body">
             <div
-              class={classNames(`${prefixCls.value}-fullscreen`, hashId.value, {
-                [`${prefixCls.value}-fullscreen-show`]: sSpinning.value,
-              })}
+              class={classNames(
+                `${prefixCls.value}-fullscreen`,
+                hashId.value,
+                props.classNames?.fullscreen,
+                {
+                  [`${prefixCls.value}-fullscreen-show`]: sSpinning.value,
+                },
+              )}
+              style={props.styles?.fullscreen}
             >
-              {spinElement}
+              {spinElement(true)}
             </div>
           </Teleport>,
         );
@@ -146,15 +179,23 @@ export default defineComponent({
           [`${prefixCls.value}-blur`]: sSpinning.value,
         };
         return wrapSSR(
-          <div class={[`${prefixCls.value}-nested-loading`, props.wrapperClassName, hashId.value]}>
-            {sSpinning.value && <div key="loading">{spinElement}</div>}
+          <div
+            class={[
+              `${prefixCls.value}-nested-loading`,
+              props.wrapperClassName,
+              props.classNames?.root,
+              hashId.value,
+            ]}
+            style={props.styles?.root}
+          >
+            {sSpinning.value && <div key="loading">{spinElement(false)}</div>}
             <div class={containerClassName} key="container">
               {children}
             </div>
           </div>,
         );
       }
-      return wrapSSR(spinElement);
+      return wrapSSR(spinElement(true));
     };
   },
 });

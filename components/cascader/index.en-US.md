@@ -30,6 +30,7 @@ Cascade selection box.
 | changeOnSelect | (Work on single select) change value on each selection if set to true, see above demo for details | boolean | false |  |
 | disabled | whether disabled select | boolean | false |  |
 | displayRender | render function of displaying selected options, you can use #displayRender="{labels, selectedOptions}". | `({labels, selectedOptions}) => VNode` | `labels => labels.join(' / ')` |  |
+| optionRender | Custom render dropdown option content | (option) => any | - | 4.68.0 |
 | popupClassName | additional className of popup overlay | string | - | 4.0 |
 | dropdownStyle | additional style of popup overlay | CSSProperties | {} | 3.0 |
 | expandIcon | Customize the current item expand icon | slot | - | 3.0 |

@@ -6,7 +6,7 @@ import CloseOutlined from '@ant-design/icons-vue/CloseOutlined';
 import Wave from '../_util/wave';
 import type { PresetColorType, PresetStatusColorType } from '../_util/colors';
 import { isPresetColor, isPresetStatusColor } from '../_util/colors';
-import { eventType } from '../_util/type';
+import { eventType, objectType } from '../_util/type';
 import type { CustomSlotsType, LiteralUnion } from '../_util/type';
 
 import CheckableTag from './CheckableTag';
@@ -14,6 +14,10 @@ import useConfigInject from '../config-provider/hooks/useConfigInject';
 import warning from '../_util/warning';
 
 import useStyle from './style';
+
+export type TagSemanticName = 'root' | 'icon' | 'content' | 'closeIcon';
+export type TagClassNamesType = Partial<Record<TagSemanticName, string>>;
+export type TagStylesType = Partial<Record<TagSemanticName, CSSProperties>>;
 
 export const tagProps = () => ({
   prefixCls: String,
@@ -31,6 +35,10 @@ export const tagProps = () => ({
   'onUpdate:visible': Function as PropType<(vis: boolean) => void>,
   icon: PropTypes.any,
   bordered: { type: Boolean, default: true },
+  /** Semantic structure className (antd ≥ 5.23). */
+  classNames: objectType<TagClassNamesType>(),
+  /** Semantic structure style (antd ≥ 5.23). */
+  styles: objectType<TagStylesType>(),
 });
 
 export type TagProps = HTMLAttributes & Partial<ExtractPropTypes<ReturnType<typeof tagProps>>>;
@@ -116,11 +124,19 @@ const Tag = defineComponent({
       const renderCloseIcon = () => {
         if (closable) {
           return closeIcon ? (
-            <span class={`${prefixCls.value}-close-icon`} onClick={handleCloseClick}>
+            <span
+              class={[`${prefixCls.value}-close-icon`, props.classNames?.closeIcon]}
+              style={props.styles?.closeIcon}
+              onClick={handleCloseClick}
+            >
               {closeIcon}
             </span>
           ) : (
-            <CloseOutlined class={`${prefixCls.value}-close-icon`} onClick={handleCloseClick} />
+            <CloseOutlined
+              class={[`${prefixCls.value}-close-icon`, props.classNames?.closeIcon]}
+              style={props.styles?.closeIcon}
+              onClick={handleCloseClick}
+            />
           );
         }
         return null;
@@ -128,17 +144,36 @@ const Tag = defineComponent({
 
       const tagStyle = {
         backgroundColor: color && !isInternalColor.value ? color : undefined,
+        ...props.styles?.root,
       };
 
       const iconNode = icon || null;
       const children = slots.default?.();
+      const contentNode =
+        props.classNames?.content || props.styles?.content ? (
+          <span class={props.classNames?.content} style={props.styles?.content}>
+            {children}
+          </span>
+        ) : (
+          children
+        );
       const kids = iconNode ? (
         <>
-          {iconNode}
-          <span>{children}</span>
+          {props.classNames?.icon || props.styles?.icon ? (
+            <span class={props.classNames?.icon} style={props.styles?.icon}>
+              {iconNode}
+            </span>
+          ) : (
+            iconNode
+          )}
+          {props.classNames?.content || props.styles?.content ? (
+            contentNode
+          ) : (
+            <span>{children}</span>
+          )}
         </>
       ) : (
-        children
+        contentNode
       );
 
       const isNeedWave = props.onClick !== undefined;
@@ -146,7 +181,7 @@ const Tag = defineComponent({
         <span
           {...attrs}
           onClick={handleClick}
-          class={[tagClassName.value, attrs.class]}
+          class={[tagClassName.value, props.classNames?.root, attrs.class]}
           style={[tagStyle, attrs.style as CSSProperties]}
         >
           {kids}

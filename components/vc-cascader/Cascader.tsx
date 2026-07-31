@@ -81,6 +81,8 @@ function baseCascaderProps<OptionType extends BaseOptionType = DefaultOptionType
     displayRender: Function as PropType<
       (opt: { labels: string[]; selectedOptions?: OptionType[] }) => any
     >,
+    /** Custom option content render (antd ≥ 5.16). */
+    optionRender: Function as PropType<(option: OptionType) => any>,
     checkable: { type: Boolean, default: undefined },
     showCheckedStrategy: { type: String as PropType<ShowCheckedStrategy>, default: SHOW_PARENT },
     // Search
@@ -469,6 +471,7 @@ export default defineComponent({
       dropdownMenuColumnStyle,
       customSlots,
       dropdownClassName,
+      optionRender,
     } = toRefs(props);
     useProvideCascader({
       options: mergedOptions,
@@ -486,6 +489,7 @@ export default defineComponent({
       loadingIcon,
       dropdownMenuColumnStyle,
       customSlots,
+      optionRender,
     });
     const selectRef = ref<BaseSelectRef>();
 
@@ -513,6 +517,7 @@ export default defineComponent({
         'changeOnSelect',
         'onChange',
         'displayRender',
+        'optionRender',
         'checkable',
 
         // Search

@@ -8,6 +8,15 @@
 
 ---
 
+## 4.68.0
+
+`2026-07-31`
+
+- 🌟 TreeSelect 支持 `labelRender`（对齐 antd ≥ 5.15）
+- 🌟 Card / Tag / Spin 支持语义化 `classNames` / `styles`（对齐 antd ≥ 5.23）
+- 🌟 Collapse 支持 `items` 配置（对齐 antd ≥ 5.6）
+- 🌟 Cascader 支持 `optionRender`（对齐 antd ≥ 5.16）
+
 ## 4.67.0
 
 `2026-07-31`

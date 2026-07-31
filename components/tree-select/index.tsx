@@ -87,6 +87,8 @@ export function treeSelectProps<
     'onUpdate:value': functionType<(value: any) => void>(),
     'onUpdate:treeExpandedKeys': functionType<(keys: Key[]) => void>(),
     'onUpdate:searchValue': functionType<(value: string) => void>(),
+    /** Custom selected label render (antd ≥ 5.15). */
+    labelRender: functionType<(props: Record<string, any>) => any>(),
   };
 }
 export type TreeSelectProps = Partial<ExtractPropTypes<ReturnType<typeof treeSelectProps>>>;
@@ -114,6 +116,7 @@ const TreeSelect = defineComponent({
     leafIcon?: any;
     tagRender?: any;
     suffixIcon?: any;
+    optionLabel?: any;
   }>,
   setup(props, { attrs, slots, expose, emit }) {
     warning(
@@ -283,6 +286,7 @@ const TreeSelect = defineComponent({
         'bordered',
         'variant',
         'status',
+        'labelRender',
         'onUpdate:value',
         'onUpdate:treeExpandedKeys',
         'onUpdate:searchValue',
@@ -362,6 +366,7 @@ const TreeSelect = defineComponent({
             placement={placement.value}
             showArrow={hasFeedback || showArrow}
             placeholder={placeholder}
+            optionLabelRender={props.labelRender || slots.optionLabel}
           />,
         ),
       );

@@ -14,6 +14,7 @@
     <replaceFieldsVue />
     <placementVue />
     <statusVue />
+    <labelRenderVue />
   </demo-sort>
 </template>
 <script lang="ts">
@@ -31,6 +32,7 @@ import customTagRenderVue from './custom-tag-render.vue';
 import replaceFieldsVue from './replaceFields.vue';
 import placementVue from './placement.vue';
 import statusVue from './status.vue';
+import labelRenderVue from './label-render.vue';
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
 import { defineComponent } from 'vue';
@@ -53,6 +55,7 @@ export default defineComponent({
     virtualScrollVue,
     customTagRenderVue,
     replaceFieldsVue,
+    labelRenderVue,
   },
   setup() {
     return {};

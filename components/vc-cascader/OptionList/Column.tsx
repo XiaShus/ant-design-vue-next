@@ -48,6 +48,7 @@ export default function Column({
     loadingIcon: loadingIconRef,
     dropdownMenuColumnStyle,
     customSlots,
+    optionRender,
   } = useInjectCascader();
   const expandIcon = expandIconRef.value ?? customSlots.value.expandIcon?.();
   const loadingIcon = loadingIconRef.value ?? customSlots.value.loadingIcon?.();
@@ -150,7 +151,9 @@ export default function Column({
                 }}
               />
             )}
-            <div class={`${menuItemPrefixCls}-content`}>{label}</div>
+            <div class={`${menuItemPrefixCls}-content`}>
+              {optionRender?.value ? optionRender.value(option) : label}
+            </div>
             {!isLoading && expandIcon && !isMergedLeaf && (
               <div class={`${menuItemPrefixCls}-expand-icon`}>{cloneElement(expandIcon)}</div>
             )}

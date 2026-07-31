@@ -29,7 +29,24 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*sir-TK0HkWcAAA
 | expandIcon | 自定义切换图标 | Function(props):VNode \| slot="expandIcon" slot-scope="props"\|#expandIcon="props" |  |  |
 | expandIconPosition | 设置图标位置 | `start` \| `end` | - | 4.0 |
 | ghost | 使折叠面板透明且无边框 | boolean | false | 3.0 |
+| items | 折叠面板配置项 | [CollapseItemType](#collapseitemtype)[] | - | 4.68.0 |
 | size | 设置折叠面板大小 | `large` \| `middle` \| `small` \| `default` | `default` | 4.30.0 |
+
+#### CollapseItemType
+
+```ts
+type CollapseItemType = {
+  key?: string | number;
+  label?: VueNode;
+  children?: VueNode;
+  collapsible?: 'header' | 'icon' | 'disabled';
+  showArrow?: boolean;
+  forceRender?: boolean;
+  disabled?: boolean;
+  extra?: VueNode;
+  headerClass?: string;
+};
+```
 
 ### 事件
 

@@ -19,12 +19,14 @@ A card can be used to display content related to a single subject. The content c
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
 | activeTabKey | Current TabPane's key | string | - |  |
-| bodyStyle | Inline style to apply to the card content | object | - |  |
+| bodyStyle | Inline style to apply to the card content; prefer `styles.body` | object | - |  |
 | bordered | Toggles rendering of the border around the card. Please use `variant` instead | boolean | `true` |  |
+| classNames | Customize class for each semantic structure | { root?: string; header?: string; title?: string; extra?: string; cover?: string; body?: string; actions?: string } | - | 4.68.0 |
 | variant | Card style variant | `outlined` \| `borderless` | `outlined` | 4.29.0 |
 | defaultActiveTabKey | Initial active TabPane's key, if `activeTabKey` is not set. | string | - |  |
 | extra | Content to render in the top-right corner of the card | string\|slot | - |  |
-| headStyle | Inline style to apply to the card head | object | - |  |
+| headStyle | Inline style to apply to the card head; prefer `styles.header` | object | - |  |
+| styles | Customize inline style for each semantic structure | { root?: CSSProperties; header?: CSSProperties; title?: CSSProperties; extra?: CSSProperties; cover?: CSSProperties; body?: CSSProperties; actions?: CSSProperties } | - | 4.68.0 |
 | hoverable | Lift up when hovering card | boolean | false |  |
 | loading | Shows a loading indicator while the contents of the card are being fetched | boolean | false |  |
 | size | Size of card | `default` \| `small` | `default` |  |

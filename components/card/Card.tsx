@@ -10,7 +10,7 @@ import devWarning from '../vc-util/devWarning';
 import useStyle from './style';
 import Skeleton from '../skeleton';
 import type { CustomSlotsType } from '../_util/type';
-import { stringType } from '../_util/type';
+import { objectType, stringType } from '../_util/type';
 import { customRenderSlot } from '../_util/vnode';
 
 export interface CardTabListType {
@@ -24,6 +24,9 @@ export interface CardTabListType {
 export type CardType = 'inner';
 export type CardSize = 'default' | 'small';
 export type CardVariant = 'outlined' | 'borderless';
+export type CardSemanticName = 'root' | 'header' | 'title' | 'extra' | 'cover' | 'body' | 'actions';
+export type CardClassNamesType = Partial<Record<CardSemanticName, string>>;
+export type CardStylesType = Partial<Record<CardSemanticName, CSSProperties>>;
 
 const { TabPane } = Tabs;
 
@@ -35,7 +38,9 @@ export const cardProps = () => ({
   bordered: { type: Boolean, default: true },
   /** Card style variant (antd ≥ 5.24). */
   variant: stringType<CardVariant>(),
+  /** @deprecated Please use `styles.body` instead. */
   bodyStyle: { type: Object as PropType<CSSProperties>, default: undefined as CSSProperties },
+  /** @deprecated Please use `styles.header` instead. */
   headStyle: { type: Object as PropType<CSSProperties>, default: undefined as CSSProperties },
   loading: { type: Boolean, default: false },
   hoverable: { type: Boolean, default: false },
@@ -52,6 +57,10 @@ export const cardProps = () => ({
   onTabChange: {
     type: Function as PropType<(key: string) => void>,
   },
+  /** Semantic structure className (antd ≥ 5.23). */
+  classNames: objectType<CardClassNamesType>(),
+  /** Semantic structure style (antd ≥ 5.23). */
+  styles: objectType<CardStylesType>(),
 });
 
 export type CardProps = Partial<ExtractPropTypes<ReturnType<typeof cardProps>>>;
@@ -120,9 +129,13 @@ const Card = defineComponent({
         extra = filterEmptyWithUndefined(slots.extra?.()),
         actions = filterEmptyWithUndefined(slots.actions?.()),
         cover = filterEmptyWithUndefined(slots.cover?.()),
+        classNames: cardClassNames,
+        styles: cardStyles,
       } = props;
       const children = flattenChildren(slots.default?.());
       const pre = prefixCls.value;
+      const mergedHeadStyle = { ...headStyle, ...cardStyles?.header };
+      const mergedBodyStyle = { ...bodyStyle, ...cardStyles?.body };
       const classString = {
         [`${pre}`]: true,
         [hashId.value]: true,
@@ -174,27 +187,48 @@ const Card = defineComponent({
         ) : null;
       if (title || extra || tabs) {
         head = (
-          <div class={`${pre}-head`} style={headStyle}>
+          <div class={[`${pre}-head`, cardClassNames?.header]} style={mergedHeadStyle}>
             <div class={`${pre}-head-wrapper`}>
-              {title && <div class={`${pre}-head-title`}>{title}</div>}
-              {extra && <div class={`${pre}-extra`}>{extra}</div>}
+              {title && (
+                <div class={[`${pre}-head-title`, cardClassNames?.title]} style={cardStyles?.title}>
+                  {title}
+                </div>
+              )}
+              {extra && (
+                <div class={[`${pre}-extra`, cardClassNames?.extra]} style={cardStyles?.extra}>
+                  {extra}
+                </div>
+              )}
             </div>
             {tabs}
           </div>
         );
       }
 
-      const coverDom = cover ? <div class={`${pre}-cover`}>{cover}</div> : null;
+      const coverDom = cover ? (
+        <div class={[`${pre}-cover`, cardClassNames?.cover]} style={cardStyles?.cover}>
+          {cover}
+        </div>
+      ) : null;
       const body = (
-        <div class={`${pre}-body`} style={bodyStyle}>
+        <div class={[`${pre}-body`, cardClassNames?.body]} style={mergedBodyStyle}>
           {loading ? loadingBlock : children}
         </div>
       );
       const actionDom =
-        actions && actions.length ? <ul class={`${pre}-actions`}>{getAction(actions)}</ul> : null;
+        actions && actions.length ? (
+          <ul class={[`${pre}-actions`, cardClassNames?.actions]} style={cardStyles?.actions}>
+            {getAction(actions)}
+          </ul>
+        ) : null;
 
       return wrapSSR(
-        <div ref="cardContainerRef" {...attrs} class={[classString, attrs.class]}>
+        <div
+          ref="cardContainerRef"
+          {...attrs}
+          class={[classString, cardClassNames?.root, attrs.class]}
+          style={{ ...cardStyles?.root, ...(attrs.style as CSSProperties) }}
+        >
           {head}
           {coverDom}
           {children && children.length ? body : null}

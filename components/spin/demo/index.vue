@@ -9,6 +9,7 @@
     <custom-indicator />
     <fullscreenVue />
     <percentVue />
+    <styleClassVue />
   </demo-sort>
 </template>
 <script lang="ts">
@@ -21,6 +22,7 @@ import Delay from './delay.vue';
 import CustomIndicator from './custom-indicator.vue';
 import fullscreenVue from './fullscreen.vue';
 import percentVue from './percent.vue';
+import styleClassVue from './style-class.vue';
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
 import { defineComponent } from 'vue';
@@ -37,6 +39,7 @@ export default defineComponent({
     CustomIndicator,
     fullscreenVue,
     percentVue,
+    styleClassVue,
   },
   setup() {
     return {};

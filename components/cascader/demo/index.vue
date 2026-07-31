@@ -14,6 +14,7 @@
     <multipleVue />
     <autoClearSearchValue />
     <tagRender />
+    <optionRender />
   </demo-sort>
 </template>
 <script>
@@ -31,6 +32,7 @@ import Suffix from './suffix.vue';
 import multipleVue from './multiple.vue';
 import autoClearSearchValue from './auto-clear-search-value.vue';
 import tagRender from './tagRender.vue';
+import optionRender from './option-render.vue';
 
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
@@ -53,6 +55,7 @@ export default defineComponent({
     multipleVue,
     autoClearSearchValue,
     tagRender,
+    optionRender,
   },
 });
 </script>

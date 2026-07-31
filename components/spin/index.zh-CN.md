@@ -17,14 +17,16 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*i43_ToFrL8YAAA
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
+| classNames | 语义化结构 className | { root?: string; indicator?: string; tip?: string; fullscreen?: string } | - | 4.68.0 |
 | delay | 延迟显示加载效果的时间（防止闪烁） | number (毫秒) | - |  |
 | fullscreen | 是否全屏展示带遮罩的加载 | boolean | false | 4.24.0 |
 | indicator | 加载指示符 | vNode \| slot | - |  |
 | percent | 进度百分比；`auto` 为不确定模拟进度 | number \| `auto` | - | 4.66.0 |
 | size | 组件大小，可选值为 `small` `default` `large` | string | `default` |  |
 | spinning | 是否为加载中状态 | boolean | true |  |
+| styles | 语义化结构 style | { root?: CSSProperties; indicator?: CSSProperties; tip?: CSSProperties; fullscreen?: CSSProperties } | - | 4.68.0 |
 | tip | 当作为包裹元素时，可以自定义描述文案 | string \| slot | - | slot 3.0 |
-| wrapperClassName | 包装器的类属性 | string | - |  |
+| wrapperClassName | 包装器的类属性；请优先使用 `classNames.root` | string | - |  |
 
 ### 静态方法
 

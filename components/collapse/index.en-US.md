@@ -28,7 +28,24 @@ A content area which can be collapsed and expanded.
 | expandIcon | allow to customize collapse icon | Function(props):VNode \| v-slot:expandIcon="props" |  |  |
 | expandIconPosition | Set expand icon position | `start` \| `end` | - | 4.0 |
 | ghost | Make the collapse borderless and its background transparent | boolean | false | 3.0 |
+| items | Collapse panel config | [CollapseItemType](#collapseitemtype)[] | - | 4.68.0 |
 | size | Set collapse size | `large` \| `middle` \| `small` \| `default` | `default` | 4.30.0 |
+
+#### CollapseItemType
+
+```ts
+type CollapseItemType = {
+  key?: string | number;
+  label?: VueNode;
+  children?: VueNode;
+  collapsible?: 'header' | 'icon' | 'disabled';
+  showArrow?: boolean;
+  forceRender?: boolean;
+  disabled?: boolean;
+  extra?: VueNode;
+  headerClass?: string;
+};
+```
 
 ### events
 

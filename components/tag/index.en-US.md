@@ -17,13 +17,15 @@ Tag for categorizing or markup.
 
 ### Tag
 
-| Property  | Description                   | Type          | Default | Version |
-| --------- | ----------------------------- | ------------- | ------- | ------- |
-| closable  | Whether the Tag can be closed | boolean       | `false` |         |
-| closeIcon | Custom close icon             | VNode \| slot | -       | 2.0.0   |
-| color     | Color of the Tag              | string        | -       |         |
-| icon      | Set the icon of tag           | VNode \| slot | -       | 2.0.0   |
-| bordered  | Whether has border style      | boolean       | `true`  | 4.x     |
+| Property | Description | Type | Default | Version |
+| --- | --- | --- | --- | --- |
+| classNames | Customize class for each semantic structure | { root?: string; icon?: string; content?: string; closeIcon?: string } | - | 4.68.0 |
+| closable | Whether the Tag can be closed | boolean | `false` |  |
+| closeIcon | Custom close icon | VNode \| slot | - | 2.0.0 |
+| color | Color of the Tag | string | - |  |
+| icon | Set the icon of tag | VNode \| slot | - | 2.0.0 |
+| bordered | Whether has border style | boolean | `true` | 4.x |
+| styles | Customize inline style for each semantic structure | { root?: CSSProperties; icon?: CSSProperties; content?: CSSProperties; closeIcon?: CSSProperties } | - | 4.68.0 |
 
 ### Tag Events
 

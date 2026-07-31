@@ -1,6 +1,7 @@
 <template>
   <demo-sort :cols="1">
     <Basic />
+    <Items />
     <Accordion />
     <Size />
     <Mix />
@@ -16,6 +17,7 @@
 <script>
 import Accordion from './accordion.vue';
 import Basic from './basic.vue';
+import Items from './items.vue';
 import Size from './size.vue';
 import Borderless from './borderless.vue';
 import Custom from './custom.vue';
@@ -33,6 +35,7 @@ export default {
   components: {
     Accordion,
     Basic,
+    Items,
     Size,
     Borderless,
     Custom,

@@ -20,12 +20,14 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*a-8zR6rrupgAAA
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
 | activeTabKey | 当前激活页签的 key | string | - |  |
-| bodyStyle | 内容区域自定义样式 | object | - |  |
+| bodyStyle | 内容区域自定义样式；请优先使用 `styles.body` | object | - |  |
 | bordered | 是否有边框，请使用 `variant` 替代 | boolean | true |  |
+| classNames | 语义化结构 className | { root?: string; header?: string; title?: string; extra?: string; cover?: string; body?: string; actions?: string } | - | 4.68.0 |
 | variant | 形态变体 | `outlined` \| `borderless` | `outlined` | 4.29.0 |
 | defaultActiveTabKey | 初始化选中页签的 key，如果没有设置 activeTabKey | string | 第一个页签 |  |
 | extra | 卡片右上角的操作区域 | string\|slot | - |  |
-| headStyle | 自定义标题区域样式 | object | - |  |
+| headStyle | 自定义标题区域样式；请优先使用 `styles.header` | object | - |  |
+| styles | 语义化结构 style | { root?: CSSProperties; header?: CSSProperties; title?: CSSProperties; extra?: CSSProperties; cover?: CSSProperties; body?: CSSProperties; actions?: CSSProperties } | - | 4.68.0 |
 | hoverable | 鼠标移过时可浮起 | boolean | false |  |
 | loading | 当卡片内容还在加载中时，可以用 loading 展示一个占位 | boolean | false |  |
 | size | card 的尺寸 | `default` \| `small` | `default` |  |

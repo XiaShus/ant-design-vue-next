@@ -11,6 +11,7 @@
     <Meta />
     <Simple />
     <Tabs />
+    <StyleClass />
   </demo-sort>
 </template>
 
@@ -26,6 +27,7 @@ import Loading from './loading.vue';
 import Meta from './meta.vue';
 import Simple from './simple.vue';
 import Tabs from './tabs.vue';
+import StyleClass from './style-class.vue';
 
 import CN from './../index.zh-CN.md';
 import US from './../index.en-US.md';
@@ -46,6 +48,7 @@ export default defineComponent({
     Meta,
     Simple,
     Tabs,
+    StyleClass,
   },
 });
 </script>

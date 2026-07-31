@@ -15,6 +15,7 @@ import firstNotUndefined from '../_util/firstNotUndefined';
 import classNames from '../_util/classNames';
 import useConfigInject from '../config-provider/hooks/useConfigInject';
 import type { CollapsePanelProps } from './CollapsePanel';
+import CollapsePanel from './CollapsePanel';
 import collapseMotion from '../_util/collapseMotion';
 import type { CustomSlotsType } from '../_util/type';
 
@@ -174,6 +175,25 @@ export default defineComponent({
     };
 
     const getItems = () => {
+      if (props.items?.length) {
+        return props.items.map((item, index) =>
+          getNewChild(
+            <CollapsePanel
+              key={item.key ?? index}
+              header={item.label}
+              collapsible={item.collapsible}
+              showArrow={item.showArrow}
+              forceRender={item.forceRender}
+              disabled={item.disabled}
+              extra={item.extra}
+              headerClass={item.headerClass}
+            >
+              {item.children}
+            </CollapsePanel>,
+            index,
+          ),
+        );
+      }
       return flattenChildren(slots.default?.()).map(getNewChild);
     };
 

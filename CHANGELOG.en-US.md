@@ -4,6 +4,15 @@
 
 ---
 
+## 4.68.0
+
+`2026-07-31`
+
+- 🌟 TreeSelect support `labelRender` (antd ≥ 5.15)
+- 🌟 Card / Tag / Spin support semantic `classNames` / `styles` (antd ≥ 5.23)
+- 🌟 Collapse support `items` config (antd ≥ 5.6)
+- 🌟 Cascader support `optionRender` (antd ≥ 5.16)
+
 ## 4.67.0
 
 `2026-07-31`

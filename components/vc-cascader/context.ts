@@ -24,6 +24,7 @@ export interface CascaderContextProps {
   loadingIcon: Ref<VueNode>;
   dropdownMenuColumnStyle: Ref<CSSProperties>;
   customSlots: Ref<Record<string, Function>>;
+  optionRender?: Ref<((option: DefaultOptionType) => VueNode) | undefined>;
 }
 
 const CascaderContextKey: InjectionKey<CascaderContextProps> = Symbol('CascaderContextKey');

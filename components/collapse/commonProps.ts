@@ -1,5 +1,5 @@
-import type { Key } from '../_util/type';
-import { booleanType, someType, stringType, functionType } from '../_util/type';
+import type { Key, VueNode } from '../_util/type';
+import { arrayType, booleanType, someType, stringType, functionType } from '../_util/type';
 import PropTypes from '../_util/vue-types';
 
 export type CollapsibleType = 'header' | 'icon' | 'disabled';
@@ -20,6 +20,20 @@ export interface PanelProps {
   collapsible?: CollapsibleType;
 }
 
+/** Collapse panel config for `items` (antd ≥ 5.6). */
+export type CollapseItemType = {
+  key?: string | number;
+  label?: VueNode;
+  children?: VueNode;
+  collapsible?: CollapsibleType;
+  showArrow?: boolean;
+  forceRender?: boolean;
+  /** @deprecated Use `collapsible="disabled"` instead */
+  disabled?: boolean;
+  extra?: VueNode;
+  headerClass?: string;
+};
+
 const collapseProps = () => ({
   prefixCls: String,
   activeKey: someType<ActiveKeyType>([Array, Number, String]),
@@ -37,6 +51,8 @@ const collapseProps = () => ({
   ghost: booleanType(),
   /** Collapse size (antd ≥ 5.2). */
   size: stringType<CollapseSize>(),
+  /** Collapse panels config (antd ≥ 5.6). */
+  items: arrayType<CollapseItemType[]>(),
   onChange: functionType<(key: Key | Key[]) => void>(),
   'onUpdate:activeKey': functionType<(key: Key | Key[]) => void>(),
 });
