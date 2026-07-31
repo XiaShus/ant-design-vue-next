@@ -16,7 +16,7 @@ By clicking the input box, you can select a time from a popup panel.
 
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
-| allowClear | Whether allow clearing text | boolean | true |  |
+| allowClear | Whether allow clearing text | boolean \| { clearIcon?: VueNode } | true | 4.70.0（object） |
 | autofocus | If get focus when component mounted | boolean | false |  |
 | bordered | Whether has border style | boolean | true |  |
 | clearIcon | The custom clear icon | v-slot:clearIcon | - |  |

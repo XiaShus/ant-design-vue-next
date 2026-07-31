@@ -11,6 +11,10 @@ export interface CheckboxOptionType {
   disabled?: boolean;
   indeterminate?: boolean;
   onChange?: (e: CheckboxChangeEvent) => void;
+  /** Per-option className (antd ≥ 5.25). */
+  className?: string;
+  /** Per-option style (antd ≥ 5.25). */
+  style?: Record<string, any>;
 }
 
 export interface CheckboxChangeEvent {

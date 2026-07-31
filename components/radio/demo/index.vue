@@ -9,6 +9,7 @@
     <radio-group-with-name />
     <radio-group />
     <size />
+    <block />
   </demo-sort>
 </template>
 
@@ -22,6 +23,7 @@ import RadioGroupWithName from './radioGroup-with-name.vue';
 import RadioGroup from './radioGroup.vue';
 import RadioButtonSolid from './radioButton-solid.vue';
 import Size from './size.vue';
+import Block from './block.vue';
 
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
@@ -40,6 +42,7 @@ export default defineComponent({
     RadioGroupWithName,
     RadioGroup,
     Size,
+    Block,
   },
 });
 </script>

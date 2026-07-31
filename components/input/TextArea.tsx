@@ -165,6 +165,7 @@ export default defineComponent({
     };
 
     const handleReset = (e: MouseEvent) => {
+      props.onClear?.(e);
       resolveOnChange(resizableTextArea.value.textArea, e, triggerChange);
       setValue('', () => {
         focus();
@@ -196,7 +197,7 @@ export default defineComponent({
       const { class: customClass } = attrs;
       const mergedVariant = variant.value;
       const resizeProps = {
-        ...omit(props, ['allowClear', 'bordered', 'variant']),
+        ...omit(props, ['allowClear', 'bordered', 'variant', 'classNames', 'styles', 'onClear']),
         ...attrs,
         class: [
           {
@@ -209,7 +210,9 @@ export default defineComponent({
           },
           getStatusClassNames(prefixCls.value, mergedStatus.value),
           hashId.value,
+          props.classNames?.textarea,
         ],
+        style: { ...(attrs.style as CSSProperties), ...props.styles?.textarea },
         disabled: disabled.value,
         showCount: null,
         prefixCls: prefixCls.value,
@@ -272,8 +275,10 @@ export default defineComponent({
 
       let textareaNode = (
         <ClearableLabeledInput
-          {...inputProps}
+          {...omit(inputProps, ['classNames', 'styles', 'onClear'])}
           value={mergedValue.value}
+          affixWrapperClassName={props.classNames?.affixWrapper}
+          affixWrapperStyle={props.styles?.affixWrapper}
           v-slots={{ element: renderTextArea }}
           status={props.status}
         />
@@ -304,8 +309,9 @@ export default defineComponent({
               `${prefixCls.value}-textarea-show-count`,
               customClass,
               hashId.value,
+              props.classNames?.count,
             )}
-            style={style as CSSProperties}
+            style={{ ...(style as CSSProperties), ...props.styles?.count }}
             data-count={typeof dataCount !== 'object' ? dataCount : undefined}
           >
             {textareaNode}

@@ -4,6 +4,15 @@
 
 ---
 
+## 4.70.0
+
+`2026-07-31`
+
+- 🌟 Input / TextArea support semantic `classNames` / `styles`, object `allowClear`, and `onClear` (antd ≥ 5.4 / 5.20)
+- 🌟 Radio.Group support `block` and option `className` / `style` (antd ≥ 5.21 / 5.25)
+- 🌟 Checkbox.Group options support `className` / `style` (antd ≥ 5.25)
+- 🌟 DatePicker / RangePicker / TimePicker support object `allowClear` `{ clearIcon }` (antd ≥ 5.8)
+
 ## 4.69.0
 
 `2026-07-31`

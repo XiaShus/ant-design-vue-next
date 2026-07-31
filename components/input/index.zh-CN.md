@@ -22,9 +22,11 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*sBqqTatJ-AkAAA
 | --- | --- | --- | --- | --- |
 | addonAfter | 带标签的 input，设置后置标签 | string\|slot |  |  |
 | addonBefore | 带标签的 input，设置前置标签 | string\|slot |  |  |
-| allowClear | 可以点击清除图标删除内容 | boolean |  |  |
+| allowClear | 可以点击清除图标删除内容 | boolean \| { clearIcon?: VueNode } |  | 4.70.0（object） |
 | bordered | 是否有边框，请优先使用 `variant` | boolean | true | 3.0 |
 | variant | 形态变体（对齐 antd ≥ 5.13） | `outlined` \| `filled` \| `borderless` \| `underlined` | `outlined` | 4.8.0 |
+| classNames | 语义化结构 className | Record&lt;SemanticDOM, string> | - | 4.70.0 |
+| styles | 语义化结构 style | Record&lt;SemanticDOM, CSSProperties> | - | 4.70.0 |
 | clearIcon | 自定义清除图标 （allowClear 为 true 时生效） | slot | `<CloseCircleFilled />` | 3.3.0 |
 | defaultValue | 输入框默认内容 | string |  |  |
 | disabled | 是否禁用状态，默认为 false | boolean | false |  |
@@ -40,10 +42,11 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*sBqqTatJ-AkAAA
 
 ### Input 事件
 
-| 事件名称   | 说明                   | 回调参数    |     |
-| ---------- | ---------------------- | ----------- | --- |
-| change     | 输入框内容变化时的回调 | function(e) |     |
-| pressEnter | 按下回车的回调         | function(e) |     |
+| 事件名称   | 说明                   | 回调参数    | 版本   |
+| ---------- | ---------------------- | ----------- | ------ |
+| change     | 输入框内容变化时的回调 | function(e) |        |
+| clear      | 点击清除图标时的回调   | function(e) | 4.70.0 |
+| pressEnter | 按下回车的回调         | function(e) |        |
 
 > 如果 `Input` 在 `Form.Item` 内，并且 `Form.Item` 设置了 `id` 和 `options` 属性，则 `value` `defaultValue` 和 `id` 属性会被自动设置。
 
@@ -51,7 +54,9 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*sBqqTatJ-AkAAA
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |  |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| allowClear | 可以点击清除图标删除内容 | boolean |  | 1.5.0 |  |
+| allowClear | 可以点击清除图标删除内容 | boolean \| { clearIcon?: VueNode } |  | 4.70.0（object） |  |
+| classNames | 语义化结构 className | Record&lt;`textarea` \| `count` \| `affixWrapper`, string> | - | 4.70.0 |  |
+| styles | 语义化结构 style | Record&lt;`textarea` \| `count` \| `affixWrapper`, CSSProperties> | - | 4.70.0 |  |
 | autosize | 自适应内容高度，可设置为 `true | false` 或对象：`{ minRows: 2, maxRows: 6 }` | boolean\|object | false |  |
 | defaultValue | 输入框默认内容 | string |  |  |  |
 | \_ | showCount | 是否展示字数 | boolean \| { formatter: (info: { value: string, count: number, maxLength?: number }) => string } | false |  |  | \_ |
@@ -59,9 +64,10 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*sBqqTatJ-AkAAA
 
 ### TextArea 事件
 
-| 事件名称   | 说明           | 回调参数    |
-| ---------- | -------------- | ----------- |
-| pressEnter | 按下回车的回调 | function(e) |
+| 事件名称   | 说明                 | 回调参数    | 版本   |
+| ---------- | -------------------- | ----------- | ------ |
+| clear      | 点击清除图标时的回调 | function(e) | 4.70.0 |
+| pressEnter | 按下回车的回调       | function(e) |        |
 
 `Textarea` 的其他属性和浏览器自带的 [textarea](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) 一致。
 

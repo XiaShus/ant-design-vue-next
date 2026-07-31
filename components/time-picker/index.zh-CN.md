@@ -17,7 +17,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*1hDmQJIDFJQAAA
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
-| allowClear | 是否展示清除按钮 | boolean | true |  |
+| allowClear | 是否展示清除按钮 | boolean \| { clearIcon?: VueNode } | true | 4.70.0（object） |
 | autofocus | 自动获取焦点 | boolean | false |  |
 | bordered | 是否有边框 | boolean | true |  |
 | clearIcon | 自定义的清除图标 | v-slot:clearIcon | - |  |

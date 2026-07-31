@@ -39,7 +39,7 @@ Checkbox component.
 | --- | --- | --- | --- | --- |
 | disabled | Disable all checkboxes | boolean | false |  |
 | name | The `name` property of all `input[type="checkbox"]` children | string | - | 1.5.0 |
-| options | Specifies options, you can customize `label` with slot = "label" slot-scope="option" | string\[] \| Array&lt;{ label: string value: string disabled?: boolean, indeterminate?: boolean, onChange?: function }> | \[] |  |
+| options | Specifies options, you can customize `label` with slot = "label" slot-scope="option" | string\[] \| Array&lt;{ label: string value: string disabled?: boolean, indeterminate?: boolean, onChange?: function, className?: string, style?: CSSProperties }> | \[] | 4.70.0（className/style） |
 | value(v-model) | Used for setting the currently selected value. | (boolean \| string \| number)\[] | \[] |  |
 
 #### events

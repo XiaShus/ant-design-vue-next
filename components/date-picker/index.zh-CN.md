@@ -79,7 +79,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*3OpRQKcygo8AAA
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
-| allowClear | 是否显示清除按钮 | boolean | true |  |
+| allowClear | 是否显示清除按钮 | boolean \| { clearIcon?: VueNode } | true | 4.70.0（object） |
 | autofocus | 自动获取焦点 | boolean | false |  |
 | bordered | 是否有边框，请优先使用 `variant` | boolean | true |  |
 | variant | 形态变体（对齐 antd ≥ 5.13） | `outlined` \| `filled` \| `borderless` \| `underlined` | `outlined` | 4.9.0 |

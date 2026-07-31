@@ -106,7 +106,8 @@ export default defineComponent({
             value={option.value}
             checked={mergedValue.value.indexOf(option.value) !== -1}
             onChange={option.onChange}
-            class={`${groupPrefixCls.value}-item`}
+            class={[`${groupPrefixCls.value}-item`, option.className]}
+            style={option.style}
           >
             {slots.label !== undefined ? slots.label?.(option) : option.label}
           </Checkbox>

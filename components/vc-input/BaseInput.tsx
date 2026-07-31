@@ -33,7 +33,9 @@ export default defineComponent({
       }
       const needClear = !disabled && !readonly && value;
       const className = `${prefixCls}-clear-icon`;
-      const iconNode = slots.clearIcon?.() || '*';
+      const allowClearIcon =
+        typeof allowClear === 'object' && allowClear ? (allowClear as any).clearIcon : undefined;
+      const iconNode = allowClearIcon ?? slots.clearIcon?.() ?? '*';
       return (
         <span
           onClick={handleReset}
@@ -92,8 +94,16 @@ export default defineComponent({
           affixWrapperClassName,
         );
 
+        const {
+          prefixClassName,
+          prefixStyle,
+          suffixClassName,
+          suffixStyle,
+          affixWrapperStyle,
+          inputStyle,
+        } = props;
         const suffixNode = (suffix || allowClear) && (
-          <span class={`${prefixCls}-suffix`}>
+          <span class={classNames(`${prefixCls}-suffix`, suffixClassName)} style={suffixStyle}>
             {getClearIcon()}
             {suffix}
           </span>
@@ -102,14 +112,18 @@ export default defineComponent({
         element = (
           <span
             class={affixWrapperCls}
-            style={attrs.style as CSSProperties}
+            style={{ ...(attrs.style as CSSProperties), ...affixWrapperStyle } as CSSProperties}
             hidden={!hasAddon({ addonAfter, addonBefore }) && hidden}
             onMousedown={onInputMouseDown}
             ref={containerRef}
           >
-            {prefix && <span class={`${prefixCls}-prefix`}>{prefix}</span>}
+            {prefix && (
+              <span class={classNames(`${prefixCls}-prefix`, prefixClassName)} style={prefixStyle}>
+                {prefix}
+              </span>
+            )}
             {cloneElement(inputElement, {
-              style: null,
+              style: inputStyle ?? null,
               value,
               hidden: null,
             })}

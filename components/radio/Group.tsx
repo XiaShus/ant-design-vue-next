@@ -22,6 +22,10 @@ export type RadioGroupChildOption = {
   label?: any;
   value: any;
   disabled?: boolean;
+  /** Per-option className (antd ≥ 5.25). */
+  className?: string;
+  /** Per-option style (antd ≥ 5.25). */
+  style?: Record<string, any>;
 };
 
 export const radioGroupProps = () => ({
@@ -34,6 +38,8 @@ export const radioGroupProps = () => ({
   buttonStyle: stringType<RadioGroupButtonStyle>('outline'),
   id: String,
   optionType: stringType<RadioGroupOptionType>('default'),
+  /** Option nodes as block (antd ≥ 5.21). */
+  block: booleanType(),
   onChange: functionType<(e: RadioChangeEvent) => void>(),
   'onUpdate:value': functionType<(val: any) => void>(),
 });
@@ -101,6 +107,7 @@ export default defineComponent({
         {
           [`${groupPrefixCls}-${size.value}`]: size.value,
           [`${groupPrefixCls}-rtl`]: direction.value === 'rtl',
+          [`${groupPrefixCls}-block`]: props.block,
         },
         attrs.class,
         hashId.value,
@@ -122,7 +129,7 @@ export default defineComponent({
               </Radio>
             );
           }
-          const { value, disabled, label } = option as RadioGroupChildOption;
+          const { value, disabled, label, className, style } = option as RadioGroupChildOption;
           return (
             <Radio
               key={`radio-group-value-options-${value}`}
@@ -130,6 +137,8 @@ export default defineComponent({
               disabled={disabled || props.disabled}
               value={value}
               checked={stateValue.value === value}
+              class={className}
+              style={style}
             >
               {label}
             </Radio>

@@ -51,6 +51,15 @@ const getGroupRadioStyle: GenerateStyle<RadioToken> = token => {
         direction: 'rtl',
       },
 
+      [`&${groupPrefixCls}-block`]: {
+        display: 'flex',
+
+        [`> *`]: {
+          flex: 1,
+          textAlign: 'center',
+        },
+      },
+
       [`${antCls}-badge ${antCls}-badge-count`]: {
         zIndex: 1,
       },

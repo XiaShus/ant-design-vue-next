@@ -249,8 +249,11 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
               placeholder={getPlaceholder(locale, mergedPicker, placeholder)}
               suffixIcon={suffixNode}
               dropdownAlign={transPlacement2DropdownAlign(direction.value, props.placement)}
-              clearIcon={clearIcon || <CloseCircleFilled />}
-              allowClear={allowClear}
+              clearIcon={
+                (typeof allowClear === 'object' && allowClear?.clearIcon) ||
+                clearIcon || <CloseCircleFilled />
+              }
+              allowClear={!!allowClear}
               transitionName={transitionName || `${rootPrefixCls.value}-slide-up`}
               {...restProps}
               {...additionalOverrideProps}

@@ -47,7 +47,8 @@ function commonProps<DateType = any>() {
     popupStyle: objectType<CSSProperties>(),
     transitionName: String,
     placeholder: String,
-    allowClear: booleanType(),
+    /** Support boolean or `{ clearIcon }` (antd ≥ 5.8). */
+    allowClear: someType<boolean | { clearIcon?: any }>([Boolean, Object]),
     autofocus: booleanType(),
     disabled: booleanType(),
     tabindex: Number,
@@ -133,7 +134,7 @@ export interface CommonProps<DateType> {
   popupStyle?: CSSProperties;
   transitionName?: string;
   placeholder?: string;
-  allowClear?: boolean;
+  allowClear?: boolean | { clearIcon?: VueNode };
   autofocus?: boolean;
   disabled?: boolean;
   tabindex?: number;

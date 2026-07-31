@@ -116,6 +116,7 @@ export default defineComponent({
     };
 
     const handleReset = (e: MouseEvent) => {
+      props.onClear?.(e);
       resolveOnChange(inputRef.value.input as HTMLInputElement, e, triggerChange);
       setValue('', () => {
         focus();

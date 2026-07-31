@@ -1,8 +1,8 @@
-import type { ExtractPropTypes, PropType } from 'vue';
+import type { CSSProperties, ExtractPropTypes, PropType } from 'vue';
 import PropTypes from '../_util/vue-types';
 import type { SizeType } from '../config-provider';
 import type { VueNode } from '../_util/type';
-import { stringType } from '../_util/type';
+import { functionType, objectType, someType, stringType } from '../_util/type';
 import type {
   ChangeEventHandler,
   CompositionEventHandler,
@@ -21,10 +21,19 @@ export const commonInputProps = () => {
     suffix: PropTypes.any,
     clearIcon: PropTypes.any,
     affixWrapperClassName: String,
+    affixWrapperStyle: objectType<CSSProperties>(),
     groupClassName: String,
     wrapperClassName: String,
     inputClassName: String,
-    allowClear: { type: Boolean, default: undefined },
+    inputStyle: objectType<CSSProperties>(),
+    prefixClassName: String,
+    prefixStyle: objectType<CSSProperties>(),
+    suffixClassName: String,
+    suffixStyle: objectType<CSSProperties>(),
+    /** Support boolean or `{ clearIcon }` (antd ≥ 5.20). */
+    allowClear: someType<boolean | { clearIcon?: VueNode }>([Boolean, Object]),
+    /** Triggered when clear icon is clicked (antd ≥ 5.20). */
+    onClear: functionType<(e?: MouseEvent) => void>(),
   };
 };
 export const baseInputProps = () => {

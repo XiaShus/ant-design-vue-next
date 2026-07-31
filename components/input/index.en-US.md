@@ -21,9 +21,11 @@ A basic widget for getting the user input is a text field. Keyboard and mouse ca
 | --- | --- | --- | --- | --- |
 | addonAfter | The label text displayed after (on the right side of) the input field. | string\|slot |  |  |
 | addonBefore | The label text displayed before (on the left side of) the input field. | string\|slot |  |  |
-| allowClear | allow to remove input content with clear icon | boolean |  |  |
+| allowClear | allow to remove input content with clear icon | boolean \| { clearIcon?: VueNode } |  | 4.70.0（object） |
 | bordered | Whether has border style; prefer `variant` | boolean | true | 4.5.0 |
 | variant | Variants of Input (antd ≥ 5.13) | `outlined` \| `filled` \| `borderless` \| `underlined` | `outlined` | 4.8.0 |
+| classNames | Semantic structure className | Record&lt;SemanticDOM, string> | - | 4.70.0 |
+| styles | Semantic structure style | Record&lt;SemanticDOM, CSSProperties> | - | 4.70.0 |
 | clearIcon | custom clear icon when allowClear | slot | `<CloseCircleFilled />` | 3.3.0 |
 | defaultValue | The initial input content | string |  |  |
 | disabled | Whether the input is disabled. | boolean | false |  |
@@ -39,9 +41,10 @@ A basic widget for getting the user input is a text field. Keyboard and mouse ca
 
 ### Input Events
 
-| Events Name | Description | Arguments |  |
+| Events Name | Description | Arguments | Version |
 | --- | --- | --- | --- |
 | change | callback when user input | function(e) |  |
+| clear | callback when clear icon is clicked | function(e) | 4.70.0 |
 | pressEnter | The callback function that is triggered when Enter key is pressed. | function(e) |  |
 
 > When `Input` is used in a `Form.Item` context, if the `Form.Item` has the `id` and `options` props defined then `value`, `defaultValue`, and `id` props of `Input` are automatically set.
@@ -50,7 +53,9 @@ A basic widget for getting the user input is a text field. Keyboard and mouse ca
 
 | Property | Description | Type | Default | Version |  |
 | --- | --- | --- | --- | --- | --- |
-| allowClear | allow to remove input content with clear icon | boolean |  | 1.5.0 |  |
+| allowClear | allow to remove input content with clear icon | boolean \| { clearIcon?: VueNode } |  | 4.70.0（object） |  |
+| classNames | Semantic structure className | Record&lt;`textarea` \| `count` \| `affixWrapper`, string> | - | 4.70.0 |  |
+| styles | Semantic structure style | Record&lt;`textarea` \| `count` \| `affixWrapper`, CSSProperties> | - | 4.70.0 |  |
 | autosize | Height autosize feature, can be set to `true | false`or an object`{ minRows: 2, maxRows: 6 }` | boolean\|object | false |  |
 | defaultValue | The initial input content | string |  |  |  |
 | showCount | Whether show text count | boolean \| { formatter: (info: { value: string, count: number, maxLength?: number }) => string | false |  |  |
@@ -58,9 +63,10 @@ A basic widget for getting the user input is a text field. Keyboard and mouse ca
 
 ### TextArea Events
 
-| Events Name | Description                                                        | Arguments   |
-| ----------- | ------------------------------------------------------------------ | ----------- |
-| pressEnter  | The callback function that is triggered when Enter key is pressed. | function(e) |
+| Events Name | Description | Arguments | Version |
+| --- | --- | --- | --- |
+| clear | callback when clear icon is clicked | function(e) | 4.70.0 |
+| pressEnter | The callback function that is triggered when Enter key is pressed. | function(e) |  |
 
 The rest of the props of `TextArea` are the same as the original [textarea](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea).
 

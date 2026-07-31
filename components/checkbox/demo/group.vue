@@ -37,8 +37,8 @@ import { reactive } from 'vue';
 
 const plainOptions = ['Apple', 'Pear', 'Orange'];
 const options = [
-  { label: 'Apple', value: 'Apple' },
-  { label: 'Pear', value: 'Pear' },
+  { label: 'Apple', value: 'Apple', style: { fontWeight: 600 } },
+  { label: 'Pear', value: 'Pear', className: 'demo-checkbox-option' },
   { label: 'Orange', value: 'Orange' },
 ];
 const optionsWithDisabled = [
@@ -53,3 +53,8 @@ const state = reactive({
   value4: ['Apple'],
 });
 </script>
+<style scoped>
+:deep(.demo-checkbox-option) {
+  color: #1677ff;
+}
+</style>

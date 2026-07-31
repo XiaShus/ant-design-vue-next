@@ -8,6 +8,15 @@
 
 ---
 
+## 4.70.0
+
+`2026-07-31`
+
+- 🌟 Input / TextArea 支持语义化 `classNames` / `styles`、对象型 `allowClear` 与 `onClear`（对齐 antd ≥ 5.4 / 5.20）
+- 🌟 Radio.Group 支持 `block` 与选项 `className` / `style`（对齐 antd ≥ 5.21 / 5.25）
+- 🌟 Checkbox.Group `options` 支持 `className` / `style`（对齐 antd ≥ 5.25）
+- 🌟 DatePicker / RangePicker / TimePicker 支持对象型 `allowClear` `{ clearIcon }`（对齐 antd ≥ 5.8）
+
 ## 4.69.0
 
 `2026-07-31`

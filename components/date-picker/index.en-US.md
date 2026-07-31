@@ -78,7 +78,7 @@ The following APIs are shared by DatePicker, RangePicker.
 
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
-| allowClear | Whether to show clear button | boolean | true |  |
+| allowClear | Whether to show clear button | boolean \| { clearIcon?: VueNode } | true | 4.70.0（object） |
 | autofocus | If get focus when component mounted | boolean | false |  |
 | bordered | Whether has border style; prefer `variant` | boolean | true |  |
 | variant | Variants of picker (antd ≥ 5.13) | `outlined` \| `filled` \| `borderless` \| `underlined` | `outlined` | 4.9.0 |

@@ -122,6 +122,8 @@ export default defineComponent({
         addonAfter = slots.addonAfter?.(),
         addonBefore = slots.addonBefore?.(),
         id = formItemContext.id?.value,
+        classNames: inputClassNames,
+        styles: inputStyles,
         ...rest
       } = props;
       const mergedVariant = variant.value;
@@ -149,6 +151,7 @@ export default defineComponent({
           prefix={prefix}
           suffix={suffixNode}
           allowClear={allowClear}
+          onClear={props.onClear}
           addonAfter={
             addonAfter && (
               <NoCompactStyle>
@@ -175,7 +178,9 @@ export default defineComponent({
             },
             !inputHasPrefixSuffix && getStatusClassNames(prefixClsValue, mergedStatus.value),
             hashId.value,
+            inputClassNames?.input,
           )}
+          inputStyle={inputStyles?.input}
           affixWrapperClassName={classNames(
             {
               [`${prefixClsValue}-affix-wrapper-sm`]: mergedSize.value === 'small',
@@ -187,12 +192,19 @@ export default defineComponent({
             },
             getStatusClassNames(`${prefixClsValue}-affix-wrapper`, mergedStatus.value, hasFeedback),
             hashId.value,
+            inputClassNames?.affixWrapper,
           )}
+          affixWrapperStyle={inputStyles?.affixWrapper}
+          prefixClassName={inputClassNames?.prefix}
+          prefixStyle={inputStyles?.prefix}
+          suffixClassName={inputClassNames?.suffix}
+          suffixStyle={inputStyles?.suffix}
           wrapperClassName={classNames(
             {
               [`${prefixClsValue}-group-rtl`]: direction.value === 'rtl',
             },
             hashId.value,
+            inputClassNames?.wrapper,
           )}
           groupClassName={classNames(
             {
@@ -202,6 +214,7 @@ export default defineComponent({
             },
             getStatusClassNames(`${prefixClsValue}-group-wrapper`, mergedStatus.value, hasFeedback),
             hashId.value,
+            inputClassNames?.group,
           )}
           v-slots={{ ...slots, clearIcon }}
         ></VcInput>,

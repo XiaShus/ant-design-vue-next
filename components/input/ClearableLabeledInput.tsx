@@ -5,14 +5,13 @@ import { cloneElement } from '../_util/vnode';
 import type { CSSProperties, PropType, VNode } from 'vue';
 import { defineComponent } from 'vue';
 import type { VueNode } from '../_util/type';
-import { anyType, tuple } from '../_util/type';
+import { anyType, someType, tuple } from '../_util/type';
 import type { Direction, SizeType } from '../config-provider';
 import type { MouseEventHandler } from '../_util/EventInterface';
 import { hasAddon } from './util';
 import { FormItemInputContext } from '../form/FormItemContext';
 import type { InputStatus } from '../_util/statusUtils';
 import { getMergedStatus, getStatusClassNames } from '../_util/statusUtils';
-
 const ClearableInputType = ['text', 'input'] as const;
 
 export default defineComponent({
@@ -24,7 +23,7 @@ export default defineComponent({
     inputType: PropTypes.oneOf(tuple('text', 'input')),
     value: anyType<VueNode>(),
     defaultValue: anyType<VueNode>(),
-    allowClear: { type: Boolean, default: undefined },
+    allowClear: someType<boolean | { clearIcon?: VueNode }>([Boolean, Object]),
     element: anyType<VueNode>(),
     handleReset: Function as PropType<MouseEventHandler>,
     disabled: { type: Boolean, default: undefined },
@@ -45,25 +44,42 @@ export default defineComponent({
     hidden: Boolean,
     status: String as PropType<InputStatus>,
     hashId: String,
+    affixWrapperClassName: String,
+    affixWrapperStyle: Object as PropType<CSSProperties>,
   },
   setup(props, { slots, attrs }) {
     const statusContext = FormItemInputContext.useInject();
     const renderClearIcon = (prefixCls: string) => {
-      const { value, disabled, readonly, handleReset, suffix = slots.suffix } = props;
+      const { value, disabled, readonly, handleReset, suffix = slots.suffix, allowClear } = props;
       const needClear = !disabled && !readonly && value;
       const className = `${prefixCls}-clear-icon`;
+      const allowClearIcon =
+        typeof allowClear === 'object' && allowClear ? allowClear.clearIcon : undefined;
+      const customIcon = allowClearIcon ?? slots.clearIcon?.();
+      const iconCls = classNames(
+        {
+          [`${className}-hidden`]: !needClear,
+          [`${className}-has-suffix`]: !!suffix,
+        },
+        className,
+      );
+      if (customIcon) {
+        return (
+          <span
+            onClick={handleReset}
+            onMousedown={e => e.preventDefault()}
+            class={iconCls}
+            role="button"
+          >
+            {customIcon}
+          </span>
+        );
+      }
       return (
         <CloseCircleFilled
           onClick={handleReset}
-          // Do not trigger onBlur when clear input
           onMousedown={e => e.preventDefault()}
-          class={classNames(
-            {
-              [`${className}-hidden`]: !needClear,
-              [`${className}-has-suffix`]: !!suffix,
-            },
-            className,
-          )}
+          class={iconCls}
           role="button"
         />
       );
@@ -80,6 +96,8 @@ export default defineComponent({
         addonAfter = slots.addonAfter,
         addonBefore = slots.addonBefore,
         hashId,
+        affixWrapperClassName,
+        affixWrapperStyle,
       } = props;
 
       const { status: contextStatus, hasFeedback } = statusContext;
@@ -108,9 +126,14 @@ export default defineComponent({
           [`${attrs.class}`]: !hasAddon({ addonAfter, addonBefore }) && attrs.class,
         },
         hashId,
+        affixWrapperClassName,
       );
       return (
-        <span class={affixWrapperCls} style={attrs.style as CSSProperties} hidden={hidden}>
+        <span
+          class={affixWrapperCls}
+          style={{ ...(attrs.style as CSSProperties), ...affixWrapperStyle }}
+          hidden={hidden}
+        >
           {cloneElement(element, {
             style: null,
             value,

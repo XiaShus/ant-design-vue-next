@@ -218,8 +218,11 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
             dropdownAlign={transPlacement2DropdownAlign(direction.value, props.placement)}
             placeholder={getRangePlaceholder(locale, picker, placeholder as [string, string])}
             suffixIcon={suffixNode}
-            clearIcon={clearIcon || <CloseCircleFilled />}
-            allowClear={allowClear}
+            clearIcon={
+              (typeof allowClear === 'object' && allowClear?.clearIcon) ||
+              clearIcon || <CloseCircleFilled />
+            }
+            allowClear={!!allowClear}
             transitionName={transitionName || `${rootPrefixCls.value}-slide-up`}
             {...restProps}
             {...additionalOverrideProps}

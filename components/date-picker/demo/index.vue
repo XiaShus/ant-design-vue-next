@@ -18,6 +18,7 @@
     <Suffix />
     <statusVue />
     <placementVue />
+    <AllowClear />
   </demo-sort>
 </template>
 <script>
@@ -39,6 +40,7 @@ import Bordered from './bordered.vue';
 import RangePicker from './range-picker.vue';
 import placementVue from './placement.vue';
 import statusVue from './status.vue';
+import AllowClear from './allow-clear.vue';
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
 import { defineComponent } from 'vue';
@@ -65,6 +67,7 @@ export default defineComponent({
     SelectInRnage,
     Bordered,
     RangePicker,
+    AllowClear,
   },
 });
 </script>
