@@ -96,6 +96,8 @@ export type PickerPanelDateProps<DateType> = {
   picker?: 'date';
   showToday?: boolean;
   showNow?: boolean;
+  /** Show week number column (antd ≥ 5.23 Calendar). */
+  showWeek?: boolean;
 
   // Time
   showTime?: boolean | SharedTimeProps<DateType>;
@@ -139,6 +141,7 @@ function PickerPanel<DateType>() {
       showNow: { type: Boolean, default: undefined },
       showTime: [Boolean, Object],
       showToday: Boolean,
+      showWeek: { type: Boolean, default: undefined },
       renderExtraFooter: Function,
       dateRender: Function,
       hideHeader: { type: Boolean, default: undefined },

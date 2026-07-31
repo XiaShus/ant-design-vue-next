@@ -35,6 +35,7 @@ customize the progress dot by setting a scoped slot
 | ~~dateFullCellRender~~ | Customize the display of the date cell by setting a scoped slot, the returned content will override the cell. Please use `fullCellRender` instead | v-slot:dateFullCellRender="{current: dayjs}" | - |  |
 | disabledDate | Function that specifies the dates that cannot be selected | (currentDate: dayjs) => boolean | - |  |
 | fullscreen | Whether to display in full-screen | boolean | `true` |  |
+| showWeek | Whether to display week number | boolean | `false` | 4.62.0 |
 | headerRender | render custom header in panel | v-slot:headerRender="{value: dayjs, type: string, onChange: f(), onTypeChange: f()}" | - | 1.5.0 |
 | locale | The calendar's locale | object | [default](https://github.com/vueComponent/ant-design-vue/blob/main/components/date-picker/locale/example.json) |  |
 | mode | The display mode of the calendar | `month` \| `year` | `month` |  |

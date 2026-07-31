@@ -1,6 +1,7 @@
 <template>
   <demo-sort :cols="1">
     <Basic />
+    <Week />
     <Card />
     <NoticeCalendar />
     <Select />
@@ -10,6 +11,7 @@
 
 <script lang="ts">
 import Basic from './basic.vue';
+import Week from './week.vue';
 import Card from './card.vue';
 import NoticeCalendar from './notice-calendar.vue';
 import Select from './select.vue';
@@ -23,6 +25,7 @@ export default defineComponent({
   US,
   components: {
     Basic,
+    Week,
     Card,
     NoticeCalendar,
     Select,

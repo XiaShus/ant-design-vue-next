@@ -106,6 +106,11 @@ export const genCalendarStyles = (token: CalendarToken): CSSObject => {
           },
         },
       },
+      [`${componentCls}-cell-week`]: {
+        color: token.colorTextTertiary,
+        pointerEvents: 'none',
+        verticalAlign: 'top',
+      },
       [`${componentCls}-cell`]: {
         '&::before': {
           display: 'none',

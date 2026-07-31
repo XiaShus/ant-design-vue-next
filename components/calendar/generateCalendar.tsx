@@ -83,6 +83,8 @@ export interface CalendarProps<DateType> {
   defaultValue?: DateType | string;
   mode?: CalendarMode;
   fullscreen?: boolean;
+  /** Whether to display week number column (antd ≥ 5.23). */
+  showWeek?: boolean;
   onChange?: (date: DateType | string) => void;
   'onUpdate:value'?: (date: DateType | string) => void;
   onPanelChange?: (date: DateType | string, mode: CalendarMode) => void;
@@ -141,6 +143,7 @@ function generateCalendar<
       },
       mode: { type: String as PropType<Props['mode']>, default: undefined },
       fullscreen: { type: Boolean as PropType<Props['fullscreen']>, default: undefined },
+      showWeek: { type: Boolean as PropType<Props['showWeek']>, default: undefined },
       onChange: { type: Function as PropType<Props['onChange']>, default: undefined },
       'onUpdate:value': { type: Function as PropType<Props['onUpdate:value']>, default: undefined },
       onPanelChange: { type: Function as PropType<Props['onPanelChange']>, default: undefined },
@@ -293,6 +296,7 @@ function generateCalendar<
           fullCellRender,
           headerRender = slots?.headerRender,
           fullscreen = true,
+          showWeek,
           validRange,
         } = props;
 
@@ -427,6 +431,7 @@ function generateCalendar<
               mode={panelMode.value}
               picker={panelMode.value}
               disabledDate={mergedDisabledDate.value}
+              showWeek={showWeek}
               hideHeader
             />
           </div>,

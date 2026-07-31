@@ -80,7 +80,7 @@
 | --- | --- | --- | --- | --- | --- |
 | Data Display | Avatar | ✅ | ✅ | [avatar](../../components/avatar) | 🔄 Group `max` ✅ 4.28.0 |
 | Data Display | Badge | ✅ | ✅ | [badge](../../components/badge) | — |
-| Data Display | Calendar | ✅ | ✅ | [calendar](../../components/calendar) | 🔄 `cellRender` / `fullCellRender` ✅ 4.60.0 |
+| Data Display | Calendar | ✅ | ✅ | [calendar](../../components/calendar) | 🔄 `cellRender` / `fullCellRender` ✅ 4.60.0；🔄 `showWeek` ✅ 4.62.0 |
 | Data Display | Card | ✅ | ✅ | [card](../../components/card) | 🔄 `variant` ✅ 4.29.0 |
 | Data Display | Carousel | ✅ | ✅ | [carousel](../../components/carousel) | — |
 | Data Display | Collapse | ✅ | ✅ | [collapse](../../components/collapse) | 🔄 `destroyOnHidden` ✅ 4.14.0；🔄 `size` ✅ 4.30.0 |
@@ -188,9 +188,10 @@
 57. ~~Progress `rounding`~~ — ✅ `4.59.0`
 58. ~~Calendar `cellRender` / `fullCellRender`~~ — ✅ `4.60.0`
 59. ~~DatePicker `cellRender`~~ — ✅ `4.61.0`
-60. Table `virtual` 按需拆版（多日）
-61. ColorPicker 渐变 `mode`
-62. Segmented `vertical`（需 MotionThumb 竖向）
+60. ~~Calendar `showWeek`~~ — ✅ `4.62.0`
+61. Table `virtual` 按需拆版（多日）
+62. ColorPicker 渐变 `mode`
+63. Segmented `vertical`（需 MotionThumb 竖向）
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -200,4 +201,4 @@
 
 ---
 
-_上次更新：`4.61.0` DatePicker.cellRender。每发一版请同步改本表。_
+_上次更新：`4.62.0` Calendar.showWeek。每发一版请同步改本表。_

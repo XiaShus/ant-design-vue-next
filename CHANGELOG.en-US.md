@@ -4,6 +4,12 @@
 
 ---
 
+## 4.62.0
+
+`2026-07-31`
+
+- 🌟 Calendar supports `showWeek` week number column (antd ≥ 5.23)
+
 ## 4.61.0
 
 `2026-07-31`

@@ -34,6 +34,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*-p-wQLik200AAA
 | ~~dateFullCellRender~~ | 作用域插槽，自定义渲染日期单元格，返回内容覆盖单元格。请使用 `fullCellRender` 替代 | v-slot:dateFullCellRender="{current: dayjs}" | - |  |
 | disabledDate | 不可选择的日期 | (currentDate: dayjs) => boolean | - |  |
 | fullscreen | 是否全屏显示 | boolean | true |  |
+| showWeek | 是否展示周数 | boolean | false | 4.62.0 |
 | headerRender | 自定义头部内容 | v-slot:headerRender="{value: dayjs, type: string, onChange: f(), onTypeChange: f()}" | - |  |
 | locale | 国际化配置 | object | [默认配置](https://github.com/vueComponent/ant-design-vue/blob/main/components/date-picker/locale/example.json) |  |
 | mode | 初始模式，`month/year` | string | month |  |

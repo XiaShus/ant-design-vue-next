@@ -13,6 +13,8 @@ const DATE_ROW_COUNT = 6;
 export type DatePanelProps<DateType> = {
   active?: boolean;
   dateRender?: DateRender<DateType>;
+  /** Show week number column (antd Calendar `showWeek` / DatePanel). */
+  showWeek?: boolean;
 
   // Used for week panel
   panelName?: string;
@@ -29,11 +31,14 @@ function DatePanel<DateType>(_props: DatePanelProps<DateType>) {
     active,
     operationRef,
     generateConfig,
+    locale,
     value,
     viewDate,
     onViewDateChange,
     onPanelChange,
     onSelect,
+    showWeek,
+    prefixColumn: customPrefixColumn,
   } = props;
   const panelPrefixCls = `${prefixCls}-${panelName}-panel`;
   // ======================= Keyboard =======================
@@ -67,6 +72,17 @@ function DatePanel<DateType>(_props: DatePanelProps<DateType>) {
     onViewDateChange(newDate);
     onPanelChange(null, newDate);
   };
+
+  const cellPrefixCls = `${prefixCls}-cell`;
+  const prefixColumn =
+    customPrefixColumn ||
+    (showWeek
+      ? (date: DateType) => (
+          <td key="week" class={classNames(cellPrefixCls, `${cellPrefixCls}-week`)}>
+            {generateConfig.locale.getWeek(locale.locale, date)}
+          </td>
+        )
+      : undefined);
 
   return (
     <div
@@ -106,6 +122,7 @@ function DatePanel<DateType>(_props: DatePanelProps<DateType>) {
         value={value}
         viewDate={viewDate}
         rowCount={DATE_ROW_COUNT}
+        prefixColumn={prefixColumn}
       />
     </div>
   );
