@@ -25,6 +25,7 @@ import type { VueNode } from '../../_util/type';
 import useConfigInject from '../../config-provider/hooks/useConfigInject';
 import { getTransitionProps } from '../../_util/transition';
 import { booleanType, stringType, functionType, arrayType, objectType } from '../../_util/type';
+import { isPictureCardType } from '../utils';
 
 export const listItemProps = () => {
   return {
@@ -116,7 +117,7 @@ export default defineComponent({
 
       const iconNode = iconRender({ file });
       let icon = <div class={`${prefixCls}-text-icon`}>{iconNode}</div>;
-      if (listType === 'picture' || listType === 'picture-card') {
+      if (listType === 'picture' || isPictureCardType(listType)) {
         if (mergedStatus.value === 'uploading' || (!file.thumbUrl && !file.url)) {
           const uploadingClassName = {
             [`${prefixCls}-list-item-thumbnail`]: true,
@@ -176,7 +177,7 @@ export default defineComponent({
               title: locale.downloadFile,
             })
           : null;
-      const downloadOrDelete = listType !== 'picture-card' && (
+      const downloadOrDelete = !isPictureCardType(listType) && (
         <span
           key="download-delete"
           class={[
@@ -235,7 +236,7 @@ export default defineComponent({
         </a>
       ) : null;
 
-      const pictureCardActions = listType === 'picture-card' &&
+      const pictureCardActions = isPictureCardType(listType) &&
         mergedStatus.value !== 'uploading' && (
           <span class={`${prefixCls}-list-item-actions`}>
             {previewIcon}

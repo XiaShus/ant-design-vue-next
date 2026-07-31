@@ -1,7 +1,7 @@
 import type { CSSProperties, ExtractPropTypes, PropType, VNode } from 'vue';
 import { watch, defineComponent, ref, reactive, onMounted } from 'vue';
 import { initDefaultProps, findDOMNode } from '../_util/props-util';
-import { withInstall } from '../_util/type';
+import { booleanType, withInstall } from '../_util/type';
 import { getOffsetLeft } from './util';
 import classNames from '../_util/classNames';
 import PropTypes from '../_util/vue-types';
@@ -24,6 +24,8 @@ export const rateProps = () => ({
   value: Number,
   allowHalf: { type: Boolean, default: undefined },
   allowClear: { type: Boolean, default: undefined },
+  /** Support keyboard arrow interaction (antd ≥ 5.18). */
+  keyboard: booleanType(true),
   tooltips: Array as PropType<string[]>,
   disabled: { type: Boolean, default: undefined },
   character: PropTypes.any,
@@ -134,7 +136,11 @@ const Rate = defineComponent({
     };
     const onKeyDown = (event: KeyboardEvent) => {
       const { keyCode } = event;
-      const { count, allowHalf } = props;
+      const { count, allowHalf, keyboard } = props;
+      if (keyboard === false) {
+        emit('keydown', event);
+        return;
+      }
       const reverse = direction.value === 'rtl';
       if (keyCode === KeyCode.RIGHT && state.value < count && !reverse) {
         if (allowHalf) {

@@ -4,6 +4,7 @@
     <Avatar />
     <DefaultFileList />
     <PictureCard />
+    <PictureCircle />
     <FileList />
     <Drag />
     <PictureStyle />
@@ -23,6 +24,7 @@ import Basic from './basic.vue';
 import Avatar from './avatar.vue';
 import DefaultFileList from './defaultFileList.vue';
 import PictureCard from './picture-card.vue';
+import PictureCircle from './picture-circle.vue';
 import FileList from './fileList.vue';
 import Drag from './drag.vue';
 import PictureStyle from './picture-style.vue';
@@ -47,6 +49,7 @@ export default defineComponent({
     Avatar,
     DefaultFileList,
     PictureCard,
+    PictureCircle,
     FileList,
     Drag,
     PictureStyle,

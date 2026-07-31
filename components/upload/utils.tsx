@@ -1,4 +1,9 @@
-import type { FileType, UploadFile, InternalUploadFile } from './interface';
+import type { FileType, UploadFile, InternalUploadFile, UploadListType } from './interface';
+
+/** picture-card and picture-circle share the same list layout. */
+export function isPictureCardType(listType?: UploadListType | string) {
+  return listType === 'picture-card' || listType === 'picture-circle';
+}
 
 export function file2Obj(file: FileType): InternalUploadFile {
   return {

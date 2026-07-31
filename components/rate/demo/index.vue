@@ -6,6 +6,7 @@
     <disabled />
     <clear />
     <character />
+    <keyboard />
   </demo-sort>
 </template>
 
@@ -16,6 +17,7 @@ import Text from './text.vue';
 import Disabled from './disabled.vue';
 import Clear from './clear.vue';
 import Character from './character.vue';
+import Keyboard from './keyboard.vue';
 
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
@@ -31,6 +33,7 @@ export default defineComponent({
     Disabled,
     Clear,
     Character,
+    Keyboard,
   },
 });
 </script>

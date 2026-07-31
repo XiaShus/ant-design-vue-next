@@ -7,6 +7,7 @@
     <placement />
     <FormMentions />
     <statusVue />
+    <AllowClear />
   </demo-sort>
 </template>
 <script>
@@ -17,6 +18,7 @@ import Prefix from './prefix.vue';
 import Readonly from './readonly.vue';
 import Placement from './placement.vue';
 import statusVue from './status.vue';
+import AllowClear from './allow-clear.vue';
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
 import { defineComponent } from 'vue';
@@ -32,6 +34,7 @@ export default defineComponent({
     Readonly,
     Placement,
     FormMentions,
+    AllowClear,
   },
 });
 </script>

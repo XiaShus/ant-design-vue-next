@@ -17,9 +17,10 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*M7_ER7GJr6wAAA
 ## API
 
 | 属性           | 说明                   | 类型           | 默认值             |
-| -------------- | ---------------------- | -------------- | ------------------ |
+| -------------- | ---------------------- | -------------- | ------------------ | ------ |
 | allowClear     | 是否允许再次点击后清除 | boolean        | true               |
 | allowHalf      | 是否允许半选           | boolean        | false              |
+| keyboard       | 是否支持键盘方向键操作 | boolean        | true               | 4.72.0 |
 | autofocus      | 自动获取焦点           | boolean        | false              |
 | character      | 自定义字符             | string \| slot | `<StarOutlined />` |
 | count          | star 总数              | number         | 5                  |

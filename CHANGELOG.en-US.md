@@ -4,6 +4,16 @@
 
 ---
 
+## 4.72.0
+
+`2026-07-31`
+
+- 🌟 Upload support `listType="picture-circle"` (antd ≥ 5.2)
+- 🌟 InputNumber support object `controls` `{ upIcon, downIcon }` and `changeOnBlur` (antd ≥ 4.19 / 5.11)
+- 🌟 Rate support `keyboard` (antd ≥ 5.18)
+- 🌟 Form support `clearOnDestroy` (antd ≥ 5.18)
+- 🌟 Mentions support `allowClear` / `onClear` (antd ≥ 5.13 / 5.20)
+
 ## 4.71.0
 
 `2026-07-31`

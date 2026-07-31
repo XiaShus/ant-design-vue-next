@@ -21,8 +21,9 @@ When a numeric value needs to be provided.
 | autofocus | get focus when component mounted | boolean | false |  |
 | bordered | Whether has border style; prefer `variant` | boolean | true | 3.0 |
 | variant | Variants of InputNumber (antd ≥ 5.13) | `outlined` \| `filled` \| `borderless` \| `underlined` | `outlined` | 4.9.0 |
+| changeOnBlur | Trigger `onChange` when blur | boolean | true | 4.72.0 |
 | changeOnWheel | Change value on mouse wheel when focused | boolean | false | 4.71.0 |
-| controls | Whether to show `+-` controls | boolean | true | 3.0 |
+| controls | Whether to show `+-` controls, or customize icons | boolean \| { upIcon?: VueNode; downIcon?: VueNode } | true | 4.72.0（object） |
 | decimalSeparator | decimal separator | string | - |  |
 | defaultValue | initial value | number |  |  |
 | disabled | disable the input | boolean | false |  |

@@ -26,6 +26,7 @@ When you need to mention someone or something.
 | placement | Set popup placement | `top` \| `bottom` | `bottom` |
 | prefix | Set trigger prefix keyword | string \| string\[] | '@' |
 | split | Set split string before and after selected mention | string | ' ' |
+| allowClear | Show clear button | boolean \| { clearIcon?: VueNode } | false | 4.72.0 |
 | status | Set validation status | 'error' \| 'warning' \| 'success' \| 'validating' | - | 3.3.0 |
 | variant | Variants of Mentions (antd ≥ 5.13) | `outlined` \| `filled` \| `borderless` \| `underlined` | `outlined` | 4.12.0 |
 | validateSearch | Customize trigger search logic | (text: string, props: MentionsProps) => void |  |
@@ -39,6 +40,7 @@ When you need to mention someone or something.
 | --- | --- | --- |
 | blur | remove focus | function |
 | change | Trigger when value changed | function(value: string) |
+| clear | callback when clear icon is clicked | function(e) |
 | focus | get focus | function |
 | search | Trigger when prefix hit | function(value: string, prefix: string) |
 | select | Trigger when user select the option | function(option: OptionProps, prefix: string) |

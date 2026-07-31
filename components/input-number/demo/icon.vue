@@ -8,16 +8,16 @@ title:
 
 ## zh-CN
 
-使用 `upIcon` `downIcon` 插槽自定义图标。
+使用 `upIcon` / `downIcon` 插槽，或 `controls` 对象自定义增减图标。
 
 ## en-US
 
-use `upIcon` `downIcon` custom icon
+Customize step icons via `upIcon` / `downIcon` slots or `controls` object.
 
 </docs>
 
 <template>
-  <div>
+  <a-space>
     <a-input-number id="inputNumber" v-model:value="value" :min="1" :max="10">
       <template #upIcon>
         <ArrowUpOutlined />
@@ -26,10 +26,19 @@ use `upIcon` `downIcon` custom icon
         <ArrowDownOutlined />
       </template>
     </a-input-number>
-  </div>
+    <a-input-number
+      v-model:value="value2"
+      :min="1"
+      :max="10"
+      :controls="{ upIcon: upIcon, downIcon: downIcon }"
+    />
+  </a-space>
 </template>
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { h, ref } from 'vue';
 import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons-vue';
 const value = ref<number>(3);
+const value2 = ref<number>(5);
+const upIcon = h(ArrowUpOutlined);
+const downIcon = h(ArrowDownOutlined);
 </script>

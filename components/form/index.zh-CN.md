@@ -46,6 +46,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*ylFATY6w-ygAAA
 | noStyle | 为 `true` 时不带样式，作为纯字段控件使用 | boolean | false | 3.0 |
 | rules | 表单验证规则 | object |  |  |
 | scrollToFirstError | 提交失败自动滚动到第一个错误字段；对象形式支持滚动配置及 `{ focus }` 聚焦该字段 | boolean \| [ScrollFocusOptions](#scrollfocusoptions) | false | 2.0.0；`focus`: 4.57.0 |
+| clearOnDestroy | Form 卸载时清空字段值 | boolean | false | 4.72.0 |
 | feedbackIcons | 自定义 Form.Item 开启 `hasFeedback` 时的校验图标 | [FeedbackIcons](#feedbackicons) | - | 4.40.0 |
 | validateOnRuleChange | 是否在 rules 属性改变后立即触发一次验证 | boolean | true |  |
 | validateTrigger | 统一设置字段校验规则 | string \| string\[] | `change` | 2.0.0 |

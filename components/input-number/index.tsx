@@ -151,6 +151,10 @@ const InputNumber = defineComponent({
         hashId.value,
       );
 
+      const controls = (others as any).controls;
+      const controlsObj = typeof controls === 'object' && controls ? controls : null;
+      const upIconNode = slots.upIcon?.() ?? controlsObj?.upIcon;
+      const downIconNode = slots.downIcon?.() ?? controlsObj?.downIcon;
       let element = (
         <VcInputNumber
           {...omit(others, ['size', 'defaultValue', 'bordered', 'variant'])}
@@ -160,16 +164,23 @@ const InputNumber = defineComponent({
           class={inputNumberClass}
           prefixCls={preCls}
           readonly={readonly}
+          controls={controls === undefined ? true : !!controls}
           onChange={handleChange}
           onBlur={handleBlur}
           onFocus={handleFocus}
           v-slots={{
-            upHandler: slots.upIcon
-              ? () => <span class={`${preCls}-handler-up-inner`}>{slots.upIcon()}</span>
-              : () => <UpOutlined class={`${preCls}-handler-up-inner`} />,
-            downHandler: slots.downIcon
-              ? () => <span class={`${preCls}-handler-down-inner`}>{slots.downIcon()}</span>
-              : () => <DownOutlined class={`${preCls}-handler-down-inner`} />,
+            upHandler: () =>
+              upIconNode ? (
+                <span class={`${preCls}-handler-up-inner`}>{upIconNode}</span>
+              ) : (
+                <UpOutlined class={`${preCls}-handler-up-inner`} />
+              ),
+            downHandler: () =>
+              downIconNode ? (
+                <span class={`${preCls}-handler-down-inner`}>{downIconNode}</span>
+              ) : (
+                <DownOutlined class={`${preCls}-handler-down-inner`} />
+              ),
           }}
         />
       );

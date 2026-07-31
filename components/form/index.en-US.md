@@ -45,6 +45,7 @@ A form consists of one or more form fields whose type includes input, textarea, 
 | noStyle | No style for `true`, used as a pure field control | boolean | false | 3.0 |
 | rules | validation rules of form | object |  |  |
 | scrollToFirstError | Auto scroll to first failed field when submit. Object form supports scroll options and `{ focus }` to focus the field | boolean \| [ScrollFocusOptions](#scrollfocusoptions) | false | 2.0.0；`focus`: 4.57.0 |
+| clearOnDestroy | Clear form values when Form unmounts | boolean | false | 4.72.0 |
 | feedbackIcons | Custom feedback icons when Form.Item has `hasFeedback` | [FeedbackIcons](#feedbackicons) | - | 4.40.0 |
 | validateOnRuleChange | whether to trigger validation when the `rules` prop is changed | boolean | true |  |
 | validateTrigger | Config field validate trigger | string \| string\[] | `change` | 2.0.0 |

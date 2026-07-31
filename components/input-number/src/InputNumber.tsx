@@ -10,8 +10,8 @@ import { watch, computed, shallowRef, defineComponent } from 'vue';
 import type { ChangeEvent, KeyboardEventHandler } from '../../_util/EventInterface';
 import KeyCode from '../../_util/KeyCode';
 import classNames from '../../_util/classNames';
+import type { CustomSlotsType, VueNode } from '../../_util/type';
 import { booleanType, stringType, someType, functionType } from '../../_util/type';
-import type { CustomSlotsType } from '../../_util/type';
 
 /**
  * We support `stringMode` which need handle correct type when user call in onChange
@@ -48,13 +48,16 @@ export const inputNumberProps = () => ({
   max: someType<ValueType>([String, Number]),
   step: someType<ValueType>([String, Number], 1),
   tabindex: Number,
-  controls: booleanType(true),
+  /** Show handlers; object form customizes icons (antd ≥ 4.19). */
+  controls: someType<boolean | { upIcon?: VueNode; downIcon?: VueNode }>([Boolean, Object], true),
   readonly: booleanType(),
   disabled: booleanType(),
   autofocus: booleanType(),
   keyboard: booleanType(true),
   /** Change value on mouse wheel (antd ≥ 5.14). */
   changeOnWheel: booleanType(),
+  /** Trigger onChange when blur (antd ≥ 5.11). Default true. */
+  changeOnBlur: booleanType(true),
 
   /** Parse display value to validate number */
   parser: functionType<(displayValue: string | undefined) => ValueType>(),
@@ -439,7 +442,11 @@ export default defineComponent({
 
     // >>> Focus & Blur
     const onBlur = (e: FocusEvent) => {
-      flushInputValue(false);
+      if (props.changeOnBlur !== false) {
+        flushInputValue(false);
+      } else {
+        setInputValue(decimalValue.value, false);
+      }
       focus.value = false;
       userTypingRef.value = false;
       emit('blur', e);
@@ -518,6 +525,7 @@ export default defineComponent({
         keyboard,
         controls = true,
         autofocus,
+        changeOnBlur: _changeOnBlur,
 
         stringMode,
 
@@ -559,7 +567,7 @@ export default defineComponent({
           onKeyup={onKeyUp}
           onWheel={onWheel}
         >
-          {controls && (
+          {!!controls && (
             <StepHandler
               prefixCls={prefixCls}
               upDisabled={upDisabled.value}

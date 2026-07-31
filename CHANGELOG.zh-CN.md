@@ -8,6 +8,16 @@
 
 ---
 
+## 4.72.0
+
+`2026-07-31`
+
+- 🌟 Upload 支持 `listType="picture-circle"`（对齐 antd ≥ 5.2）
+- 🌟 InputNumber 支持对象型 `controls` `{ upIcon, downIcon }` 与 `changeOnBlur`（对齐 antd ≥ 4.19 / 5.11）
+- 🌟 Rate 支持 `keyboard`（对齐 antd ≥ 5.18）
+- 🌟 Form 支持 `clearOnDestroy`（对齐 antd ≥ 5.18）
+- 🌟 Mentions 支持 `allowClear` / `onClear`（对齐 antd ≥ 5.13 / 5.20）
+
 ## 4.71.0
 
 `2026-07-31`

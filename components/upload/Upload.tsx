@@ -3,7 +3,7 @@ import VcUpload from '../vc-upload';
 import UploadList from './UploadList';
 import type { UploadFile, UploadChangeParam, ShowUploadListInterface, FileType } from './interface';
 import { uploadProps } from './interface';
-import { file2Obj, getFileItem, removeFileItem, updateFileList } from './utils';
+import { file2Obj, getFileItem, isPictureCardType, removeFileItem, updateFileList } from './utils';
 import { useLocaleReceiver } from '../locale-provider/LocaleReceiver';
 import defaultLocale from '../locale/en_US';
 import type { CSSProperties } from 'vue';
@@ -428,13 +428,14 @@ export default defineComponent({
         </div>
       );
 
-      if (listType === 'picture-card') {
+      if (isPictureCardType(listType)) {
         return wrapSSR(
           <span
             {...attrs}
             class={classNames(
               `${prefixCls.value}-wrapper`,
               `${prefixCls.value}-picture-card-wrapper`,
+              listType === 'picture-circle' && `${prefixCls.value}-picture-circle-wrapper`,
               rtlCls,
               attrs.class,
               hashId.value,

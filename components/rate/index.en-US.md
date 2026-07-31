@@ -16,9 +16,10 @@ Rate component.
 ## API
 
 | Property       | Description                             | type           | Default            |
-| -------------- | --------------------------------------- | -------------- | ------------------ |
+| -------------- | --------------------------------------- | -------------- | ------------------ | ------ |
 | allowClear     | whether to allow clear when click again | boolean        | true               |
 | allowHalf      | whether to allow semi selection         | boolean        | false              |
+| keyboard       | support keyboard arrow interaction      | boolean        | true               | 4.72.0 |
 | autofocus      | get focus when component mounted        | boolean        | false              |
 | character      | custom character of rate                | string \| slot | `<StarOutlined />` |
 | count          | star count                              | number         | 5                  |

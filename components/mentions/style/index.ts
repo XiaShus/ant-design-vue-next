@@ -78,6 +78,23 @@ const genMentionsStyle: GenerateStyle<MentionsToken> = token => {
         margin: 'auto',
       },
 
+      [`${componentCls}-clear-icon`]: {
+        margin: 0,
+        color: token.colorTextQuaternary,
+        fontSize: token.fontSizeIcon,
+        cursor: 'pointer',
+        transition: `color ${token.motionDurationSlow}`,
+        '&:hover': {
+          color: token.colorTextTertiary,
+        },
+        '&-hidden': {
+          visibility: 'hidden',
+        },
+        '&-has-suffix': {
+          marginInlineEnd: token.paddingXXS,
+        },
+      },
+
       // ================= Input Area =================
       [`> textarea, ${componentCls}-measure`]: {
         color: colorText,

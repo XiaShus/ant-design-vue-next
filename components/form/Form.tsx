@@ -1,5 +1,5 @@
 import type { ExtractPropTypes, HTMLAttributes, ComponentPublicInstance } from 'vue';
-import { defineComponent, computed, watch, ref } from 'vue';
+import { defineComponent, computed, watch, ref, onUnmounted } from 'vue';
 import PropTypes from '../_util/vue-types';
 import classNames from '../_util/classNames';
 import warning from '../_util/warning';
@@ -74,6 +74,8 @@ export const formProps = () => ({
   variant: stringType<Exclude<VariantType, undefined>>(),
   /** Custom feedback icons for Form.Item hasFeedback (antd ≥ 5.9). */
   feedbackIcons: functionType<FeedbackIcons>(),
+  /** Clear form values when Form unmounts (antd ≥ 5.18). */
+  clearOnDestroy: booleanType(),
   onValuesChange: functionType<Callbacks['onValuesChange']>(),
   onFieldsChange: functionType<Callbacks['onFieldsChange']>(),
   onFinish: functionType<Callbacks['onFinish']>(),
@@ -392,6 +394,12 @@ const Form = defineComponent({
       scrollToField,
       focusField,
     } as FormExpose);
+
+    onUnmounted(() => {
+      if (props.clearOnDestroy) {
+        resetFields();
+      }
+    });
 
     useProvideForm({
       model: computed(() => props.model),

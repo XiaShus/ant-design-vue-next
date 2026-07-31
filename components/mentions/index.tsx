@@ -19,7 +19,9 @@ import warning from '../_util/warning';
 import Spin from '../spin';
 import devWarning from '../vc-util/devWarning';
 import type { CustomSlotsType } from '../_util/type';
-import { booleanType, stringType } from '../_util/type';
+import { booleanType, functionType, someType, stringType } from '../_util/type';
+import CloseCircleFilled from '@ant-design/icons-vue/CloseCircleFilled';
+import type { VueNode } from '../_util/type';
 
 interface MentionsConfig {
   prefix?: string | string[];
@@ -100,6 +102,10 @@ export const mentionsProps = () => ({
   bordered: booleanType(true),
   /** Prefer over `bordered` (antd ≥ 5.13). */
   variant: stringType<'outlined' | 'borderless' | 'filled' | 'underlined'>(),
+  /** Show clear icon (antd ≥ 5.13). */
+  allowClear: someType<boolean | { clearIcon?: VueNode }>([Boolean, Object]),
+  /** Triggered when clear icon is clicked (antd ≥ 5.20). */
+  onClear: functionType<(e?: MouseEvent) => void>(),
 });
 
 export type MentionsProps = Partial<ExtractPropTypes<ReturnType<typeof mentionsProps>>>;
@@ -177,6 +183,11 @@ const Mentions = defineComponent({
       formItemContext.onFieldChange();
     };
 
+    const handleClear = (e: MouseEvent) => {
+      props.onClear?.(e);
+      handleChange('');
+    };
+
     const getNotFoundContent = () => {
       const notFoundContent = props.notFoundContent;
       if (notFoundContent !== undefined) {
@@ -222,8 +233,14 @@ const Mentions = defineComponent({
         'prefixCls',
         'bordered',
         'variant',
+        'allowClear',
+        'onClear',
       ]);
       const mergedVariant = variant.value;
+      const { allowClear } = props;
+      const needClear = !!allowClear && !disabled && !!value.value;
+      const clearIcon =
+        typeof allowClear === 'object' && allowClear ? allowClear.clearIcon : undefined;
 
       const mergedClassName = classNames(
         {
@@ -235,7 +252,7 @@ const Mentions = defineComponent({
           [`${prefixCls.value}-underlined`]: mergedVariant === 'underlined',
         },
         getStatusClassNames(prefixCls.value, mergedStatus.value),
-        !hasFeedback && className,
+        !hasFeedback && !allowClear && className,
         hashId.value,
       );
 
@@ -273,7 +290,7 @@ const Mentions = defineComponent({
           v-slots={{ notFoundContent: getNotFoundContent, option: slots.option }}
         ></VcMentions>
       );
-      if (hasFeedback) {
+      if (hasFeedback || allowClear) {
         return wrapSSR(
           <div
             class={classNames(
@@ -293,7 +310,22 @@ const Mentions = defineComponent({
             )}
           >
             {mentions}
-            <span class={`${prefixCls.value}-suffix`}>{feedbackIcon}</span>
+            <span class={`${prefixCls.value}-suffix`}>
+              {allowClear && (
+                <span
+                  class={classNames(`${prefixCls.value}-clear-icon`, {
+                    [`${prefixCls.value}-clear-icon-hidden`]: !needClear,
+                    [`${prefixCls.value}-clear-icon-has-suffix`]: hasFeedback,
+                  })}
+                  role="button"
+                  onClick={handleClear}
+                  onMousedown={e => e.preventDefault()}
+                >
+                  {clearIcon ?? <CloseCircleFilled />}
+                </span>
+              )}
+              {hasFeedback && feedbackIcon}
+            </span>
           </div>,
         );
       }

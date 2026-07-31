@@ -11,69 +11,70 @@ const genPictureStyle: GenerateStyle<UploadToken> = token => {
   return {
     [`${componentCls}-wrapper`]: {
       // ${listCls} 增加优先级
-      [`${listCls}${listCls}-picture, ${listCls}${listCls}-picture-card`]: {
-        [itemCls]: {
-          position: 'relative',
-          height: uploadThumbnailSize + token.lineWidth * 2 + token.paddingXS * 2,
-          padding: token.paddingXS,
-          border: `${token.lineWidth}px ${token.lineType} ${token.colorBorder}`,
-          borderRadius: token.borderRadiusLG,
+      [`${listCls}${listCls}-picture, ${listCls}${listCls}-picture-card, ${listCls}${listCls}-picture-circle`]:
+        {
+          [itemCls]: {
+            position: 'relative',
+            height: uploadThumbnailSize + token.lineWidth * 2 + token.paddingXS * 2,
+            padding: token.paddingXS,
+            border: `${token.lineWidth}px ${token.lineType} ${token.colorBorder}`,
+            borderRadius: token.borderRadiusLG,
 
-          '&:hover': {
-            background: 'transparent',
-          },
-
-          [`${itemCls}-thumbnail`]: {
-            ...textEllipsis,
-            width: uploadThumbnailSize,
-            height: uploadThumbnailSize,
-            lineHeight: `${uploadThumbnailSize + token.paddingSM}px`,
-            textAlign: 'center',
-            flex: 'none',
-
-            [iconCls]: {
-              fontSize: token.fontSizeHeading2,
-              color: token.colorPrimary,
+            '&:hover': {
+              background: 'transparent',
             },
 
-            img: {
-              display: 'block',
-              width: '100%',
-              height: '100%',
-              overflow: 'hidden',
+            [`${itemCls}-thumbnail`]: {
+              ...textEllipsis,
+              width: uploadThumbnailSize,
+              height: uploadThumbnailSize,
+              lineHeight: `${uploadThumbnailSize + token.paddingSM}px`,
+              textAlign: 'center',
+              flex: 'none',
+
+              [iconCls]: {
+                fontSize: token.fontSizeHeading2,
+                color: token.colorPrimary,
+              },
+
+              img: {
+                display: 'block',
+                width: '100%',
+                height: '100%',
+                overflow: 'hidden',
+              },
+            },
+
+            [`${itemCls}-progress`]: {
+              bottom: uploadProgressOffset,
+              width: `calc(100% - ${token.paddingSM * 2}px)`,
+              marginTop: 0,
+              paddingInlineStart: uploadThumbnailSize + token.paddingXS,
             },
           },
 
-          [`${itemCls}-progress`]: {
-            bottom: uploadProgressOffset,
-            width: `calc(100% - ${token.paddingSM * 2}px)`,
-            marginTop: 0,
-            paddingInlineStart: uploadThumbnailSize + token.paddingXS,
+          [`${itemCls}-error`]: {
+            borderColor: token.colorError,
+
+            // Adjust the color of the error icon : https://github.com/ant-design/ant-design/pull/24160
+            [`${itemCls}-thumbnail ${iconCls}`]: {
+              [`svg path[fill='#e6f7ff']`]: {
+                fill: token.colorErrorBg,
+              },
+              [`svg path[fill='#1890ff']`]: {
+                fill: token.colorError,
+              },
+            },
+          },
+
+          [`${itemCls}-uploading`]: {
+            borderStyle: 'dashed',
+
+            [`${itemCls}-name`]: {
+              marginBottom: uploadProgressOffset,
+            },
           },
         },
-
-        [`${itemCls}-error`]: {
-          borderColor: token.colorError,
-
-          // Adjust the color of the error icon : https://github.com/ant-design/ant-design/pull/24160
-          [`${itemCls}-thumbnail ${iconCls}`]: {
-            [`svg path[fill='#e6f7ff']`]: {
-              fill: token.colorErrorBg,
-            },
-            [`svg path[fill='#1890ff']`]: {
-              fill: token.colorError,
-            },
-          },
-        },
-
-        [`${itemCls}-uploading`]: {
-          borderStyle: 'dashed',
-
-          [`${itemCls}-name`]: {
-            marginBottom: uploadProgressOffset,
-          },
-        },
-      },
     },
   };
 };
@@ -119,7 +120,7 @@ const genPictureCardStyle: GenerateStyle<UploadToken> = token => {
       },
 
       // list
-      [`${listCls}${listCls}-picture-card`]: {
+      [`${listCls}${listCls}-picture-card, ${listCls}${listCls}-picture-circle`]: {
         [`${listCls}-item-container`]: {
           display: 'inline-block',
           width: uploadPictureCardSize,
@@ -219,6 +220,16 @@ const genPictureCardStyle: GenerateStyle<UploadToken> = token => {
           width: `calc(100% - ${token.paddingXS * 2}px)`,
           paddingInlineStart: 0,
         },
+      },
+    },
+
+    // picture-circle: same as card with 50% radius (antd ≥ 5.2)
+    [`${componentCls}-wrapper${componentCls}-picture-circle-wrapper`]: {
+      [`${componentCls}${componentCls}-select`]: {
+        borderRadius: '50%',
+      },
+      [`${listCls}${listCls}-picture-circle ${itemCls}`]: {
+        borderRadius: '50%',
       },
     },
   };

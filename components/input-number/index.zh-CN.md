@@ -24,8 +24,9 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*1uH-R5kLAMIAAA
 | autofocus | 自动获取焦点 | boolean | false |  |
 | bordered | 是否有边框，请优先使用 `variant` | boolean | true | 3.0 |
 | variant | 形态变体（对齐 antd ≥ 5.13） | `outlined` \| `filled` \| `borderless` \| `underlined` | `outlined` | 4.9.0 |
+| changeOnBlur | 是否在失焦时触发 `onChange` | boolean | true | 4.72.0 |
 | changeOnWheel | 聚焦后滚轮改值 | boolean | false | 4.71.0 |
-| controls | 是否显示增减按钮 | boolean | true | 3.0 |
+| controls | 是否显示增减按钮，或自定义图标 | boolean \| { upIcon?: VueNode; downIcon?: VueNode } | true | 4.72.0（object） |
 | decimalSeparator | 小数点 | string | - |  |
 | defaultValue | 初始值 | number |  |  |
 | disabled | 禁用 | boolean | false |  |

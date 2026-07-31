@@ -4,7 +4,7 @@ import PictureTwoTone from '@ant-design/icons-vue/PictureTwoTone';
 import FileTwoTone from '@ant-design/icons-vue/FileTwoTone';
 import type { InternalUploadFile, UploadFile } from '../interface';
 import { uploadListProps } from '../interface';
-import { previewImage, isImageUrl } from '../utils';
+import { previewImage, isImageUrl, isPictureCardType } from '../utils';
 import type { ButtonProps } from '../../button';
 import Button from '../../button';
 import ListItem from './ListItem';
@@ -63,7 +63,7 @@ export default defineComponent({
       },
     );
     watchEffect(() => {
-      if (props.listType !== 'picture' && props.listType !== 'picture-card') {
+      if (props.listType !== 'picture' && !isPictureCardType(props.listType)) {
         return;
       }
       let hasUpdate = false;
@@ -127,7 +127,7 @@ export default defineComponent({
       let icon: VueNode = isLoading ? <LoadingOutlined /> : <PaperClipOutlined />;
       if (props.listType === 'picture') {
         icon = isLoading ? <LoadingOutlined /> : fileIcon;
-      } else if (props.listType === 'picture-card') {
+      } else if (isPictureCardType(props.listType)) {
         icon = isLoading ? props.locale.uploading : fileIcon;
       }
       return icon;
@@ -179,12 +179,12 @@ export default defineComponent({
       delete motion.onAfterLeave;
       const motionConfig = {
         ...getTransitionGroupProps(
-          `${prefixCls.value}-${props.listType === 'picture-card' ? 'animate-inline' : 'animate'}`,
+          `${prefixCls.value}-${isPictureCardType(props.listType) ? 'animate-inline' : 'animate'}`,
         ),
         class: listClassNames.value,
         appear: motionAppear.value,
       };
-      return props.listType !== 'picture-card'
+      return !isPictureCardType(props.listType)
         ? {
             ...motion,
             ...motionConfig,
