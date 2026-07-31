@@ -29,21 +29,41 @@ Ant Design has 3 types of Tabs for different situations.
 | destroyInactiveTabPane | Whether destroy inactive TabPane when change tab; prefer `destroyOnHidden` | boolean | false |  |
 | destroyOnHidden | Whether destroy inactive TabPane when change tab (antd ≥ 5.25) | boolean | false | 4.14.0 |
 | hideAdd | Hide plus icon or not. Only works while `type="editable-card"` | boolean | `false` | } |
+| items | Tabs config. Item supports `icon` | [TabsItemType](#tabsitemtype)[] | - | 4.74.0；`icon`: 4.74.0 |
+| more | More dropdown config (`icon` / `trigger`) | { icon?: VueNode; trigger?: (`click` \| `hover` \| `contextmenu`)[] } | - | 4.74.0 |
+| removeIcon | Customize remove icon for `editable-card` | VueNode \| slot | - | 4.74.0 |
 | size | preset tab bar size | `large` \| `middle` \| `small` | `middle` |  |
 | tabBarGutter | The gap between tabs | number | - |  |
 | tabBarStyle | Tab bar style object | CSSProperties | - |  |
 | tabPosition | Position of tabs | `top` \| `right` \| `bottom` \| `left` | `top` |  |
 | type | Basic style of tabs | `line` \| `card` \| `editable-card` | `line` |  |
 
+#### TabsItemType
+
+```ts
+type TabsItemType = {
+  key: string | number;
+  label?: VueNode;
+  children?: VueNode;
+  icon?: VueNode;
+  disabled?: boolean;
+  closable?: boolean;
+  forceRender?: boolean;
+  destroyInactiveTabPane?: boolean;
+  closeIcon?: VueNode;
+};
+```
+
 ### Tabs Slots
 
-| Slot Name    | Description                    | Type              |     |
-| ------------ | ------------------------------ | ----------------- | --- |
-| addIcon      | Customize add icon             | -                 | -   |
-| leftExtra    | Extra content in tab bar left  | -                 | -   |
-| moreIcon     | The custom icon of ellipsis    | -                 | -   |
-| renderTabBar | Replace the TabBar             | { DefaultTabBar } |     |
-| rightExtra   | Extra content in tab bar right | -                 | -   |
+| Slot Name    | Description                    | Type              |        |
+| ------------ | ------------------------------ | ----------------- | ------ |
+| addIcon      | Customize add icon             | -                 | -      |
+| leftExtra    | Extra content in tab bar left  | -                 | -      |
+| moreIcon     | The custom icon of ellipsis    | -                 | -      |
+| removeIcon   | Customize remove icon          | -                 | 4.74.0 |
+| renderTabBar | Replace the TabBar             | { DefaultTabBar } |        |
+| rightExtra   | Extra content in tab bar right | -                 | -      |
 
 ### Tabs Events
 

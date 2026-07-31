@@ -28,8 +28,10 @@ A content area which can be collapsed and expanded.
 | expandIcon | allow to customize collapse icon | Function(props):VNode \| v-slot:expandIcon="props" |  |  |
 | expandIconPosition | Set expand icon position | `start` \| `end` | - | 4.0 |
 | ghost | Make the collapse borderless and its background transparent | boolean | false | 3.0 |
+| classNames | Semantic structure className | Record<root \| header \| title \| body \| icon, string> | - | 4.74.0 |
 | items | Collapse panel config | [CollapseItemType](#collapseitemtype)[] | - | 4.68.0 |
 | size | Set collapse size | `large` \| `middle` \| `small` \| `default` | `default` | 4.30.0 |
+| styles | Semantic structure style | Record<root \| header \| title \| body \| icon, CSSProperties> | - | 4.74.0 |
 
 #### CollapseItemType
 
@@ -57,7 +59,7 @@ type CollapseItemType = {
 
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
-| collapsible | Specify whether the panel be collapsible or the trigger area of collapsible | `header` \| `disabled` | - | 3.0 |
+| collapsible | Specify whether the panel be collapsible or the trigger area of collapsible | `header` \| `icon` \| `disabled` | - | 3.0；`icon`: 4.0 |
 | disabled | If `true`, panel cannot be opened or closed | boolean | `false` |  |
 | extra | extra element in the corner | VNode \| slot | - | 1.5.0 |
 | forceRender | Forced render of content on panel, instead of lazy rending after clicking on header | boolean | `false` |  |

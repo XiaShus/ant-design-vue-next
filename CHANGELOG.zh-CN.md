@@ -8,6 +8,14 @@
 
 ---
 
+## 4.74.0
+
+`2026-07-31`
+
+- 🌟 Form.Item 支持 `layout`（对齐 antd ≥ 5.18）
+- 🌟 Tabs 支持 `items` / `removeIcon` / `more`（对齐 antd ≥ 4.23 / 5.15 / 5.17）
+- 🌟 Collapse 支持语义化 `classNames` / `styles`（对齐 antd ≥ 5.21）
+
 ## 4.73.0
 
 `2026-07-31`

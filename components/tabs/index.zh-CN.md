@@ -32,21 +32,41 @@ Ant Design 依次提供了三级选项卡，分别用于不同的场景。
 | destroyInactiveTabPane | 被隐藏时是否销毁 DOM 结构（请优先使用 `destroyOnHidden`） | boolean | false |  |  |
 | destroyOnHidden | 被隐藏时是否销毁 DOM 结构（对齐 antd ≥ 5.25） | boolean | false | 4.14.0 |  |
 | hideAdd | 是否隐藏加号图标，在 `type="editable-card"` 时有效 | boolean | false |  |  |
+| items | 配置式页签；支持 `icon` | [TabsItemType](#tabsitemtype)[] | - | 4.74.0 |
+| more | 折叠下拉配置（`icon` / `trigger`） | { icon?: VueNode; trigger?: (`click` \| `hover` \| `contextmenu`)[] } | - | 4.74.0 |
+| removeIcon | 自定义删除图标，`editable-card` 时有效 | VueNode \| slot | - | 4.74.0 |
 | size | 大小，提供 `large` `middle` 和 `small` 三种大小 | string | `middle` |  |  |
 | tabBarGutter | tabs 之间的间隙 | number | - |  |  |
 | tabBarStyle | tab bar 的样式对象 | CSSProperties | - |  |  |
 | tabPosition | 页签位置，可选值有 `top` `right` `bottom` `left` | string | `top` |  |  |
 | type | 页签的基本样式，可选 `line`、`card` `editable-card` 类型 | string | `line` |  |  |
 
+#### TabsItemType
+
+```ts
+type TabsItemType = {
+  key: string | number;
+  label?: VueNode;
+  children?: VueNode;
+  icon?: VueNode;
+  disabled?: boolean;
+  closable?: boolean;
+  forceRender?: boolean;
+  destroyInactiveTabPane?: boolean;
+  closeIcon?: VueNode;
+};
+```
+
 ### Tabs 插槽
 
-| 插槽名称     | 说明                            | 参数              |     |
-| ------------ | ------------------------------- | ----------------- | --- |
-| addIcon      | 自定义添加按钮                  | -                 | -   |
-| leftExtra    | tab bar 上左侧额外的元素        | -                 | -   |
-| moreIcon     | 自定义折叠 icon                 | -                 | -   |
-| renderTabBar | 替换 TabBar，用于二次封装标签头 | { DefaultTabBar } |     |
-| rightExtra   | tab bar 上右侧额外的元素        | -                 | -   |
+| 插槽名称     | 说明                            | 参数              |        |
+| ------------ | ------------------------------- | ----------------- | ------ |
+| addIcon      | 自定义添加按钮                  | -                 | -      |
+| leftExtra    | tab bar 上左侧额外的元素        | -                 | -      |
+| moreIcon     | 自定义折叠 icon                 | -                 | -      |
+| removeIcon   | 自定义删除图标                  | -                 | 4.74.0 |
+| renderTabBar | 替换 TabBar，用于二次封装标签头 | { DefaultTabBar } |        |
+| rightExtra   | tab bar 上右侧额外的元素        | -                 | -      |
 
 ### Tabs 事件
 

@@ -22,6 +22,8 @@ export const operationNodeProps = {
   activeKey: { type: [String, Number] },
   mobile: { type: Boolean },
   moreIcon: PropTypes.any,
+  /** More dropdown config (antd ≥ 5.17). */
+  more: PropTypes.any,
   moreTransitionName: { type: String },
   editable: { type: Object as PropType<EditableConfig> },
   locale: { type: Object as PropType<TabsLocale>, default: undefined as TabsLocale },
@@ -134,7 +136,7 @@ export default defineComponent({
         tabs,
         locale,
         mobile,
-        moreIcon = slots.moreIcon?.() || <EllipsisOutlined />,
+        more,
         moreTransitionName,
         editable,
         tabBarGutter,
@@ -146,6 +148,18 @@ export default defineComponent({
       const dropdownPrefix = `${prefixCls}-dropdown`;
 
       const dropdownAriaLabel = locale?.dropdownAriaLabel;
+      const {
+        icon: moreConfigIcon,
+        trigger: moreTrigger = ['hover'],
+        ...moreDropdownProps
+      } = (more || {}) as {
+        icon?: any;
+        trigger?: ('click' | 'hover' | 'contextmenu')[];
+        [key: string]: any;
+      };
+      const moreIcon = moreConfigIcon ?? props.moreIcon ?? slots.moreIcon?.() ?? (
+        <EllipsisOutlined />
+      );
 
       // ========================= Render =========================
       const moreStyle: CSSProperties = {
@@ -163,7 +177,8 @@ export default defineComponent({
       const moreNode = mobile ? null : (
         <Dropdown
           prefixCls={dropdownPrefix}
-          trigger={['hover']}
+          {...moreDropdownProps}
+          trigger={moreTrigger}
           visible={open.value}
           transitionName={moreTransitionName}
           onVisibleChange={setOpen}

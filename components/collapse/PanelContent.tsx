@@ -17,7 +17,7 @@ export default defineComponent({
 
     return () => {
       if (!rendered.value) return null;
-      const { prefixCls, isActive, role } = props;
+      const { prefixCls, isActive, role, classNames: semanticClassNames, styles } = props;
       return (
         <div
           class={classNames(`${prefixCls}-content`, {
@@ -26,7 +26,12 @@ export default defineComponent({
           })}
           role={role}
         >
-          <div class={`${prefixCls}-content-box`}>{slots.default?.()}</div>
+          <div
+            class={classNames(`${prefixCls}-content-box`, semanticClassNames?.body)}
+            style={styles?.body}
+          >
+            {slots.default?.()}
+          </div>
         </div>
       );
     };

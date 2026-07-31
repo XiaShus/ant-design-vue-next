@@ -75,7 +75,7 @@ export default defineComponent({
     });
 
     const renderExpandIcon = (panelProps: CollapsePanelProps) => {
-      const { expandIcon = slots.expandIcon } = props;
+      const { expandIcon = slots.expandIcon, classNames: semanticClassNames, styles } = props;
       const icon = expandIcon ? (
         expandIcon(panelProps)
       ) : (
@@ -84,7 +84,8 @@ export default defineComponent({
 
       return (
         <div
-          class={[`${prefixCls.value}-expand-icon`, hashId.value]}
+          class={[`${prefixCls.value}-expand-icon`, hashId.value, semanticClassNames?.icon]}
+          style={styles?.icon}
           onClick={() =>
             ['header', 'icon'].includes(props.collapsible) && onClickItem(panelProps.panelKey)
           }
@@ -169,6 +170,8 @@ export default defineComponent({
         onItemClick: mergeCollapsible === 'disabled' ? null : onClickItem,
         expandIcon: renderExpandIcon,
         collapsible: mergeCollapsible,
+        classNames: props.classNames,
+        styles: props.styles,
       };
 
       return cloneElement(child, newProps);
@@ -198,7 +201,7 @@ export default defineComponent({
     };
 
     return () => {
-      const { accordion, bordered, ghost } = props;
+      const { accordion, bordered, ghost, classNames: semanticClassNames, styles } = props;
       const collapseClassName = classNames(
         prefixCls.value,
         {
@@ -210,13 +213,18 @@ export default defineComponent({
           [`${prefixCls.value}-large`]: size.value === 'large',
           [attrs.class as string]: !!attrs.class,
         },
+        semanticClassNames?.root,
         hashId.value,
       );
+      const rootStyle: CSSProperties = {
+        ...(attrs.style as CSSProperties),
+        ...styles?.root,
+      };
       return wrapSSR(
         <div
           class={collapseClassName}
           {...getDataAndAriaProps(attrs)}
-          style={attrs.style as CSSProperties}
+          style={rootStyle}
           role={accordion ? 'tablist' : null}
         >
           {getItems()}

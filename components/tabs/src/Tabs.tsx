@@ -37,14 +37,34 @@ import {
   objectType,
   booleanType,
 } from '../../_util/type';
-import type { CustomSlotsType, Key } from '../../_util/type';
+import type { CustomSlotsType, Key, VueNode } from '../../_util/type';
 import pick from 'lodash-es/pick';
 import PropTypes from '../../_util/vue-types';
 import type { MouseEventHandler } from '../../_util/EventInterface';
 import omit from '../../_util/omit';
 import useStyle from '../style';
+import TabPane from './TabPanelList/TabPane';
 export type TabsType = 'line' | 'card' | 'editable-card';
 export type TabsPosition = 'top' | 'right' | 'bottom' | 'left';
+
+/** Tabs item config (antd ≥ 4.23). */
+export type TabsItemType = {
+  key: Key;
+  label?: VueNode;
+  children?: VueNode;
+  icon?: VueNode;
+  disabled?: boolean;
+  closable?: boolean;
+  forceRender?: boolean;
+  destroyInactiveTabPane?: boolean;
+  closeIcon?: VueNode;
+};
+
+/** More dropdown config (antd ≥ 5.17). */
+export type TabsMoreConfig = {
+  icon?: VueNode;
+  trigger?: ('click' | 'hover' | 'contextmenu')[];
+};
 
 // Used for accessibility
 let uuid = 0;
@@ -86,6 +106,12 @@ export const tabsProps = () => {
     tabBarExtraContent: PropTypes.any,
     /** Customize ink bar size and align (antd ≥ 5.13). */
     indicator: objectType<TabsIndicator>(),
+    /** Tabs config (antd ≥ 4.23); item `icon` ≥ 5.12. */
+    items: arrayType<TabsItemType[]>(),
+    /** Customize remove icon for editable-card (antd ≥ 5.15). */
+    removeIcon: PropTypes.any,
+    /** More dropdown config (antd ≥ 5.17). */
+    more: objectType<TabsMoreConfig>(),
   };
 };
 
@@ -289,7 +315,7 @@ const InternalTabs = defineComponent({
           onEdit: (editType, { key, event }) => {
             props.onEdit?.(editType === 'add' ? event : key!, editType);
           },
-          removeIcon: () => <CloseOutlined />,
+          removeIcon: () => props.removeIcon ?? slots.removeIcon?.() ?? <CloseOutlined />,
           addIcon: slots.addIcon ? slots.addIcon : () => <PlusOutlined />,
           showAdd: hideAdd !== true,
         };
@@ -309,6 +335,8 @@ const InternalTabs = defineComponent({
         getPopupContainer: getPopupContainer.value,
         popupClassName: classNames(props.popupClassName, hashId.value),
         indicator: props.indicator,
+        more: props.more,
+        moreIcon: props.more?.icon,
       };
 
       if (renderTabBar) {
@@ -383,10 +411,51 @@ export default defineComponent({
       emit('change', key);
     };
     return () => {
-      const tabs = parseTabList(flattenChildren(slots.default?.()));
+      let tabs: Tab[];
+      if (props.items?.length) {
+        tabs = parseTabList(
+          props.items.map(item => {
+            const {
+              key,
+              label,
+              children,
+              icon,
+              disabled,
+              closable,
+              forceRender,
+              destroyInactiveTabPane,
+              closeIcon,
+            } = item;
+            const tabLabel =
+              icon !== undefined && icon !== null ? (
+                <>
+                  {icon}
+                  {label}
+                </>
+              ) : (
+                label
+              );
+            return (
+              <TabPane
+                key={key}
+                tab={tabLabel}
+                disabled={disabled}
+                closable={closable}
+                forceRender={forceRender}
+                destroyInactiveTabPane={destroyInactiveTabPane}
+                v-slots={closeIcon !== undefined ? { closeIcon: () => closeIcon } : undefined}
+              >
+                {children}
+              </TabPane>
+            );
+          }),
+        );
+      } else {
+        tabs = parseTabList(flattenChildren(slots.default?.()));
+      }
       return (
         <InternalTabs
-          {...omit(props, ['onUpdate:activeKey'])}
+          {...omit(props, ['onUpdate:activeKey', 'items'])}
           {...attrs}
           onChange={handleChange}
           tabs={tabs}

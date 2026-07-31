@@ -29,8 +29,10 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*sir-TK0HkWcAAA
 | expandIcon | 自定义切换图标 | Function(props):VNode \| slot="expandIcon" slot-scope="props"\|#expandIcon="props" |  |  |
 | expandIconPosition | 设置图标位置 | `start` \| `end` | - | 4.0 |
 | ghost | 使折叠面板透明且无边框 | boolean | false | 3.0 |
+| classNames | 语义化结构 className | Record<root \| header \| title \| body \| icon, string> | - | 4.74.0 |
 | items | 折叠面板配置项 | [CollapseItemType](#collapseitemtype)[] | - | 4.68.0 |
 | size | 设置折叠面板大小 | `large` \| `middle` \| `small` \| `default` | `default` | 4.30.0 |
+| styles | 语义化结构 style | Record<root \| header \| title \| body \| icon, CSSProperties> | - | 4.74.0 |
 
 #### CollapseItemType
 
@@ -56,11 +58,11 @@ type CollapseItemType = {
 
 ### Collapse.Panel
 
-| 参数        | 说明                           | 类型                   | 默认值 | 版本  |
-| ----------- | ------------------------------ | ---------------------- | ------ | ----- |
-| collapsible | 是否可折叠或指定可折叠触发区域 | `header` \| `disabled` | -      | 3.0   |
-| extra       | 自定义渲染每个面板右上角的内容 | VNode \| slot          | -      | 1.5.0 |
-| forceRender | 被隐藏时是否渲染 DOM 结构      | boolean                | false  |       |
-| header      | 面板头内容                     | string\|slot           | -      |       |
-| key         | 对应 activeKey                 | string \| number       | -      |       |
-| showArrow   | 是否展示当前面板上的箭头       | boolean                | `true` |       |
+| 参数 | 说明 | 类型 | 默认值 | 版本 |
+| --- | --- | --- | --- | --- |
+| collapsible | 是否可折叠或指定可折叠触发区域 | `header` \| `icon` \| `disabled` | - | 3.0；`icon`: 4.0 |
+| extra | 自定义渲染每个面板右上角的内容 | VNode \| slot | - | 1.5.0 |
+| forceRender | 被隐藏时是否渲染 DOM 结构 | boolean | false |  |
+| header | 面板头内容 | string\|slot | - |  |
+| key | 对应 activeKey | string \| number | - |  |
+| showArrow | 是否展示当前面板上的箭头 | boolean | `true` |  |

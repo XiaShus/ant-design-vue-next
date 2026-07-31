@@ -324,24 +324,28 @@ const genFormItemStyle: GenerateStyle<FormToken> = token => {
 const genHorizontalStyle: GenerateStyle<FormToken> = token => {
   const { componentCls, formItemCls, rootPrefixCls } = token;
 
-  return {
-    [`${componentCls}-horizontal`]: {
-      [`${formItemCls}-label`]: {
-        flexGrow: 0,
-      },
-
-      [`${formItemCls}-control`]: {
-        flex: '1 1 0',
-        // https://github.com/ant-design/ant-design/issues/32777
-        // https://github.com/ant-design/ant-design/issues/33773
-        minWidth: 0,
-      },
-
-      // https://github.com/ant-design/ant-design/issues/32980
-      [`${formItemCls}-label.${rootPrefixCls}-col-24 + ${formItemCls}-control`]: {
-        minWidth: 'unset',
-      },
+  const horizontalItem = {
+    [`${formItemCls}-label`]: {
+      flexGrow: 0,
     },
+
+    [`${formItemCls}-control`]: {
+      flex: '1 1 0',
+      // https://github.com/ant-design/ant-design/issues/32777
+      // https://github.com/ant-design/ant-design/issues/33773
+      minWidth: 0,
+    },
+
+    // https://github.com/ant-design/ant-design/issues/32980
+    [`${formItemCls}-label.${rootPrefixCls}-col-24 + ${formItemCls}-control`]: {
+      minWidth: 'unset',
+    },
+  };
+
+  return {
+    [`${componentCls}-horizontal`]: horizontalItem,
+    // Item-level horizontal (antd ≥ 5.18 Form.Item layout)
+    [`${formItemCls}-horizontal`]: horizontalItem,
   };
 };
 
@@ -419,27 +423,52 @@ const makeVerticalLayout = (token: FormToken): CSSObject => {
   };
 };
 
+const genItemVerticalStyle: GenerateStyle<FormToken> = token => {
+  const { formItemCls, rootPrefixCls } = token;
+
+  return {
+    [`${formItemCls}-vertical`]: {
+      [`${formItemCls}-row`]: {
+        flexDirection: 'column',
+      },
+
+      [`${formItemCls}-label > label`]: {
+        height: 'auto',
+      },
+
+      [`${formItemCls}-control`]: {
+        width: '100%',
+      },
+
+      [`${formItemCls}-label,
+        .${rootPrefixCls}-col-24${formItemCls}-label,
+        .${rootPrefixCls}-col-xl-24${formItemCls}-label`]: makeVerticalLayoutLabel(token),
+    },
+  };
+};
+
 const genVerticalStyle: GenerateStyle<FormToken> = token => {
   const { componentCls, formItemCls, rootPrefixCls } = token;
 
   return {
     [`${componentCls}-vertical`]: {
-      [formItemCls]: {
-        '&-row': {
+      // Skip item-level horizontal overrides (antd ≥ 5.18)
+      [`${formItemCls}:not(${formItemCls}-horizontal)`]: {
+        [`${formItemCls}-row`]: {
           flexDirection: 'column',
         },
 
-        '&-label > label': {
+        [`${formItemCls}-label > label`]: {
           height: 'auto',
         },
 
-        [`${componentCls}-item-control`]: {
+        [`${formItemCls}-control`]: {
           width: '100%',
         },
       },
     },
 
-    [`${componentCls}-vertical ${formItemCls}-label,
+    [`${componentCls}-vertical ${formItemCls}:not(${formItemCls}-horizontal) ${formItemCls}-label,
       .${rootPrefixCls}-col-24${formItemCls}-label,
       .${rootPrefixCls}-col-xl-24${formItemCls}-label`]: makeVerticalLayoutLabel(token),
 
@@ -485,6 +514,7 @@ export default genComponentStyleHook('Form', (token, { rootPrefixCls }) => {
     genFormValidateMotionStyle(formToken),
     genHorizontalStyle(formToken),
     genInlineStyle(formToken),
+    genItemVerticalStyle(formToken),
     genVerticalStyle(formToken),
     genCollapseMotion(formToken),
     zoomIn,

@@ -49,7 +49,7 @@
 | Navigation | Menu | ✅ | ✅ | [menu](../../components/menu) | — |
 | Navigation | Pagination | ✅ | ✅ | [pagination](../../components/pagination) | 🔄 `align` ✅ 4.35.0；📖 object `showQuickJumper` ✅ 4.71.0 |
 | Navigation | Steps | ✅ | ✅ | [steps](../../components/steps) | — |
-| Navigation | Tabs | ✅ | ✅ | [tabs](../../components/tabs) | 🔄 `destroyOnHidden` ✅ 4.14.0；🔄 `indicator` ✅ 4.42.0 |
+| Navigation | Tabs | ✅ | ✅ | [tabs](../../components/tabs) | 🔄 `destroyOnHidden` ✅ 4.14.0；🔄 `indicator` ✅ 4.42.0；🔄 `items` / `removeIcon` / `more` ✅ 4.74.0 |
 
 ## Data Entry
 
@@ -60,7 +60,7 @@
 | Data Entry | Checkbox | ✅ | ✅ | [checkbox](../../components/checkbox) | 🔄 options `className` / `style` ✅ 4.70.0 |
 | Data Entry | ColorPicker | ✅ 5.5 | 🔄 ✅ 4.3.0 | [color-picker](../../components/color-picker) | 单色/预设/清除/格式；🔄 `destroyOnHidden` ✅ 4.14.0；🔄 `panelRender` ✅ 4.15.0；🔄 `disabledFormat` ✅ 4.19.0；⏭ 渐变 mode |
 | Data Entry | DatePicker | ✅ | ✅ | [date-picker](../../components/date-picker) | 🔄 `variant` ✅ 4.9.0；🔄 `needConfirm` ✅ 4.21.0；🔄 `showTime.changeOnScroll` ✅ 4.23.0；🔄 `cellRender` ✅ 4.61.0；🔄 object `allowClear` ✅ 4.70.0；🔄 `prefix` ✅ 4.71.0 |
-| Data Entry | Form | ✅ | ✅ | [form](../../components/form) | 🔄 `variant` ✅ 4.10.0；🔄 `feedbackIcons` ✅ 4.40.0；🔄 `scrollToFirstError` `{ focus }` / `focusField` ✅ 4.57.0；🔄 `clearOnDestroy` ✅ 4.72.0；🔄 `requiredMark` renderProps + Item object `tooltip` ✅ 4.73.0 |
+| Data Entry | Form | ✅ | ✅ | [form](../../components/form) | 🔄 `variant` ✅ 4.10.0；🔄 `feedbackIcons` ✅ 4.40.0；🔄 `scrollToFirstError` `{ focus }` / `focusField` ✅ 4.57.0；🔄 `clearOnDestroy` ✅ 4.72.0；🔄 `requiredMark` renderProps + Item object `tooltip` ✅ 4.73.0；🔄 Item `layout` ✅ 4.74.0 |
 | Data Entry | Input | ✅ | ✅ | [input](../../components/input) | 🔄 `Input.OTP` ✅ 4.5.0；`variant` ✅ 4.8.0；🔄 `underlined` ✅ 4.18.0；🔄 `classNames` / `styles` / object `allowClear` / `onClear` ✅ 4.70.0；🔄 `count` ✅ 4.71.0 |
 | Data Entry | InputNumber | ✅ | ✅ | [input-number](../../components/input-number) | 🔄 `variant` ✅ 4.9.0；🔄 `changeOnWheel` / `suffix` ✅ 4.71.0；🔄 object `controls` / `changeOnBlur` ✅ 4.72.0 |
 | Data Entry | Mentions | ✅ | ✅ | [mentions](../../components/mentions) | 🔄 `variant` ✅ 4.12.0；🔄 `allowClear` / `onClear` ✅ 4.72.0 |
@@ -83,7 +83,7 @@
 | Data Display | Calendar | ✅ | ✅ | [calendar](../../components/calendar) | 🔄 `cellRender` / `fullCellRender` ✅ 4.60.0；🔄 `showWeek` ✅ 4.62.0 |
 | Data Display | Card | ✅ | ✅ | [card](../../components/card) | 🔄 `variant` ✅ 4.29.0；🔄 `classNames` / `styles` ✅ 4.68.0 |
 | Data Display | Carousel | ✅ | ✅ | [carousel](../../components/carousel) | 🔄 `autoplay.dotDuration` ✅ 4.73.0 |
-| Data Display | Collapse | ✅ | ✅ | [collapse](../../components/collapse) | 🔄 `destroyOnHidden` ✅ 4.14.0；🔄 `size` ✅ 4.30.0；🔄 `items` ✅ 4.68.0 |
+| Data Display | Collapse | ✅ | ✅ | [collapse](../../components/collapse) | 🔄 `destroyOnHidden` ✅ 4.14.0；🔄 `size` ✅ 4.30.0；🔄 `items` ✅ 4.68.0；🔄 `classNames` / `styles` ✅ 4.74.0 |
 | Data Display | Descriptions | ✅ | ✅ | [descriptions](../../components/descriptions) | 🔄 `items` ✅ 4.32.0；🔄 `classNames` / `styles` ✅ 4.67.0 |
 | Data Display | Empty | ✅ | ✅ | [empty](../../components/empty) | 🔄 `classNames` / `styles` ✅ 4.65.0 |
 | Data Display | Image | ✅ | ✅ | [image](../../components/image) | 🔄 preview `toolbarRender` ✅ 4.52.0；🔄 `movable` / `imageRender` ✅ 4.67.0 |
@@ -203,8 +203,9 @@
 72. ~~Input `count` + DatePicker/TimePicker `prefix` + InputNumber `changeOnWheel`/`suffix` + Pagination `showQuickJumper` docs~~ — ✅ `4.71.0`
 73. ~~Upload `picture-circle` + InputNumber `controls`/`changeOnBlur` + Rate `keyboard` + Form `clearOnDestroy` + Mentions `allowClear`~~ — ✅ `4.72.0`
 74. ~~Carousel `autoplay.dotDuration` + Form `requiredMark` renderProps + Switch/Transfer 小缺口 + Notification `actions`~~ — ✅ `4.73.0`
-75. Form.Item `layout`
-76. Collapse / Tabs / Steps 小缺口（择优）
+75. ~~Form.Item `layout` + Tabs `items`/`removeIcon`/`more` + Collapse semantic~~ — ✅ `4.74.0`
+76. Steps / Timeline / Affix 小缺口（择优）
+77. Form `validateDebounce`
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -214,4 +215,4 @@
 
 ---
 
-_上次更新：`4.73.0` 批次（Notification actions / Switch value / Transfer showSearch / Form requiredMark / Carousel dotDuration）。每发一版请同步改本表；之后默认每版打包 4–6 项。_
+_上次更新：`4.74.0` 批次（Form.Item layout / Tabs items·removeIcon·more / Collapse semantic）。每发一版请同步改本表；之后默认每版打包 4–6 项。_

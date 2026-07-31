@@ -33,7 +33,7 @@ import { toArray } from './utils/typeUtil';
 import { warning } from '../vc-util/warning';
 import find from 'lodash-es/find';
 import type { CustomSlotsType, VueNode } from '../_util/type';
-import { someType, tuple } from '../_util/type';
+import { someType, stringType, tuple } from '../_util/type';
 import type {
   FeedbackIcons,
   FormItemFeedbackConfig,
@@ -132,6 +132,8 @@ export const formItemProps = () => ({
   noStyle: Boolean,
   /** Label tooltip; string or object with `title` / `icon` (antd ≥ 4.7). */
   tooltip: someType<string | Record<string, any>>([String, Object]),
+  /** Item layout; overrides Form `layout` for this item (antd ≥ 5.18). */
+  layout: stringType<'horizontal' | 'vertical'>(),
 });
 
 export type FormItemProps = Partial<ExtractPropTypes<ReturnType<typeof formItemProps>>>;
@@ -420,8 +422,16 @@ export default defineComponent({
       return validateState.value;
     });
     const hasFeedbackEnabled = computed(() => !!props.hasFeedback);
+    const itemLayout = computed<'horizontal' | 'vertical'>(() => {
+      if (props.layout) {
+        return props.layout;
+      }
+      return formContext.vertical.value ? 'vertical' : 'horizontal';
+    });
+    const itemVertical = computed(() => itemLayout.value === 'vertical');
     const itemClassName = computed(() => ({
       [`${prefixCls.value}-item`]: true,
+      [`${prefixCls.value}-item-${itemLayout.value}`]: true,
       [hashId.value]: true,
       // Status
       [`${prefixCls.value}-item-has-feedback`]:
@@ -535,6 +545,7 @@ export default defineComponent({
                     required={isRequired.value}
                     requiredMark={formContext.requiredMark.value}
                     prefixCls={prefixCls.value}
+                    vertical={itemVertical.value}
                     onClick={onLabelClick}
                     label={props.label}
                     v-slots={{ label: slots.label, tooltip: slots.tooltip }}

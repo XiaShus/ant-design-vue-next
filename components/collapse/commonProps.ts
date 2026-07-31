@@ -1,5 +1,13 @@
+import type { CSSProperties } from 'vue';
 import type { Key, VueNode } from '../_util/type';
-import { arrayType, booleanType, someType, stringType, functionType } from '../_util/type';
+import {
+  arrayType,
+  booleanType,
+  someType,
+  stringType,
+  functionType,
+  objectType,
+} from '../_util/type';
 import PropTypes from '../_util/vue-types';
 
 export type CollapsibleType = 'header' | 'icon' | 'disabled';
@@ -8,6 +16,11 @@ export type ActiveKeyType = Array<string | number> | string | number;
 
 /** Collapse size (antd ≥ 5.2). `default` / `middle` share the same style. */
 export type CollapseSize = 'large' | 'middle' | 'small' | 'default';
+
+/** Semantic structure names (antd ≥ 5.21). */
+export type CollapseSemanticName = 'root' | 'header' | 'title' | 'body' | 'icon';
+export type CollapseClassNamesType = Partial<Record<CollapseSemanticName, string>>;
+export type CollapseStylesType = Partial<Record<CollapseSemanticName, CSSProperties>>;
 
 export interface PanelProps {
   isActive?: boolean;
@@ -53,6 +66,10 @@ const collapseProps = () => ({
   size: stringType<CollapseSize>(),
   /** Collapse panels config (antd ≥ 5.6). */
   items: arrayType<CollapseItemType[]>(),
+  /** Semantic structure className (antd ≥ 5.21). */
+  classNames: objectType<CollapseClassNamesType>(),
+  /** Semantic structure style (antd ≥ 5.21). */
+  styles: objectType<CollapseStylesType>(),
   onChange: functionType<(key: Key | Key[]) => void>(),
   'onUpdate:activeKey': functionType<(key: Key | Key[]) => void>(),
 });
@@ -77,6 +94,10 @@ const collapsePanelProps = () => ({
   collapsible: stringType<CollapsibleType>(),
   role: String,
   onItemClick: functionType<(panelKey: Key) => void>(),
+  /** Semantic structure className from Collapse root. */
+  classNames: objectType<CollapseClassNamesType>(),
+  /** Semantic structure style from Collapse root. */
+  styles: objectType<CollapseStylesType>(),
 });
 
 export { collapseProps, collapsePanelProps };

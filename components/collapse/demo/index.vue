@@ -11,6 +11,7 @@
     <Extra />
     <Ghost />
     <Collapsible />
+    <StyleClass />
   </demo-sort>
 </template>
 
@@ -26,6 +27,7 @@ import Noarrow from './noarrow.vue';
 import Extra from './extra.vue';
 import Ghost from './ghost.vue';
 import Collapsible from './collapsible.vue';
+import StyleClass from './style-class.vue';
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
 
@@ -44,6 +46,7 @@ export default {
     Extra,
     Ghost,
     Collapsible,
+    StyleClass,
   },
 };
 </script>

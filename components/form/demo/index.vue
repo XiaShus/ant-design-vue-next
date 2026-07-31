@@ -4,6 +4,7 @@
     <LabelWidth />
     <HorizontalLogin />
     <Layout />
+    <ItemLayout />
     <Disabled />
     <inlineLoginVue />
     <normalLoginVue />
@@ -45,6 +46,7 @@ import HorizontalLogin from './horizontal-login.vue';
 import inlineLoginVue from './inline-login.vue';
 import LabelWidth from './label-width.vue';
 import Layout from './layout.vue';
+import ItemLayout from './item-layout.vue';
 import NestedForm from './nest-messages.vue';
 import normalLoginVue from './normal-login.vue';
 // import Validation from './validation.vue';
@@ -74,6 +76,7 @@ export default defineComponent({
     HorizontalLogin,
     NestedForm,
     Layout,
+    ItemLayout,
     validationVue,
     UseFormBasic,
     UseFormNested,

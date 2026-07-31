@@ -61,11 +61,16 @@ export default defineComponent({
       const mergedDestroyInactivePanel = destroyOnHidden ?? destroyInactivePanel;
       const disabled = collapsible === 'disabled';
       const prefixClsValue = prefixCls.value;
-      const headerCls = classNames(`${prefixClsValue}-header`, {
-        [headerClass]: headerClass,
-        [`${prefixClsValue}-header-collapsible-only`]: collapsible === 'header',
-        [`${prefixClsValue}-icon-collapsible-only`]: collapsible === 'icon',
-      });
+      const { classNames: semanticClassNames, styles } = props;
+      const headerCls = classNames(
+        `${prefixClsValue}-header`,
+        {
+          [headerClass]: headerClass,
+          [`${prefixClsValue}-header-collapsible-only`]: collapsible === 'header',
+          [`${prefixClsValue}-icon-collapsible-only`]: collapsible === 'icon',
+        },
+        semanticClassNames?.header,
+      );
       const itemCls = classNames({
         [`${prefixClsValue}-item`]: true,
         [`${prefixClsValue}-item-active`]: isActive,
@@ -86,6 +91,8 @@ export default defineComponent({
           isActive={isActive}
           forceRender={forceRender}
           role={accordion ? 'tabpanel' : null}
+          classNames={semanticClassNames}
+          styles={styles}
           v-slots={{ default: slots.default }}
         ></PanelContent>
       );
@@ -99,6 +106,7 @@ export default defineComponent({
         <div {...attrs} class={itemCls}>
           <div
             class={headerCls}
+            style={styles?.header}
             onClick={() => !['header', 'icon'].includes(collapsible) && handleItemClick()}
             role={accordion ? 'tab' : 'button'}
             tabindex={disabled ? -1 : 0}
@@ -108,7 +116,8 @@ export default defineComponent({
             {showArrow && icon}
             <span
               onClick={() => collapsible === 'header' && handleItemClick()}
-              class={`${prefixClsValue}-header-text`}
+              class={classNames(`${prefixClsValue}-header-text`, semanticClassNames?.title)}
+              style={styles?.title}
             >
               {header}
             </span>

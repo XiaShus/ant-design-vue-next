@@ -25,6 +25,8 @@ export interface FormItemLabelProps {
   prefixCls: string;
   onClick: Function;
   tooltip?: FormItemTooltipType;
+  /** Item-level vertical layout (antd ≥ 5.18). */
+  vertical?: boolean;
 }
 
 const FormItemLabel: FunctionalComponent<FormItemLabelProps> = (props, { slots, emit, attrs }) => {
@@ -36,7 +38,7 @@ const FormItemLabel: FunctionalComponent<FormItemLabelProps> = (props, { slots, 
   const label = props.label ?? slots.label?.();
   if (!label) return null;
   const {
-    vertical,
+    vertical: contextVertical,
     labelAlign: contextLabelAlign,
     labelCol: contextLabelCol,
     labelWrap,
@@ -45,6 +47,7 @@ const FormItemLabel: FunctionalComponent<FormItemLabelProps> = (props, { slots, 
   const mergedLabelCol: FormItemLabelProps['labelCol'] = labelCol || contextLabelCol?.value || {};
 
   const mergedLabelAlign: FormLabelAlign | undefined = labelAlign || contextLabelAlign?.value;
+  const isVertical = props.vertical !== undefined ? props.vertical : !!contextVertical.value;
 
   const labelClsBasic = `${prefixCls}-item-label`;
   const labelColClassName = classNames(
@@ -59,7 +62,7 @@ const FormItemLabel: FunctionalComponent<FormItemLabelProps> = (props, { slots, 
   let labelChildren: VueNode = label;
   // Keep label is original where there should have no colon
   const computedColon = colon === true || (contextColon?.value !== false && colon !== false);
-  const haveColon = computedColon && !vertical.value;
+  const haveColon = computedColon && !isVertical;
   // Remove duplicated user input colon
   if (haveColon && typeof label === 'string' && (label as string).trim() !== '') {
     labelChildren = (label as string).replace(/[:|：]\s*$/, '');

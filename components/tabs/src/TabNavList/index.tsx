@@ -40,6 +40,8 @@ export const tabNavListProps = () => {
     animated: objectType<AnimatedConfig>(),
     editable: objectType<EditableConfig>(),
     moreIcon: PropTypes.any,
+    /** More dropdown config (antd ≥ 5.17). */
+    more: PropTypes.any,
     moreTransitionName: { type: String },
     mobile: { type: Boolean },
     tabBarGutter: { type: Number },

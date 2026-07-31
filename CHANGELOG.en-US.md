@@ -4,6 +4,14 @@
 
 ---
 
+## 4.74.0
+
+`2026-07-31`
+
+- 🌟 Form.Item support `layout` (antd ≥ 5.18)
+- 🌟 Tabs support `items` / `removeIcon` / `more` (antd ≥ 4.23 / 5.15 / 5.17)
+- 🌟 Collapse support semantic `classNames` / `styles` (antd ≥ 5.21)
+
 ## 4.73.0
 
 `2026-07-31`

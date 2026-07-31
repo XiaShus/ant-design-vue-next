@@ -1,6 +1,7 @@
 <template>
   <demo-sort :cols="1">
     <Basic />
+    <Items />
     <Disabled />
     <Centered />
     <Icon />
@@ -18,6 +19,7 @@
 
 <script lang="ts">
 import Basic from './basic.vue';
+import Items from './items.vue';
 import CardTop from './card-top.vue';
 import Card from './card.vue';
 import CustomAddTrigger from './custom-add-trigger.vue';
@@ -44,6 +46,7 @@ export default defineComponent({
   components: {
     Centered,
     Basic,
+    Items,
     Card,
     CardTop,
     CustomAddTrigger,
