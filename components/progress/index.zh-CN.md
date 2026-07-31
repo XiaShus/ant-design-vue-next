@@ -39,6 +39,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*HJH8Tb1lcYAAAA
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
 | steps | 进度条总共步数。传入对象时可设置 `count` 与步间距 `gap`（px） | number \| { count: number; gap?: number } | - | object: 4.55.0 |
+| percentPosition | 进度数值位置。`align` 控制水平对齐，`type` 控制在进度条内或外 | { align?: `start` \| `center` \| `end`; type?: `inner` \| `outer` } | { align: `end`, type: `outer` } | 4.58.0 |
 | strokeColor | 进度条的色彩，传入 object 时为渐变。当有 `steps` 时支持传入一个数组。 | string \| string[] \| { from: string; to: string; direction: string } | - | - |
 
 ### `type="circle"`

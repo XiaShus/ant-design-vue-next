@@ -6,6 +6,9 @@ import { resetComponent } from '../../style';
 
 export interface ComponentToken {}
 
+export const LineStrokeColorVar = '--progress-line-stroke-color';
+export const Percent = '--progress-percent';
+
 interface ProgressToken extends FullToken<'Progress'> {
   progressLineRadius: number;
   progressInfoTextColor: string;
@@ -48,26 +51,19 @@ const genBaseStyle: GenerateStyle<ProgressToken> = token => {
         position: 'relative',
         width: '100%',
         fontSize: token.fontSize,
-        marginInlineEnd: token.marginXS,
-        marginBottom: token.marginXS,
       },
 
       [`${progressCls}-outer`]: {
-        display: 'inline-block',
+        display: 'inline-flex',
+        alignItems: 'center',
         width: '100%',
-      },
-
-      [`&${progressCls}-show-info`]: {
-        [`${progressCls}-outer`]: {
-          marginInlineEnd: `calc(-2em - ${token.marginXS}px)`,
-          paddingInlineEnd: `calc(2em + ${token.paddingXS}px)`,
-        },
       },
 
       [`${progressCls}-inner`]: {
         position: 'relative',
         display: 'inline-block',
         width: '100%',
+        flex: 1,
         overflow: 'hidden',
         verticalAlign: 'middle',
         backgroundColor: token.progressRemainingColor,
@@ -87,6 +83,41 @@ const genBaseStyle: GenerateStyle<ProgressToken> = token => {
         transition: `all ${token.motionDurationSlow} ${token.motionEaseInOutCirc}`,
       },
 
+      [`${progressCls}-layout-bottom`]: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        [`${progressCls}-text`]: {
+          width: 'max-content',
+          marginInlineStart: 0,
+          marginTop: token.marginXXS,
+        },
+      },
+
+      [`${progressCls}-bg`]: {
+        overflow: 'hidden',
+        '&::after': {
+          content: '""',
+          background: `var(${LineStrokeColorVar})`,
+          height: '100%',
+          width: `calc(1 / var(${Percent}) * 100%)`,
+          display: 'block',
+        },
+        [`&${progressCls}-bg-inner`]: {
+          minWidth: 'max-content',
+          '&::after': {
+            content: 'none',
+          },
+          [`${progressCls}-text-inner`]: {
+            color: token.colorWhite,
+            [`&${progressCls}-text-bright`]: {
+              color: 'rgba(0, 0, 0, 0.45)',
+            },
+          },
+        },
+      },
+
       [`${progressCls}-success-bg`]: {
         position: 'absolute',
         insetBlockStart: 0,
@@ -96,16 +127,40 @@ const genBaseStyle: GenerateStyle<ProgressToken> = token => {
 
       [`${progressCls}-text`]: {
         display: 'inline-block',
-        width: '2em',
         marginInlineStart: token.marginXS,
         color: token.progressInfoTextColor,
         lineHeight: 1,
+        width: '2em',
         whiteSpace: 'nowrap',
         textAlign: 'start',
         verticalAlign: 'middle',
         wordBreak: 'normal',
         [iconPrefixCls]: {
           fontSize: token.fontSize,
+        },
+        [`&${progressCls}-text-outer`]: {
+          width: 'max-content',
+        },
+        [`&${progressCls}-text-outer${progressCls}-text-start`]: {
+          width: 'max-content',
+          marginInlineStart: 0,
+          marginInlineEnd: token.marginXS,
+        },
+      },
+
+      [`${progressCls}-text-inner`]: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+        height: '100%',
+        marginInlineStart: 0,
+        padding: `0 ${token.paddingXXS}px`,
+        [`&${progressCls}-text-start`]: {
+          justifyContent: 'flex-start',
+        },
+        [`&${progressCls}-text-end`]: {
+          justifyContent: 'flex-end',
         },
       },
 

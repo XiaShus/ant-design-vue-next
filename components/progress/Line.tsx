@@ -2,16 +2,18 @@ import type { CSSProperties, ExtractPropTypes } from 'vue';
 import { presetPrimaryColors } from '@ant-design/colors';
 import { computed, defineComponent } from 'vue';
 import type { Direction } from '../config-provider';
-import type { StringGradients, ProgressGradient, ProgressSize } from './props';
+import type { StringGradients, ProgressGradient, ProgressSize, PercentPositionType } from './props';
 import { progressProps } from './props';
 import { getSize, getSuccessPercent, validProgress } from './utils';
+import { LineStrokeColorVar, Percent } from './style';
 import devWarning from '../vc-util/devWarning';
-import { anyType, stringType } from '../_util/type';
+import { anyType, objectType, stringType } from '../_util/type';
 
 export const lineProps = () => ({
   ...progressProps(),
   strokeColor: anyType<string | ProgressGradient>(),
   direction: stringType<Direction>(),
+  percentPosition: objectType<PercentPositionType>(),
 });
 
 export type LineProps = Partial<ExtractPropTypes<ReturnType<typeof lineProps>>>;
@@ -65,9 +67,11 @@ export const handleGradient = (
   } = strokeColor;
   if (Object.keys(rest).length !== 0) {
     const sortedGradients = sortGradient(rest as StringGradients);
-    return { backgroundImage: `linear-gradient(${direction}, ${sortedGradients})` };
+    const background = `linear-gradient(${direction}, ${sortedGradients})`;
+    return { background, [LineStrokeColorVar]: background };
   }
-  return { backgroundImage: `linear-gradient(${direction}, ${from}, ${to})` };
+  const background = `linear-gradient(${direction}, ${from}, ${to})`;
+  return { background, [LineStrokeColorVar]: background };
 };
 
 export default defineComponent({
@@ -81,20 +85,18 @@ export default defineComponent({
       return strokeColor && typeof strokeColor !== 'string'
         ? handleGradient(strokeColor, direction)
         : {
-            backgroundColor: strokeColor as string,
+            [LineStrokeColorVar]: strokeColor as string,
+            background: strokeColor as string,
           };
     });
     const borderRadius = computed(() =>
       props.strokeLinecap === 'square' || props.strokeLinecap === 'butt' ? 0 : undefined,
     );
 
-    const trailStyle = computed<CSSProperties>(() =>
-      props.trailColor
-        ? {
-            backgroundColor: props.trailColor,
-          }
-        : undefined,
-    );
+    const trailStyle = computed<CSSProperties>(() => ({
+      backgroundColor: props.trailColor || undefined,
+      borderRadius: borderRadius.value,
+    }));
 
     const mergedSize = computed(
       () => props.size ?? [-1, props.strokeWidth || (props.size === 'small' ? 6 : 8)],
@@ -119,6 +121,7 @@ export default defineComponent({
         height: `${sizeRef.value.height}px`,
         borderRadius: borderRadius.value,
         ...backgroundProps.value,
+        [Percent]: validProgress(percent) / 100,
       };
     });
 
@@ -135,27 +138,57 @@ export default defineComponent({
       };
     });
 
-    const outerStyle: CSSProperties = {
+    const outerStyle = computed<CSSProperties>(() => ({
       width: sizeRef.value.width < 0 ? '100%' : sizeRef.value.width,
-      height: `${sizeRef.value.height}px`,
-    };
+    }));
 
-    return () => (
-      <>
+    const percentPosition = computed(() => ({
+      align: props.percentPosition?.align ?? 'end',
+      type: props.percentPosition?.type ?? 'outer',
+    }));
+
+    return () => {
+      const { prefixCls } = props;
+      const { align: infoAlign, type: infoPosition } = percentPosition.value;
+      const children = slots.default?.();
+
+      const lineInner = (
+        <div class={`${prefixCls}-inner`} style={trailStyle.value}>
+          <div
+            class={[`${prefixCls}-bg`, `${prefixCls}-bg-${infoPosition}`]}
+            style={percentStyle.value}
+          >
+            {infoPosition === 'inner' ? children : null}
+          </div>
+          {successPercent.value !== undefined ? (
+            <div class={`${prefixCls}-success-bg`} style={successPercentStyle.value} />
+          ) : null}
+        </div>
+      );
+
+      const isOuterStart = infoPosition === 'outer' && infoAlign === 'start';
+      const isOuterEnd = infoPosition === 'outer' && infoAlign === 'end';
+
+      if (infoPosition === 'outer' && infoAlign === 'center') {
+        return (
+          <div {...attrs} class={[`${prefixCls}-layout-bottom`, attrs.class]}>
+            {lineInner}
+            {children}
+          </div>
+        );
+      }
+
+      return (
         <div
           {...attrs}
-          class={[`${props.prefixCls}-outer`, attrs.class]}
-          style={[attrs.style as CSSProperties, outerStyle]}
+          class={[`${prefixCls}-outer`, attrs.class]}
+          style={[attrs.style as CSSProperties, outerStyle.value]}
         >
-          <div class={`${props.prefixCls}-inner`} style={trailStyle.value}>
-            <div class={`${props.prefixCls}-bg`} style={percentStyle.value} />
-            {successPercent.value !== undefined ? (
-              <div class={`${props.prefixCls}-success-bg`} style={successPercentStyle.value} />
-            ) : null}
-          </div>
+          {isOuterStart ? children : null}
+          {lineInner}
+          {isOuterEnd ? children : null}
         </div>
-        {slots.default?.()}
-      </>
-    );
+      );
+    };
   },
 });

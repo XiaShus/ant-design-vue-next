@@ -1,6 +1,7 @@
 <template>
   <demo-sort>
     <line-demo />
+    <info-position />
     <circle-demo />
     <line-mini />
     <circle-mini />
@@ -18,6 +19,7 @@
 </template>
 <script lang="ts">
 import Line from './line.vue';
+import InfoPosition from './info-position.vue';
 import Circle from './circle.vue';
 import LineMini from './line-mini.vue';
 import CircleMini from './circle-mini.vue';
@@ -40,6 +42,7 @@ export default defineComponent({
   US,
   components: {
     LineDemo: Line,
+    InfoPosition,
     CircleDemo: Circle,
     LineMini,
     CircleMini,

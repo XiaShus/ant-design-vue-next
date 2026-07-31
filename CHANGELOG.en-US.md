@@ -4,6 +4,12 @@
 
 ---
 
+## 4.58.0
+
+`2026-07-31`
+
+- 🌟 Progress line supports `percentPosition` (`align` / `type`) (antd ≥ 5.18)
+
 ## 4.57.0
 
 `2026-07-31`

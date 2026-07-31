@@ -34,6 +34,12 @@ export interface SuccessProps {
 /** antd ≥ 5.16 — object form supports `count` + `gap` (gap used by line step spacing). */
 export type ProgressSteps = number | { count: number; gap?: number };
 
+/** antd ≥ 5.18 — line progress value position. */
+export type PercentPositionType = {
+  align?: 'start' | 'center' | 'end';
+  type?: 'inner' | 'outer';
+};
+
 export const progressProps = () => ({
   prefixCls: String,
   type: stringType<ProgressType>(),
@@ -52,6 +58,8 @@ export const progressProps = () => ({
   gapPosition: stringType<'top' | 'bottom' | 'left' | 'right'>(),
   size: someType<ProgressSize>([String, Number, Array, Object]),
   steps: someType<ProgressSteps>([Number, Object]),
+  /** Line progress value position (antd ≥ 5.18). */
+  percentPosition: objectType<PercentPositionType>(),
   /** @deprecated Use `success` instead */
   successPercent: Number,
   title: String,

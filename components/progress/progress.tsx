@@ -1,9 +1,11 @@
 import { computed, defineComponent } from 'vue';
+import { TinyColor } from '@ctrl/tinycolor';
 import initDefaultProps from '../_util/props-util/initDefaultProps';
 import CloseOutlined from '@ant-design/icons-vue/CloseOutlined';
 import CheckOutlined from '@ant-design/icons-vue/CheckOutlined';
 import CheckCircleFilled from '@ant-design/icons-vue/CheckCircleFilled';
 import CloseCircleFilled from '@ant-design/icons-vue/CloseCircleFilled';
+import classNames from '../_util/classNames';
 import Line from './Line';
 import Circle from './Circle';
 import Steps from './Steps';
@@ -74,13 +76,31 @@ export default defineComponent({
       return { count: steps, gap: undefined as number | undefined };
     });
 
+    const infoAlign = computed(() => props.percentPosition?.align ?? 'end');
+    const infoPosition = computed(() => props.percentPosition?.type ?? 'outer');
+
+    const strokeColorIsBright = computed(() => {
+      const colorValue = strokeColorNotArray.value;
+      if (!colorValue) {
+        return false;
+      }
+      const color =
+        typeof colorValue === 'string' ? colorValue : Object.values(colorValue as object)[0];
+      return typeof color === 'string' ? new TinyColor(color).isLight() : false;
+    });
+
     const classString = computed(() => {
       const { type, showInfo, size } = props;
       const pre = prefixCls.value;
+      const isLineType = type === 'line';
+      const isPureLineType = isLineType && !mergedSteps.value;
       return {
         [pre]: true,
         [`${pre}-inline-circle`]: type === 'circle' && getSize(size, 'circle').width <= 20,
-        [`${pre}-${(type === 'dashboard' && 'circle') || type}`]: true,
+        [`${pre}-${(type === 'dashboard' && 'circle') || type}`]: type !== 'line',
+        [`${pre}-line`]: isPureLineType,
+        [`${pre}-line-align-${infoAlign.value}`]: isPureLineType,
+        [`${pre}-line-position-${infoPosition.value}`]: isPureLineType,
         [`${pre}-status-${progressStatus.value}`]: true,
         [`${pre}-show-info`]: showInfo,
         [`${pre}-${size}`]: typeof size === 'string',
@@ -104,7 +124,11 @@ export default defineComponent({
       let text: VueNode;
       const textFormatter = format || slots?.format || ((val: number) => `${val}%`);
       const isLineType = type === 'line';
+      const isPureLineType = isLineType && !mergedSteps.value;
+      const isBrightInnerColor =
+        isLineType && strokeColorIsBright.value && infoPosition.value === 'inner';
       if (
+        infoPosition.value === 'inner' ||
         format ||
         slots?.format ||
         (progressStatus.value !== 'exception' && progressStatus.value !== 'success')
@@ -117,7 +141,11 @@ export default defineComponent({
       }
       return (
         <span
-          class={`${prefixCls.value}-text`}
+          class={classNames(`${prefixCls.value}-text`, {
+            [`${prefixCls.value}-text-bright`]: isBrightInnerColor,
+            [`${prefixCls.value}-text-${infoAlign.value}`]: isPureLineType,
+            [`${prefixCls.value}-text-${infoPosition.value}`]: isPureLineType,
+          })}
           title={title === undefined && typeof text === 'string' ? text : undefined}
         >
           {text}
@@ -149,6 +177,10 @@ export default defineComponent({
             strokeColor={strokeColorNotArray.value}
             prefixCls={prefixCls.value}
             direction={direction.value}
+            percentPosition={{
+              align: infoAlign.value,
+              type: infoPosition.value,
+            }}
           >
             {progressInfo}
           </Line>
