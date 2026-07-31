@@ -25,6 +25,10 @@ export type ImagePreviewType = Omit<
   icons?: PreviewProps['icons'];
   /** Custom preview toolbar (antd ≥ 5.7) */
   toolbarRender?: PreviewProps['toolbarRender'];
+  /** Whether preview image can be moved (antd ≥ 5.8). */
+  movable?: boolean;
+  /** Custom preview image node (antd ≥ 5.7). */
+  imageRender?: PreviewProps['imageRender'];
 };
 
 export const imageProps = () => ({

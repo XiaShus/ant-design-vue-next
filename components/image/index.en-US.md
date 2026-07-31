@@ -78,6 +78,23 @@ Previewable image.
       image: { url: string; alt?: string; width?: number | string; height?: number | string };
     },
   ) => any;
+  /** Whether preview image can be moved. `4.67.0+` (antd ≥ 5.8) */
+  movable?: boolean;
+  /** Custom preview image node. `4.67.0+` (antd ≥ 5.7) */
+  imageRender?: (
+    originalNode: VNode,
+    info: {
+      transform: {
+        x: number;
+        y: number;
+        rotate: number;
+        scale: number;
+        flipX: boolean;
+        flipY: boolean;
+      };
+      image: { url: string; alt?: string; width?: number | string; height?: number | string };
+    },
+  ) => any;
 }
 ```
 

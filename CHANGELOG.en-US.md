@@ -4,6 +4,15 @@
 
 ---
 
+## 4.67.0
+
+`2026-07-31`
+
+- 🌟 Badge support semantic `classNames` / `styles` (antd ≥ 5.7)
+- 🌟 Image preview support `movable` / `imageRender` (antd ≥ 5.8 / 5.7)
+- 🌟 Descriptions support semantic `classNames` / `styles` (antd ≥ 5.23)
+- 🌟 Select support `labelRender` / `optionRender` (antd ≥ 5.15 / 5.11)
+
 ## 4.66.0
 
 `2026-07-31`

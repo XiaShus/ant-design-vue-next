@@ -45,6 +45,7 @@ Select component to select value from options.
 | firstActiveValue | Value of action option by default | string \| string\[] | - |  |
 | getPopupContainer | Parent Node which the selector should be rendered to. Default to `body`. When position issues happen, try to modify it into scrollable content and position it relative. | function(triggerNode) | () => document.body |  |
 | labelInValue | whether to embed label in value, turn the format of value from `string` to `{key: string, label: vNodes, originLabel: any}`, originLabel (3.1) maintains the original type. If the node is constructed through a-select-option children, the value is a function (the default slot of a-select-option) | boolean | false |  |
+| labelRender | Custom render selected label | (props) => any | - | 4.67.0 |
 | listHeight | Config popup height | number | 256 |  |
 | loading | indicate loading state | boolean | false |  |
 | maxCount | Max number of items that can be selected. Only works when `mode` is `multiple` or `tags` | number | - | 4.20.0 |
@@ -58,6 +59,7 @@ Select component to select value from options.
 | option | custom render option by slot | v-slot:option="{value, label, [disabled, key, title]}" | - | 2.2.5 |
 | optionFilterProp | Which prop value of option will be used for filter if filterOption is true | string | value |  |
 | optionLabelProp | Which prop value of option will render as content of select. | string | `children` \| `label`(when use options) |  |
+| optionRender | Custom render dropdown option content | (oriOption) => any | - | 4.67.0 |
 | options | Data of the selectOption, manual construction work is no longer needed if this property has been set | Array&lt;{value, label, [disabled, key, title]}> | \[] |  |
 | placeholder | Placeholder of select | string\|slot | - |  |
 | placement | The position where the selection box pops up | `bottomLeft` `bottomRight` `topLeft` `topRight` | bottomLeft | 3.3.0 |

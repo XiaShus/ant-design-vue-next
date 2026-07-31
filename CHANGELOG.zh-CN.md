@@ -8,6 +8,15 @@
 
 ---
 
+## 4.67.0
+
+`2026-07-31`
+
+- 🌟 Badge 支持语义化 `classNames` / `styles`（对齐 antd ≥ 5.7）
+- 🌟 Image 预览支持 `movable` / `imageRender`（对齐 antd ≥ 5.8 / 5.7）
+- 🌟 Descriptions 支持语义化 `classNames` / `styles`（对齐 antd ≥ 5.23）
+- 🌟 Select 支持 `labelRender` / `optionRender`（对齐 antd ≥ 5.15 / 5.11）
+
 ## 4.66.0
 
 `2026-07-31`

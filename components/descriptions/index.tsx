@@ -9,15 +9,7 @@ import type {
   CSSProperties,
   InjectionKey,
 } from 'vue';
-import {
-  onBeforeMount,
-  ref,
-  defineComponent,
-  onBeforeUnmount,
-  provide,
-  toRef,
-  computed,
-} from 'vue';
+import { onBeforeMount, ref, defineComponent, onBeforeUnmount, provide, computed } from 'vue';
 import warning from '../_util/warning';
 import type { Breakpoint, ScreenMap } from '../_util/responsiveObserve';
 import useResponsiveObserve, { responsiveArray } from '../_util/responsiveObserve';
@@ -27,8 +19,12 @@ import { cloneElement } from '../_util/vnode';
 import { flattenChildren } from '../_util/props-util';
 import useConfigInject from '../config-provider/hooks/useConfigInject';
 import type { CustomSlotsType, VueNode } from '../_util/type';
-import { arrayType } from '../_util/type';
+import { arrayType, objectType } from '../_util/type';
 import useStyle from './style';
+
+export type DescriptionsSemanticName = 'root' | 'header' | 'title' | 'extra' | 'label' | 'content';
+export type DescriptionsClassNamesType = Partial<Record<DescriptionsSemanticName, string>>;
+export type DescriptionsStylesType = Partial<Record<DescriptionsSemanticName, CSSProperties>>;
 
 export const DescriptionsItemProps = {
   prefixCls: String,
@@ -154,10 +150,16 @@ export const descriptionsProps = () => ({
   },
   layout: String as PropType<'horizontal' | 'vertical'>,
   colon: { type: Boolean, default: undefined },
+  /** @deprecated Please use `styles.label` instead */
   labelStyle: { type: Object as PropType<CSSProperties>, default: undefined as CSSProperties },
+  /** @deprecated Please use `styles.content` instead */
   contentStyle: { type: Object as PropType<CSSProperties>, default: undefined as CSSProperties },
   /** Describe list items (antd ≥ 5.8). Prefer over nested `Descriptions.Item`. */
   items: arrayType<DescriptionsItemType[]>(),
+  /** Semantic structure className (antd ≥ 5.23). */
+  classNames: objectType<DescriptionsClassNamesType>(),
+  /** Semantic structure style (antd ≥ 5.23). */
+  styles: objectType<DescriptionsStylesType>(),
 });
 
 export type DescriptionsProps = HTMLAttributes &
@@ -166,6 +168,8 @@ export type DescriptionsProps = HTMLAttributes &
 export interface DescriptionsContextProp {
   labelStyle?: Ref<CSSProperties>;
   contentStyle?: Ref<CSSProperties>;
+  labelClassName?: Ref<string | undefined>;
+  contentClassName?: Ref<string | undefined>;
 }
 
 export const descriptionsContext: InjectionKey<DescriptionsContextProp> =
@@ -203,9 +207,22 @@ const Descriptions = defineComponent({
       responsiveObserve.value.unsubscribe(token);
     });
 
+    const mergedLabelStyle = computed(() => ({
+      ...props.labelStyle,
+      ...props.styles?.label,
+    }));
+    const mergedContentStyle = computed(() => ({
+      ...props.contentStyle,
+      ...props.styles?.content,
+    }));
+    const labelClassName = computed(() => props.classNames?.label);
+    const contentClassName = computed(() => props.classNames?.content);
+
     provide(descriptionsContext, {
-      labelStyle: toRef(props, 'labelStyle'),
-      contentStyle: toRef(props, 'contentStyle'),
+      labelStyle: mergedLabelStyle,
+      contentStyle: mergedContentStyle,
+      labelClassName,
+      contentClassName,
     });
 
     const mergeColumn = computed(() => getColumn(props.column, screens.value));
@@ -218,6 +235,8 @@ const Descriptions = defineComponent({
         colon = true,
         title = slots.title?.(),
         extra = slots.extra?.(),
+        classNames: descClassNames,
+        styles: descStyles,
       } = props;
 
       const itemNodes =
@@ -245,13 +264,32 @@ const Descriptions = defineComponent({
               [`${prefixCls.value}-rtl`]: direction.value === 'rtl',
             },
             attrs.class,
+            descClassNames?.root,
             hashId.value,
           ]}
+          style={{ ...descStyles?.root, ...(attrs.style as CSSProperties) }}
         >
           {(title || extra) && (
-            <div class={`${prefixCls.value}-header`}>
-              {title && <div class={`${prefixCls.value}-title`}>{title}</div>}
-              {extra && <div class={`${prefixCls.value}-extra`}>{extra}</div>}
+            <div
+              class={[`${prefixCls.value}-header`, descClassNames?.header]}
+              style={descStyles?.header}
+            >
+              {title && (
+                <div
+                  class={[`${prefixCls.value}-title`, descClassNames?.title]}
+                  style={descStyles?.title}
+                >
+                  {title}
+                </div>
+              )}
+              {extra && (
+                <div
+                  class={[`${prefixCls.value}-extra`, descClassNames?.extra]}
+                  style={descStyles?.extra}
+                >
+                  {extra}
+                </div>
+              )}
             </div>
           )}
           <div class={`${prefixCls.value}-view`}>

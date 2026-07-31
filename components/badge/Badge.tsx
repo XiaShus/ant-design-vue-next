@@ -12,8 +12,13 @@ import isNumeric from '../_util/isNumeric';
 import useStyle from './style';
 import type { PresetColorKey } from '../theme/interface';
 import type { LiteralUnion, CustomSlotsType } from '../_util/type';
+import { objectType } from '../_util/type';
 import type { PresetStatusColorType } from '../_util/colors';
 import { isPresetColor } from '../_util/colors';
+
+export type BadgeSemanticName = 'root' | 'indicator';
+export type BadgeClassNamesType = Partial<Record<BadgeSemanticName, string>>;
+export type BadgeStylesType = Partial<Record<BadgeSemanticName, CSSProperties>>;
 
 export const badgeProps = () => ({
   /** Number to show in badge */
@@ -32,6 +37,10 @@ export const badgeProps = () => ({
   offset: Array as unknown as PropType<[number | string, number | string]>,
   numberStyle: { type: Object as PropType<CSSProperties>, default: undefined as CSSProperties },
   title: String,
+  /** Semantic structure className (antd ≥ 5.7). */
+  classNames: objectType<BadgeClassNamesType>(),
+  /** Semantic structure style (antd ≥ 5.7). */
+  styles: objectType<BadgeStylesType>(),
 });
 
 export type BadgeProps = Partial<ExtractPropTypes<ReturnType<typeof badgeProps>>>;
@@ -189,15 +198,20 @@ export default defineComponent({
           [`${pre}-rtl`]: direction.value === 'rtl',
         },
         attrs.class,
+        props.classNames?.root,
         hashId.value,
       );
+      const rootStyle = { ...props.styles?.root, ...mergedStyle };
 
       // <Badge status="success" />
       if (!children && hasStatus.value) {
-        const statusTextColor = mergedStyle.color;
+        const statusTextColor = rootStyle.color;
         return wrapSSR(
-          <span {...attrs} class={badgeClassName} style={mergedStyle}>
-            <span class={statusCls.value} style={statusStyle.value} />
+          <span {...attrs} class={badgeClassName} style={rootStyle}>
+            <span
+              class={classNames(statusCls.value, props.classNames?.indicator)}
+              style={{ ...statusStyle.value, ...props.styles?.indicator }}
+            />
             <span style={{ color: statusTextColor }} class={`${pre}-status-text`}>
               {text}
             </span>
@@ -208,21 +222,25 @@ export default defineComponent({
       const transitionProps = getTransitionProps(children ? `${pre}-zoom` : '', {
         appear: false,
       });
-      let scrollNumberStyle: CSSProperties = { ...mergedStyle, ...(props.numberStyle as object) };
+      let scrollNumberStyle: CSSProperties = {
+        ...mergedStyle,
+        ...(props.numberStyle as object),
+        ...props.styles?.indicator,
+      };
       if (color && !isInternalColor.value) {
         scrollNumberStyle = scrollNumberStyle || {};
         scrollNumberStyle.background = color;
       }
 
       return wrapSSR(
-        <span {...attrs} class={badgeClassName}>
+        <span {...attrs} class={badgeClassName} style={props.styles?.root}>
           {children}
           <Transition {...transitionProps}>
             <ScrollNumber
               v-show={visible}
               prefixCls={props.scrollNumberPrefixCls}
               show={visible}
-              class={scrollNumberCls.value}
+              class={classNames(scrollNumberCls.value, props.classNames?.indicator)}
               count={displayCount.value}
               title={titleNode}
               style={scrollNumberStyle}

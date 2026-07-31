@@ -7,6 +7,7 @@
     <Responsive />
     <Vertical />
     <VerticalBorder />
+    <StyleClass />
   </demo-sort>
 </template>
 
@@ -18,6 +19,7 @@ import Responsive from './responsive.vue';
 import Size from './size.vue';
 import VerticalBorder from './vertical-border.vue';
 import Vertical from './vertical.vue';
+import StyleClass from './style-class.vue';
 
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
@@ -40,6 +42,7 @@ export default defineComponent({
     Responsive,
     Vertical,
     VerticalBorder,
+    StyleClass,
   },
 });
 </script>

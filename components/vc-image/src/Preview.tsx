@@ -86,6 +86,13 @@ export interface PreviewProps extends Omit<IDialogChildProps, 'onClose' | 'mask'
   };
   /** Custom preview toolbar (antd ≥ 5.7 `toolbarRender`) */
   toolbarRender?: ToolbarRender;
+  /** Whether preview image can be moved (antd ≥ 5.8). */
+  movable?: boolean;
+  /** Custom preview image node (antd ≥ 5.7). */
+  imageRender?: (
+    originalNode: any,
+    info: { transform: Record<string, any>; image: Record<string, any> },
+  ) => any;
 }
 
 const initialPosition = {
@@ -102,6 +109,8 @@ export const previewProps = {
     default: () => ({} as PreviewProps['icons']),
   },
   toolbarRender: Function as PropType<ToolbarRender>,
+  movable: { type: Boolean, default: true },
+  imageRender: Function as PropType<PreviewProps['imageRender']>,
 };
 const Preview = defineComponent({
   compatConfig: { MODE: 3 },
@@ -295,6 +304,7 @@ const Preview = defineComponent({
     };
 
     const onMouseDown: MouseEventHandler = event => {
+      if (props.movable === false) return;
       // Only allow main button
       if (event.button !== 0) return;
       event.preventDefault();
@@ -410,7 +420,7 @@ const Preview = defineComponent({
     });
 
     return () => {
-      const { visible, prefixCls, rootClassName, toolbarRender } = props;
+      const { visible, prefixCls, rootClassName, toolbarRender, imageRender } = props;
 
       const originalNode = (
         <ul class={`${prefixCls}-operations`}>
@@ -468,6 +478,27 @@ const Preview = defineComponent({
 
       const toolbarNode = toolbarRender ? toolbarRender(originalNode, toolbarInfo) : originalNode;
 
+      const imgNode = (
+        <img
+          onMousedown={onMouseDown}
+          onDblclick={onDoubleClick}
+          ref={imgRef}
+          class={`${prefixCls}-img`}
+          src={combinationSrc.value}
+          alt={props.alt}
+          style={{
+            transform: `scale3d(${flip.x * scale.value}, ${flip.y * scale.value}, 1) rotate(${
+              rotate.value
+            }deg)`,
+          }}
+        />
+      );
+      const imageInfo = {
+        transform: toolbarInfo.transform,
+        image: toolbarInfo.image,
+      };
+      const renderedImage = imageRender ? imageRender(imgNode, imageInfo) : imgNode;
+
       return (
         <Dialog
           {...attrs}
@@ -490,19 +521,7 @@ const Preview = defineComponent({
               transform: `translate3d(${position.x}px, ${position.y}px, 0)`,
             }}
           >
-            <img
-              onMousedown={onMouseDown}
-              onDblclick={onDoubleClick}
-              ref={imgRef}
-              class={`${prefixCls}-img`}
-              src={combinationSrc.value}
-              alt={props.alt}
-              style={{
-                transform: `scale3d(${flip.x * scale.value}, ${flip.y * scale.value}, 1) rotate(${
-                  rotate.value
-                }deg)`,
-              }}
-            />
+            {renderedImage}
           </div>
           {showLeftOrRightSwitches.value && (
             <div

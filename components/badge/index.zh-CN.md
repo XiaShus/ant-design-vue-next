@@ -29,6 +29,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*v8EQT7KoGbcAAA
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
+| classNames | 语义化结构 className | { root?: string; indicator?: string } | - | 4.67.0 |
 | color | 自定义小圆点的颜色 | string | - | 1.5.0 |
 | count | 展示的数字，大于 overflowCount 时显示为 `${overflowCount}+`，为 0 时隐藏 | number \| string \| slot |  |  |
 | dot | 不展示数字，只有一个小红点 | boolean | false |  |
@@ -38,6 +39,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*v8EQT7KoGbcAAA
 | showZero | 当数值为 0 时，是否展示 Badge | boolean | false |  |
 | size | 在设置了 `count` 的前提下有效，设置小圆点的大小 | `default` \| `small` | `default` | 4.66.0 |
 | status | 设置 Badge 为状态点 | Enum{ 'success', 'processing, 'default', 'error', 'warning' } | '' |  |
+| styles | 语义化结构 style | { root?: CSSProperties; indicator?: CSSProperties } | - | 4.67.0 |
 | text | 在设置了 `status` 的前提下有效，设置状态点的文本 | string | '' |  |
 | title | 设置鼠标放在状态点上时显示的文字 | string | `count` |  |
 

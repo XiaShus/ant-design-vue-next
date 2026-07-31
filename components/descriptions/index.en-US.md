@@ -19,6 +19,7 @@ Commonly displayed on the details page.
 | Property | Description | Type | Default | Version |  |  |
 | --- | --- | --- | --- | --- | --- | --- |
 | bordered | whether to display the border | boolean | false |  |  |  |
+| classNames | Customize class for each semantic structure | { root?: string; header?: string; title?: string; extra?: string; label?: string; content?: string } | - | 4.67.0 |  |  |
 | colon | change default props `colon` value of `Descriptions.Item` | boolean | true |  |  |  |
 | column | the number of `DescriptionItems` in a row,could be a number or a object like `{ xs: 8, sm: 16, md: 24}`,(Only set `bordered={true}` to take effect) | number | 3 |  |  |  |
 | contentStyle | Customize content style | CSSProperties | - | 2.2.0 |  |  |
@@ -27,6 +28,7 @@ Commonly displayed on the details page.
 | labelStyle | Customize label style | CSSProperties | - | 2.2.0 |  |  |
 | layout | Define description layout | `horizontal` \| `vertical` | `horizontal` |  |  |
 | size | set the size of the list. Can be set to `middle`,`small`, or not filled | `default` \| `middle` \| `small` | `default` |  |
+| styles | Customize inline style for each semantic structure | { root?: CSSProperties; header?: CSSProperties; title?: CSSProperties; extra?: CSSProperties; label?: CSSProperties; content?: CSSProperties } | - | 4.67.0 |  |  |
 | title | The title of the description list, placed at the top | string \| VNode \| slot | - |  |  |  |
 
 #### DescriptionsItemType

@@ -28,6 +28,7 @@ Badge normally appears in proximity to notifications or user avatars with eye-ca
 
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
+| classNames | Customize class for each semantic structure | { root?: string; indicator?: string } | - | 4.67.0 |
 | color | Customize Badge dot color | string | - | 1.5.0 |
 | count | Number to show in badge | number\|string \| slot |  |  |
 | dot | Whether to display a red dot instead of `count` | boolean | `false` |  |
@@ -36,6 +37,7 @@ Badge normally appears in proximity to notifications or user avatars with eye-ca
 | showZero | Whether to show badge when `count` is zero | boolean | `false` |  |
 | size | If `count` is set, set size of badge | `default` \| `small` | `default` | 4.66.0 |
 | status | Set Badge as a status dot | `success` \| `processing` \| `default` \| `error` \| `warning` | `''` |  |
+| styles | Customize inline style for each semantic structure | { root?: CSSProperties; indicator?: CSSProperties } | - | 4.67.0 |
 | text | If `status` is set, `text` sets the display text of the status `dot` | string | `''` |  |
 | numberStyle | sets the display style of the status `dot` | object | '' |  |
 | title | Text to show when hovering over the badge | string | `count` |  |

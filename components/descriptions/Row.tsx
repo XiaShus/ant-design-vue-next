@@ -31,7 +31,14 @@ const Row: FunctionalComponent<RowProps> = props => {
       showContent,
       labelStyle: rootLabelStyle,
       contentStyle: rootContentStyle,
-    }: CellConfig & { labelStyle?: CSSProperties; contentStyle?: CSSProperties },
+      labelClassName: rootLabelClassName,
+      contentClassName: rootContentClassName,
+    }: CellConfig & {
+      labelStyle?: CSSProperties;
+      contentStyle?: CSSProperties;
+      labelClassName?: string;
+      contentClassName?: string;
+    },
   ) => {
     return items.map((item, index) => {
       const itemProps = item.props || {};
@@ -54,6 +61,8 @@ const Row: FunctionalComponent<RowProps> = props => {
             style={style}
             labelStyle={{ ...rootLabelStyle, ...labelStyle }}
             contentStyle={{ ...rootContentStyle, ...contentStyle }}
+            labelClassName={rootLabelClassName}
+            contentClassName={rootContentClassName}
             span={span}
             colon={colon}
             component={component}
@@ -70,6 +79,7 @@ const Row: FunctionalComponent<RowProps> = props => {
           key={`label-${String(key) || index}`}
           class={className}
           style={{ ...rootLabelStyle, ...style, ...labelStyle }}
+          labelClassName={rootLabelClassName}
           span={1}
           colon={colon}
           component={component[0]}
@@ -81,6 +91,7 @@ const Row: FunctionalComponent<RowProps> = props => {
           key={`content-${String(key) || index}`}
           class={className}
           style={{ ...rootContentStyle, ...style, ...contentStyle }}
+          contentClassName={rootContentClassName}
           span={span * 2 - 1}
           component={component[1]}
           itemPrefixCls={itemPrefixCls}
@@ -92,10 +103,15 @@ const Row: FunctionalComponent<RowProps> = props => {
   };
 
   const { prefixCls, vertical, row, index, bordered } = props;
-  const { labelStyle, contentStyle } = inject(descriptionsContext, {
-    labelStyle: ref({}),
-    contentStyle: ref({}),
-  });
+  const { labelStyle, contentStyle, labelClassName, contentClassName } = inject(
+    descriptionsContext,
+    {
+      labelStyle: ref({}),
+      contentStyle: ref({}),
+      labelClassName: ref(undefined),
+      contentClassName: ref(undefined),
+    },
+  );
   if (vertical) {
     return (
       <>
@@ -106,6 +122,8 @@ const Row: FunctionalComponent<RowProps> = props => {
             showLabel: true,
             labelStyle: labelStyle.value,
             contentStyle: contentStyle.value,
+            labelClassName: labelClassName?.value,
+            contentClassName: contentClassName?.value,
           })}
         </tr>
         <tr key={`content-${index}`} class={`${prefixCls}-row`}>
@@ -115,6 +133,8 @@ const Row: FunctionalComponent<RowProps> = props => {
             showContent: true,
             labelStyle: labelStyle.value,
             contentStyle: contentStyle.value,
+            labelClassName: labelClassName?.value,
+            contentClassName: contentClassName?.value,
           })}
         </tr>
       </>
@@ -130,6 +150,8 @@ const Row: FunctionalComponent<RowProps> = props => {
         showContent: true,
         labelStyle: labelStyle.value,
         contentStyle: contentStyle.value,
+        labelClassName: labelClassName?.value,
+        contentClassName: contentClassName?.value,
       })}
     </tr>
   );

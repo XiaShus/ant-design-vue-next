@@ -66,7 +66,7 @@
 | Data Entry | Mentions | ✅ | ✅ | [mentions](../../components/mentions) | 🔄 `variant` ✅ 4.12.0 |
 | Data Entry | Radio | ✅ | ✅ | [radio](../../components/radio) | — |
 | Data Entry | Rate | ✅ | ✅ | [rate](../../components/rate) | — |
-| Data Entry | Select | ✅ | ✅ | [select](../../components/select) | 🔄 `variant` ✅ 4.9.0；🔄 `maxCount` ✅ 4.20.0 |
+| Data Entry | Select | ✅ | ✅ | [select](../../components/select) | 🔄 `variant` ✅ 4.9.0；🔄 `maxCount` ✅ 4.20.0；🔄 `labelRender` / `optionRender` ✅ 4.67.0 |
 | Data Entry | Slider | ✅ | ✅ | [slider](../../components/slider) | 🔄 nested `tooltip` ✅ 4.56.0 |
 | Data Entry | Switch | ✅ | ✅ | [switch](../../components/switch) | — |
 | Data Entry | TimePicker | ✅ | ✅ | [time-picker](../../components/time-picker) | 🔄 `needConfirm` ✅ 4.21.0；🔄 `changeOnScroll` ✅ 4.23.0 |
@@ -79,14 +79,14 @@
 | 分组 | 组件 | React `antd` | Vue Next | 文档链接 | 缺口备注 |
 | --- | --- | --- | --- | --- | --- |
 | Data Display | Avatar | ✅ | ✅ | [avatar](../../components/avatar) | 🔄 Group `max` ✅ 4.28.0 |
-| Data Display | Badge | ✅ | ✅ | [badge](../../components/badge) | 🔄 `size` 文档/demo ✅ 4.66.0 |
+| Data Display | Badge | ✅ | ✅ | [badge](../../components/badge) | 🔄 `size` 文档/demo ✅ 4.66.0；🔄 `classNames` / `styles` ✅ 4.67.0 |
 | Data Display | Calendar | ✅ | ✅ | [calendar](../../components/calendar) | 🔄 `cellRender` / `fullCellRender` ✅ 4.60.0；🔄 `showWeek` ✅ 4.62.0 |
 | Data Display | Card | ✅ | ✅ | [card](../../components/card) | 🔄 `variant` ✅ 4.29.0 |
 | Data Display | Carousel | ✅ | ✅ | [carousel](../../components/carousel) | — |
 | Data Display | Collapse | ✅ | ✅ | [collapse](../../components/collapse) | 🔄 `destroyOnHidden` ✅ 4.14.0；🔄 `size` ✅ 4.30.0 |
-| Data Display | Descriptions | ✅ | ✅ | [descriptions](../../components/descriptions) | 🔄 `items` ✅ 4.32.0 |
+| Data Display | Descriptions | ✅ | ✅ | [descriptions](../../components/descriptions) | 🔄 `items` ✅ 4.32.0；🔄 `classNames` / `styles` ✅ 4.67.0 |
 | Data Display | Empty | ✅ | ✅ | [empty](../../components/empty) | 🔄 `classNames` / `styles` ✅ 4.65.0 |
-| Data Display | Image | ✅ | ✅ | [image](../../components/image) | 🔄 preview `toolbarRender` ✅ 4.52.0 |
+| Data Display | Image | ✅ | ✅ | [image](../../components/image) | 🔄 preview `toolbarRender` ✅ 4.52.0；🔄 `movable` / `imageRender` ✅ 4.67.0 |
 | Data Display | List | ✅ | ✅ | [list](../../components/list) | React 6 标 DEPRECATED；阶段 B 再议 |
 | Data Display | Popover | ✅ | ✅ | [popover](../../components/popover) | — |
 | Data Display | QRCode | ✅ 5.1 | ✅ | [qrcode](../../components/qrcode) | 🔄 `statusRender` / object `iconSize` ✅ 4.26.0 |
@@ -193,9 +193,10 @@
 62. ~~Modal / Drawer `loading`~~ — ✅ `4.64.0`
 63. ~~Empty `classNames` / `styles`~~ — ✅ `4.65.0`
 64. ~~Tour `disabledInteraction` + Badge `size` 文档 + Watermark `font.textAlign` + Drawer `drawerRender` + Spin `percent`~~ — ✅ `4.66.0`
-65. Table `virtual` 按需拆版（多日）
-66. ColorPicker 渐变 `mode`
-67. Segmented `vertical`（需 MotionThumb 竖向）
+65. ~~Badge / Descriptions `classNames`/`styles` + Image `movable`/`imageRender` + Select `labelRender`/`optionRender`~~ — ✅ `4.67.0`
+66. Table `virtual` 按需拆版（多日）
+67. ColorPicker 渐变 `mode`
+68. Segmented `vertical`（需 MotionThumb 竖向）
 
 ## 阶段 B（仅规划，不急实现）
 
@@ -205,4 +206,4 @@
 
 ---
 
-_上次更新：`4.66.0` 加大批次（Tour / Badge / Watermark / Drawer / Spin）。每发一版请同步改本表；之后默认每版打包 4–6 项。_
+_上次更新：`4.67.0` 批次（Badge / Image / Descriptions / Select）。每发一版请同步改本表；之后默认每版打包 4–6 项。_

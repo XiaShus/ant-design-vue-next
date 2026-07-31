@@ -79,6 +79,23 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*LVQ3R5JjjJEAAA
       image: { url: string; alt?: string; width?: number | string; height?: number | string };
     },
   ) => any;
+  /** 预览图是否可拖拽。`4.67.0+`（对齐 antd ≥ 5.8） */
+  movable?: boolean;
+  /** 自定义预览图片节点。`4.67.0+`（对齐 antd ≥ 5.7） */
+  imageRender?: (
+    originalNode: VNode,
+    info: {
+      transform: {
+        x: number;
+        y: number;
+        rotate: number;
+        scale: number;
+        flipX: boolean;
+        flipY: boolean;
+      };
+      image: { url: string; alt?: string; width?: number | string; height?: number | string };
+    },
+  ) => any;
 }
 ```
 

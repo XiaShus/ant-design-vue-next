@@ -66,6 +66,10 @@ export const selectProps = () => ({
   placement: stringType<SelectCommonPlacement>(),
   status: stringType<InputStatus>(),
   'onUpdate:value': functionType<(val: SelectValue) => void>(),
+  /** Custom selected label render (antd ≥ 5.15). */
+  labelRender: functionType<(props: Record<string, any>) => any>(),
+  /** Custom option content render (antd ≥ 5.11). */
+  optionRender: functionType<(oriOption: Record<string, any>) => any>(),
 });
 
 export type SelectProps = Partial<ExtractPropTypes<ReturnType<typeof selectProps>>>;
@@ -264,6 +268,8 @@ const Select = defineComponent({
         'bordered',
         'variant',
         'status',
+        'labelRender',
+        'optionRender',
       ]);
 
       const rcSelectRtlDropdownClassName = classNames(
@@ -300,11 +306,15 @@ const Select = defineComponent({
           onBlur={handleBlur}
           id={id}
           dropdownRender={selectProps.dropdownRender || slots.dropdownRender}
-          v-slots={{ option: slots.option }}
+          v-slots={{
+            option: props.optionRender
+              ? (oriOption: Record<string, any>) => props.optionRender!(oriOption)
+              : slots.option,
+          }}
           transitionName={transitionName.value}
           children={slots.default?.()}
           tagRender={props.tagRender || slots.tagRender}
-          optionLabelRender={slots.optionLabel}
+          optionLabelRender={props.labelRender || slots.optionLabel}
           maxTagPlaceholder={props.maxTagPlaceholder || slots.maxTagPlaceholder}
           maxCount={isMultiple.value ? props.maxCount : undefined}
           showArrow={hasFeedback || showArrow}

@@ -46,6 +46,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*5oPiTqPxGAUAAA
 | firstActiveValue | 默认高亮的选项 | string \| string\[] | - |  |
 | getPopupContainer | 菜单渲染父节点。默认渲染到 body 上，如果你遇到菜单滚动定位问题，试试修改为滚动的区域，并相对其定位。 | function(triggerNode) | () => document.body |  |
 | labelInValue | 是否把每个选项的 label 包装到 value 中，会把 Select 的 value 类型从 `string` 变为 `{key: string, label: vNodes, originLabel: any}` 的格式, originLabel（3.1） 保持原始类型，如果通过 a-select-option children 构造的节点，该值是是个函数（即 a-select-option 的默认插槽） | boolean | false |  |
+| labelRender | 自定义选中项回填内容 | (props) => any | - | 4.67.0 |
 | listHeight | 设置弹窗滚动高度 | number | 256 |  |
 | maxCount | 最多可选中的条目数量，仅在 `mode` 为 `multiple` 或 `tags` 时生效 | number | - | 4.20.0 |
 | maxTagCount | 最多显示多少个 tag | number | - |  |
@@ -58,6 +59,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*5oPiTqPxGAUAAA
 | option | 通过 option 插槽，自定义节点 | v-slot:option="{value, label, [disabled, key, title]}" | - | 2.2.5 |
 | optionFilterProp | 搜索时过滤对应的 option 属性，不支持 children | string | value |  |
 | optionLabelProp | 回填到选择框的 Option 的属性值，默认是 Option 的子元素。比如在子元素需要高亮效果时，此值可以设为 `value`。 | string | `children` \| `label`(设置 options 时) |  |
+| optionRender | 自定义下拉选项内容 | (oriOption) => any | - | 4.67.0 |
 | options | options 数据，如果设置则不需要手动构造 selectOption 节点 | Array&lt;{value, label, [disabled, key, title]}> | \[] |  |
 | placeholder | 选择框默认文字 | string\|slot | - |  |
 | placement | 选择框弹出的位置 | `bottomLeft` `bottomRight` `topLeft` `topRight` | bottomLeft | 3.3.0 |
